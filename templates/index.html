@@ -3,55 +3,60 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Ensure proper rendering/zooming for mobile -->
 	<title>BillDueDate</title>
 	<meta name="description" content="BillDueDate">
 	<meta name="author" content="Michael harris">
-	
-	<!-- <link rel="icon" href="static/favicon.ico" type="image/x-icon"> -->
+  
 	<link rel="stylesheet" href="static/css/base.css">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"><!-- Latest compiled and minified CSS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!-- jQuery library -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script><!-- Popper JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script><!-- Latest compiled JavaScript -->
 	
 </head>
 
 <body>
+	<div class="container"><!-- Container class is required for bootstrap (or Container-fluid) -->	
+		<div class="header">
+			<nav>
+				<li role="presentation" id="active-nav"><a href="#">Home</a>
+				</li>
+				<li role="presentation"><a href="showSignIn">Sign In</a>
+				</li>
+			</nav>
+		
+		<div>
 
-	<div class="header">
-		<nav>
-			<li role="presentation" id="active-nav"><a href="#">Home</a>
-			</li>
-			<li role="presentation"><a href="showSignIn">Sign In</a>
-			</li>
-		</nav>
-	
-	<div>
-
-	<div class="main-table">
-		<table>
-			<tr>
-				<th>Bill Name</th>
-				<th>Date</th>
-				<th>Amount</th>
-				<th>Paid?</th>
-				<th>Description</th>
-				<th>Remaining</th>
-			</tr>
-			<tr>
-				<th>Fed Loan</th>
-				<th>06/01/2018</th>
-				<th>$199.70</th>
-				<th>Y (Auto)</th>
-				<th>IBR</th>
-				<th>$1000.00</th>
-			</tr>
-			<tr>
-				<th>ATT</th>
-				<th>06/07/2018</th>
-				<th>$128.44</th>
-				<th></th>
-				<th></th>
-				<th>$852.23</th>
-			</tr>
-		</table>
+		<div class="main-table">
+			<table>
+				<tr>
+					<th>Bill Name</th>
+					<th>Date</th>
+					<th>Amount</th>
+					<th>Paid?</th>
+					<th>Description</th>
+					<th>Remaining</th>
+				</tr>
+				<tr>
+					<th>Fed Loan</th>
+					<th>06/01/2018</th>
+					<th>$199.70</th>
+					<th>Y (Auto)</th>
+					<th>IBR</th>
+					<th>$1000.00</th>
+				</tr>
+				<tr>
+					<th>ATT</th>
+					<th>06/07/2018</th>
+					<th>$128.44</th>
+					<th></th>
+					<th></th>
+					<th>$852.23</th>
+				</tr>
+			</table>
+		</div>
 	</div>
 	
 	<footer class="footer">
