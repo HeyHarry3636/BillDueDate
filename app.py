@@ -10,7 +10,7 @@ app = Flask(__name__)
 def main():
 	return render_template('index.html')
 	
-@app.route("showSignUp")
+@app.route("/showSignUp")
 def showSignUp():
 	return render_template('signUp.html')
 
