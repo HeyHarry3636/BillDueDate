@@ -36,7 +36,7 @@ CREATE TABLE tbl_bank (
 	recur_id BIGINT NOT NULL,
 	PRIMARY KEY (bank_id),
 	FOREIGN KEY (user_id) REFERENCES tbl_user(user_id),
-	FOREIGN KEY (recur_interval) REFERENCES tbl_recur(recur_id)
+	FOREIGN KEY (recur_id) REFERENCES tbl_recur(recur_id)
 );
 
 -- Create the BILL table
@@ -52,5 +52,5 @@ CREATE TABLE tbl_bill (
 	bill_paid CHAR(1) NULL,
 	PRIMARY KEY (bill_id),
 	FOREIGN KEY (user_id) REFERENCES tbl_user(user_id),
-	FOREIGN KEY (recur_interval) REFERENCES tbl_recur(recur_id)
+	FOREIGN KEY (recur_id) REFERENCES tbl_recur(recur_id)
 );
