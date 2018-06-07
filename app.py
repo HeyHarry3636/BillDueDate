@@ -16,7 +16,7 @@ def showSignUp():
 	
 @app.route("/signUp", methods=["POST"])
 def signUp():
-	_email = request.form['inputName']
+	_email = request.form['inputEmail']
 	_password = request.form['inputPassword']
 	
 	if _email and _password:
