@@ -19,16 +19,18 @@
 	<div class="container"><!-- Container class is required for bootstrap (or Container-fluid) -->	
 		<div>
 			<nav class="nav nav-pills">
-				<li class="nav-item" role="presentation"><a href="#">Home</a><!-- Use a # in href so we don't get a 404 page -->
+				<li class="nav-item" role="presentation"><a class="nav-link active" href="#">Home</a><!-- Use a # in href so we don't get a 404 page -->
 				</li>
-				<li class="nav-item" role="presentation"><a href="showSignIn">Sign In</a>
+				<li class="nav-item" role="presentation"><a class="nav-link" href="showSignIn">Sign In</a>
 				</li>
 			</nav>
 		<div>
+		
 		<div class="jumbotron">
 			<h2>BillDueDate</h2>
 			<p>When are your bills due?</p>
 		</div>
+		
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-hover">
 				<thead class="thead-dark">
@@ -61,6 +63,7 @@
 				</tbody>
 			</table>
 		</div>
+		
 	</div>
 	
 	<footer class="footer">
