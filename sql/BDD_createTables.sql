@@ -5,10 +5,10 @@
 USE BillDueDate
 
 -- DROP all tables from previous uses
-DROP TABLE IF EXISTS tbl_user;
-DROP TABLE IF EXISTS tbl_bank;
 DROP TABLE IF EXISTS tbl_bill;
+DROP TABLE IF EXISTS tbl_bank;
 DROP TABLE IF EXISTS tbl_recur;
+DROP TABLE IF EXISTS tbl_user;
 
 -- Create the USER table
 CREATE TABLE tbl_user (
