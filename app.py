@@ -20,9 +20,9 @@ def signUp():
 	_password = request.form['inputPassword']
 	
 	if _email and _password:
-		return json.dumps({'html':<span>All fields good!</span>'})]
+		return json.dumps({'html':'<span>All fields good!</span>'})]
 	else:
-		return json.dumps({'html':<span>Enter the required fields!</span>'})]
+		return json.dumps({'html':'<span>Enter the required fields!</span>'})]
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=5000, debug=True)
