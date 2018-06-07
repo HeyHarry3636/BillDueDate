@@ -22,7 +22,7 @@ CREATE TABLE tbl_user (
 -- Create the RECUR table
 CREATE TABLE tbl_recur (
 	recur_id BIGINT NOT NULL AUTO_INCREMENT UNIQUE,
-	recur_interval = VARCHAR(45) NULL,
+	recur_interval VARCHAR(45) NULL,
 	recur_value BIGINT NULL,
 	PRIMARY KEY (recur_id)
 );
