@@ -2,3 +2,7 @@
 	text-align: right;
 	text-color: blue;
 }
+
+.active-nav {
+	font-weight: bold;
+}
