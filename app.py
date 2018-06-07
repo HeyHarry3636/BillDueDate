@@ -4,7 +4,18 @@ from flask import Flask, render_template, request, json, session, redirect
 from flaskext.mysql import MySQL
 import bcrypt
 
+mysql = MySQL()
 app = Flask(__name__)
+# app.secret_key = 'Bills are due'
+
+# MySQL configurations
+app.config['MYSQL_DATABASE_USER'] = 'test'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'Test1234!'
+app.config['MYSQL_DATABASE_DB'] = 'BillDueDate'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+
+# Initialize mysql app
+mysql.init_app(app)
 
 @app.route("/")
 def main():
@@ -20,7 +31,18 @@ def signUp():
 	_password = request.form['inputPassword']
 	
 	if _email and _password:
-		return json.dumps({'html':'<span>All fields good!</span>'})
+		# Create mysql connection, create cursor, call procedure, fetch results
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		cursor.callproc('sp_createUser', (_email, _password))
+		data = cursor.fetchall()
+	
+		# Return successful or error message to see if called_proc worked
+		if len(data) is 0:
+			conn.commit()
+			return json.dumps({'message':'User created successfully!'})
+		else:
+			return json.dumps({'error':str(data[0])})
 	else:
 		return json.dumps({'html':'<span>Enter the required fields!</span>'})
 

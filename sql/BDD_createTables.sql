@@ -4,6 +4,10 @@
 
 USE BillDueDate
 
+-- Credentials for Test USER
+-- U: test
+-- P: Test1234!
+
 -- DROP all tables from previous uses
 DROP TABLE IF EXISTS tbl_bill;
 DROP TABLE IF EXISTS tbl_bank;
