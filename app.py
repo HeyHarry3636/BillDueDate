@@ -79,7 +79,7 @@ def logIn():
 		data = cursor.fetchall()
 
 		if len(data) > 0:
-			if bcrypt.checkpw(_password.encode("utf-8"), data[0][3]):
+			if bcrypt.checkpw(_password.encode("utf-8"), data[0][1]):
 				session['user'] = data[0][0]
 				return redirect('/')
 			else:
