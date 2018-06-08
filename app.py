@@ -27,30 +27,30 @@ def showSignUp():
 	
 @app.route("/signUp", methods=["POST"])
 def signUp():
-	_email = request.form['inputEmail']
-	_password = request.form['inputPassword']
-	
 	try:
-		if _email and _password:
+		_email = request.form['inputEmail']
+		_password = request.form['inputPassword']
 		
-			# Hash password using bcrypt
-			_e_password = _password.encode("utf-8")
-			_hashsalt_password = bcrypt.hashpw(_e_password, bcrypt.gensalt())
+			if _email and _password:
 			
-			# Create mysql connection, create cursor, call procedure, fetch results
-			conn = mysql.connect()
-			cursor = conn.cursor()
-			cursor.callproc('sp_createUser', (_email, _hashsalt_password))
-			data = cursor.fetchall()
-		
-			# Return successful or error message to see if called_proc worked
-			if len(data) is 0:
-				conn.commit()
-				return json.dumps({'message':'User created successfully!'})
+				# Hash password using bcrypt
+				_e_password = _password.encode("utf-8")
+				_hashsalt_password = bcrypt.hashpw(_e_password, bcrypt.gensalt())
+				
+				# Create mysql connection, create cursor, call procedure, fetch results
+				conn = mysql.connect()
+				cursor = conn.cursor()
+				cursor.callproc('sp_createUser', (_email, _hashsalt_password))
+				data = cursor.fetchall()
+			
+				# Return successful or error message to see if called_proc worked
+				if len(data) is 0:
+					conn.commit()
+					return json.dumps({'message':'User created successfully!'})
+				else:
+					return json.dumps({'error':str(data[0])})
 			else:
-				return json.dumps({'error':str(data[0])})
-		else:
-			return json.dumps({'html':'<span>Enter the required fields!</span>'})
+				return json.dumps({'html':'<span>Enter the required fields!</span>'})
 	
 	except Exception as e:
 		return json.dumps({'error':str(e)})
@@ -67,21 +67,20 @@ def showLogIn():
 
 @app.route("/logIn", methods=["POST"])
 def logIn():
-	_email = request.form['inputEmail']
-	_password = request.form['inputPassword']
-	
 	try:
-		if _email and _password:
+		_email = request.form['inputEmail']
+		_password = request.form['inputPassword']
 		
-			# Create mysql connection, create cursor, call procedure, fetch results
-			conn = mysql.connect()
-			cursor = conn.cursor()
-			cursor.callproc('sp_createUser', (_email, _hashsalt_password))
-			data = cursor.fetchall()
-		
+			if _email and _password:
+			
+				# Create mysql connection, create cursor, call procedure, fetch results
+				conn = mysql.connect()
+				cursor = conn.cursor()
+				cursor.callproc('sp_validateLogin', (_email,))
+				data = cursor.fetchall()
 
-		else:
-			return json.dumps({'html':'<span>Enter the required fields!</span>'})
+			else:
+				return json.dumps({'html':'<span>Enter the required fields!</span>'})
 	
 	except Exception as e:
 		return json.dumps({'error':str(e)})
