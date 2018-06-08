@@ -46,12 +46,12 @@ def signUp():
 			# Return successful or error message to see if called_proc worked
 			if len(data) is 0:
 				conn.commit()
-				return json.dumps({'message':'User created successfully!'})
+				return render_template('error.html', error = 'User created successfully!')
 			else:
-				return json.dumps({'error':str(data[0])})
+				return render_template('error.html', error = str(data[0]))
 
 		else:
-			return json.dumps({'html':'<span>Enter the required fields!</span>'})
+			return render_template('error.html', error = 'Enter the required fields!')
 
 	except Exception as e:
 		return json.dumps({'error':str(e)})
@@ -71,17 +71,21 @@ def logIn():
 	try:
 		_email = request.form['inputEmail']
 		_password = request.form['inputPassword']
-		
-		if _email and _password:
-		
-			# Create mysql connection, create cursor, call procedure, fetch results
-			conn = mysql.connect()
-			cursor = conn.cursor()
-			cursor.callproc('sp_validateLogin', (_email,))
-			data = cursor.fetchall()
 
+		# Create mysql connection, create cursor, call procedure, fetch results
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		cursor.callproc('sp_validateLogin', (_email,))
+		data = cursor.fetchall()
+
+		if len(data) > 0:
+			if bcrypt.checkpw(_password.encode("utf-8"), data[0][3]):
+				session['user'] = data[0][0]
+				return redirect('/')
+			else:
+				return render_template('error.html', error = 'Wrong email address or password.')
 		else:
-			return json.dumps({'html':'<span>Enter the required fields!</span>'})
+			return render_template('error.html', error = 'Wrong email address or password.')
 	
 	except Exception as e:
 		return json.dumps({'error':str(e)})
