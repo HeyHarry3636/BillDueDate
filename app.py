@@ -77,6 +77,8 @@ def logIn():
 		cursor = conn.cursor()
 		cursor.callproc('sp_validateLogin', (_email,))
 		data = cursor.fetchall()
+		
+		return json.dumps({'error':str(data[0][0])})
 
 		if len(data) > 0:
 			if bcrypt.checkpw(_password.encode("utf-8"), data[0][1]):
