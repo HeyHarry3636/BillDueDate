@@ -92,7 +92,7 @@ def logIn():
 			return render_template('error.html', error = 'Wrong email address or password.')
 	
 	except Exception as e:
-		return json.dumps({'error':str(e)})
+		return render_template('error.html', error = str(e))
 	
 	finally:
 		if 'cursor' in locals():
