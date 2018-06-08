@@ -30,21 +30,29 @@ def signUp():
 	_email = request.form['inputEmail']
 	_password = request.form['inputPassword']
 	
-	if _email and _password:
-		# Create mysql connection, create cursor, call procedure, fetch results
-		conn = mysql.connect()
-		cursor = conn.cursor()
-		cursor.callproc('sp_createUser', (_email, _password))
-		data = cursor.fetchall()
-	
-		# Return successful or error message to see if called_proc worked
-		if len(data) is 0:
-			conn.commit()
-			return json.dumps({'message':'User created successfully!'})
+	try:
+		if _email and _password:
+			# Create mysql connection, create cursor, call procedure, fetch results
+			conn = mysql.connect()
+			cursor = conn.cursor()
+			cursor.callproc('sp_createUser', (_email, _password))
+			data = cursor.fetchall()
+		
+			# Return successful or error message to see if called_proc worked
+			if len(data) is 0:
+				conn.commit()
+				return json.dumps({'message':'User created successfully!'})
+			else:
+				return json.dumps({'error':str(data[0])})
 		else:
-			return json.dumps({'error':str(data[0])})
-	else:
-		return json.dumps({'html':'<span>Enter the required fields!</span>'})
+			return json.dumps({'html':'<span>Enter the required fields!</span>'})
+	except Exception as e:
+		return json.dumps({'error'}:str(e)})
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=5000, debug=True)
