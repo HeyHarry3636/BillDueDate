@@ -47,7 +47,7 @@ def signUp():
 		else:
 			return json.dumps({'html':'<span>Enter the required fields!</span>'})
 	except Exception as e:
-		return json.dumps({'error'}:str(e)})
+		return json.dumps({'error':str(e)})
 	finally:
 		if 'cursor' in locals():
 			cursor.close()
