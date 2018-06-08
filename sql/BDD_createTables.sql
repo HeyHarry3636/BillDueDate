@@ -50,6 +50,7 @@ CREATE TABLE tbl_bill (
 	bill_name VARCHAR(45) NULL,
 	bill_description VARCHAR(200) NULL,
 	bill_amount DECIMAL(7,2) NULL,
+	bill_autoWithdrawal CHAR(1) NULL,
 	bill_date DATE DEFAULT NULL,
 	recur_id BIGINT NOT NULL,
 	bill_createdDate DATETIME DEFAULT NULL,
