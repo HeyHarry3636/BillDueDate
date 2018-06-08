@@ -6,7 +6,7 @@ import bcrypt
 
 mysql = MySQL()
 app = Flask(__name__)
-# app.secret_key = 'Bills are due'
+app.secret_key = 'Bills are due'
 
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'test'
