@@ -78,10 +78,14 @@ def logIn():
 		cursor.callproc('sp_validateLogin', (_email,))
 		data = cursor.fetchall()
 		
+		# data[0][0] = 2  --> user_id
+		# data[0][1] = "Test2@Test2.com" --> user_email
+		# data[0][2] = "asdf1dsafsd" --> user_password hashed
+		
 		return json.dumps({'error':str(data[0][0])})
 
 		if len(data) > 0:
-			if bcrypt.checkpw(_password.encode("utf-8"), data[0][1]):
+			if bcrypt.checkpw(_password.encode("utf-8"), data[0][2]):
 				session['user'] = data[0][0]
 				return redirect('/')
 			else:
