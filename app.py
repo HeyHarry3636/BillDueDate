@@ -44,8 +44,8 @@ def signUp():
 				return json.dumps({'message':'User created successfully!'})
 			else:
 				return json.dumps({'error':str(data[0])})
-		else:
-			return json.dumps({'html':'<span>Enter the required fields!</span>'})
+		# else:
+			# return json.dumps({'html':'<span>Enter the required fields!</span>'})
 	# except Exception as e:
 		# return json.dumps({'error':str(e)})
 	finally:
