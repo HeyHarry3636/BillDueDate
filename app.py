@@ -32,10 +32,15 @@ def signUp():
 	
 	try:
 		if _email and _password:
+		
+			# Hash password using bcrypt
+			_e_password = _password.encode("utf-8")
+			_hashsalt_password = bcrypt.hashpw(_e_password, bcrypt.gensalt())
+			
 			# Create mysql connection, create cursor, call procedure, fetch results
 			conn = mysql.connect()
 			cursor = conn.cursor()
-			cursor.callproc('sp_createUser', (_email, _password))
+			cursor.callproc('sp_createUser', (_email, _hashsalt_password))
 			data = cursor.fetchall()
 		
 			# Return successful or error message to see if called_proc worked
