@@ -85,7 +85,7 @@ def logIn():
 		if len(data) > 0:
 			if bcrypt.checkpw(_password.encode("utf-8"), data[0][2]):
 				session['user'] = data[0][0]
-				return redirect('/')
+				return redirect('/userHome')
 			else:
 				return render_template('error.html', error = 'Wrong email address or password.')
 		else:
@@ -100,7 +100,12 @@ def logIn():
 		if 'conn' in locals():
 			conn.close()
 
-			
+@app.route('/userHome')
+def userHome():
+	if session.get('user'):
+		return render_template('userHome.html')
+	else:
+		return render_template('error.html', error = 'Unauthorized Access')
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=5000, debug=True)
