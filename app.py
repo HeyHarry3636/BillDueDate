@@ -91,6 +91,7 @@ def logIn():
 		else:
 			return render_template('error.html', error = 'Wrong email address or password.')
 	
+	
 	except Exception as e:
 		return render_template('error.html', error = str(e))
 	
@@ -128,18 +129,18 @@ def addBill():
 			_bill_date = request.form['bill_date']
 			_recur_id = request.form['recur_id']			
 			
-			# Create mysql connection, create cursor, call procedure, fetch results
-			conn = mysql.connect()
-			cursor = conn.cursor()
-			cursor.callproc('sp_addBill', (_user_id, _bill_name, _bill_description, _bill_amount, _bill_autoWithdrawal, _bill_date, _recur_id))
-			data = cursor.fetchall()
-	
-			# If the procedure worked as planned it will return 0 (len(data)==0)
-			if len(data) is 0:
-				conn.commit()
-				return redirect('userHome')
-			else:
-				return render_template('error.html', error = 'An error occured!')
+		# Create mysql connection, create cursor, call procedure, fetch results
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		cursor.callproc('sp_addBill', (_user_id, _bill_name, _bill_description, _bill_amount, _bill_autoWithdrawal, _bill_date, _recur_id))
+		data = cursor.fetchall()
+
+		# If the procedure worked as planned it will return 0 (len(data)==0)
+		if len(data) is 0:
+			conn.commit()
+			return redirect('userHome')
+		else:
+			return render_template('error.html', error = 'An error occured!')
 				
 	except Exception as e:
 		return render_template('error.html', error = str(e))
