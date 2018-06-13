@@ -116,8 +116,39 @@ def logout():
 def showAddBill():
 	return render_template('showAddBill.html')
 
-# @app.route('/addBill', methods=['POST'])
-# def addBill():
+@app.route('/addBill', methods=['POST'])
+def addBill():
+	try:
+		if session.get('user'):
+			_user_id = session.get('user')
+			_bill_name = request.form['bill_name']
+			_bill_description = request.form['bill_description']
+			_bill_amount = request.form['bill_amount']
+			_bill_autoWithdrawal = request.form['bill_autoWithdrawal']
+			_bill_date = request.form['bill_date']
+			_recur_id = request.form['recur_id']			
+			
+			# Create mysql connection, create cursor, call procedure, fetch results
+			conn = mysql.connect()
+			cursor = conn.cursor()
+			cursor.callproc('sp_addBill', (_user_id, _bill_name, _bill_description, _bill_amount, _bill_autoWithdrawal, _bill_date, _recur_id))
+			data = cursor.fetchall()
+	
+			# If the procedure worked as planned it will return 0 (len(data)==0)
+			if len(data) is 0:
+				conn.commit()
+				return redirect('userHome')
+			else:
+				return render_template('error.html', error = 'An error occured!')
+				
+	except Exception as e:
+		return render_template('error.html', error = str(e))
+	
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
