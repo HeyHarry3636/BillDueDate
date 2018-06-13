@@ -1,0 +1,4 @@
+.req:before{
+	content: "*";
+	color: red;
+}
