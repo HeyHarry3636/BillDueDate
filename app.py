@@ -138,12 +138,9 @@ def addBill():
 			# If the procedure worked as planned it will return 0 (len(data)==0)
 			if len(data) is 0:
 				conn.commit()
-				# return redirect('userHome')
-				return render_template('error.html', error = str(data))
+				return redirect('userHome')
 			else:
 				return render_template('error.html', error = 'An error occured!')
-		else:
-			return render_template('error.html', error = str(session.get('user')))
 				
 	except Exception as e:
 		return render_template('error.html', error = str(e))
