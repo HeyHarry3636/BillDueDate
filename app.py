@@ -111,6 +111,10 @@ def userHome():
 def logout():
 	session.pop('user', None)
 	return redirect('/')
+	
+@app.route('/addBill')
+def addBill():
+	return render_template('addBill.html')
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
