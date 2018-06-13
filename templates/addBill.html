@@ -45,7 +45,7 @@
 					
 					<!-- Bill Name -->
 					<div class="form-group row">
-						<label class="col-md-4 col-form-label" for="bill_name">Name:</label>
+						<label class="col-md-4 col-form-label" for="bill_name"><p style="color:red">*</p>Name:</label>
 						<div class="col-xl">
 							<input class="form-control" name="bill_name" id="bill_name" type="text" placeholder="(ex: AT&T)" required autofocus>
 						</div>
@@ -61,9 +61,17 @@
 					
 					<!-- Bill Amount -->
 					<div class="form-group row">
-						<label class="col-md-4 col-form-label" for="bill_amount">Name:</label>
+						<label class="col-md-4 col-form-label" for="bill_amount">Amount: $</label>
 						<div class="col-xl">
 							<input class="form-control" name="bill_amount" id="bill_amount" type="number" min="0.00" max="10000.00" step="any" placeholder="(ex: $132.23)" required>
+						</div>
+					</div>
+					
+					<!-- Bill Auto Withdrawal -->
+					<div class="form-group row">
+						<label class="col-md-4 col-form-label" for="bill_autoWithdrawal">Does this bill auto-withdraw from your bank account?</label>
+						<div class="col-xl">
+							<input class="form-control" name="bill_autoWithdrawal" id="bill_autoWithdrawal" type="number" placeholder="(ex: $132.23)" required>
 						</div>
 					</div>
 					
