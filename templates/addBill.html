@@ -74,7 +74,9 @@
 					<div class="form-group row">
 						<label class="col-md-4 col-form-label" for="bill_autoWithdrawal">Does this bill auto-withdraw from your bank account?</label>
 						<div class="col-xl">
-							<input class="form-control" name="bill_autoWithdrawal" id="bill_autoWithdrawal" type="checkbox" value="0">
+							<input class="form-control" name="bill_autoWithdrawal" id="bill_autoWithdrawal" type="hidden" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
+							<!-- <input class="form-control" name="bill_autoWithdrawal" id="bill_autoWithdrawal" type="hidden" value="0"> -->
+							<!-- <input class="form-control" name="bill_autoWithdrawal" id="bill_autoWithdrawal" type="checkbox" value="1"> -->
 						</div>
 					</div>
 					
