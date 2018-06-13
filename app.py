@@ -17,15 +17,15 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 # Initialize mysql app
 mysql.init_app(app)
 
-@app.route("/")
+@app.route('/')
 def main():
 	return render_template('index.html')
 	
-@app.route("/showSignUp")
+@app.route('/showSignUp')
 def showSignUp():
 	return render_template('signUp.html')
 	
-@app.route("/signUp", methods=["POST"])
+@app.route('/signUp', methods=["POST"])
 def signUp():
 	try:
 		_email = request.form['inputEmail']
@@ -62,11 +62,11 @@ def signUp():
 		if 'conn' in locals():
 			conn.close()
 
-@app.route("/showLogIn")
+@app.route('/showLogIn')
 def showLogIn():
 	return render_template('logIn.html')
 
-@app.route("/logIn", methods=["POST"])
+@app.route('/logIn', methods=["POST"])
 def logIn():
 	try:
 		_email = request.form['inputEmail']
@@ -100,14 +100,14 @@ def logIn():
 		if 'conn' in locals():
 			conn.close()
 
-@app.route("/userHome")
+@app.route('/userHome')
 def userHome():
 	if session.get('user'):
 		return render_template('userHome.html')
 	else:
 		return render_template('error.html', error = 'Unauthorized Access')
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
 
 
