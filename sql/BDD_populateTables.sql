@@ -8,7 +8,19 @@ INSERT INTO tbl_user(user_id, user_email, user_password, user_createdDate)
 
 -- Populate RECUR table
 INSERT INTO tbl_recur(recur_id, recur_interval, recur_value)
-	VALUES(1, "Monthly", 30);
+	VALUES(0, "Annually", 365);
+INSERT INTO tbl_recur(recur_id, recur_interval, recur_value)
+	VALUES(1, "Bi-Annually", 182);
+INSERT INTO tbl_recur(recur_id, recur_interval, recur_value)
+	VALUES(2, "Quarterly", 90);
+INSERT INTO tbl_recur(recur_id, recur_interval, recur_value)
+	VALUES(3, "Monthly", 31);
+INSERT INTO tbl_recur(recur_id, recur_interval, recur_value)
+	VALUES(4, "Bi-Monthly", 15);
+INSERT INTO tbl_recur(recur_id, recur_interval, recur_value)
+	VALUES(5, "Weekly", 7);
+INSERT INTO tbl_recur(recur_id, recur_interval, recur_value)
+	VALUES(6, "Custom", 1);
 
 -- Populate BANK table
 INSERT INTO tbl_bank(bank_id, user_id, bank_currentAmount, bank_payDayAmount, recur_id, bank_createdDate)
