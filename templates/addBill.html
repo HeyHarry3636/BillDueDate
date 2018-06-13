@@ -47,7 +47,7 @@
 					<div class="form-group row">
 						<label class="col-md-4 col-form-label" for="bill_name">Name:</label>
 						<div class="col-xl">
-							<input class="form-control" type="text" name="bill_name" id="bill_name" placeholder="(ex: AT&T)" required autofocus>
+							<input class="form-control" name="bill_name" id="bill_name" type="text" placeholder="(ex: AT&T)" required autofocus>
 						</div>
 					</div>
 					
@@ -63,7 +63,7 @@
 					<div class="form-group row">
 						<label class="col-md-4 col-form-label" for="bill_amount">Name:</label>
 						<div class="col-xl">
-							<input class="form-control" type="number" name="bill_amount" id="bill_amount" placeholder="(ex: $132.23)" required>
+							<input class="form-control" name="bill_amount" id="bill_amount" type="number" min="0.00" max="10000.00" step="any" placeholder="(ex: $132.23)" required>
 						</div>
 					</div>
 					
