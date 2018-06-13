@@ -46,7 +46,7 @@ def signUp():
 			# Return successful or error message to see if called_proc worked
 			if len(data) is 0:
 				conn.commit()
-				return redirect('/userHome')
+				return render_template('error.html', error = 'User created successfully!')
 			else:
 				return render_template('error.html', error = str(data[0]))
 
@@ -100,7 +100,7 @@ def logIn():
 		if 'conn' in locals():
 			conn.close()
 
-@app.route('/userHome')
+@app.route("/userHome")
 def userHome():
 	if session.get('user'):
 		return render_template('userHome.html')
