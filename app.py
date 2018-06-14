@@ -151,7 +151,7 @@ def addBill():
 		if 'conn' in locals():
 			conn.close()
 
-@app.route('/getBill')
+@app.route('/getBill', methods=['GET'])
 def getBill():
 	try:
 		if session.get('user'):
