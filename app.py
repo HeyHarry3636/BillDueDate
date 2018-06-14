@@ -12,7 +12,7 @@ app.secret_key = 'Bills are due'
 class DecimalEncoder(json.JSONEncoder):
 	def default(self, obj):
 		if isinstance(obj, decimal.Decimal):
-			return float(obj)
+			return str(obj)
 		return super(DecimalEncoder, self).default(obj)
 
 # MySQL configurations
@@ -177,7 +177,7 @@ def getBill():
 					'user_id': bill[1],
 					'bill_name': bill[2],
 					'bill_description': bill[3],
-					('bill_amount': decimal.Decimal(bill[4]), class=DecimalEncoder),
+					'bill_amount': decimal.Decimal(bill[4]),
 					'bill_autoWithdrawal': bill[5],
 					'bill_date': bill[6],
 					'recur_id': bill[7],
