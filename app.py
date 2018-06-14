@@ -178,7 +178,7 @@ def getBill():
 					'user_id': bill[1],
 					'bill_name': bill[2],
 					'bill_description': bill[3],
-					('bill_amount': bill[4].decimal.Decimal(), cls=DecimalEncoder),
+					('bill_amount': decimal.Decimal(bill[4]), cls=DecimalEncoder),
 					'bill_autoWithdrawal': bill[5],
 					'bill_date': bill[6],
 					'recur_id': bill[7],
