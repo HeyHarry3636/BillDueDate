@@ -169,6 +169,7 @@ def getBill():
 			cursor.callproc('sp_getBillByUser', (_user_id,))
 			data = cursor.fetchall()
 			
+			print(data)
 			# Prase data and convert to dictionary to return easily as JSON
 			bill_dict = []
 			for bill in data:
