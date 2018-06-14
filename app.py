@@ -151,6 +151,48 @@ def addBill():
 		if 'conn' in locals():
 			conn.close()
 
+@app.route('/getBill')
+def getBill():
+	try:
+		if session.get('user')
+			_user_id = session.get('user')
+			
+			conn = mysql.connect()
+			cursor = conn.cursor()
+			cursor.callproc('sp_getBillByUser', (_user_id,))
+			data = cursor.fetchall()
+			
+			# Prase data and convert to dictionary to return easily as JSON
+			bill_dict = []
+				for bill in data:
+					bill_item = {
+						'bill_id': bill[0],
+						'user_id': bill[1],
+						'bill_name': bill[2],
+						'bill_description': bill[3],
+						'bill_amount': bill[4],
+						'bill_autoWithdrawal': bill[5],
+						'bill_date': bill[6],
+						'recur_id': bill[7],
+						'bill_createdDate': bill[8],
+						'bill_paid': bill[9]
+					}
+			bill_dict.append(bill_item)
+			
+			return json.dumps(bill_dict)
+			
+		else:
+			return render_template('error.html', error = "Unauthorized Access")
+
+	except Exception as e:
+		return render_template('error.html', error = str(e))
+
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
+
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
 
