@@ -10,11 +10,11 @@ app.secret_key = 'Bills are due'
 app.json_encoder = MyJSONEncoder
 
 # Override default encoder to allow JSON for decimal objects
-class MyJSONEncoder(flask.json.JSONEncoder):
-	def default(self, obj):
+class DecimalEncoder(json.JSONEncoder):
+	def _iterencode(self, obj, markers=None):
 		if isinstance(obj, decimal.Decimal):
-			return str(obj)
-		return super(MyJSONEncoder, self).default(obj)
+			return (str(obj) for obj in [obj])
+		return super(DecimalEncoder, self)._iterencode(obj, markers)
 
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'test'
@@ -178,7 +178,7 @@ def getBill():
 					'user_id': bill[1],
 					'bill_name': bill[2],
 					'bill_description': bill[3],
-					'bill_amount': bill[4],
+					('bill_amount': bill[4].decimal.Decimal(), cls=DecimalEncoder),
 					'bill_autoWithdrawal': bill[5],
 					'bill_date': bill[6],
 					'recur_id': bill[7],
