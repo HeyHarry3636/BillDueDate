@@ -8,7 +8,7 @@ $(function() {
                 console.log(response);
             }, */
 			success: function(response) {
-                $(this).html(response);
+                window.location.href=response;
             },
             error: function(error) {
                 console.log(error);
