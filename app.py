@@ -1,6 +1,6 @@
 # App.py (testing bucket list tutorial)
 
-from flask import Flask, render_template, request, json, session, redirect
+from flask import Flask, render_template, request, json, session, redirect, url_for
 from flaskext.mysql import MySQL
 import bcrypt
 
@@ -46,7 +46,7 @@ def signUp():
 			# Return successful or error message to see if called_proc worked
 			if len(data) is 0:
 				conn.commit()
-				return redirect('/showLogIn')
+				return redirect(url_for('showLogIn'))
 			else:
 				return render_template('error.html', error = str(data[0]))
 
