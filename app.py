@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, request, json, session, redirect
 from flaskext.mysql import MySQL
-import bcrypt
+import bcrypt, decimal
 
 mysql = MySQL()
 app = Flask(__name__)
@@ -177,7 +177,7 @@ def getBill():
 					'user_id': bill[1],
 					'bill_name': bill[2],
 					'bill_description': bill[3],
-					'bill_amount': Decimal(bill[4]),
+					'bill_amount': decimal.Decimal(bill[4]),
 					'bill_autoWithdrawal': bill[5],
 					'bill_date': bill[6],
 					'recur_id': bill[7],
