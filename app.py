@@ -2,18 +2,11 @@
 
 from flask import Flask, render_template, request, json, session, redirect
 from flaskext.mysql import MySQL
-import bcrypt, decimal
+import bcrypt
 
 mysql = MySQL()
 app = Flask(__name__)
 app.secret_key = 'Bills are due'
-
-# Override default encoder to allow JSON for decimal objects
-class DecimalEncoder(json.JSONEncoder):
-	def default(self, obj):
-		if isinstance(obj, decimal.Decimal):
-			return float(obj)
-		return super(DecimalEncoder, self).default(obj)
 
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'test'
