@@ -7,6 +7,14 @@ import bcrypt
 mysql = MySQL()
 app = Flask(__name__)
 app.secret_key = 'Bills are due'
+app.json_encoder = MyJSONEncoder
+
+# Override default encoder to allow JSON for decimal objects
+class MyJSONEncoder(flask.json.JSONEncoder):
+	def default(self, obj):
+		if isinstance(obj, decimal.Decimal):
+			return str(obj)
+		return super(MyJSONEncoder, self).default(obj)
 
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'test'
