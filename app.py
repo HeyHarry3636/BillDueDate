@@ -185,8 +185,7 @@ def getBill():
 			return render_template('error.html', error = "Unauthorized Access")
 
 	except Exception as e:
-		# return render_template('error.html', error = str(e))
-		return redirect('error.html', error = str(e))
+		return render_template('error.html', error = str(e))
 
 	finally:
 		if 'cursor' in locals():
