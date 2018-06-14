@@ -2,11 +2,11 @@ $(document).ready(function() {
 	$.ajax({
 		url: '/getBill',
 		type: 'GET',
-/* 		success: function(response) {
+		success: function(response) {
 			console.log(response);
-		}, */
-		error: function(error) {
+		},
+/* 		error: function(error) {
 			console.log(error);
-		}
+		} */
 	});
 });
