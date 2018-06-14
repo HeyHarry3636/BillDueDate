@@ -11,10 +11,10 @@ app.json_encoder = MyJSONEncoder
 
 # Override default encoder to allow JSON for decimal objects
 class DecimalEncoder(json.JSONEncoder):
-	def _iterencode(self, obj, markers=None):
+	def default(self, obj):
 		if isinstance(obj, decimal.Decimal):
-			return (str(obj) for obj in [obj])
-		return super(DecimalEncoder, self)._iterencode(obj, markers)
+			return float(obj)
+		return super(DecimalEncoder, self).default(obj)
 
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'test'
