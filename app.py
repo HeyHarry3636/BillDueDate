@@ -154,7 +154,7 @@ def addBill():
 @app.route('/getBill')
 def getBill():
 	try:
-		if session.get('user')
+		if session.get('user'):
 			_user_id = session.get('user')
 			
 			conn = mysql.connect()
