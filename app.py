@@ -164,19 +164,19 @@ def getBill():
 			
 			# Prase data and convert to dictionary to return easily as JSON
 			bill_dict = []
-				for bill in data:
-					bill_item = {
-						'bill_id': bill[0],
-						'user_id': bill[1],
-						'bill_name': bill[2],
-						'bill_description': bill[3],
-						'bill_amount': bill[4],
-						'bill_autoWithdrawal': bill[5],
-						'bill_date': bill[6],
-						'recur_id': bill[7],
-						'bill_createdDate': bill[8],
-						'bill_paid': bill[9]
-					}
+			for bill in data:
+				bill_item = {
+					'bill_id': bill[0],
+					'user_id': bill[1],
+					'bill_name': bill[2],
+					'bill_description': bill[3],
+					'bill_amount': bill[4],
+					'bill_autoWithdrawal': bill[5],
+					'bill_date': bill[6],
+					'recur_id': bill[7],
+					'bill_createdDate': bill[8],
+					'bill_paid': bill[9]
+				}
 			bill_dict.append(bill_item)
 			
 			return json.dumps(bill_dict)
