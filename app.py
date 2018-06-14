@@ -184,7 +184,7 @@ def getBill():
 					'bill_createdDate': bill[8],
 					'bill_paid': bill[9]
 				}
-				bill_dict.append(bill_item)
+			bill_dict.append(bill_item)
 			
 			return json.dumps(bill_dict)
 			
