@@ -128,7 +128,7 @@ def addBill():
 			_bill_autoWithdrawal = request.form['bill_autoWithdrawal']
 			_bill_date = request.form['bill_date']
 			_recur_id = request.form['recur_id']			
-			
+
 			# Create mysql connection, create cursor, call procedure, fetch results
 			conn = mysql.connect()
 			cursor = conn.cursor()
@@ -141,17 +141,17 @@ def addBill():
 				return redirect('userHome')
 			else:
 				return render_template('error.html', error = 'An error occured!')
-				
+
 	except Exception as e:
 		return render_template('error.html', error = str(e))
-	
+
 	finally:
 		if 'cursor' in locals():
 			cursor.close()
 		if 'conn' in locals():
 			conn.close()
 
-@app.route('/getBill', methods=['GET'])
+@app.route('/getBill')
 def getBill():
 	try:
 		if session.get('user'):
@@ -177,7 +177,7 @@ def getBill():
 					'bill_createdDate': bill[8],
 					'bill_paid': bill[9]
 				}
-			bill_dict.append(bill_item)
+				bill_dict.append(bill_item)
 			
 			return json.dumps(bill_dict)
 			
