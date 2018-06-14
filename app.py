@@ -185,7 +185,8 @@ def getBill():
 			return render_template('error.html', error = "Unauthorized Access")
 
 	except Exception as e:
-		return render_template('error.html', error = str(e))
+		# return render_template('error.html', error = str(e))
+		return redirect('error.html', error = str(e))
 
 	finally:
 		if 'cursor' in locals():
@@ -194,8 +195,7 @@ def getBill():
 			conn.close()
 
 if __name__ == '__main__':
-	# app.run(host='0.0.0.0', port=5000, debug=True)
-	app.run(host='0.0.0.0', port=5000)
+	app.run(host='0.0.0.0', port=5000, debug=True)
 
 
 
