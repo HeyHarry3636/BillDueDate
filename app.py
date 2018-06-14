@@ -117,7 +117,7 @@ def logout():
 def showAddBill():
 	return render_template('addBill.html')
 
-@app.route('/addBill', methods=['POST'])
+@app.route('/addBill')
 def addBill():
 	try:
 		if session.get('user'):
