@@ -117,7 +117,7 @@ def logout():
 def showAddBill():
 	return render_template('addBill.html')
 
-@app.route('/addBill')
+@app.route('/addBill', methods=['POST'])
 def addBill():
 	try:
 		if session.get('user'):
@@ -194,7 +194,8 @@ def getBill():
 			conn.close()
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=5000, debug=True)
+	# app.run(host='0.0.0.0', port=5000, debug=True)
+	app.run(host='0.0.0.0', port=5000)
 
 
 
