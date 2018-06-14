@@ -4,8 +4,11 @@ $(function() {
             url: '/signUp',
             data: $('form').serialize(),
             type: 'POST',
-            success: function(response) {
+/*             success: function(response) {
                 console.log(response);
+            }, */
+			success: function(response) {
+                $.html(response);
             },
             error: function(error) {
                 console.log(error);
