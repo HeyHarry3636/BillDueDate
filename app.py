@@ -17,6 +17,9 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 # Initialize mysql app
 mysql.init_app(app)
 
+# BillDictionary
+result = None
+
 @app.route('/')
 def main():
 	return render_template('index.html')
@@ -106,7 +109,7 @@ def logIn():
 @app.route('/userHome')
 def userHome():
 	if session.get('user'):
-		return render_template('userHome.html')
+		return render_template('userHome.html', result)
 	else:
 		return render_template('error.html', error = 'Unauthorized Access')
 
@@ -181,9 +184,9 @@ def getBill():
 					'bill_paid': bill[9]
 				}
 				bill_dict.append(bill_item)
-			dump()
-			return json.dumps(bill_dict)
-			# return render_template('userHome.html', result=bill_dict)
+
+			# return json.dumps(bill_dict)
+			return render_template('userHome.html', result=bill_dict)
 			# return redirect('userHome.html', result=bill_dict)
 			
 		else:
