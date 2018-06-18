@@ -18,7 +18,7 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
 # BillDictionary
-bill_dict =[]
+bill_dict ={}
 
 @app.route('/')
 def main():
@@ -168,7 +168,7 @@ def getBill():
 			data = cursor.fetchall()
 			
 			# Parse data and convert to dictionary to return easily as JSON
-			bill_dict = []
+			bill_dict = {}
 			for bill in data:
 				bill_item = {
 					'bill_id': bill[0],
@@ -187,7 +187,6 @@ def getBill():
 
 			# return json.dumps(bill_dict)
 			return render_template('userHome.html')
-			# return redirect('userHome.html', result=bill_dict)
 			
 		else:
 			return render_template('error.html', error = "Unauthorized Access")
