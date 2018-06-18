@@ -166,7 +166,8 @@ def getBill():
 			data = cursor.fetchall()
 			
 			# Parse data and convert to dictionary to return easily as JSON
-			global bill_dict = []
+			global bill_dict 
+			bill_dict = []
 			for bill in data:
 				bill_item = {
 					'bill_id': bill[0],
