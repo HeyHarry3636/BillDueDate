@@ -110,7 +110,7 @@ def logIn():
 def userHome():
 	if session.get('user'):
 		return render_template('userHome.html', bill_dict=bill_dict)
-		return render_template('userHome.html')
+		# return render_template('userHome.html')
 	else:
 		return render_template('error.html', error = 'Unauthorized Access')
 
@@ -186,8 +186,8 @@ def getBill():
 				}
 				bill_dict.append(bill_item)
 
-			return json.dumps(bill_dict)
-			# return render_template('userHome.html')
+			# return json.dumps(bill_dict)
+			return render_template('userHome.html')
 			
 		else:
 			return render_template('error.html', error = "Unauthorized Access")
