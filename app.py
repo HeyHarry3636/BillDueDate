@@ -107,9 +107,9 @@ def logIn():
 			conn.close()
 
 @app.route('/userHome')
-def userHome():
+def userHome(bills):
 	if session.get('user'):
-		return render_template('userHome.html')
+		return render_template('userHome.html', bills=bills)
 	else:
 		return render_template('error.html', error = 'Unauthorized Access')
 
