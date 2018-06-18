@@ -1,5 +1,4 @@
-//$(document).ready(function() {
-$(function() {
+$(document).ready(function() {
 	$.ajax({
 		url: '/getBill',
 		type: 'GET',
@@ -10,6 +9,6 @@ $(function() {
 			console.log(error);
 		}
 	});
-	
-	
+
+
 });
