@@ -181,7 +181,7 @@ def getBill():
 					'bill_paid': bill[9]
 				}
 				bill_dict.append(bill_item)
-			
+			dump()
 			return json.dumps(bill_dict)
 			# return render_template('userHome.html', result=bill_dict)
 			# return redirect('userHome.html', result=bill_dict)
