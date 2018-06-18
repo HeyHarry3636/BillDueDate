@@ -17,6 +17,9 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 # Initialize mysql app
 mysql.init_app(app)
 
+# Create bill list (list of dictionaries)
+bill_dict = []
+
 @app.route('/')
 def main():
 	return render_template('index.html')
@@ -106,8 +109,8 @@ def logIn():
 @app.route('/userHome')
 def userHome():
 	if session.get('user'):
-		return render_template('userHome.html', result=bill_dict)
-		# return render_template('userHome.html')
+		#return render_template('userHome.html', bill_dict=bill_dict)
+		return json.dumps(bill_dict)
 	else:
 		return render_template('error.html', error = 'Unauthorized Access')
 
@@ -166,7 +169,6 @@ def getBill():
 			data = cursor.fetchall()
 			
 			# Parse data and convert to dictionary to return easily as JSON
-			global bill_dict 
 			bill_dict = []
 			for bill in data:
 				bill_item = {
