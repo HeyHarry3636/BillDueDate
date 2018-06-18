@@ -17,9 +17,6 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 # Initialize mysql app
 mysql.init_app(app)
 
-# BillDictionary
-bill_dict = []
-
 @app.route('/')
 def main():
 	return render_template('index.html')
@@ -169,7 +166,7 @@ def getBill():
 			data = cursor.fetchall()
 			
 			# Parse data and convert to dictionary to return easily as JSON
-			bill_dict = []
+			global bill_dict = []
 			for bill in data:
 				bill_item = {
 					'bill_id': bill[0],
