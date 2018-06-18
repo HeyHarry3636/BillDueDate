@@ -3,6 +3,7 @@ $(document).ready(function() {
 		url: '/getBill',
 		type: 'GET',
 		success: function(response) {
+			window.location="/userHome";
 			console.log(response);
 		},
 		error: function(error) {
