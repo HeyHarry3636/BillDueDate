@@ -1,4 +1,5 @@
-$(document).ready(function() {
+//$(document).ready(function() {
+$(function() {
 	$.ajax({
 		url: '/getBill',
 		type: 'GET',
