@@ -46,7 +46,7 @@ def signUp():
 			# Return successful or error message to see if called_proc worked
 			if len(data) is 0:
 				conn.commit()
-				return render_template(url_for('/showLogIn'))
+				return render_template(url_for('logIn'))
 				# return redirect('showLogIn')
 				# return redirect('/userHome')
 			else:
