@@ -88,9 +88,9 @@ def logIn():
 				session['user'] = data[0][0]
 				return redirect('/userHome')
 			else:
-				return render_template('error.html', error = 'Wrong email address or password.')
+				return render_template('error.html', error = 'Wrong email address or password.1')
 		else:
-			return render_template('error.html', error = 'Wrong email address or password.')
+			return render_template('error.html', error = 'Wrong email address or password.2')
 	
 	
 	except Exception as e:
