@@ -109,6 +109,7 @@ def logIn():
 @app.route('/userHome')
 def userHome():
 	if session.get('user'):
+		getBill()
 		#return render_template('userHome.html', bill_dict=bill_dict)
 		return json.dumps(bill_dict)
 	else:
@@ -187,7 +188,8 @@ def getBill():
 				bill_dict.append(bill_item)
 
 			# return json.dumps(bill_dict)
-			return render_template('userHome.html')
+			# return render_template('userHome.html')
+			return bill_dict
 			
 		else:
 			return render_template('error.html', error = "Unauthorized Access")
