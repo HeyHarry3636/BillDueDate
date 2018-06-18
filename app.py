@@ -183,7 +183,8 @@ def getBill():
 				bill_dict.append(bill_item)
 			
 			# return json.dumps(bill_dict)
-			return render_template('userHome.html', **result=bill_dict)
+			# return render_template('userHome.html', result=bill_dict)
+			return redirect('userHome.html', result=bill_dict)
 			
 		else:
 			return render_template('error.html', error = "Unauthorized Access")
