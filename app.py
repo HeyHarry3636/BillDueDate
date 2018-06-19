@@ -82,7 +82,7 @@ def signUp():
 		if 'conn' in locals():
 			conn.close()
 
-@app.route('/showLogIn')
+@app.route('/showLogIn', methods=['GET', 'POST'])
 def showLogIn():
 	return render_template('logIn.html')
 
