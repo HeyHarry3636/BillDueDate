@@ -26,7 +26,7 @@ bill_dict = Bills()
 
 @app.route('/tempData')
 def tempData():
-	return render_template('tempData.html' bills = bill_dict)
+	return render_template('tempData.html', bills = bill_dict)
 ###################################################################################
 
 @app.route('/')
