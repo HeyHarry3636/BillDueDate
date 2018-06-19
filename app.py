@@ -63,7 +63,7 @@ def signUp():
 			# Return successful or error message to see if called_proc worked
 			if len(data) is 0:
 				conn.commit()
-				flash('You have signed up!', 'success')
+				return flash('You have signed up!', 'success')
 				#return redirect(url_for('showLogIn'))
 			else:
 				return render_template('error.html', error = str(data[0]))
