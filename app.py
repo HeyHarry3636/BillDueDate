@@ -66,6 +66,7 @@ def signUp():
 				conn.commit()
 				flash('You have signed up!', 'success')
 				redirect(url_for('logIn'))
+				return
 				# return redirect('showLogIn')
 				# return redirect('/userHome')
 			else:
