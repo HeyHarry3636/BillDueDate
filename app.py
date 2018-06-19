@@ -1,6 +1,6 @@
 # App.py (testing bucket list tutorial)
 
-from flask import Flask, render_template, request, json, session, redirect, url_for
+from flask import Flask, render_template, request, json, session, redirect, url_for, flash, logging, request
 from flaskext.mysql import MySQL
 from data import Bills
 import bcrypt
@@ -31,6 +31,8 @@ def tempData():
 @app.route('/bills/<string:id>/')
 def bills(id):
 	return render_template('bills.html', id=id)
+
+
 ###################################################################################
 
 @app.route('/')
@@ -62,6 +64,7 @@ def signUp():
 			# Return successful or error message to see if called_proc worked
 			if len(data) is 0:
 				conn.commit()
+				flash('You have signed up!', 'success')
 				return redirect(url_for('logIn'))
 				# return redirect('showLogIn')
 				# return redirect('/userHome')
