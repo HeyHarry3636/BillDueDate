@@ -43,7 +43,7 @@ def main():
 def showSignUp():
 	return render_template('signUp.html')
 
-@app.route('/signUp', methods=['GET', 'POST'])
+@app.route('/signUp', methods=['POST'])
 def signUp():
 	try:
 		_email = request.form['inputEmail']
@@ -65,7 +65,7 @@ def signUp():
 			if len(data) is 0:
 				conn.commit()
 				flash('You have signed up!', 'success')
-				# redirect(url_for('logIn'))
+				redirect(url_for('logIn'))
 				# return redirect('showLogIn')
 				# return redirect('/userHome')
 			else:
