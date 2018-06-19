@@ -1,6 +1,6 @@
 # App.py (testing bucket list tutorial)
 
-from flask import Flask, render_template, request, json, session, redirect, url_for, flash, logging, request
+from flask import Flask, render_template, request, json, session, redirect, url_for, flash, logging
 from flaskext.mysql import MySQL
 from data import Bills
 import bcrypt
@@ -65,7 +65,7 @@ def signUp():
 			if len(data) is 0:
 				conn.commit()
 				flash('You have signed up!', 'success')
-				redirect(url_for('signUp'))
+				redirect(url_for('showLogIn'))
 				# return redirect('showLogIn')
 				# return redirect('/userHome')
 			else:
