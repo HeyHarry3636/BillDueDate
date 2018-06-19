@@ -42,7 +42,7 @@ def main():
 def showSignUp():
 	return render_template('signUp.html')
 
-@app.route('/signUp', methods=['GET', 'POST'])
+@app.route('/signUp', methods=['POST'])
 def signUp():
 	try:
 		_email = request.form['inputEmail']
