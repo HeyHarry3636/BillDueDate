@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template, request, json, session, redirect, url_for
 from flaskext.mysql import MySQL
+from data import Bills
 import bcrypt
 
 mysql = MySQL()
@@ -18,7 +19,15 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
 # Create bill list (list of dictionaries)
-bill_dict = []
+#bill_dict = []
+###################################################################################
+# Grab temp test data from data.py file
+bill_dict = Bills()
+
+@app.route('/tempData')
+def tempData():
+	return render_template('tempData.html' bills = bill_dict)
+###################################################################################
 
 @app.route('/')
 def main():

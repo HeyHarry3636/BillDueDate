@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+  <h1>tempData</h1>
+  {% for bill in bills %}
+    {{bill.bill_name}}
+  {% endfor %}
+
+{% endblock %}
