@@ -32,7 +32,6 @@ def tempData():
 def bills(id):
 	return render_template('bills.html', id=id)
 
-
 ###################################################################################
 
 @app.route('/')
