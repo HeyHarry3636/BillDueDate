@@ -43,13 +43,13 @@ def main():
 def showSignUp():
 	return render_template('signUp.html')
 
-@app.route('/signUp', methods=['POST'])
+@app.route('/signUp', methods=['GET', 'POST'])
 def signUp():
 	try:
 		_email = request.form['inputEmail']
 		_password = request.form['inputPassword']
 
-		if _email and _password:
+		if request.method == 'POST' and _email and _password:
 
 			# Hash password using bcrypt
 			_e_password = _password.encode("utf-8")
