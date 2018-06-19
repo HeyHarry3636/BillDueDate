@@ -86,7 +86,7 @@ def signUp():
 def showLogIn():
 	return render_template('logIn.html')
 
-@app.route('/logIn', methods=['POST'])
+@app.route('/logIn', methods=['GET', 'POST'])
 def logIn():
 	try:
 		_email = request.form['inputEmail']
