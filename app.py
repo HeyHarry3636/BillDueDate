@@ -215,5 +215,4 @@ def getBill():
 			conn.close()
 
 if __name__ == '__main__':
-	session.clear()
 	app.run(host='0.0.0.0', port=5000, debug=True)
