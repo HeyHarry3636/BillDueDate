@@ -1,158 +1,78 @@
-<!doctype html>
+{% extends 'layout.html' %}
 
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Ensure proper rendering/zooming for mobile -->
-	<title>BillDueDate ShowAddBill</title>
-	<meta name="description" content="BillDueDate">
-	<meta name="author" content="Michael harris">
-  
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"><!-- Latest compiled and minified CSS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!-- jQuery library -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script><!-- Popper JS -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script><!-- Latest compiled JavaScript -->
-	
-	<link href="static/css/custom.css" rel="stylesheet">
-	
-</head>
+{% block body %}
 
-<body>
-	<div class="container"><!-- Container class is required for bootstrap (or Container-fluid) -->	
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-			<!-- <a class="navbar-brand" href="#"><img src="static/images/logo_transparent.png" alt="Logo" style="width:60px; height:60px;"> -->
-			<ul class="navbar-nav">
-				<li class="nav-item" role="presentation">
-					<a class="nav-link" href="userHome">Home</a>
-				</li>
-				<li class="nav-item" role="presentation">
-					<a class="nav-link" href="logout">Logout</a>
-				</li>
-				<li class="nav-item active" role="presentation">
-					<a class="nav-link" href="showAddBill">Add Bill</a>
-				</li>
-			</ul>
-		</nav>
-		
-		<div class="jumbotron">
-			<h2>BillDueDate</h2>
-			<p>Add Bill</p>
-		</div>
-		
-		<section>
-			<form class="form-group row" action="/addBill" method="POST">
-				<fieldset>
-					<!-- Form Name -->
-					<legend>Add Your Bill</legend>
-					
-					<!-- Bill Name -->
-					<div class="form-group row">
-						<label class="col-md-4 col-form-label req" for="bill_name">Name:</label>
-						<div class="col-xl">
-							<input class="form-control" name="bill_name" id="bill_name" type="text" placeholder="(ex: AT&T)" required autofocus>
-						</div>
-					</div>
-					
-					<!-- Bill Description -->
-					<div class="form-group row">
-						<label class="col-md-4 col-form-label" for="bill_description">Description:</label>
-						<div class="col-xl">
-							<textarea class="form-control form-control-lg" name="bill_description" id="bill_description" placeholder="(ex: AT&T contract expires Oct 2018)"></textarea>
-						</div>
-					</div>
-					
-					<!-- Bill Amount -->
-					<div class="form-group row">
-						<label class="col-md-4 col-form-label req" for="bill_amount">Amount: $</label>
-						<div class="col-xl">
-							<input class="form-control" name="bill_amount" id="bill_amount" type="number" min="0.00" max="10000.00" step="any" placeholder="(ex: $132.23)" required>
-						</div>
-					</div>
-					
-					<!-- Bill Auto Withdrawal -->
-					<div class="form-group row">
-						<label class="col-md-4 col-form-label" for="bill_autoWithdrawal">Does this bill auto-withdraw from your bank account?</label>
-						<div class="col-xl">
-							<input class="form-control" name="bill_autoWithdrawal" id="bill_autoWithdrawal" type="hidden" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
-							<!-- <input class="form-control" name="bill_autoWithdrawal" id="bill_autoWithdrawal" type="hidden" value="0"> -->
-							<!-- <input class="form-control" name="bill_autoWithdrawal" id="bill_autoWithdrawal" type="checkbox" value="1"> -->
-						</div>
-					</div>
-					
-					<!-- Bill Date -->
-					<div class="form-group row">
-						<label class="col-md-4 col-form-label req" for="bill_date">When is the next due date for this bill?</label>
-						<div class="col-xl">
-							<input class="form-control" name="bill_date" id="bill_date" type="date" placeholder="MM/DD/YYYY" required>
-						</div>
-					</div>
-					
-					<!-- Bill Recurral -->
-					<div class="form-group row">
-						<label class="col-md-4 col-form-label req" for="recur_id">How often is this bill due?</label>
-						<div class="col-xl">
-							<input class="form-control" name="recur_id" id="recur_id" type="radio" value="0" checked>Annually<br>
-							<input class="form-control" name="recur_id" id="recur_id" type="radio" value="1" checked>Bi-annually<br>
-							<input class="form-control" name="recur_id" id="recur_id" type="radio" value="2" checked>Quarterly<br>
-							<input class="form-control" name="recur_id" id="recur_id" type="radio" value="3" checked required>Monthly<br>
-							<input class="form-control" name="recur_id" id="recur_id" type="radio" value="4" checked>Bi-monthly<br>
-							<input class="form-control" name="recur_id" id="recur_id" type="radio" value="5" checked>Weekly<br>
-							<input class="form-control" name="recur_id" id="recur_id" type="radio" value="6" checked>Custom<br>
-						</div>
-					</div>
-					
-					<!-- Button -->
-					<div class="form-group row">
-						<label class="col-md-4 col-form-label" for="btnAddBill"></label>
-						<div class="col-xl">
-							<input class="btn btn-secondary" name="btnAddBill" id="btnAddBill" type="submit" value="Add">
-						</div>
-					</div>					
-					
-				</fieldset>
-			</form>		
-		</section>
-		
-		
+	<section>
+		<form class="form-group row" action="/addBill" method="POST">
+			<fieldset>
+				<!-- Form Name -->
+				<legend>Add Your Bill</legend>
 
-		
-		<div class="table-responsive">
-			<table class="table table-striped table-bordered table-hover">
-				<thead class="thead-dark">
-					<tr>
-						<th>Bill Name</th>
-						<th>Date</th>
-						<th>Amount</th>
-						<th>Paid?</th>
-						<th>Description</th>
-						<th>Remaining</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Fed Loan</td>
-						<td>06/01/2018</td>
-						<td>$199.70</td>
-						<td>Y (Auto)</td>
-						<td>IBR</td>
-						<td>$1000.00</td>
-					</tr>
-					<tr>
-						<td>ATT</td>
-						<td>06/07/2018</td>
-						<td>$128.44</td>
-						<td></td>
-						<td></td>
-						<td>$852.23</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		
-		<footer class="footer">
-			<p>&copy; Harris 2018</p>
-		</footer>
-	</div>
+				<!-- Bill Name -->
+				<div class="form-group row">
+					<label class="col-md-4 col-form-label req" for="bill_name">Name:</label>
+					<div class="col-xl">
+						<input class="form-control" name="bill_name" id="bill_name" type="text" placeholder="(ex: AT&T)" required autofocus>
+					</div>
+				</div>
 
-</body>
-</html>
+				<!-- Bill Description -->
+				<div class="form-group row">
+					<label class="col-md-4 col-form-label" for="bill_description">Description:</label>
+					<div class="col-xl">
+						<textarea class="form-control form-control-lg" name="bill_description" id="bill_description" placeholder="(ex: AT&T contract expires Oct 2018)"></textarea>
+					</div>
+				</div>
+
+				<!-- Bill Amount -->
+				<div class="form-group row">
+					<label class="col-md-4 col-form-label req" for="bill_amount">Amount: $</label>
+					<div class="col-xl">
+						<input class="form-control" name="bill_amount" id="bill_amount" type="number" min="0.00" max="10000.00" step="any" placeholder="(ex: $132.23)" required>
+					</div>
+				</div>
+
+				<!-- Bill Auto Withdrawal -->
+				<div class="form-group row">
+					<label class="col-md-4 col-form-label" for="bill_autoWithdrawal">Does this bill auto-withdraw from your bank account?</label>
+					<div class="col-xl">
+						<input class="form-control" name="bill_autoWithdrawal" id="bill_autoWithdrawal" type="hidden" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
+						<!-- <input class="form-control" name="bill_autoWithdrawal" id="bill_autoWithdrawal" type="hidden" value="0"> -->
+						<!-- <input class="form-control" name="bill_autoWithdrawal" id="bill_autoWithdrawal" type="checkbox" value="1"> -->
+					</div>
+				</div>
+
+				<!-- Bill Date -->
+				<div class="form-group row">
+					<label class="col-md-4 col-form-label req" for="bill_date">When is the next due date for this bill?</label>
+					<div class="col-xl">
+						<input class="form-control" name="bill_date" id="bill_date" type="date" placeholder="MM/DD/YYYY" required>
+					</div>
+				</div>
+
+				<!-- Bill Recurral -->
+				<div class="form-group row">
+					<label class="col-md-4 col-form-label req" for="recur_id">How often is this bill due?</label>
+					<div class="col-xl">
+						<input class="form-control" name="recur_id" id="recur_id" type="radio" value="0" checked>Annually<br>
+						<input class="form-control" name="recur_id" id="recur_id" type="radio" value="1" checked>Bi-annually<br>
+						<input class="form-control" name="recur_id" id="recur_id" type="radio" value="2" checked>Quarterly<br>
+						<input class="form-control" name="recur_id" id="recur_id" type="radio" value="3" checked required>Monthly<br>
+						<input class="form-control" name="recur_id" id="recur_id" type="radio" value="4" checked>Bi-monthly<br>
+						<input class="form-control" name="recur_id" id="recur_id" type="radio" value="5" checked>Weekly<br>
+						<input class="form-control" name="recur_id" id="recur_id" type="radio" value="6" checked>Custom<br>
+					</div>
+				</div>
+
+				<!-- Button -->
+				<div class="form-group row">
+					<label class="col-md-4 col-form-label" for="btnAddBill"></label>
+					<div class="col-xl">
+						<input class="btn btn-secondary" name="btnAddBill" id="btnAddBill" type="submit" value="Add">
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</section>
+
+{% end block %}
