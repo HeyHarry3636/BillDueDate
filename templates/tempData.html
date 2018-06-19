@@ -3,8 +3,11 @@
 {% block body %}
 
   <h1>tempData</h1>
+
+  <ul class="list-group">
   {% for bill in bills %}
-    {{bill.bill_name}}
+    <li class="list-group-item">{{bill.bill_name}}</li>
   {% endfor %}
+  </ul>
 
 {% endblock %}
