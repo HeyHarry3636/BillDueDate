@@ -65,7 +65,7 @@ def signUp():
 			if len(data) is 0:
 				conn.commit()
 				flash('You have signed up!', 'success')
-				redirect(url_for('logIn'))
+				redirect(url_for('signUp'))
 				# return redirect('showLogIn')
 				# return redirect('/userHome')
 			else:
