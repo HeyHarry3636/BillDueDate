@@ -7,7 +7,7 @@ $(function() {
 /*             success: function(response) {
                 console.log(response);
             }, */
-			success: function(response) {
+			      success: function(response) {
                 window.location.href=console.log(response.redirect);
             },
             error: function(error) {
