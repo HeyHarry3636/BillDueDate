@@ -30,7 +30,7 @@ def bill(id):
 class RegisterForm(Form):
 	email = StringField('Email', [
 		validators.DataRequired(),
-		validators.Email()
+		validators.Email(message='Please enter a valid email address')
 	])
 	password = PasswordField('Password', [
 		validators.DataRequired(),
