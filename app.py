@@ -15,7 +15,7 @@ def index():
 	return render_template('home.html')
 
 @app.route('/mainBills')
-def bills():
+def mainBills():
 	return render_template('mainBills.html')
 
 @app.route('/tempData')
