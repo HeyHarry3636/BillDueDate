@@ -14,9 +14,9 @@ bill_dict = Bills()
 def index():
 	return render_template('home.html')
 
-@app.route('/bill')
+@app.route('/mainBills')
 def bills():
-	return render_template('bill.html')
+	return render_template('mainBills.html')
 
 @app.route('/tempData')
 def tempData():
