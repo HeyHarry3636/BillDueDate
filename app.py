@@ -3,7 +3,7 @@
 from flask import Flask, render_template, json, session, redirect, url_for, flash, logging, request
 from flaskext.mysql import MySQL
 from data import Bills
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
+from wtforms import Form, StringField, TextAreaField, PasswordField, EmailField, validators
 import bcrypt
 
 app = Flask(__name__)
@@ -28,7 +28,7 @@ def bill(id):
 	return render_template('bill.html', id=id)
 
 class RegisterForm(Form):
-	email = StringField('Email', [
+	email = EmailField('Email', [
 		validators.DataRequired(),
 		validators.Email(message='Please enter a valid email address')
 	])
