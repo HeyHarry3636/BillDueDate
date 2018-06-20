@@ -1,8 +1,9 @@
 # App.py (testing bucket list tutorial)
 
-from flask import Flask, render_template, request, json, session, redirect, url_for, flash, logging
+from flask import Flask, render_template, json, session, redirect, url_for, flash, logging, request
 from flaskext.mysql import MySQL
 from data import Bills
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 import bcrypt
 
 app = Flask(__name__)
@@ -25,6 +26,21 @@ def tempData():
 @app.route('/bill/<string:id>/')
 def bill(id):
 	return render_template('bill.html', id=id)
+
+class RegisterForm(Form):
+	email = StringField('Email', [validators.Length(min=6, max=50)])
+	password = PasswordField('Password', [
+		validators.DataRequired(),
+		validators.EqualTo('confirm', message='Passwords do not match')
+	])
+	confirm = PasswordField('Confirm Password')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+	form = RegisterForm(request.form)
+	if request.method == 'POST' and form.validate:
+
+	return render_template('register.html', form=form)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
