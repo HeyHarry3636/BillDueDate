@@ -28,7 +28,10 @@ def bill(id):
 	return render_template('bill.html', id=id)
 
 class RegisterForm(Form):
-	email = StringField('Email', [validators.Length(min=6, max=50)])
+	email = StringField('Email', [
+		validators.DataRequired(),
+		validators.Email()
+	])
 	password = PasswordField('Password', [
 		validators.DataRequired(),
 		validators.EqualTo('confirm', message='Passwords do not match')
