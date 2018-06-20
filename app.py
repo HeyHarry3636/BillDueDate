@@ -22,9 +22,9 @@ def mainBills():
 def tempData():
 	return render_template('tempData.html', bills = bill_dict)
 
-@app.route('/bills/<string:id>/')
-def bills(id):
-	return render_template('bills.html', id=id)
+@app.route('/bill/<string:id>/')
+def bill(id):
+	return render_template('bill.html', id=id)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
