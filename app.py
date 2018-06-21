@@ -46,8 +46,7 @@ class RegisterForm(Form):
 		validators.Email(message='Please enter a valid email address')
 	])
 	password = PasswordField('Password', [
-		validators.DataRequired(),
-		validators.EqualTo('confirm', message='!')
+		validators.DataRequired()
 	])
 	confirm = PasswordField('Confirm Password', [
 		validators.DataRequired(),
