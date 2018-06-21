@@ -74,7 +74,7 @@ def register():
 		if len(data) is 0:
 			conn.commit()
 			flash('You have signed up!', 'success')
-			redirect(url_for('index'))
+			return redirect(url_for('index'))
 		else:
 			return render_template('error.html', error = str(data[0]))
 
