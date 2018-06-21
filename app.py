@@ -78,6 +78,8 @@ def register():
 				return redirect(url_for('login'))
 			else:
 				return render_template('error.html', error = str(data[0]))
+		else:
+			return render_template('error.html', error = "Enter the required fields!")
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
