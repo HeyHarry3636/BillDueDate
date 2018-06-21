@@ -44,7 +44,7 @@ class RegisterForm(Form):
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 	form = RegisterForm(request.form)
-	if request.method == 'POST' and form.validate:
+	if request.method == 'POST' and form.validate():
 		return render_template('register.html', form=form)
 	return render_template('register.html', form=form)
 
