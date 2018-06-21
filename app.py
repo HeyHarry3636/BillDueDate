@@ -7,7 +7,19 @@ from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from wtforms.fields.html5 import EmailField
 import bcrypt
 
+# Setup app and mysql instances
 app = Flask(__name__)
+mysql = MySQL()
+app.secret_key = 'Bills are due'
+
+# MySQL configurations
+app.config['MYSQL_DATABASE_USER'] = 'test'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'Test1234!'
+app.config['MYSQL_DATABASE_DB'] = 'BillDueDate'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+
+# Initialize mysql app
+mysql.init_app(app)
 
 # Grab temp test data from data.py file
 bill_dict = Bills()
@@ -45,6 +57,12 @@ class RegisterForm(Form):
 def register():
 	form = RegisterForm(request.form)
 	if request.method == 'POST' and form.validate():
+		_email = form.email.data
+		_password = form.password.data
+
+		# Hash password with bcrypt
+
+
 		return render_template('register.html', form=form)
 	return render_template('register.html', form=form)
 
