@@ -64,6 +64,12 @@ def register():
 		_e_password = _password.encode("utf-8")
 		_hs_password = bcrypt.hashpw(_e_password, bcrypt.gensalt())
 
+		# Create mysql connection, create cursor, call procedure, fetch results
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		cursor.callproc('sp_createUser', (_email, _hs_password))
+		data = cursor.fetchall()
+
 
 		return render_template('register.html', form=form)
 	return render_template('register.html', form=form)
