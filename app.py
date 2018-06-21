@@ -73,8 +73,8 @@ def register():
 		# Return successful or error message to see if called_proc worked
 		if len(data) is 0:
 			conn.commit()
-			return flash('You have signed up!', 'success')
-			#return redirect(url_for('showLogIn'))
+			flash('You have signed up!', 'success')
+			redirect(url_for('index'))
 		else:
 			return render_template('error.html', error = str(data[0]))
 
