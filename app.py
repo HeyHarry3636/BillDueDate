@@ -61,6 +61,8 @@ def register():
 		_password = form.password.data
 
 		# Hash password with bcrypt
+		_e_password = _password.encode("utf-8")
+		_hs_password = bcrypt.hashpw(_e_password, bcrypt.gensalt())
 
 
 		return render_template('register.html', form=form)
