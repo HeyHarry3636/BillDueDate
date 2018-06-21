@@ -47,38 +47,47 @@ class RegisterForm(Form):
 	])
 	password = PasswordField('Password', [
 		validators.DataRequired(),
-		validators.EqualTo('confirm', message='Passwords do not match')
+		validators.EqualTo('confirm', message='!')
 	])
 	confirm = PasswordField('Confirm Password', [
-		validators.DataRequired()
+		validators.DataRequired(),
+		validators.EqualTo('password', message='Passwords do not match')
 	])
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-	form = RegisterForm(request.form)
-	if request.method == 'POST' and form.validate():
-		_email = form.email.data
-		_password = form.password.data
+	try:
+		form = RegisterForm(request.form)
+		if request.method == 'POST' and form.validate():
+			_email = form.email.data
+			_password = form.password.data
 
-		# Hash password with bcrypt
-		_e_password = _password.encode("utf-8")
-		_hs_password = bcrypt.hashpw(_e_password, bcrypt.gensalt())
+			# Hash password with bcrypt
+			_e_password = _password.encode("utf-8")
+			_hs_password = bcrypt.hashpw(_e_password, bcrypt.gensalt())
 
-		# Create mysql connection, create cursor, call procedure, fetch results
-		conn = mysql.connect()
-		cursor = conn.cursor()
-		cursor.callproc('sp_createUser', (_email, _hs_password))
-		data = cursor.fetchall()
+			# Create mysql connection, create cursor, call procedure, fetch results
+			conn = mysql.connect()
+			cursor = conn.cursor()
+			cursor.callproc('sp_createUser', (_email, _hs_password))
+			data = cursor.fetchall()
 
-		# Return successful or error message to see if called_proc worked
-		if len(data) is 0:
-			conn.commit()
-			flash('You have signed up!', 'success')
-			return redirect(url_for('index'))
-		else:
-			return render_template('error.html', error = str(data[0]))
+			# Return successful or error message to see if called_proc worked
+			if len(data) is 0:
+				conn.commit()
+				flash('You have signed up!', 'success')
+				return redirect(url_for('login'))
+			else:
+				return render_template('error.html', error = str(data[0]))
 
-	return render_template('register.html', form=form)
+	except Exception as e:
+		return render_template('error.html', error = str(e))
+
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
