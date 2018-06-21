@@ -70,8 +70,14 @@ def register():
 		cursor.callproc('sp_createUser', (_email, _hs_password))
 		data = cursor.fetchall()
 
+		# Return successful or error message to see if called_proc worked
+		if len(data) is 0:
+			conn.commit()
+			return flash('You have signed up!', 'success')
+			#return redirect(url_for('showLogIn'))
+		else:
+			return render_template('error.html', error = str(data[0]))
 
-		return render_template('register.html', form=form)
 	return render_template('register.html', form=form)
 
 if __name__ == '__main__':
