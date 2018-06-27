@@ -57,9 +57,42 @@ class RegisterForm(Form):
 def register():
 	form = RegisterForm(request.form)
 
+	print('form.validate() before if: ' + form.validate())
+
 	if request.method == 'POST' and form.validate():
-		return render_template('register.html', form=form)
-	return render_template('error.html', error=form)
+
+		print('form.validate() after if: ' + form.validate())
+
+		_email = form.email.data
+		_password = form.password.data
+
+		# Hash password with bcrypt
+		_e_password = _password.encode("utf-8")
+		_hs_password = bcrypt.hashpw(_e_password, bcrypt.gensalt())
+
+		# Create mysql connection, create cursor, call procedure, fetch results
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		cursor.callproc('sp_createUser', (_email, _hs_password))
+		data = cursor.fetchall()
+
+		# Return successful or error message to see if called_proc worked
+		if len(data) is 0:
+			conn.commit()
+			flash('You have signed up!', 'success')
+			return redirect(url_for('login'))
+		else:
+			return render_template('error.html', error = str(data[0]))
+
+		cursor.close()
+		conn.close()
+
+		flash('You are now registered!', 'success')
+		return redirect(url_for('login'))
+
+	# When the request method is 'GET', this statement will pull the register.html Form
+	# and display it, use other 'POST' method above to process form data
+	return render_template('register.html', form=form)
 
 
 
