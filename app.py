@@ -57,11 +57,11 @@ class RegisterForm(Form):
 def register():
 	form = RegisterForm(request.form)
 
-	print('form.validate() before if: ' + form.validate())
+	print('form.validate() before if: ' + str(form.validate())
 
 	if request.method == 'POST' and form.validate():
 
-		print('form.validate() after if: ' + form.validate())
+		print('form.validate() after if: ' + str(form.validate()))
 
 		_email = form.email.data
 		_password = form.password.data
