@@ -127,7 +127,7 @@ def login():
 				if bcrypt.checkpw(_password.encode("utf-8"), data[0][2]):
 					app.logger.info('PASSWORD MATCHED') #Logs to app.py console
 					session['logged_in'] = True
-					session['user'] = data[0][0]
+					session['user'] = data[0][1]
 					flash('You are now logged in', 'success')
 					return redirect(url_for('dashboard'))
 				else:
