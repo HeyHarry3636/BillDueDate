@@ -107,41 +107,42 @@ def login():
 	if request.method == 'GET':
 		return render_template('login.html')
 
-	if request.method == 'POST':
-		# Get forms from request (not using WTForms)
-		_email = request.form['email']
-		_password = request.form['password']
+	try:
+		if request.method == 'POST':
+			# Get forms from request (not using WTForms)
+			_email = request.form['email']
+			_password = request.form['password']
 
-		# Create mysql connection, create cursor, call procedure, fetch results
-		conn = mysql.connect()
-		cursor = conn.cursor()
-		cursor.callproc('sp_validateLogin', (_email,))
-		data = cursor.fetchall()
+			# Create mysql connection, create cursor, call procedure, fetch results
+			conn = mysql.connect()
+			cursor = conn.cursor()
+			cursor.callproc('sp_validateLogin', (_email,))
+			data = cursor.fetchall()
 
-		# data[0][0] = 2  --> user_id
-		# data[0][1] = "Test2@Test2.com" --> user_email
-		# data[0][2] = "asdf1dsafsd" --> user_password hashed
+			# data[0][0] = 2  --> user_id
+			# data[0][1] = "Test2@Test2.com" --> user_email
+			# data[0][2] = "asdf1dsafsd" --> user_password hashed
 
-		if len(data) > 0:
-			if bcrypt.checkpw(_password.encode("utf-8"), data[0][2]):
-				app.logger.info('PASSWORD MATCHED') #Logs to app.py console
-				session['user'] = data[0][0]
-				return redirect(url_for('userHome'))
+			if len(data) > 0:
+				if bcrypt.checkpw(_password.encode("utf-8"), data[0][2]):
+					app.logger.info('PASSWORD MATCHED') #Logs to app.py console
+					session['logged_in'] = True
+					session['user'] = data[0][0]
+					flash('You are now logged in', 'sucess')
+					return redirect(url_for('userHome'))
+				else:
+					return render_template('login.html', error = 'Wrong email address or password.1')
 			else:
-				return render_template('login.html', error = 'Wrong email address or password.1')
-		else:
-			return render_template('login.html', error = 'Wrong email address or password.2')
+				return render_template('login.html', error = 'Wrong email address or password.2')
 
-	# try:
-	#
-	# except Exception as e:
-	# 	return render_template('error.html', error = str(e))
-	#
-	# finally:
-	# 	if 'cursor' in locals():
-	# 		cursor.close()
-	# 	if 'conn' in locals():
-	# 		conn.close()
+	except Exception as e:
+		return render_template('error.html', error = str(e))
+
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
 
 @app.route('/userHome')
 def userHome():
