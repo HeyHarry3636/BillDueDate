@@ -99,7 +99,7 @@ def register():
 		if 'conn' in locals():
 			conn.close()
 
-@app.route('/login', methods='GET', 'POST')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
 
 	# When the request method is 'GET', this statement will pull the login.html Form
