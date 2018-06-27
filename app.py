@@ -65,6 +65,7 @@ def register():
 	try:
 		# When the form data is submitted, a POST request will be made
 		if request.method == 'POST' and form.validate():
+			# Get form data (using WTForms syntax)
 			_email = form.email.data
 			_password = form.password.data
 
@@ -98,9 +99,49 @@ def register():
 		if 'conn' in locals():
 			conn.close()
 
-@app.route('/login')
+@app.route('/login', methods='GET', 'POST')
 def login():
-	return render_template('login.html')
+
+	# When the request method is 'GET', this statement will pull the login.html Form
+	# and display it, use other 'POST' method above to process form data
+	if request.method == 'GET':
+		return render_template('login.html')
+
+	if request.method == 'POST':
+		# Get forms from request (not using WTForms)
+		_email = request.form['email']
+		_password = request.form['password']
+
+		# Create mysql connection, create cursor, call procedure, fetch results
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		cursor.callproc('sp_validateLogin', (_email,))
+		data = cursor.fetchall()
+
+		# data[0][0] = 2  --> user_id
+		# data[0][1] = "Test2@Test2.com" --> user_email
+		# data[0][2] = "asdf1dsafsd" --> user_password hashed
+
+		if len(data) > 0:
+			if bcrypt.checkpw(_password.encode("utf-8"), data[0][2]):
+				app.logger.info('PASSWORD MATCHED')
+				session['user'] = data[0][0]
+				return redirect(url_for('userHome'))
+			else:
+				return render_template('error.html', error = 'Wrong email address or password.1')
+		else:
+			return render_template('error.html', error = 'Wrong email address or password.2')
+
+	# try:
+	#
+	# except Exception as e:
+	# 	return render_template('error.html', error = str(e))
+	#
+	# finally:
+	# 	if 'cursor' in locals():
+	# 		cursor.close()
+	# 	if 'conn' in locals():
+	# 		conn.close()
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
