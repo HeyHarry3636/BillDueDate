@@ -124,13 +124,13 @@ def login():
 
 		if len(data) > 0:
 			if bcrypt.checkpw(_password.encode("utf-8"), data[0][2]):
-				app.logger.info('PASSWORD MATCHED')
+				app.logger.info('PASSWORD MATCHED') #Logs to app.py console
 				session['user'] = data[0][0]
 				return redirect(url_for('userHome'))
 			else:
-				return render_template('error.html', error = 'Wrong email address or password.1')
+				return render_template('login.html', error = 'Wrong email address or password.1')
 		else:
-			return render_template('error.html', error = 'Wrong email address or password.2')
+			return render_template('login.html', error = 'Wrong email address or password.2')
 
 	# try:
 	#
