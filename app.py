@@ -148,7 +148,7 @@ def login():
 def logout():
 	session.clear()
 	flash('You are now logged out', 'success')
-	return redirect(url_for('/'))
+	return redirect(url_for('index'))
 
 @app.route('/dashboard')
 def dashboard():
