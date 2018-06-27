@@ -90,13 +90,14 @@ def register():
 		# else:
 		# 	flash("You've done something wrong', 'error'")
 		# 	return render_template('register.html', form=form)
-	except:
-		flash("You've done something wrong', 'error'")
-		return render_template('register.html', form=form)
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
 
+	except:
+		flash("You've done something wrong', 'error'")
+		return render_template('register.html', form=form)
+		
 	finally:
 		if 'cursor' in locals():
 			cursor.close()
