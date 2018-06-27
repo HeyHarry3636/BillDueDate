@@ -86,7 +86,8 @@ def register():
 
 	# When the request method is 'GET', this statement will pull the register.html Form
 	# and display it, use other 'POST' method above to process form data
-	return render_template('register.html', form=form)
+	if request.method == 'GET':
+		return render_template('register.html', form=form)
 
 
 
