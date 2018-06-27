@@ -55,13 +55,9 @@ class RegisterForm(Form):
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-	form = RegisterForm(request.form)
-
-	print('form.validate() before if: ' + str(form.validate()))
 
 	if request.method == 'POST' and form.validate():
-
-		print('form.validate() after if: ' + str(form.validate()))
+		form = RegisterForm(request.form)
 
 		_email = form.email.data
 		_password = form.password.data
