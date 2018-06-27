@@ -58,6 +58,7 @@ def register():
 	# try:
 	form = RegisterForm(request.form)
 	if request.method == 'POST' and form.validate():
+		return str(form.validate())
 		_email = form.email.data
 		_password = form.password.data
 
