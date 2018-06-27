@@ -64,28 +64,29 @@ def register():
 		return render_template('register.html', form=form)
 
 	# When the form data is submitted, a POST request will be made
-	if request.method == 'POST' and form.validate():
+
 		try:
-			_email = form.email.data
-			_password = form.password.data
+			if request.method == 'POST' and form.validate():
+				_email = form.email.data
+				_password = form.password.data
 
-			# Hash password with bcrypt
-			_e_password = _password.encode("utf-8")
-			_hs_password = bcrypt.hashpw(_e_password, bcrypt.gensalt())
+				# Hash password with bcrypt
+				_e_password = _password.encode("utf-8")
+				_hs_password = bcrypt.hashpw(_e_password, bcrypt.gensalt())
 
-			# Create mysql connection, create cursor, call procedure, fetch results
-			conn = mysql.connect()
-			cursor = conn.cursor()
-			cursor.callproc('sp_createUser', (_email, _hs_password))
-			data = cursor.fetchall()
+				# Create mysql connection, create cursor, call procedure, fetch results
+				conn = mysql.connect()
+				cursor = conn.cursor()
+				cursor.callproc('sp_createUser', (_email, _hs_password))
+				data = cursor.fetchall()
 
-			# Return successful or error message to see if called_proc worked
-			if len(data) is 0:
-				conn.commit()
-				flash('You have signed up!', 'success')
-				return redirect(url_for('login'))
-			else:
-				return render_template('error.html', error = str(data[0]))
+				# Return successful or error message to see if called_proc worked
+				if len(data) is 0:
+					conn.commit()
+					flash('You have signed up!', 'success')
+					return redirect(url_for('login'))
+				else:
+					return render_template('error.html', error = str(data[0]))
 
 		except Exception as e:
 			return render_template('error.html', error = str(e))
