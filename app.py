@@ -55,7 +55,6 @@ class RegisterForm(Form):
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-
 	form = RegisterForm(request.form)
 
 	# When the request method is 'GET', this statement will pull the register.html Form
@@ -98,50 +97,6 @@ def register():
 			cursor.close()
 		if 'conn' in locals():
 			conn.close()
-
-
-
-# @app.route('/register', methods=['GET', 'POST'])
-# def register():
-
-	# try:
-	# 	form = RegisterForm(request.form)
-	#
-	# 	# form.validate should equal TRUE
-	# 	if request.method == 'POST' and form.validate():
-	#
-	# 		_email = form.email.data
-	# 		_password = form.password.data
-	# 		print(_email)
-	# 		print(_password)
-			# # Hash password with bcrypt
-			# _e_password = _password.encode("utf-8")
-			# _hs_password = bcrypt.hashpw(_e_password, bcrypt.gensalt())
-			#
-			# # Create mysql connection, create cursor, call procedure, fetch results
-			# conn = mysql.connect()
-			# cursor = conn.cursor()
-			# cursor.callproc('sp_createUser', (_email, _hs_password))
-			# data = cursor.fetchall()
-			#
-			# # Return successful or error message to see if called_proc worked
-			# if len(data) is 0:
-			# 	conn.commit()
-			# 	flash('You have signed up!', 'success')
-			# 	return redirect(url_for('login'))
-			# else:
-			# 	return render_template('error.html', error = str(data[0]))
-		# else:
-			# return render_template('error.html', error = "Enter the required fields!")
-
-	# except Exception as e:
-	# 	return render_template('error.html', error = str(e))
-	#
-	# finally:
-	# 	if 'cursor' in locals():
-	# 		cursor.close()
-	# 	if 'conn' in locals():
-	# 		conn.close()
 
 @app.route('/login')
 def login():
