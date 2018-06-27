@@ -55,17 +55,17 @@ class RegisterForm(Form):
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-	try:
-		form = RegisterForm(request.form)
 
-		# When the request method is 'GET', this statement will pull the register.html Form
-		# and display it, use other 'POST' method above to process form data
-		if request.method == 'GET':
-			return render_template('register.html', form=form)
+	form = RegisterForm(request.form)
 
-		# When the form data is submitted, a POST request will be made
-		if request.method == 'POST' and form.validate():
+	# When the request method is 'GET', this statement will pull the register.html Form
+	# and display it, use other 'POST' method above to process form data
+	if request.method == 'GET':
+		return render_template('register.html', form=form)
 
+	# When the form data is submitted, a POST request will be made
+	if request.method == 'POST' and form.validate():
+		try:
 			_email = form.email.data
 			_password = form.password.data
 
@@ -87,14 +87,14 @@ def register():
 			else:
 				return render_template('error.html', error = str(data[0]))
 
-	except Exception as e:
-		return render_template('error.html', error = str(e))
+		except Exception as e:
+			return render_template('error.html', error = str(e))
 
-	finally:
-		if 'cursor' in locals():
-			cursor.close()
-		if 'conn' in locals():
-			conn.close()
+		finally:
+			if 'cursor' in locals():
+				cursor.close()
+			if 'conn' in locals():
+				conn.close()
 
 
 
