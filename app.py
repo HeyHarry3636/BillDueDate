@@ -143,5 +143,9 @@ def login():
 	# 	if 'conn' in locals():
 	# 		conn.close()
 
+@app.route('/userHome')
+def userHome():
+	return render_template('userHome.html')
+
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
