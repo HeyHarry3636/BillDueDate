@@ -53,7 +53,7 @@ class RegisterForm(Form):
 		validators.EqualTo('password', message='Passwords do not match')
 	])
 
-@app.route('/register'), methods=['GET', 'POST']
+@app.route('/register', methods=['GET', 'POST'])
 def register():
 	form = RegisterForm(request.form)
 
