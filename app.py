@@ -46,11 +46,11 @@ class RegisterForm(Form):
 		validators.Email(message='Please enter a valid email address')
 	])
 	password = PasswordField('Password', [
-		validators.DataRequired()
+		validators.DataRequired(),
+		validators.EqualTo('confirm', message='Passwords do not match')
 	])
 	confirm = PasswordField('Confirm Password', [
-		validators.DataRequired(),
-		validators.EqualTo('password', message='Passwords do not match')
+		validators.DataRequired()
 	])
 
 @app.route('/register', methods=['GET', 'POST'])
