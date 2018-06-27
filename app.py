@@ -128,7 +128,7 @@ def login():
 					app.logger.info('PASSWORD MATCHED') #Logs to app.py console
 					session['logged_in'] = True
 					session['user'] = data[0][0]
-					flash('You are now logged in', 'sucess')
+					flash('You are now logged in', 'success')
 					return redirect(url_for('userHome'))
 				else:
 					return render_template('login.html', error = 'Wrong email address or password.1')
