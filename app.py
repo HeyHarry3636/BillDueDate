@@ -56,8 +56,9 @@ class RegisterForm(Form):
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 
+	form = RegisterForm(request.form)
+
 	if request.method == 'POST' and form.validate():
-		form = RegisterForm(request.form)
 
 		_email = form.email.data
 		_password = form.password.data
@@ -82,9 +83,6 @@ def register():
 
 		cursor.close()
 		conn.close()
-
-		flash('You are now registered!', 'success')
-		return redirect(url_for('login'))
 
 	# When the request method is 'GET', this statement will pull the register.html Form
 	# and display it, use other 'POST' method above to process form data
