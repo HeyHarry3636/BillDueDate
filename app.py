@@ -86,18 +86,13 @@ def register():
 				return redirect(url_for('login'))
 			else:
 				return render_template('error.html', error = str(data[0]))
-
-		# else:
-		# 	flash("You've done something wrong', 'error'")
-		# 	return render_template('register.html', form=form)
+		else:
+			flash("You've done something wrong', 'error'")
+			return render_template('register.html', form=form)
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
 
-	except:
-		flash("You've done something wrong', 'error'")
-		return render_template('register.html', form=form)
-		
 	finally:
 		if 'cursor' in locals():
 			cursor.close()
