@@ -87,7 +87,7 @@ def register():
 			else:
 				return render_template('error.html', error = str(data[0]))
 		else:
-			return render_template('error.html', "Please fill out the required fields")
+			return render_template('error.html', error="Please fill out the required fields")
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
