@@ -313,24 +313,32 @@ def editBill(id):
 	# data[0][0] = 2  --> user_id
 	# data[0][1] = "Test2@Test2.com" --> user_email
 	# data[0][2] = "asdf1dsafsd" --> user_password hashed
-	app.logger.info("data[0][0] = " + str(data[0][0]))
-	app.logger.info("data[0][1] = " + str(data[0][1]))
-	app.logger.info("data[0][2] = " + str(data[0][2]))
-	app.logger.info("data[0][3] = " + str(data[0][3]))
-	app.logger.info("data[0][4] = " + str(data[0][4]))
-	app.logger.info("data[0][5] = " + str(data[0][5]))
-	app.logger.info("data[0][6] = " + str(data[0][6]))
-	app.logger.info("data[0][7] = " + str(data[0][7]))
-	app.logger.info("data[0][8] = " + str(data[0][8]))
-	app.logger.info("data[0][9] = " + str(data[0][9]))
+	app.logger.info("data[0][0] = " + str(data[0][0])) # bill_id
+	app.logger.info("data[0][1] = " + str(data[0][1])) # user_id
+	app.logger.info("data[0][2] = " + str(data[0][2])) # bill_name
+	app.logger.info("data[0][3] = " + str(data[0][3])) # bill_description
+	app.logger.info("data[0][4] = " + str(data[0][4])) # bill_amount
+	app.logger.info("data[0][5] = " + str(data[0][5])) # bill_autoWithdrawal
+	app.logger.info("data[0][6] = " + str(data[0][6])) # bill_date
+	app.logger.info("data[0][7] = " + str(data[0][7])) # recur_id
+	app.logger.info("data[0][8] = " + str(data[0][8])) # bill_createdDate
+	app.logger.info("data[0][9] = " + str(data[0][9])) # bill_paid
 
 	# Populate bill form fields
-	form.bill_name.data = data[0]['bill_name']
-	form.bill_description.data = data[0]['bill_description']
-	form.bill_amount.data = data[0]['bill_amount']
-	form.bill_autoWithdrawal.data = data[0]['bill_autoWithdrawal']
-	form.bill_date.data = data[0]['bill_date']
-	form.recur_id.data = data[0]['recur_id']
+	# form.bill_name.data = data[0]['bill_name']
+	# form.bill_description.data = data[0]['bill_description']
+	# form.bill_amount.data = data[0]['bill_amount']
+	# form.bill_autoWithdrawal.data = data[0]['bill_autoWithdrawal']
+	# form.bill_date.data = data[0]['bill_date']
+	# form.recur_id.data = data[0]['recur_id']
+
+	for row in data:
+		form.bill_name.data = row['bill_name']
+		form.bill_description.data = row['bill_description']
+		form.bill_amount.data = row['bill_amount']
+		form.bill_autoWithdrawal.data = row['bill_autoWithdrawal']
+		form.bill_date.data = row['bill_date']
+		form.recur_id.data = row['recur_id']
 
 	# When the form data is submitted, a POST request will be made
 	if request.method == 'POST' and form.validate():
