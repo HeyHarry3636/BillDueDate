@@ -89,7 +89,7 @@ def register():
 			else:
 				return render_template('error.html', error = str(data[0]))
 		else:
-			flash("You've done something wrong', 'error'")
+			flash("You've done something wrong", 'danger')
 			return render_template('register.html', form=form)
 
 	except Exception as e:
