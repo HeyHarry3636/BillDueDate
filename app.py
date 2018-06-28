@@ -227,13 +227,13 @@ def addBill():
 			_bill_date = form.bill_date.data
 			_recur_id = form.recur_id.data
 
-			app.logger.info("_user_id = " + _user_id)
-			app.logger.info("_bill_name = " + _bill_name)
-			app.logger.info("_bill_description = " + _bill_description)
-			app.logger.info("_bill_amount = " + _bill_amount)
-			app.logger.info("_bill_autoWithdrawal = " + _bill_autoWithdrawal)
-			app.logger.info("_bill_date = " + _bill_date)
-			app.logger.info("_recur_id = " + _recur_id)
+			app.logger.info("_user_id = " + str(_user_id))
+			app.logger.info("_bill_name = " + str(_bill_name))
+			app.logger.info("_bill_description = " + str(_bill_description))
+			app.logger.info("_bill_amount = " + str(_bill_amount))
+			app.logger.info("_bill_autoWithdrawal = " + str(_bill_autoWithdrawal))
+			app.logger.info("_bill_date = " + str(_bill_date))
+			app.logger.info("_recur_id = " + str(_recur_id))
 
 			# Covert the bill_autoWithdrawal BooleanField to a char True = 1, False == 0
 			if _bill_autoWithdrawal:
