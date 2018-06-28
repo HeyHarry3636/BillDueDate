@@ -4,4 +4,20 @@
   <h1>Dashboard <small>Welcome {{session.user_email}}</small></h1>
   <a class="btn btn-success" href="/addBill">Add Bill</a>
   <hr>
+
+  {% for stuff in bill_dict %}
+    {% for key, value in stuff.items() %}
+    <thead class="thead-dark">
+      <tr>
+        <th>{{key}}</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{value}}</td>
+      </tr>
+    </thead>
+    {% endfor %}
+  {% endfor %}
+
 {% endblock %}
