@@ -8,7 +8,7 @@ CREATE PROCEDURE sp_getBillByBillID
 	IN p_bill_id BIGINT
 )
 BEGIN
-	SELECT * FROM tbl_bill WHERE bill_id = p_user_id;
+	SELECT * FROM tbl_bill WHERE bill_id = p_bill_id;
 END;
 $$
 DELIMITER ;
