@@ -306,7 +306,7 @@ def editBill(id):
 	conn = mysql.connect()
 	cursor = conn.cursor()
 	cursor.callproc('sp_getBillByBillID', (_bill_id,))
-	data = cursor.fetchone()
+	data = cursor.fetchall()
 
 	form = BillForm(request.form)
 
