@@ -3,7 +3,7 @@
 from flask import Flask, render_template, json, session, redirect, url_for, flash, logging, request
 from flaskext.mysql import MySQL
 from data import Bills
-from wtforms import PasswordField, StringField, BooleanField
+from wtforms import Form, validators, PasswordField, StringField, BooleanField
 from wtforms.fields.html5 import EmailField, DecimalField, DateField
 from functools import wraps #Used for 'is_logged_in' var for dashboard
 import bcrypt
