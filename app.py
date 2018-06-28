@@ -7,7 +7,7 @@ from wtforms import Form, validators, PasswordField, StringField, BooleanField, 
 from wtforms.fields.html5 import EmailField, DecimalField, DateField
 from functools import wraps #Used for 'is_logged_in' var for dashboard
 import bcrypt
-import datetime
+from datetime import *
 
 
 # Setup app and mysql instances
@@ -189,7 +189,7 @@ class BillForm(Form):
 	bill_date = DateField('Next Bill Due Date', [
 		validators.InputRequired()],
 		format='%m/%d/%Y',
-		default=datetime.date(today())
+		default=datetime.date.today()
 	)
 	recur_id = SelectField('Recurrence Interval', [
 		validators.InputRequired()],
