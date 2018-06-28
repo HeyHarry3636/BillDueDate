@@ -201,8 +201,6 @@ def dashboard():
 		if 'conn' in locals():
 			conn.close()
 
-
-
 class BillForm(Form):
 	bill_name = StringField('Name', [
 		validators.InputRequired()
@@ -311,6 +309,22 @@ def editBill(id):
 	data = cursor.fetchone()
 
 	form = BillForm(request.form)
+
+	# data[0][0] = 2  --> user_id
+	# data[0][1] = "Test2@Test2.com" --> user_email
+	# data[0][2] = "asdf1dsafsd" --> user_password hashed
+	app.logger.info("data[0][0] = " + data[0][0])
+	app.logger.info("data[0][1] = " + data[0][1])
+	app.logger.info("data[0][2] = " + data[0][2])
+	app.logger.info("data[0][3] = " + data[0][3])
+	app.logger.info("data[0][4] = " + data[0][4])
+	app.logger.info("data[0][5] = " + data[0][5])
+	app.logger.info("data[0][6] = " + data[0][6])
+	app.logger.info("data[0][7] = " + data[0][7])
+	app.logger.info("data[0][8] = " + data[0][8])
+	app.logger.info("data[0][9] = " + data[0][9])
+	app.logger.info("data[0][10] = " + data[0][10])
+	app.logger.info("data[0][11] = " + data[0][11])
 
 	# Populate bill form fields
 	form.bill_name.data = data[0]['bill_name']
