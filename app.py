@@ -211,7 +211,7 @@ def addBill():
 
 	try:
 		app.logger.info("request.method = " + request.method)
-		app.logger.info("form.validate() = " + form.validate())
+		app.logger.info("form.validate() = " + str(form.validate()))
 		# When the form data is submitted, a POST request will be made
 		if request.method == 'POST' and form.validate():
 			# Get form data (using WTForms syntax)
