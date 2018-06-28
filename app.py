@@ -308,21 +308,20 @@ def editBill(id):
 	cursor.callproc('sp_getBillByBillID', (_bill_id,))
 	data = cursor.fetchall()
 
+	cursor.close()
+	conn.close()
 	form = BillForm(request.form)
 
-	# data[0][0] = 2  --> user_id
-	# data[0][1] = "Test2@Test2.com" --> user_email
-	# data[0][2] = "asdf1dsafsd" --> user_password hashed
-	app.logger.info("data[0][0] = " + str(data[0][0])) # bill_id
-	app.logger.info("data[0][1] = " + str(data[0][1])) # user_id
-	app.logger.info("data[0][2] = " + str(data[0][2])) # bill_name
-	app.logger.info("data[0][3] = " + str(data[0][3])) # bill_description
-	app.logger.info("data[0][4] = " + str(data[0][4])) # bill_amount
-	app.logger.info("data[0][5] = " + str(data[0][5])) # bill_autoWithdrawal
-	app.logger.info("data[0][6] = " + str(data[0][6])) # bill_date
-	app.logger.info("data[0][7] = " + str(data[0][7])) # recur_id
-	app.logger.info("data[0][8] = " + str(data[0][8])) # bill_createdDate
-	app.logger.info("data[0][9] = " + str(data[0][9])) # bill_paid
+	# app.logger.info("data[0][0] = " + str(data[0][0])) # bill_id
+	# app.logger.info("data[0][1] = " + str(data[0][1])) # user_id
+	# app.logger.info("data[0][2] = " + str(data[0][2])) # bill_name
+	# app.logger.info("data[0][3] = " + str(data[0][3])) # bill_description
+	# app.logger.info("data[0][4] = " + str(data[0][4])) # bill_amount
+	# app.logger.info("data[0][5] = " + str(data[0][5])) # bill_autoWithdrawal
+	# app.logger.info("data[0][6] = " + str(data[0][6])) # bill_date
+	# app.logger.info("data[0][7] = " + str(data[0][7])) # recur_id
+	# app.logger.info("data[0][8] = " + str(data[0][8])) # bill_createdDate
+	# app.logger.info("data[0][9] = " + str(data[0][9])) # bill_paid
 
 	# Populate bill form fields
 	form.bill_name.data = data[0][2]
@@ -333,7 +332,9 @@ def editBill(id):
 	form.recur_id.data = data[0][7]
 
 	# When the form data is submitted, a POST request will be made
-	if request.method == 'POST' and form.validate():
+	# if request.method == 'POST' and form.validate():
+	if request.method == 'POST'
+		app.logger.info("form.validate() WITHIN = " + str(form.validate()))
 		# Get form data (using WTForms syntax)
 		_user_id = session.get('user_id')
 		_bill_name = form.bill_name.data
@@ -371,6 +372,8 @@ def editBill(id):
 			return redirect(url_for('dashboard'))
 		else:
 			return render_template('error.html', error = str(data[0]))
+
+	return render_template('editBill.html', form=form)
 
 
 
