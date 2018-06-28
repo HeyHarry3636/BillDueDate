@@ -187,8 +187,7 @@ class BillForm(Form):
 		validators.Optional()
 	])
 	bill_date = DateField('Next Bill Due Date', [
-		validators.InputRequired()],
-		format='{%m/%d/%Y}'.format(date.today()),
+		validators.InputRequired()]
 	)
 	recur_id = SelectField('Recurrence Interval', [
 		validators.InputRequired()],
