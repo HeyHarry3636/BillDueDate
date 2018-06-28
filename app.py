@@ -195,8 +195,8 @@ class BillForm(Form):
 			('Monthly', 3),
 			('Bi-Monthly', 4),
 			('Weekly', 5),
-			('Custom', 7)
-		]
+			('Custom', 7)],
+		coerce=int
 	)
 
 @app.route('/addBill', methods=['GET', 'POST'])
