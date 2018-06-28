@@ -377,11 +377,11 @@ def editBill(id):
 
 
 			data = cursor.fetchall()
-			print("data= " + str(data))
-
-			app.logger.info("len(data) = " + str(len(data)))
+			# print("data= " + str(data))
+			# 
+			# app.logger.info("len(data) = " + str(len(data)))
 			# Return successful or error message to see if called_proc worked
-			if len(data) > 0:
+			if len(data) is 0:
 				conn.commit()
 				flash('You have edited this bill!', 'success')
 				return redirect(url_for('dashboard'))
