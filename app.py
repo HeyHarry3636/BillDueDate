@@ -129,7 +129,7 @@ def login():
 				if bcrypt.checkpw(_password.encode("utf-8"), data[0][2]):
 					app.logger.info('PASSWORD MATCHED') #Logs to app.py console
 					session['logged_in'] = True
-					session['user'] = data[0][1]
+					session['user_email'] = data[0][1]
 					flash('You are now logged in', 'success')
 					return redirect(url_for('dashboard'))
 				else:
@@ -167,6 +167,24 @@ def logout():
 @is_logged_in
 def dashboard():
 	return render_template('dashboard.html')
+
+class BillForm(Form):
+	bill_name = StringField('Bill Name', [
+		validators.DataRequired()
+	])
+	bill_description = StringField('Bill Description', default=0, places=2, [
+		validators.DataRequired()
+	])
+	bill_amount = DecimalField('Bill Amount', [
+		validators.DataRequired()
+	])
+
+@app.route('/addBill', methods=['GET', 'POST'])
+def addBill():
+	form = BillForm(request.form)
+	return None
+
+
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
