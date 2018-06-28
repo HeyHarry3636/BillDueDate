@@ -375,6 +375,9 @@ def editBill(id):
 			))
 			data = cursor.fetchall()
 
+			app.logger.info("data[0][0] = " + str(data[0]))
+			app.logger.info("data[0][0] = " + str(data[0][0]))
+
 			app.logger.info("len(data) = " + str(len(data)))
 			# Return successful or error message to see if called_proc worked
 			if len(data) > 0:
