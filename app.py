@@ -313,12 +313,12 @@ def editBill(id):
 	form = BillForm(request.form)
 
 	# Populate bill form fields
-	form.bill_name.data = data['bill_name']
-	form.bill_description.data = data['bill_description']
-	form.bill_amount.data = data['bill_amount']
-	form.bill_autoWithdrawal.data = data['bill_autoWithdrawal']
-	form.bill_date.data = data['bill_date']
-	form.recur_id.data = data['recur_id']
+	form.bill_name.data = data[0]['bill_name']
+	form.bill_description.data = data[0]['bill_description']
+	form.bill_amount.data = data[0]['bill_amount']
+	form.bill_autoWithdrawal.data = data[0]['bill_autoWithdrawal']
+	form.bill_date.data = data[0]['bill_date']
+	form.recur_id.data = data[0]['recur_id']
 
 	# When the form data is submitted, a POST request will be made
 	if request.method == 'POST' and form.validate():
