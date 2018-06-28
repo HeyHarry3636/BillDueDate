@@ -202,10 +202,10 @@ class BillForm(Form):
 
 @app.route('/addBill', methods=['GET', 'POST'])
 def addBill():
-	form = BillForm(request.form)
+	billForm = BillForm(request.form)
 
 	if request.method == 'GET':
-		return render_template('bill.html', form=form)
+		return render_template('bill.html', form=billForm)
 ##########################################
 	try:
 		# When the form data is submitted, a POST request will be made
