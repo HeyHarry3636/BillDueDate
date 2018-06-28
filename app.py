@@ -37,10 +37,6 @@ def index():
 # def tempData():
 # 	return render_template('tempData.html', bills = bill_dict)
 
-# @app.route('/bill/<string:id>/')
-# def bill(id):
-# 	return render_template('bill.html', id=id)
-
 class RegisterForm(Form):
 	email = EmailField('Email', [
 		validators.InputRequired(),
@@ -299,6 +295,10 @@ def addBill():
 		if 'conn' in locals():
 			conn.close()
 
+# @app.route('/bill/<string:id>/')
+# def bill(id):
+# 	return render_template('bill.html', id=id)
+
 @app.route('/editBill/<string:id>', methods=['GET', 'POST'])
 @is_logged_in
 def editBill(id):
@@ -313,12 +313,12 @@ def editBill(id):
 	form = BillForm(request.form)
 
 	# Populate bill form fields
-	form.bill_name.data = bill['bill_name']
-	form.bill_description.data = bill['bill_description']
-	form.bill_amount.data = bill['bill_amount']
-	form.bill_autoWithdrawal.data = bill['bill_autoWithdrawal']
-	form.bill_date.data = bill['bill_date']
-	form.recur_id.data = bill['recur_id']
+	form.bill_name.data = data['bill_name']
+	form.bill_description.data = data['bill_description']
+	form.bill_amount.data = data['bill_amount']
+	form.bill_autoWithdrawal.data = data['bill_autoWithdrawal']
+	form.bill_date.data = data['bill_date']
+	form.recur_id.data = data['recur_id']
 
 	# When the form data is submitted, a POST request will be made
 	if request.method == 'POST' and form.validate():
