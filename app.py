@@ -333,7 +333,7 @@ def editBill(id):
 
 	# When the form data is submitted, a POST request will be made
 	# if request.method == 'POST' and form.validate():
-	if request.method == 'POST'
+	if request.method == 'POST':
 		app.logger.info("form.validate() WITHIN = " + str(form.validate()))
 		# Get form data (using WTForms syntax)
 		_user_id = session.get('user_id')
