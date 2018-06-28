@@ -332,8 +332,7 @@ def editBill(id):
 	form.recur_id.data = data[0][7]
 
 	# When the form data is submitted, a POST request will be made
-	# if request.method == 'POST' and form.validate():
-	if request.method == 'POST':
+	if request.method == 'POST' and form.validate():
 		app.logger.info("form.validate() WITHIN = " + str(form.validate()))
 		# Get form data (using WTForms syntax)
 		_user_id = session.get('user_id')
@@ -365,10 +364,22 @@ def editBill(id):
 		))
 		data = cursor.fetchall()
 
+		app.logger.info("data[0][0] = " + str(data[0][0])) # bill_id
+		app.logger.info("data[0][1] = " + str(data[0][1])) # user_id
+		app.logger.info("data[0][2] = " + str(data[0][2])) # bill_name
+		app.logger.info("data[0][3] = " + str(data[0][3])) # bill_description
+		app.logger.info("data[0][4] = " + str(data[0][4])) # bill_amount
+		app.logger.info("data[0][5] = " + str(data[0][5])) # bill_autoWithdrawal
+		app.logger.info("data[0][6] = " + str(data[0][6])) # bill_date
+		app.logger.info("data[0][7] = " + str(data[0][7])) # recur_id
+		app.logger.info("data[0][8] = " + str(data[0][8])) # bill_createdDate
+		app.logger.info("data[0][9] = " + str(data[0][9])) # bill_paid
+
+		app.logger.info("len(data) = " + str(len(data)))
 		# Return successful or error message to see if called_proc worked
 		if len(data) is 0:
 			conn.commit()
-			flash('You have added a bill!', 'success')
+			flash('You have edited this bill!', 'success')
 			return redirect(url_for('dashboard'))
 		else:
 			return render_template('error.html', error = str(data[0]))
