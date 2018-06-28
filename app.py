@@ -182,8 +182,8 @@ class BillForm(Form):
 		default=0,
 		places=2
 	)
-	bill_autoWithdrawal = BooleanField('Auto Withdrawal'
-	)
+	bill_autoWithdrawal = BooleanField('Auto Withdrawal', [
+	])
 	bill_date = DateField('Next Bill Due Date', [
 		validators.InputRequired()],
 		format='%m/%d/%Y'
