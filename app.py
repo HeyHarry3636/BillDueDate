@@ -313,18 +313,18 @@ def editBill(id):
 	# data[0][0] = 2  --> user_id
 	# data[0][1] = "Test2@Test2.com" --> user_email
 	# data[0][2] = "asdf1dsafsd" --> user_password hashed
-	app.logger.info("data[0][0] = " + data[0][0])
-	app.logger.info("data[0][1] = " + data[0][1])
-	app.logger.info("data[0][2] = " + data[0][2])
-	app.logger.info("data[0][3] = " + data[0][3])
-	app.logger.info("data[0][4] = " + data[0][4])
-	app.logger.info("data[0][5] = " + data[0][5])
-	app.logger.info("data[0][6] = " + data[0][6])
-	app.logger.info("data[0][7] = " + data[0][7])
-	app.logger.info("data[0][8] = " + data[0][8])
-	app.logger.info("data[0][9] = " + data[0][9])
-	app.logger.info("data[0][10] = " + data[0][10])
-	app.logger.info("data[0][11] = " + data[0][11])
+	app.logger.info("data[0][0] = " + str(data[0][0]))
+	app.logger.info("data[0][1] = " + str(data[0][1]))
+	app.logger.info("data[0][2] = " + str(data[0][2]))
+	app.logger.info("data[0][3] = " + str(data[0][3]))
+	app.logger.info("data[0][4] = " + str(data[0][4]))
+	app.logger.info("data[0][5] = " + str(data[0][5]))
+	app.logger.info("data[0][6] = " + str(data[0][6]))
+	app.logger.info("data[0][7] = " + str(data[0][7]))
+	app.logger.info("data[0][8] = " + str(data[0][8]))
+	app.logger.info("data[0][9] = " + str(data[0][9]))
+	app.logger.info("data[0][10] = " + str(data[0][10]))
+	app.logger.info("data[0][11] = " + str(data[0][11]))
 
 	# Populate bill form fields
 	form.bill_name.data = data[0]['bill_name']
