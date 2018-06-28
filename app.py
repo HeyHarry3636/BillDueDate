@@ -44,15 +44,15 @@ def bill(id):
 
 class RegisterForm(Form):
 	email = EmailField('Email', [
-		validators.DataRequired(),
+		validators.InputRequired(),
 		validators.Email(message='Please enter a valid email address')
 	])
 	password = PasswordField('Password', [
-		validators.DataRequired(),
+		validators.InputRequired(),
 		validators.EqualTo('confirm', message='Passwords do not match')
 	])
 	confirm = PasswordField('Confirm Password', [
-		validators.DataRequired()
+		validators.InputRequired()
 	])
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -172,24 +172,24 @@ def dashboard():
 
 class BillForm(Form):
 	bill_name = StringField('Name', [
-		validators.DataRequired()
+		validators.InputRequired()
 	])
 	bill_description = StringField('Description', [
-		validators.DataRequired()
+		validators.InputRequired()
 	])
 	bill_amount = DecimalField('Amount', [
-		validators.DataRequired()],
+		validators.InputRequired()],
 		default=0,
 		places=2
 	)
 	bill_autoWithdrawal = BooleanField('Auto Withdrawal'
 	)
 	bill_date = DateField('Next Bill Due Date', [
-		validators.DataRequired()],
+		validators.InputRequired()],
 		format='%m/%d/%Y'
 	)
 	recur_id = SelectField('Recurrence Interval', [
-		validators.DataRequired()],
+		validators.InputRequired()],
 		choices=[
 			(3, 'Monthly'),
 			(0, 'Annually'),
