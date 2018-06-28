@@ -341,9 +341,6 @@ def editBill(id):
 		# if 'conn' in locals():
 		# 	conn.close()
 
-	return render_template('editBill.html', form=form)
-
-
 	try:
 		# When the form data is submitted, a POST request will be made
 		if request.method == 'POST' and form.validate():
@@ -397,9 +394,6 @@ def editBill(id):
 			conn.close()
 
 	return render_template('editBill.html', form=form)
-
-
-
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
