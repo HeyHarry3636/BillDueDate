@@ -223,6 +223,12 @@ def addBill():
 			_bill_date = form.bill_date.data
 			_recur_id = form.recur_id.data
 
+			# Covert the bill_autoWithdrawal BooleanField to a char True = 1, False == 0
+			if _bill_autoWithdrawal:
+				_bill_autoWithdrawal_char = 1
+			else:
+				_bill_autoWithdrawal_char = 0
+
 			# Create mysql connection, create cursor, call procedure, fetch results
 			conn = mysql.connect()
 			cursor = conn.cursor()
@@ -231,7 +237,7 @@ def addBill():
 				_bill_name,
 				_bill_description,
 				_bill_amount,
-				_bill_autoWithdrawal,
+				_bill_autoWithdrawal_char,
 				_bill_date,
 				_recur_id
 			))
