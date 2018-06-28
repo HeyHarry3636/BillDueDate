@@ -173,13 +173,13 @@ class BillForm(Form):
 		validators.DataRequired()
 	])
 	bill_description = StringField('Bill Description', [
-		validators.DataRequired()],
-		default=0,
-		places=2,
-	)
-	bill_amount = DecimalField('Bill Amount', [
 		validators.DataRequired()
 	])
+	bill_amount = DecimalField('Bill Amount', [
+		validators.DataRequired()],
+		default=0,
+		places=2
+	)
 
 @app.route('/addBill', methods=['GET', 'POST'])
 def addBill():
