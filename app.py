@@ -374,9 +374,7 @@ def editBill(id):
 				_recur_id
 			))
 			data = cursor.fetchall()
-
-			app.logger.info("data[0][0] = " + str(data[0]))
-			app.logger.info("data[0][0] = " + str(data[0][0]))
+			print("data= " + str(data))
 
 			app.logger.info("len(data) = " + str(len(data)))
 			# Return successful or error message to see if called_proc worked
@@ -384,8 +382,8 @@ def editBill(id):
 				conn.commit()
 				flash('You have edited this bill!', 'success')
 				return redirect(url_for('dashboard'))
-			# else:
-			# 	return render_template('error.html', error = str(data[0]))
+			else:
+				return render_template('error.html', error = str(data[0]))
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
