@@ -202,14 +202,14 @@ class BillForm(Form):
 
 @app.route('/addBill', methods=['GET', 'POST'])
 def addBill():
-	billForm = BillForm(request.form)
+	form = BillForm(request.form)
 
 	if request.method == 'GET':
-		return render_template('bill.html', form=billForm)
-##########################################
+		return render_template('bill.html', form=form)
+
 	try:
 		# When the form data is submitted, a POST request will be made
-		if request.method == 'POST' and billForm.validate():
+		if request.method == 'POST' and form.validate():
 			# Get form data (using WTForms syntax)
 			_user_id = session.get('user_id')
 			_bill_name = form.bill_name.data
@@ -242,7 +242,7 @@ def addBill():
 				return render_template('error.html', error = str(data[0]))
 		else:
 			flash("You've done something wrong", 'danger')
-			return render_template('register.html', form=form)
+			return render_template('bill.html', form=form)
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
@@ -252,7 +252,6 @@ def addBill():
 			cursor.close()
 		if 'conn' in locals():
 			conn.close()
-#############################################################
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
