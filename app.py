@@ -189,13 +189,14 @@ class BillForm(Form):
 	recur_id = SelectField('Recurrence Interval', [
 		validators.DataRequired()],
 		choices=[
-			('Annually', 0),
-			('Bi-Annually', 1),
-			('Quarterly', 2),
-			('Monthly', 3),
-			('Bi-Monthly', 4),
-			('Weekly', 5),
-			('Custom', 7)]
+			(0, 'Annually'),
+			(1, 'Bi-Annually'),
+			(2, 'Quarterly'),
+			(3, 'Monthly'),
+			(4, 'Bi-Monthly'),
+			(5, 'Weekly'),
+			(6, 'Custom')],
+		coerce=int
 	)
 
 @app.route('/addBill', methods=['GET', 'POST'])
