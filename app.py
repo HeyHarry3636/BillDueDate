@@ -159,6 +159,7 @@ def is_logged_in(f):
 	return wrap
 
 @app.route('/logout')
+@is_logged_in
 def logout():
 	session.clear()
 	flash('You are now logged out', 'success')
@@ -201,57 +202,58 @@ class BillForm(Form):
 	)
 
 @app.route('/addBill', methods=['GET', 'POST'])
+@is_logged_in
 def addBill():
 	form = BillForm(request.form)
 
 	if request.method == 'GET':
 		return render_template('bill.html', form=form)
 
-	try:
-		# When the form data is submitted, a POST request will be made
-		if request.method == 'POST' and form.validate():
-			# Get form data (using WTForms syntax)
-			_user_id = session.get('user_id')
-			_bill_name = form.bill_name.data
-			_bill_description = form.bill_description.data
-			_bill_amount = form.bill_amount.data
-			_bill_autoWithdrawal = form.bill_autoWithdrawal.data
-			_bill_date = form.bill_date.data
-			_recur_id = form.recur_id.data
+	# try:
+	# When the form data is submitted, a POST request will be made
+	if request.method == 'POST' and form.validate():
+		# Get form data (using WTForms syntax)
+		_user_id = session.get('user_id')
+		_bill_name = form.bill_name.data
+		_bill_description = form.bill_description.data
+		_bill_amount = form.bill_amount.data
+		_bill_autoWithdrawal = form.bill_autoWithdrawal.data
+		_bill_date = form.bill_date.data
+		_recur_id = form.recur_id.data
 
-			# Create mysql connection, create cursor, call procedure, fetch results
-			conn = mysql.connect()
-			cursor = conn.cursor()
-			cursor.callproc('sp_addBill', (
-				_user_id,
-				_bill_name,
-				_bill_description,
-				_bill_amount,
-				_bill_autoWithdrawal,
-				_bill_date,
-				_recur_id
-			))
-			data = cursor.fetchall()
+		# Create mysql connection, create cursor, call procedure, fetch results
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		cursor.callproc('sp_addBill', (
+			_user_id,
+			_bill_name,
+			_bill_description,
+			_bill_amount,
+			_bill_autoWithdrawal,
+			_bill_date,
+			_recur_id
+		))
+		data = cursor.fetchall()
 
-			# Return successful or error message to see if called_proc worked
-			if len(data) is 0:
-				conn.commit()
-				flash('You have added a bill!', 'success')
-				return redirect(url_for('dashboard'))
-			else:
-				return render_template('error.html', error = str(data[0]))
+		# Return successful or error message to see if called_proc worked
+		if len(data) is 0:
+			conn.commit()
+			flash('You have added a bill!', 'success')
+			return redirect(url_for('dashboard'))
 		else:
-			flash("You've done something wrong", 'danger')
-			return render_template('bill.html', form=form)
+			return render_template('error.html', error = str(data[0]))
+		# else:
+		# 	flash("You've done something wrong", 'danger')
+		# 	return render_template('bill.html', form=form)
 
-	except Exception as e:
-		return render_template('error.html', error = str(e))
-
-	finally:
-		if 'cursor' in locals():
-			cursor.close()
-		if 'conn' in locals():
-			conn.close()
+	# except Exception as e:
+	# 	return render_template('error.html', error = str(e))
+	#
+	# finally:
+	# 	if 'cursor' in locals():
+	# 		cursor.close()
+	# 	if 'conn' in locals():
+	# 		conn.close()
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
