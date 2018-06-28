@@ -325,20 +325,12 @@ def editBill(id):
 	app.logger.info("data[0][9] = " + str(data[0][9])) # bill_paid
 
 	# Populate bill form fields
-	# form.bill_name.data = data[0]['bill_name']
-	# form.bill_description.data = data[0]['bill_description']
-	# form.bill_amount.data = data[0]['bill_amount']
-	# form.bill_autoWithdrawal.data = data[0]['bill_autoWithdrawal']
-	# form.bill_date.data = data[0]['bill_date']
-	# form.recur_id.data = data[0]['recur_id']
-
-	for row in data:
-		form.bill_name.data = row['bill_name']
-		form.bill_description.data = row['bill_description']
-		form.bill_amount.data = row['bill_amount']
-		form.bill_autoWithdrawal.data = row['bill_autoWithdrawal']
-		form.bill_date.data = row['bill_date']
-		form.recur_id.data = row['recur_id']
+	form.bill_name.data = data[0][2]
+	form.bill_description.data = data[0][3]
+	form.bill_amount.data = data[0][4]
+	form.bill_autoWithdrawal.data = data[0][5]
+	form.bill_date.data = data[0][6]
+	form.recur_id.data = data[0][7]
 
 	# When the form data is submitted, a POST request will be made
 	if request.method == 'POST' and form.validate():
