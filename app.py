@@ -169,16 +169,23 @@ def dashboard():
 	return render_template('dashboard.html')
 
 class BillForm(Form):
-	bill_name = StringField('Bill Name', [
+	bill_name = StringField('Name', [
 		validators.DataRequired()
 	])
-	bill_description = StringField('Bill Description', [
+	bill_description = StringField('Description', [
 		validators.DataRequired()
 	])
-	bill_amount = DecimalField('Bill Amount', [
+	bill_amount = DecimalField('Amount', [
 		validators.DataRequired()],
 		default=0,
 		places=2
+	)
+	bill_autoWithdrawal = BooleanField('Auto Withdrawal', [
+		validators.DataRequired()
+	])
+	bill_date = DateField('Next Bill Due Date', [
+		validators.DataRequired()],
+		format='%m/%d/%Y'
 	)
 
 @app.route('/addBill', methods=['GET', 'POST'])
