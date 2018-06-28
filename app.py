@@ -5,7 +5,9 @@ from flaskext.mysql import MySQL
 from data import Bills
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from wtforms.fields.html5 import EmailField
+from functools import wraps #Used for 'is_logged_in' var for dashboard
 import bcrypt
+
 
 # Setup app and mysql instances
 app = Flask(__name__)
@@ -144,6 +146,17 @@ def login():
 		if 'conn' in locals():
 			conn.close()
 
+# Check if user is logged in
+def is_logged_in(f):
+	@wraps(f)
+	def wrap(*args, **kwargs):
+		if 'logged_in' in session:
+			return f(*args, **kwargs)
+		else:
+			flash('Unauthorized, Please login', 'danger')
+			return redirect(url_for(login))
+	return wrap
+
 @app.route('/logout')
 def logout():
 	session.clear()
@@ -151,6 +164,7 @@ def logout():
 	return redirect(url_for('index'))
 
 @app.route('/dashboard')
+@is_logged_in
 def dashboard():
 	return render_template('dashboard.html')
 
