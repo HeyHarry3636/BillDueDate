@@ -213,7 +213,11 @@ def addBill():
 		app.logger.info("request.method = " + request.method)
 		app.logger.info("form.validate() = " + str(form.validate()))
 		# When the form data is submitted, a POST request will be made
-		if request.method == 'POST' and form.validate():
+
+		if request.method == 'POST':
+			app.logger.info("Wthin request.method = " + request.method)
+			app.logger.info("Wthin form.validate() = " + str(form.validate()))
+		# if request.method == 'POST' and form.validate():
 			# Get form data (using WTForms syntax)
 			_user_id = session.get('user_id')
 			_bill_name = form.bill_name.data
@@ -222,6 +226,14 @@ def addBill():
 			_bill_autoWithdrawal = form.bill_autoWithdrawal.data
 			_bill_date = form.bill_date.data
 			_recur_id = form.recur_id.data
+
+			app.logger.info("_user_id = " + _user_id)
+			app.logger.info("_bill_name = " + _bill_name)
+			app.logger.info("_bill_description = " + _bill_description)
+			app.logger.info("_bill_amount = " + _bill_amount)
+			app.logger.info("_bill_autoWithdrawal = " + _bill_autoWithdrawal)
+			app.logger.info("_bill_date = " + _bill_date)
+			app.logger.info("_recur_id = " + _recur_id)
 
 			# Covert the bill_autoWithdrawal BooleanField to a char True = 1, False == 0
 			if _bill_autoWithdrawal:
