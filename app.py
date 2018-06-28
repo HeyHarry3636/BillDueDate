@@ -3,8 +3,8 @@
 from flask import Flask, render_template, json, session, redirect, url_for, flash, logging, request
 from flaskext.mysql import MySQL
 from data import Bills
-from wtforms import Form, validators, PasswordField, StringField, BooleanField, SelectField
-from wtforms.fields.html5 import EmailField, DecimalField, DateField
+from wtforms import Form, validators, PasswordField, StringField, BooleanField, SelectField, DateField
+from wtforms.fields.html5 import EmailField, DecimalField
 from functools import wraps #Used for 'is_logged_in' var for dashboard
 import bcrypt
 
@@ -187,7 +187,7 @@ class BillForm(Form):
 	])
 	bill_date = DateField('Next Bill Due Date', [
 		validators.InputRequired()],
-		format='%m/%d/%Y'
+		format='%mm/%dd/%YYYY'
 	)
 	recur_id = SelectField('Recurrence Interval', [
 		validators.InputRequired()],
