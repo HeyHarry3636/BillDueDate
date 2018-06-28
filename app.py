@@ -7,8 +7,6 @@ from wtforms import Form, validators, PasswordField, StringField, BooleanField, 
 from wtforms.fields.html5 import EmailField, DecimalField, DateField
 from functools import wraps #Used for 'is_logged_in' var for dashboard
 import bcrypt
-from datetime import *
-
 
 # Setup app and mysql instances
 app = Flask(__name__)
@@ -132,7 +130,6 @@ def login():
 					session['logged_in'] = True
 					session['user_id'] = data[0][0]
 					session['user_email'] = data[0][1]
-					flash('You are now logged in', 'success')
 					return redirect(url_for('dashboard'))
 				else:
 					return render_template('login.html', error = 'Wrong email address or password.1')
@@ -163,7 +160,7 @@ def is_logged_in(f):
 @is_logged_in
 def logout():
 	session.clear()
-	flash('You are now logged out', 'success')
+	flash('You have logged out', 'success')
 	return redirect(url_for('index'))
 
 @app.route('/dashboard')
@@ -301,6 +298,70 @@ def addBill():
 			cursor.close()
 		if 'conn' in locals():
 			conn.close()
+
+@app.route('/editBill/<string:id>', methods=['GET', 'POST'])
+@is_logged_in
+def editBill(id):
+
+	_bill_id = id
+
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	cursor.callproc('sp_getBillByBillID', (_bill_id,))
+	data = cursor.fetchone()
+
+	form = BillForm(request.form)
+
+	# Populate bill form fields
+	form.bill_name.data = bill['bill_name']
+	form.bill_description.data = bill['bill_description']
+	form.bill_amount.data = bill['bill_amount']
+	form.bill_autoWithdrawal.data = bill['bill_autoWithdrawal']
+	form.bill_date.data = bill['bill_date']
+	form.recur_id.data = bill['recur_id']
+
+	# When the form data is submitted, a POST request will be made
+	if request.method == 'POST' and form.validate():
+		# Get form data (using WTForms syntax)
+		_user_id = session.get('user_id')
+		_bill_name = form.bill_name.data
+		_bill_description = form.bill_description.data
+		_bill_amount = form.bill_amount.data
+		_bill_autoWithdrawal = form.bill_autoWithdrawal.data
+		_bill_date = form.bill_date.data
+		_recur_id = form.recur_id.data
+
+		# Covert the bill_autoWithdrawal BooleanField to a char True = 1, False == 0
+		if _bill_autoWithdrawal:
+			_bill_autoWithdrawal_char = 1
+		else:
+			_bill_autoWithdrawal_char = 0
+
+		# Create mysql connection, create cursor, call procedure, fetch results
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		cursor.callproc('sp_editBill', (
+			_bill_id,
+			_user_id,
+			_bill_name,
+			_bill_description,
+			_bill_amount,
+			_bill_autoWithdrawal_char,
+			_bill_date,
+			_recur_id
+		))
+		data = cursor.fetchall()
+
+		# Return successful or error message to see if called_proc worked
+		if len(data) is 0:
+			conn.commit()
+			flash('You have added a bill!', 'success')
+			return redirect(url_for('dashboard'))
+		else:
+			return render_template('error.html', error = str(data[0]))
+
+
+
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
