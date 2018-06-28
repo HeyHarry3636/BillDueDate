@@ -323,8 +323,6 @@ def editBill(id):
 	app.logger.info("data[0][7] = " + str(data[0][7]))
 	app.logger.info("data[0][8] = " + str(data[0][8]))
 	app.logger.info("data[0][9] = " + str(data[0][9]))
-	app.logger.info("data[0][10] = " + str(data[0][10]))
-	app.logger.info("data[0][11] = " + str(data[0][11]))
 
 	# Populate bill form fields
 	form.bill_name.data = data[0]['bill_name']
