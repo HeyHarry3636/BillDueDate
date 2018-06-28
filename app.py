@@ -172,9 +172,11 @@ class BillForm(Form):
 	bill_name = StringField('Bill Name', [
 		validators.DataRequired()
 	])
-	bill_description = StringField('Bill Description', default=0, places=2, [
-		validators.DataRequired()
-	])
+	bill_description = StringField('Bill Description', [
+		validators.DataRequired()], 
+		default=0,
+		places=2,
+	)
 	bill_amount = DecimalField('Bill Amount', [
 		validators.DataRequired()
 	])
