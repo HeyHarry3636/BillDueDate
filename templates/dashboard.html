@@ -6,19 +6,21 @@
   <hr>
 
   <div class="table-responsive">
-    <table class="table table-hover thead-dark">
-      <tr>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Date Due</th>
-        <th>Paid?</th>
-        <th>Description</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Name</th>
+          <th>Amount</th>
+          <th>Date Due</th>
+          <th>Paid?</th>
+          <th>Description</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
       {% for bill in bill_dict %}
         <tr>
           <td>{{bill.bill_name}}</td>
