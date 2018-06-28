@@ -4,7 +4,7 @@ from flask import Flask, render_template, json, session, redirect, url_for, flas
 from flaskext.mysql import MySQL
 from data import Bills
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-from wtforms.fields.html5 import EmailField
+from wtforms.fields.html5 import EmailField, DecimalField
 from functools import wraps #Used for 'is_logged_in' var for dashboard
 import bcrypt
 
@@ -173,7 +173,7 @@ class BillForm(Form):
 		validators.DataRequired()
 	])
 	bill_description = StringField('Bill Description', [
-		validators.DataRequired()], 
+		validators.DataRequired()],
 		default=0,
 		places=2,
 	)
