@@ -5,7 +5,7 @@
   <a class="btn btn-success" href="/addBill">Add Bill</a>
   <hr>
 
-  {% for stuff in bill_dict %}
+  <!-- {% for stuff in bill_dict %}
     {% for key, value in stuff.items() %}
     <thead class="thead-dark">
       <tr>
@@ -18,6 +18,37 @@
       </tr>
     </thead>
     {% endfor %}
-  {% endfor %}
+  {% endfor %} -->
+
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Amount</th>
+      <th>Date Due</th>
+      <th>Paid?</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    {% for bill in bill_dict %}
+      <tr>
+        <td>{{bill.bill_id}}</td>
+        <td>{{bill.bill_amount}}</td>
+        <td>{{bill.bill_date}}</td>
+        <td>{{bill.bill_paid}}</td>
+        <td>{{bill.bill_description}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><a href-"edit_bill/{{bill.bill_id}}" class="btn btn-default pullright">Edit</a></td>
+        <td><a href-"#" class="btn btn-danger pullright">Delete</a></td>
+      </tr>
+    {% endfor %}
+
+
+  </table>
 
 {% endblock %}
