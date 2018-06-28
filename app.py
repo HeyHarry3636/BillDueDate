@@ -209,7 +209,7 @@ def addBill():
 ##########################################
 	try:
 		# When the form data is submitted, a POST request will be made
-		if request.method == 'POST' and form.validate():
+		if request.method == 'POST' and billForm.validate():
 			# Get form data (using WTForms syntax)
 			_user_id = session.get('user_id')
 			_bill_name = form.bill_name.data
