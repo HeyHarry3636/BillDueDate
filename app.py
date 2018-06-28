@@ -184,7 +184,9 @@ class BillForm(Form):
 @app.route('/addBill', methods=['GET', 'POST'])
 def addBill():
 	form = BillForm(request.form)
-	return render_template('bill.html')
+
+	if request.method == 'GET':
+		return render_template('bill.html', form=form)
 
 
 
