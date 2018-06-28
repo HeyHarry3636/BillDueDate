@@ -37,9 +37,9 @@ def index():
 # def tempData():
 # 	return render_template('tempData.html', bills = bill_dict)
 
-@app.route('/bill/<string:id>/')
-def bill(id):
-	return render_template('bill.html', id=id)
+# @app.route('/bill/<string:id>/')
+# def bill(id):
+# 	return render_template('bill.html', id=id)
 
 class RegisterForm(Form):
 	email = EmailField('Email', [
