@@ -339,8 +339,8 @@ def editBill(id):
 	finally:
 		if 'cursor' in locals():
 			cursor.close()
-		# if 'conn' in locals():
-		# 	conn.close()
+		if 'conn' in locals():
+			conn.close()
 
 	try:
 		# When the form data is submitted, a POST request will be made
@@ -362,7 +362,7 @@ def editBill(id):
 
 			app.logger.info('_bill_id = ' + str(_bill_id))
 			# Create mysql connection, create cursor, call procedure, fetch results
-			# conn = mysql.connect()
+			conn = mysql.connect()
 			cursor = conn.cursor()
 			# cursor.callproc('sp_editBill', (
 			# 	_bill_id,
@@ -384,7 +384,7 @@ def editBill(id):
 			#
 			# app.logger.info("len(data) = " + str(len(data)))
 			# Return successful or error message to see if called_proc worked
-			if len(data) is None:
+			if len(data) is 0:
 				conn.commit()
 				flash('You have edited this bill!', 'success')
 				return redirect(url_for('dashboard'))
