@@ -14,26 +14,9 @@
           <th>PayDay Amount</th>
         </tr>
       </thead>
-        <tr>
-          <td><p onload="getToday()" id="todayRow"></p></td>
-          <td>$100</td>
-          <td>$200</td>
-        </tr>
-    </table>
-  </div>
-
-  <div class="table-responsive">
-    <table class="table table-hover table-striped table-sm">
-      <thead class="thead-dark">
-        <tr>
-          <th>Today</th>
-          <th>Current Bank Amount</th>
-          <th>PayDay Amount</th>
-        </tr>
-      </thead>
       {% for bank in bank_dict %}
         <tr>
-          <td><p id="todayRow"></p></td>
+          <td></td>
           <td>${{bank.bank_currentAmount}}</td>
           <td>${{bank.bank_payDayAmount}}</td>
         </tr>
