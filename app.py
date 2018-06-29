@@ -343,23 +343,24 @@ def bankInfo():
 			# Check to see if there is already a bank account in the database
 			bankInfoExists = cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
 
+			# Only allowed to have one bank account in the system
 			if bankInfoExists < 1:
 				app.logger.info('YOU ARE ALLOWED TO ADD A BANK')
-					cursor.callproc('sp_addBank', (
-						_user_id,
-						_bill_currentAmount,
-						_bill_payDayAmount,
-						_recur_id
-					))
-					data = cursor.fetchall()
+				cursor.callproc('sp_addBank', (
+					_user_id,
+					_bill_currentAmount,
+					_bill_payDayAmount,
+					_recur_id
+				))
+				data = cursor.fetchall()
 
-					# Return successful or error message to see if called_proc worked
-					if len(data) is 0:
-						conn.commit()
-						flash('You have added the bank information!', 'success')
-						return redirect(url_for('dashboard'))
-					else:
-						return render_template('error.html', error = str(data[0]))
+				# Return successful or error message to see if called_proc worked
+				if len(data) is 0:
+					conn.commit()
+					flash('You have added the bank information!', 'success')
+					return redirect(url_for('dashboard'))
+				else:
+					return render_template('error.html', error = str(data[0]))
 			else:
 				app.logger.info('You already have bank information in the database')
 				return redirect(url_for(dashboard))
