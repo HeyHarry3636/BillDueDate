@@ -200,7 +200,7 @@ def dashboard():
 #####################################
 @app.route('/addBill', methods=['GET', 'POST'])
 @is_logged_in
-	addEditBills.addBill()
+addEditBills.addBill()
 #####################################
 
 @app.route('/bankInfo/<string:id>', methods=['GET', 'POST'])

@@ -1,8 +1,6 @@
 from flask import Flask, render_template, json, session, redirect, url_for, flash, logging, request
 from flaskext.mysql import MySQL
 
-@app.route('/addBill', methods=['GET', 'POST'])
-@is_logged_in
 def addBill():
 	form = forms.BillForm(request.form)
 
