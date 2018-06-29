@@ -330,8 +330,6 @@ def editBill(id):
 		form.bill_date.data = data[0][6]
 		form.recur_id.data = data[0][7]
 
-		return render_template('editBill.html', form=form)
-
 	except Exception as e:
 		return render_template('error.html', error = str(e))
 
@@ -388,7 +386,7 @@ def editBill(id):
 	except Exception as e:
 		return render_template('error.html', error = str(e))
 
-	# return render_template('editBill.html', form=form)
+	return render_template('editBill.html', form=form)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
