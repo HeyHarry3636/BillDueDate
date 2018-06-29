@@ -403,7 +403,7 @@ def editBill(id):
 					flash('You have edited this bill!', 'success')
 					cursor.execute("SELECT bill_name FROM tbl_bill WHERE bill_id = %s", (_bill_id))
 					selectFetch = cursor.fetchall()
-					app.logger.info("selectFetch = " + selectFetch)
+					app.logger.info("selectFetch = " + str(selectFetch))
 					return redirect(url_for('dashboard'))
 				else:
 					return render_template('error.html', error = str(data[0]))
