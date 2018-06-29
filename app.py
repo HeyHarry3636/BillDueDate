@@ -343,7 +343,7 @@ def bankInfo():
 			# Check to see if there is already a bank account in the database
 			bankInfoExists = cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
 
-			if bankInfoExists <= 1:
+			if bankInfoExists < 1:
 				app.logger.info('YOU ARE ALLOWED TO ADD A BANK')
 			else:
 				app.logger.info('You already have bank information in the database')
