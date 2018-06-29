@@ -296,6 +296,39 @@ def addBill():
 		if 'conn' in locals():
 			conn.close()
 
+class BankForm(Form):
+	bill_currentAmount = DecimalField('Current Bank Amount', [
+		validators.InputRequired()],
+		default=0,
+		places=2
+	)
+	bill_payDayAmount = DecimalField('PayDay Amount', [
+		validators.InputRequired()],
+		default=0,
+		places=2
+	)
+	recur_id = SelectField('PayDay Frequency', [
+		validators.InputRequired()],
+		choices=[
+			(3, 'Monthly'),
+			(0, 'Annually'),
+			(1, 'Bi-Annually'),
+			(2, 'Quarterly'),
+			(4, 'Bi-Monthly'),
+			(5, 'Weekly'),
+			(6, 'Custom')],
+		coerce=int
+	)
+
+@app.route('/bankInfo', methods=['GET', 'POST'])
+@is_logged_in
+def bankInfo():
+	form = BankForm(request.form)
+
+	if request.method == 'GET':
+		return render_template('bankInfo.html', form=form)
+
+
 @app.route('/editBill/<string:id>', methods=['GET', 'POST'])
 @is_logged_in
 def editBill(id):
