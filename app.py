@@ -302,36 +302,37 @@ def addBill():
 def editBill(id):
 
 	try:
-		app.logger.info("request.method pre _bill_id = " + request.method)
-		_bill_id = id
-		app.logger.info("request.method pre curs = " + request.method)
-		conn = mysql.connect()
-		cursor = conn.cursor()
-		cursor.callproc('sp_getBillByBillID', (_bill_id,))
-		data = cursor.fetchall()
-		app.logger.info("request.method post curs = " + request.method)
-		# cursor.close()
-		# conn.close()
-		form = BillForm(request.form)
+		if request.method == 'GET':
+			app.logger.info("request.method pre _bill_id = " + request.method)
+			_bill_id = id
 
-		# app.logger.info("data[0][0] = " + str(data[0][0])) # bill_id
-		# app.logger.info("data[0][1] = " + str(data[0][1])) # user_id
-		# app.logger.info("data[0][2] = " + str(data[0][2])) # bill_name
-		# app.logger.info("data[0][3] = " + str(data[0][3])) # bill_description
-		# app.logger.info("data[0][4] = " + str(data[0][4])) # bill_amount
-		# app.logger.info("data[0][5] = " + str(data[0][5])) # bill_autoWithdrawal
-		# app.logger.info("data[0][6] = " + str(data[0][6])) # bill_date
-		# app.logger.info("data[0][7] = " + str(data[0][7])) # recur_id
-		# app.logger.info("data[0][8] = " + str(data[0][8])) # bill_createdDate
-		# app.logger.info("data[0][9] = " + str(data[0][9])) # bill_paid
+			conn = mysql.connect()
+			cursor = conn.cursor()
+			cursor.callproc('sp_getBillByBillID', (_bill_id,))
+			data = cursor.fetchall()
 
-		# Populate bill form fields
-		form.bill_name.data = data[0][2]
-		form.bill_description.data = data[0][3]
-		form.bill_amount.data = data[0][4]
-		form.bill_autoWithdrawal.data = data[0][5]
-		form.bill_date.data = data[0][6]
-		form.recur_id.data = data[0][7]
+			# cursor.close()
+			# conn.close()
+			form = BillForm(request.form)
+
+			# app.logger.info("data[0][0] = " + str(data[0][0])) # bill_id
+			# app.logger.info("data[0][1] = " + str(data[0][1])) # user_id
+			# app.logger.info("data[0][2] = " + str(data[0][2])) # bill_name
+			# app.logger.info("data[0][3] = " + str(data[0][3])) # bill_description
+			# app.logger.info("data[0][4] = " + str(data[0][4])) # bill_amount
+			# app.logger.info("data[0][5] = " + str(data[0][5])) # bill_autoWithdrawal
+			# app.logger.info("data[0][6] = " + str(data[0][6])) # bill_date
+			# app.logger.info("data[0][7] = " + str(data[0][7])) # recur_id
+			# app.logger.info("data[0][8] = " + str(data[0][8])) # bill_createdDate
+			# app.logger.info("data[0][9] = " + str(data[0][9])) # bill_paid
+
+			# Populate bill form fields
+			form.bill_name.data = data[0][2]
+			form.bill_description.data = data[0][3]
+			form.bill_amount.data = data[0][4]
+			form.bill_autoWithdrawal.data = data[0][5]
+			form.bill_date.data = data[0][6]
+			form.recur_id.data = data[0][7]
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
@@ -383,9 +384,9 @@ def editBill(id):
 				# ))
 				cursor.execute("UPDATE tbl_bill SET bill_name = %s WHERE bill_id = %s", (_bill_name, _bill_id))
 
-				dataOne = cursor.fetchone()
-				app.logger.info('dataOne = ' + str(dataOne))
-				app.logger.info('len(dataOne) = ' + str(len(dataOne)))
+				# dataOne = cursor.fetchone()
+				# app.logger.info('dataOne = ' + str(dataOne))
+				# app.logger.info('len(dataOne) = ' + str(len(dataOne)))
 
 				data = cursor.fetchall()
 				app.logger.info('data = ' + str(data))
