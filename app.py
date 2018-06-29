@@ -29,7 +29,7 @@ def index():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-	form = RegisterForm(request.form)
+	form = forms.RegisterForm(request.form)
 
 	# When the request method is 'GET', this statement will pull the register.html Form
 	# and display it, use other 'POST' method above to process form data
@@ -198,7 +198,7 @@ def dashboard():
 @app.route('/addBill', methods=['GET', 'POST'])
 @is_logged_in
 def addBill():
-	form = BillForm(request.form)
+	form = forms.BillForm(request.form)
 
 	if request.method == 'GET':
 		return render_template('addBill.html', form=form)
@@ -268,7 +268,7 @@ def bankInfo(id):
 		data = cursor.fetchall()
 
 		cursor.close()
-		form = BankForm(request.form)
+		form = forms.BankForm(request.form)
 
 		form.bank_currentAmount.data = data[0][2]
 		form.bank_payDayAmount.data = data[0][3]
@@ -353,7 +353,7 @@ def editBill(id):
 		data = cursor.fetchall()
 
 		cursor.close()
-		form = BillForm(request.form)
+		form = forms.BillForm(request.form)
 
 		# app.logger.info("data[0][0] = " + str(data[0][0])) # bill_id
 		# app.logger.info("data[0][1] = " + str(data[0][1])) # user_id
