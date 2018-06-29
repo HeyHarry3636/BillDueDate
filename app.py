@@ -343,7 +343,7 @@ def bankInfo():
 			# Check to see if there is already a bank account in the database
 			cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
 			numberBanks = cursor.fetchall()
-			app.logger.info('numberBanks = ' + str(numberBanks))
+			app.logger.info('numberBanks[0] = ' + str(numberBanks[0]))
 
 			if numberBanks[0] <= 1:
 				app.logger.info('YOU ARE ALLOWED TO ADD A BANK')
