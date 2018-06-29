@@ -341,7 +341,7 @@ def bankInfo():
 			cursor = conn.cursor()
 
 			# Check to see if there is already a bank account in the database
-			bankInfoExists = cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id)))
+			bankInfoExists = cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
 
 			if bankInfoExists <= 1:
 				app.logger.info('YOU ARE ALLOWED TO ADD A BANK')
