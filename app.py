@@ -347,7 +347,25 @@ def bankInfo():
 			))
 			data = cursor.fetchall()
 
+			# Return successful or error message to see if called_proc worked
+			if len(data) is 0:
+				conn.commit()
+				flash('You have added the bank information!', 'success')
+				return redirect(url_for('dashboard'))
+			else:
+				return render_template('error.html', error = str(data[0]))
+		else:
+			flash("Something is wrong", 'danger')
+			return render_template('bill.html', form=form)
 
+	except Exception as e:
+		return render_template('error.html', error = str(e))
+
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
 
 
 
