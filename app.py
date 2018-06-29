@@ -374,10 +374,11 @@ def editBill(id):
 			# 	_bill_date,
 			# 	_recur_id
 			# ))
-			cursor.execute("UPDATE tbl_bill SET bill_name = %s WHERE bill_id = %s", (_bill_name, _bill_id))
+			test = cursor.execute("UPDATE tbl_bill SET bill_name = %s WHERE bill_id = %s", (_bill_name, _bill_id))
 
-
+			app.logger.info('test = ' + str(test))
 			data = cursor.fetchall()
+			app.logger.info('data = ' + str(data))
 			# print("data= " + str(data))
 			#
 			# app.logger.info("len(data) = " + str(len(data)))
