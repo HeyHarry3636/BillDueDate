@@ -1,3 +1,5 @@
+from wtforms import Form#, validators, PasswordField, StringField, BooleanField, SelectField, DateField
+
 class RegisterForm(Form):
 	email = EmailField('Email', [
 		validators.InputRequired(),
