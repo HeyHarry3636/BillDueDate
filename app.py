@@ -390,22 +390,31 @@ def editBill(id):
 @app.route('/deleteBill/<string:id>', methods=['GET', 'POST'])
 @is_logged_in
 def deleteBill(id):
+	try:
+		_bill_id = id
+		# Create connection, create cursor, call procedure, fetch results
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		# SQL DELETE FROM tbl_bill WHERE bill_id = _bill_id
+		cursor.callproc('sp_deleteBillByBillID', (_bill_id,))
+		data = cursor.fetchall()
 
-			_bill_id = id
-			# Create connection, create cursor, call procedure, fetch results
-			conn = mysql.connect()
-			cursor = conn.cursor()
-			# SQL DELETE FROM tbl_bill WHERE bill_id = _bill_id
-			cursor.callproc('sp_deleteBillByBillID', (_bill_id,))
-			data = cursor.fetchall()
+		# Return successful or error message to see if called_proc worked
+		if len(data) is 0:
+			conn.commit()
+			flash('You have deleted this bill!', 'success')
+			return redirect(url_for('dashboard'))
+		else:
+			return render_template('error.html', error = str(data[0]))
 
-			# Return successful or error message to see if called_proc worked
-			if len(data) is 0:
-				conn.commit()
-				flash('You have deleted this bill!', 'success')
-				return redirect(url_for('dashboard'))
-			else:
-				return render_template('error.html', error = str(data[0]))
+	except Exception as e:
+		return render_template('error.html', error = str(e))
+
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
