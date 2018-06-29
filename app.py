@@ -356,17 +356,18 @@ def editBill(id):
 				# Create mysql connection, create cursor, call procedure, fetch results
 				# conn = mysql.connect()
 				cursor = conn.cursor()
-				# cursor.callproc('sp_editBill', (
-				# 	_bill_id,
-				# 	_user_id,
-				# 	_bill_name,
-				# 	_bill_description,
-				# 	_bill_amount,
-				# 	_bill_autoWithdrawal_char,
-				# 	_bill_date,
-				# 	_recur_id
-				# ))
-				cursor.execute("UPDATE tbl_bill SET bill_name = %s WHERE bill_id = %s", (_bill_name, _bill_id))
+				cursor.callproc('sp_editBill', (
+					_bill_id,
+					_user_id,
+					_bill_name,
+					_bill_description,
+					_bill_amount,
+					_bill_autoWithdrawal_char,
+					_bill_date,
+					_recur_id
+				))
+
+				#cursor.execute("UPDATE tbl_bill SET bill_name = %s WHERE bill_id = %s", (_bill_name, _bill_id))
 				data = cursor.fetchall()
 
 				# Return successful or error message to see if called_proc worked
