@@ -301,6 +301,7 @@ def addBill():
 @is_logged_in
 def editBill(id):
 
+	form = None
 	try:
 		if request.method == 'GET':
 			app.logger.info("request.method pre _bill_id = " + request.method)
