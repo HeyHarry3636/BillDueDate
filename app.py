@@ -350,7 +350,7 @@ def editBill(id):
 			try:
 				app.logger.info("form in POST loop = " + str(form))
 
-				app.logger.info('session.get('user_id') = ' + str(session.get('user_id')))
+				app.logger.info('session.get("user_id") = ' + str(session.get('user_id')))
 				app.logger.info('form.bill_name.data = ' + str(form.bill_name.data))
 				app.logger.info('form.bill_description.data = ' + str(form.bill_description.data))
 				app.logger.info('form.bill_amount.data = ' + str(form.bill_amount.data))
