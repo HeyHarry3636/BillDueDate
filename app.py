@@ -300,7 +300,6 @@ def addBill():
 @app.route('/editBill/<string:id>', methods=['GET', 'POST'])
 @is_logged_in
 def editBill(id):
-
 	try:
 		_bill_id = id
 
@@ -331,6 +330,8 @@ def editBill(id):
 		form.bill_date.data = data[0][6]
 		form.recur_id.data = data[0][7]
 
+		return render_template('editBill.html', form=form)
+
 	except Exception as e:
 		return render_template('error.html', error = str(e))
 
@@ -353,8 +354,7 @@ def editBill(id):
 				else:
 					_bill_autoWithdrawal_char = 0
 
-				# Create mysql connection, create cursor, call procedure, fetch results
-				# conn = mysql.connect()
+				# Create cursor, call procedure, fetch results
 				cursor = conn.cursor()
 				cursor.callproc('sp_editBill', (
 					_bill_id,
@@ -366,8 +366,6 @@ def editBill(id):
 					_bill_date,
 					_recur_id
 				))
-
-				#cursor.execute("UPDATE tbl_bill SET bill_name = %s WHERE bill_id = %s", (_bill_name, _bill_id))
 				data = cursor.fetchall()
 
 				# Return successful or error message to see if called_proc worked
@@ -390,7 +388,7 @@ def editBill(id):
 	except Exception as e:
 		return render_template('error.html', error = str(e))
 
-	return render_template('editBill.html', form=form)
+	# return render_template('editBill.html', form=form)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
