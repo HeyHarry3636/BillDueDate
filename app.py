@@ -384,7 +384,7 @@ def editBill(id):
 			#
 			# app.logger.info("len(data) = " + str(len(data)))
 			# Return successful or error message to see if called_proc worked
-			if len(data) is 0:
+			if len(data) is None:
 				conn.commit()
 				flash('You have edited this bill!', 'success')
 				return redirect(url_for('dashboard'))
