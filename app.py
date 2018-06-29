@@ -302,14 +302,14 @@ def addBill():
 def editBill(id):
 
 	try:
-		app.logger.info("request.method pre _bill_id = " request.method)
+		app.logger.info("request.method pre _bill_id = " + request.method)
 		_bill_id = id
-		app.logger.info("request.method pre curs = " request.method)
+		app.logger.info("request.method pre curs = " + request.method)
 		conn = mysql.connect()
 		cursor = conn.cursor()
 		cursor.callproc('sp_getBillByBillID', (_bill_id,))
 		data = cursor.fetchall()
-		app.logger.info("request.method post curs = " request.method)
+		app.logger.info("request.method post curs = " + request.method)
 		# cursor.close()
 		# conn.close()
 		form = BillForm(request.form)
