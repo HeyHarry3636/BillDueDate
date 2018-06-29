@@ -18,7 +18,7 @@
       </thead>
       {% for bank in bank_dict %}
         <tr>
-          <td><script>getToday()</script></td>
+          <td><p id="todayRow"></p></td>
           <td>${{bank.bank_currentAmount}}</td>
           <td>${{bank.bank_payDayAmount}}</td>
         </tr>
