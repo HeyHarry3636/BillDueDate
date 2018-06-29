@@ -302,19 +302,15 @@ def addBill():
 def editBill(id):
 
 	try:
-		app.logger.info("request.method pre _bill_id = " + request.method)
 		_bill_id = id
 
 		conn = mysql.connect()
 		cursor = conn.cursor()
 		cursor.callproc('sp_getBillByBillID', (_bill_id,))
 		data = cursor.fetchall()
-		cursor.close()
 
-		# cursor.close()
-		# conn.close()
+		cursor.close()
 		form = BillForm(request.form)
-		app.logger.info("form in GET loop = " + str(form))
 
 		# app.logger.info("data[0][0] = " + str(data[0][0])) # bill_id
 		# app.logger.info("data[0][1] = " + str(data[0][1])) # user_id
@@ -337,37 +333,19 @@ def editBill(id):
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
-	#
-	# finally:
-	# 	if 'cursor' in locals():
-	# 		cursor.close()
-	# 	if 'conn' in locals():
-	# 		conn.close()
 
 	try:
 		# When the form data is submitted, a POST request will be made
 		if request.method == 'POST' and form.validate():
 			try:
-				app.logger.info("form in POST loop = " + str(form))
-
-				app.logger.info('session.get("user_id") = ' + str(session.get('user_id')))
-				app.logger.info('form.bill_name.data = ' + str(form.bill_name.data))
-				app.logger.info('form.bill_description.data = ' + str(form.bill_description.data))
-				app.logger.info('form.bill_amount.data = ' + str(form.bill_amount.data))
-				app.logger.info('form.bill_autoWithdrawal.data = ' + str(form.bill_autoWithdrawal.data))
-				app.logger.info('form.bill_date.data = ' + str(form.bill_date.data))
-				app.logger.info('form.recur_id.data = ' + str(form.recur_id.data))
-
 				# Get form data (using WTForms syntax)
 				_user_id = session.get('user_id')
 				_bill_name = request.form['bill_name']
-				# _bill_name = form.bill_name.data
-				# _bill_name = "NalaBill_TESTWITHINSCRIPT"
-				_bill_description = form.bill_description.data
-				_bill_amount = form.bill_amount.data
-				_bill_autoWithdrawal = form.bill_autoWithdrawal.data
-				_bill_date = form.bill_date.data
-				_recur_id = form.recur_id.data
+				_bill_description = request.form['bill_description']
+				_bill_amount = request.form['bill_amount']
+				_bill_autoWithdrawal = request.form['bill_autoWithdrawal']
+				_bill_date = request.form['bill_date']
+				_recur_id = request.form['recur_id']
 
 				# Covert the bill_autoWithdrawal BooleanField to a char True = 1, False == 0
 				if _bill_autoWithdrawal:
@@ -375,13 +353,6 @@ def editBill(id):
 				else:
 					_bill_autoWithdrawal_char = 0
 
-				app.logger.info('_user_id = ' + str(_user_id))
-				app.logger.info('_bill_name = ' + str(_bill_name))
-				app.logger.info('_bill_description = ' + str(_bill_description))
-				app.logger.info('_bill_amount = ' + str(_bill_amount))
-				app.logger.info('_bill_autoWithdrawal = ' + str(_bill_autoWithdrawal))
-				app.logger.info('_bill_date = ' + str(_bill_date))
-				app.logger.info('_recur_id = ' + str(_recur_id))
 				# Create mysql connection, create cursor, call procedure, fetch results
 				# conn = mysql.connect()
 				cursor = conn.cursor()
@@ -396,24 +367,12 @@ def editBill(id):
 				# 	_recur_id
 				# ))
 				cursor.execute("UPDATE tbl_bill SET bill_name = %s WHERE bill_id = %s", (_bill_name, _bill_id))
-
-				# dataOne = cursor.fetchone()
-				# app.logger.info('dataOne = ' + str(dataOne))
-				# app.logger.info('len(dataOne) = ' + str(len(dataOne)))
-
 				data = cursor.fetchall()
-				app.logger.info('data = ' + str(data))
-				app.logger.info('len(data) = ' + str(len(data)))
-				# print("data= " + str(data))
-				#
-				# app.logger.info("len(data) = " + str(len(data)))
+
 				# Return successful or error message to see if called_proc worked
 				if len(data) is 0:
 					conn.commit()
 					flash('You have edited this bill!', 'success')
-					cursor.execute("SELECT bill_name FROM tbl_bill WHERE bill_id = %s", (_bill_id))
-					selectFetch = cursor.fetchall()
-					app.logger.info("selectFetch = " + str(selectFetch))
 					return redirect(url_for('dashboard'))
 				else:
 					return render_template('error.html', error = str(data[0]))
@@ -429,7 +388,6 @@ def editBill(id):
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
-
 
 	return render_template('editBill.html', form=form)
 
