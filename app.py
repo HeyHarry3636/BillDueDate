@@ -339,6 +339,18 @@ def bankInfo():
 			# Create mysql connection, create cursor, call procedure, fetch results
 			conn = mysql.connect()
 			cursor = conn.cursor()
+
+			# Check to see if there is already a bank account in the database
+			cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
+			numberBanks = cursor.fetchall()
+			app.logger.info('numberBanks = ' + str(numberBanks))
+
+			if numberBanks <= 1:
+				app.logger.info('YOU ARE ALLOWED TO ADD A BANK')
+			else:
+				app.logger.info('You already have bank information in the database')
+				# Redirect to edit bank info
+
 			cursor.callproc('sp_addBank', (
 				_user_id,
 				_bill_currentAmount,
