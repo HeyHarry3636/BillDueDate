@@ -168,11 +168,11 @@ def dashboard():
 		conn = mysql.connect()
 		cursor = conn.cursor()
 		cursor.callproc('sp_getBillByUser', (_user_id,))
-		data = cursor.fetchall()
+		billData = cursor.fetchall()
 
 		# Parse data and convert to dictionary to return easily as JSON
 		bill_dict = []
-		for bill in data:
+		for bill in billData:
 			bill_item = {
 				'bill_id': bill[0],
 				'user_id': bill[1],
