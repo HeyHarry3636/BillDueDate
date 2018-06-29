@@ -32,7 +32,12 @@
           <td></td>
           <td></td>
           <td><a href="editBill/{{bill.bill_id}}" class="btn float-right btn-sm">Edit</a></td>
-          <td><a href="#" class="btn btn-danger btn-sm">Delete</a></td>
+          <td>
+            <form method="POST" action="{{url_for('deleteBill', id=bill.bill_id)}}">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+            </form>
+          </td>
         </tr>
       {% endfor %}
     </table>
