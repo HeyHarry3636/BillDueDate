@@ -297,12 +297,12 @@ def addBill():
 			conn.close()
 
 class BankForm(Form):
-	bill_currentAmount = DecimalField('Current Bank Amount', [
+	bank_currentAmount = DecimalField('Current Bank Amount', [
 		validators.InputRequired()],
 		default=0,
 		places=2
 	)
-	bill_payDayAmount = DecimalField('PayDay Amount', [
+	bank_payDayAmount = DecimalField('PayDay Amount', [
 		validators.InputRequired()],
 		default=0,
 		places=2
@@ -323,37 +323,24 @@ class BankForm(Form):
 @app.route('/bankInfo', methods=['GET', 'POST'])
 @is_logged_in
 def bankInfo(id):
-
-	_bank_id = id
+	try:
+		_bank_id = id
 
 		# Create connection, create cursor, call procedure, fetch results
-	conn = mysql.connect()
-	cursor = conn.cursor()
-	cursor.callproc('sp_getBankByBankID', (_bill_id,))
-	data = cursor.fetchall()
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		cursor.callproc('sp_getBankByBankID', (_bank_id,))
+		data = cursor.fetchall()
 
-	cursor.close()
-	form = BillForm(request.form)
+		cursor.close()
+		form = BankForm(request.form)
 
+		form.bank_currentAmount.data = data[0][2]
+		form.bank_payDayAmount.data = data[0][3]
+		form.recur_id.data = data[0][4]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	form = BankForm(request.form)
-
-	if request.method == 'GET':
-		return render_template('bankInfo.html', form=form)
+	except Exception as e:
+		return render_template('error.html', error = str(e))
 
 	try:
 		if request.method == 'POST' and form.validate():
@@ -403,6 +390,20 @@ def bankInfo(id):
 			cursor.close()
 		if 'conn' in locals():
 			conn.close()
+
+	return render_template('bankInfo.html', form=form)
+
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/editBill/<string:id>', methods=['GET', 'POST'])
 @is_logged_in
