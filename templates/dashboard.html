@@ -5,6 +5,8 @@
   <a class="btn btn-success" href="/addBill">Add Bill</a>
   <hr>
 
+
+
   <div class="table-responsive">
     <table class="table table-hover table-striped table-sm">
       <thead class="thead-dark">
@@ -14,15 +16,17 @@
           <th>PayDay Amount</th>
         </tr>
       </thead>
-      {% for bill in bill_dict %}
+      {% for bank in bank_dict %}
         <tr>
-          <td>{{bill.bill_name}}</td>
-          <td>${{bill.bill_amount}}</td>
-          <td>{{bill.bill_date}}</td>
+          <td><script>getToday()</script></td>
+          <td>${{bank.bank_currentAmount}}</td>
+          <td>${{bank.bank_payDayAmount}}</td>
         </tr>
       {% endfor %}
     </table>
   </div>
+
+
 
   <div class="table-responsive">
     <table class="table table-hover table-striped table-sm">

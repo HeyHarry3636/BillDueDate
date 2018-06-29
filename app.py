@@ -167,6 +167,8 @@ def dashboard():
 
 		conn = mysql.connect()
 		cursor = conn.cursor()
+
+		# Get each bill for the user
 		cursor.callproc('sp_getBillByUser', (_user_id,))
 		billData = cursor.fetchall()
 
@@ -188,9 +190,24 @@ def dashboard():
 			}
 			bill_dict.append(bill_item)
 
-		# return json.dumps(bill_dict)
-		return render_template('dashboard.html', bill_dict=bill_dict)
-		# return redirect(url_for('userHome', bill_dict=bill_dict))
+		# Get bank details for the user
+		cursor.callproc('sp_getBankByUser', (_user_id,))
+		bankData = cursor.fetchall()
+
+		# Parse data and convert to dictionary to return easily as JSON
+		bank_dict = []
+		for bank in bankData:
+			bank_item = {
+				'bank_id': bank[0],
+				'user_id': bank[1],
+				'bank_currentAmount': str(bank[2]),
+				'bank_payDayAmount': str(bank[3]),
+				'recur_id': bank[4],
+				'bank_createdDate': bank[5]
+			}
+			bank_dict.append(bank_item)
+
+		return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict)
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
