@@ -195,36 +195,6 @@ def dashboard():
 		if 'conn' in locals():
 			conn.close()
 
-class BillForm(Form):
-	bill_name = StringField('Name', [
-		validators.InputRequired()
-	])
-	bill_description = StringField('Description')
-	bill_amount = DecimalField('Amount', [
-		validators.InputRequired()],
-		default=0,
-		places=2
-	)
-	bill_autoWithdrawal = BooleanField('Auto Withdrawal', [
-		validators.Optional()
-	])
-	bill_date = DateField('Next Bill Due Date', [
-		validators.InputRequired()]
-		#format='%m-%d-%Y' This was not working with the format included
-	)
-	recur_id = SelectField('Recurrence Interval', [
-		validators.InputRequired()],
-		choices=[
-			(3, 'Monthly'),
-			(0, 'Annually'),
-			(1, 'Bi-Annually'),
-			(2, 'Quarterly'),
-			(4, 'Bi-Monthly'),
-			(5, 'Weekly'),
-			(6, 'Custom')],
-		coerce=int
-	)
-
 @app.route('/addBill', methods=['GET', 'POST'])
 @is_logged_in
 def addBill():
@@ -284,30 +254,6 @@ def addBill():
 			cursor.close()
 		if 'conn' in locals():
 			conn.close()
-
-class BankForm(Form):
-	bank_currentAmount = DecimalField('Current Bank Amount', [
-		validators.InputRequired()],
-		default=0,
-		places=2
-	)
-	bank_payDayAmount = DecimalField('PayDay Amount', [
-		validators.InputRequired()],
-		default=0,
-		places=2
-	)
-	recur_id = SelectField('PayDay Frequency', [
-		validators.InputRequired()],
-		choices=[
-			(3, 'Monthly'),
-			(0, 'Annually'),
-			(1, 'Bi-Annually'),
-			(2, 'Quarterly'),
-			(4, 'Bi-Monthly'),
-			(5, 'Weekly'),
-			(6, 'Custom')],
-		coerce=int
-	)
 
 @app.route('/bankInfo/<string:id>', methods=['GET', 'POST'])
 @is_logged_in
