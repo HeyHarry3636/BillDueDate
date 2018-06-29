@@ -360,7 +360,8 @@ def editBill(id):
 
 				# Get form data (using WTForms syntax)
 				_user_id = session.get('user_id')
-				_bill_name = form.bill_name.data
+				# _bill_name = form.bill_name.data
+				_bill_name = "NalaBill_TESTWITHINSCRIPT"
 				_bill_description = form.bill_description.data
 				_bill_amount = form.bill_amount.data
 				_bill_autoWithdrawal = form.bill_autoWithdrawal.data
