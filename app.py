@@ -303,6 +303,7 @@ def editBill(id):
 	try:
 		_bill_id = id
 
+		# Create connection, create cursor, call procedure, fetch results
 		conn = mysql.connect()
 		cursor = conn.cursor()
 		cursor.callproc('sp_getBillByBillID', (_bill_id,))
