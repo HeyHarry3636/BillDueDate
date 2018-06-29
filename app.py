@@ -285,7 +285,7 @@ def addBill():
 				return render_template('error.html', error = str(data[0]))
 		else:
 			flash("Something is wrong", 'danger')
-			return render_template('bill.html', form=form)
+			return render_template('addBill.html', form=form)
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
@@ -320,7 +320,7 @@ class BankForm(Form):
 		coerce=int
 	)
 
-@app.route('/bankInfo', methods=['GET', 'POST'])
+@app.route('/bankInfo/<string:id>', methods=['GET', 'POST'])
 @is_logged_in
 def bankInfo(id):
 	try:

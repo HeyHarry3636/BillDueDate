@@ -3,7 +3,8 @@
 {% block body %}
   <h1>Dashboard <small>Welcome {{session.user_email}}</small></h1>
   <a class="btn btn-success" href="/addBill">Add Bill</a>
-  <a class="btn btn-secondary" href="/bankInfo">Edit Bank Info</a>
+  <!-- <a class="btn btn-secondary" href="/bankInfo">Edit Bank Info</a> -->
+  <a href="editBill/{{bank.bank_id}}" class="btn btn-secondary">Edit Bank Info</a>
   <hr>
 
   <div class="table-responsive">
