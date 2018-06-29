@@ -379,6 +379,7 @@ def editBill(id):
 			app.logger.info('test = ' + str(test))
 			data = cursor.fetchall()
 			app.logger.info('data = ' + str(data))
+			app.logger.info('len(data) = ' + str(len(data)))
 			# print("data= " + str(data))
 			#
 			# app.logger.info("len(data) = " + str(len(data)))
