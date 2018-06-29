@@ -345,7 +345,7 @@ def bankInfo():
 			numberBanks = cursor.fetchall()
 			app.logger.info('numberBanks = ' + str(numberBanks))
 
-			if numberBanks <= 1:
+			if numberBanks[0] <= 1:
 				app.logger.info('YOU ARE ALLOWED TO ADD A BANK')
 			else:
 				app.logger.info('You already have bank information in the database')
