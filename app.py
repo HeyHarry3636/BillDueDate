@@ -320,7 +320,7 @@ class BankForm(Form):
 		coerce=int
 	)
 
-@app.route('/bankInfo', methods=['GET', 'POST'])
+@app.route('/bankInfo/<string:id>', methods=['GET', 'POST'])
 @is_logged_in
 def bankInfo(id):
 	try:
