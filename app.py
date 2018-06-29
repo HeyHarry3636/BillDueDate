@@ -205,9 +205,7 @@ class BillForm(Form):
 	bill_name = StringField('Name', [
 		validators.InputRequired()
 	])
-	bill_description = StringField('Description', [
-		validators.InputRequired()
-	])
+	bill_description = StringField('Description')
 	bill_amount = DecimalField('Amount', [
 		validators.InputRequired()],
 		default=0,
