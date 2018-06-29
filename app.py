@@ -346,7 +346,6 @@ def editBill(id):
 		# When the form data is submitted, a POST request will be made
 		if request.method == 'POST' and form.validate():
 			try:
-
 				# Get form data (using WTForms syntax)
 				_user_id = session.get('user_id')
 				_bill_name = form.bill_name.data
@@ -362,7 +361,13 @@ def editBill(id):
 				else:
 					_bill_autoWithdrawal_char = 0
 
-				app.logger.info('_bill_id = ' + str(_bill_id))
+				app.logger.info('_user_id = ' + str(_user_id))
+				app.logger.info('_bill_name = ' + str(_bill_name))
+				app.logger.info('_bill_description = ' + str(_bill_description))
+				app.logger.info('_bill_amount = ' + str(_bill_amount))
+				app.logger.info('_bill_autoWithdrawal = ' + str(_bill_autoWithdrawal))
+				app.logger.info('_bill_date = ' + str(_bill_date))
+				app.logger.info('_recur_id = ' + str(_recur_id))
 				# Create mysql connection, create cursor, call procedure, fetch results
 				conn = mysql.connect()
 				cursor = conn.cursor()
@@ -376,9 +381,12 @@ def editBill(id):
 				# 	_bill_date,
 				# 	_recur_id
 				# ))
-				test = cursor.execute("UPDATE tbl_bill SET bill_name = %s WHERE bill_id = %s", (_bill_name, _bill_id))
+				cursor.execute("UPDATE tbl_bill SET bill_name = %s WHERE bill_id = %s", (_bill_name, _bill_id))
 
-				app.logger.info('test = ' + str(test))
+				dataOne = cursor.fetchone()
+				app.logger.info('dataOne = ' + str(dataOne))
+				app.logger.info('len(dataOne) = ' + str(len(dataOne)))
+
 				data = cursor.fetchall()
 				app.logger.info('data = ' + str(data))
 				app.logger.info('len(data) = ' + str(len(data)))
@@ -389,6 +397,9 @@ def editBill(id):
 				if len(data) is 0:
 					conn.commit()
 					flash('You have edited this bill!', 'success')
+					cursor.execute("SELECT bill_name FROM tbl_bill WHERE bill_id = %s", (_bill_id))
+					selectFetch = cursor.fetchall()
+					app.logger.info("selectFetch = " + selectFetch)
 					return redirect(url_for('dashboard'))
 				else:
 					return render_template('error.html', error = str(data[0]))
