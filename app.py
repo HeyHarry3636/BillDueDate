@@ -2,8 +2,8 @@
 
 from flask import Flask, render_template, json, session, redirect, url_for, flash, logging, request
 from flaskext.mysql import MySQL
-from wtforms import Form, validators, PasswordField, StringField, BooleanField, SelectField, DateField
-from wtforms.fields.html5 import EmailField, DecimalField, DateField
+from wtforms import Form, validators#, PasswordField, StringField, BooleanField, SelectField, DateField
+#from wtforms.fields.html5 import EmailField, DecimalField, DateField
 from functools import wraps #Used for 'is_logged_in' var for dashboard
 import bcrypt
 
@@ -268,7 +268,7 @@ def bankInfo(id):
 		data = cursor.fetchall()
 
 		cursor.close()
-		form = forms.BankForm(request.form)
+		form = forms.(request.form)
 
 		form.bank_currentAmount.data = data[0][2]
 		form.bank_payDayAmount.data = data[0][3]
