@@ -309,13 +309,13 @@ def editBill(id):
 		cursor = conn.cursor()
 		cursor.callproc('sp_getBillByBillID', (_bill_id,))
 		data = cursor.fetchall()
+		cursor.close()
 
 		# cursor.close()
 		# conn.close()
 		form = BillForm(request.form)
 		app.logger.info("form in GET loop = " + str(form))
 
-		cursor.close()
 		# app.logger.info("data[0][0] = " + str(data[0][0])) # bill_id
 		# app.logger.info("data[0][1] = " + str(data[0][1])) # user_id
 		# app.logger.info("data[0][2] = " + str(data[0][2])) # bill_name
@@ -347,9 +347,17 @@ def editBill(id):
 	try:
 		# When the form data is submitted, a POST request will be made
 		if request.method == 'POST' and form.validate():
-
 			try:
 				app.logger.info("form in POST loop = " + str(form))
+
+				app.logger.info('session.get('user_id') = ' + str(session.get('user_id')))
+				app.logger.info('form.bill_name.data = ' + str(form.bill_name.data))
+				app.logger.info('form.bill_description.data = ' + str(form.bill_description.data))
+				app.logger.info('form.bill_amount.data = ' + str(form.bill_amount.data))
+				app.logger.info('form.bill_autoWithdrawal.data = ' + str(form.bill_autoWithdrawal.data))
+				app.logger.info('form.bill_date.data = ' + str(form.bill_date.data))
+				app.logger.info('form.recur_id.data = ' + str(form.recur_id.data))
+
 				# Get form data (using WTForms syntax)
 				_user_id = session.get('user_id')
 				_bill_name = form.bill_name.data
