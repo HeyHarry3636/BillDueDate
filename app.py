@@ -7,7 +7,7 @@ from wtforms.fields.html5 import EmailField, DecimalField, DateField
 from functools import wraps #Used for 'is_logged_in' var for dashboard
 import bcrypt
 
-from forms import RegisterForm
+import forms # Custom forms.py file
 
 # Setup app and mysql instances
 app = Flask(__name__)
