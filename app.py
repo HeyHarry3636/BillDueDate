@@ -328,6 +328,32 @@ def bankInfo():
 	if request.method == 'GET':
 		return render_template('bankInfo.html', form=form)
 
+	try:
+		if request.method == 'POST' and form.validate():
+			# Get form data (using WTForms syntax)
+			_user_id = session.get('user_id')
+			_bill_currentAmount = form.bill_currentAmount.data
+			_bill_payDayAmount = form.bill_payDayAmount.data
+			_recur_id = form.recur_id.data
+
+			# Create mysql connection, create cursor, call procedure, fetch results
+			conn = mysql.connect()
+			cursor = conn.cursor()
+			cursor.callproc('sp_addBank', (
+				_user_id,
+				_bill_currentAmount,
+				_bill_payDayAmount,
+				_recur_id
+			))
+			data = cursor.fetchall()
+
+
+
+
+
+
+
+
 
 @app.route('/editBill/<string:id>', methods=['GET', 'POST'])
 @is_logged_in
