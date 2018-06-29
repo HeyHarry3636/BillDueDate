@@ -314,7 +314,7 @@ def editBill(id):
 			# cursor.close()
 			# conn.close()
 			form = BillForm(request.form)
-			app.logger.info("form in GET loop = " + form)
+			app.logger.info("form in GET loop = " + str(form))
 			# app.logger.info("data[0][0] = " + str(data[0][0])) # bill_id
 			# app.logger.info("data[0][1] = " + str(data[0][1])) # user_id
 			# app.logger.info("data[0][2] = " + str(data[0][2])) # bill_name
@@ -348,7 +348,7 @@ def editBill(id):
 		if request.method == 'POST' and form.validate():
 
 			try:
-				app.logger.info("form in POST loop = " + form)
+				app.logger.info("form in POST loop = " + str(form))
 				# Get form data (using WTForms syntax)
 				_user_id = session.get('user_id')
 				_bill_name = form.bill_name.data
