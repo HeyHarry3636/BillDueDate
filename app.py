@@ -322,7 +322,34 @@ class BankForm(Form):
 
 @app.route('/bankInfo', methods=['GET', 'POST'])
 @is_logged_in
-def bankInfo():
+def bankInfo(id):
+
+	_bank_id = id
+
+		# Create connection, create cursor, call procedure, fetch results
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	cursor.callproc('sp_getBankByBankID', (_bill_id,))
+	data = cursor.fetchall()
+
+	cursor.close()
+	form = BillForm(request.form)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	form = BankForm(request.form)
 
 	if request.method == 'GET':
@@ -376,12 +403,6 @@ def bankInfo():
 			cursor.close()
 		if 'conn' in locals():
 			conn.close()
-
-
-
-
-
-
 
 @app.route('/editBill/<string:id>', methods=['GET', 'POST'])
 @is_logged_in
