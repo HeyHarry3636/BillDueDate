@@ -7,6 +7,8 @@ from wtforms.fields.html5 import EmailField, DecimalField, DateField
 from functools import wraps #Used for 'is_logged_in' var for dashboard
 import bcrypt
 
+import forms
+
 # Setup app and mysql instances
 app = Flask(__name__)
 mysql = MySQL()
@@ -24,19 +26,6 @@ mysql.init_app(app)
 @app.route('/')
 def index():
 	return render_template('home.html')
-
-class RegisterForm(Form):
-	email = EmailField('Email', [
-		validators.InputRequired(),
-		validators.Email(message='Please enter a valid email address')
-	])
-	password = PasswordField('Password', [
-		validators.InputRequired(),
-		validators.EqualTo('confirm', message='Passwords do not match')
-	])
-	confirm = PasswordField('Confirm Password', [
-		validators.InputRequired()
-	])
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
