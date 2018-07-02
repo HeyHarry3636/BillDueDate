@@ -5,7 +5,6 @@
 
   <div class="container">
     {% for bank in bankInfo %}
-
       <div id="bankSection{{ bank.bank_id }}" class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">BankID: <span id="bankNumber{{ bank.bank_id }}">{{ bank.bank_id }}</span> </h3>
@@ -28,9 +27,29 @@
           </div>
         </div>
       </div>
-
     {% endfor %}
-
     </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover table-striped table-sm">
+        <thead class="thead-dark">
+          <tr>
+            <th>Today</th>
+            <th>Current Bank Amount</th>
+            <th>PayDay Amount</th>
+            <th>Next PayDay</th>
+          </tr>
+        </thead>
+        {% for bank in bank_dict %}
+          <tr>
+            <td></td>
+            <td>${{bank.bank_currentAmount}}</td>
+            <td>${{bank.bank_payDayAmount}}</td>
+            <td></td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+
 
 {% endblock %}

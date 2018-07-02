@@ -350,13 +350,16 @@ def testing():
 	app.logger.info(bank_id)
 
 	form.bank_currentAmount.bankInfo = bankInfo[0][2]
-	app.logger.info(form.bank_currentAmount.bankInfo)
 	form.bank_payDayAmount.bankInfo = bankInfo[0][3]
-	app.logger.info(form.bank_payDayAmount.bankInfo)
 	form.recur_id.bankInfo = bankInfo[0][4]
+
+	app.logger.info(form.bank_currentAmount.bankInfo)
+	app.logger.info(form.bank_payDayAmount.bankInfo)
 	app.logger.info(form.recur_id.bankInfo)
 
 	return render_template('testing.html', bankInfo=bankInfo)
+
+
 
 @app.route('/testUpdate', methods=['GET', 'POST'])
 def testUpdate():
