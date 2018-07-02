@@ -377,7 +377,7 @@ def testUpdate():
 	bankInfo = cursor.fetchall()
 
 	conn.commit()
-	return json({'result' : 'success'})
+	return json.dumps({'result' : 'success'})
 
 ###############################################################################################
 
