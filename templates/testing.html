@@ -3,6 +3,8 @@
 {% block body %}
   <h1>Bank<small>Welcome {{session.user_email}}</small></h1>
 
+  <hr>
+
   <div class="container">
     {% for bank in bankInfo %}
       <div id="bankSection{{ bank.bank_id }}" class="panel panel-default">
@@ -29,6 +31,8 @@
       </div>
     {% endfor %}
     </div>
+
+    <hr>
 
     <div class="table-responsive">
       <table class="table table-hover table-striped table-sm">
