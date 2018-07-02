@@ -341,23 +341,36 @@ def testing():
 	cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
 	bankInfo = cursor.fetchall()
 
+	# Parse data and convert to dictionary to return easily as JSON
+	bank_dict = []
+	for bank in bankInfo:
+		bank_item = {
+			'bank_id': bank[0],
+			'user_id': bank[1],
+			'bank_currentAmount': str(bank[2]),
+			'bank_payDayAmount': str(bank[3]),
+			'recur_id': bank[4],
+			'bank_createdDate': bank[5]
+		}
+		bank_dict.append(bank_item)
+
 	cursor.close()
 	conn.close()
 
-	form = forms.BankForm(request.form)
+	# form = forms.BankForm(request.form)
+	#
+	# bank_id = bankInfo[0][0]
+	# app.logger.info(bank_id)
+	#
+	# form.bank_currentAmount.bankInfo = bankInfo[0][2]
+	# form.bank_payDayAmount.bankInfo = bankInfo[0][3]
+	# form.recur_id.bankInfo = bankInfo[0][4]
+	#
+	# app.logger.info(form.bank_currentAmount.bankInfo)
+	# app.logger.info(form.bank_payDayAmount.bankInfo)
+	# app.logger.info(form.recur_id.bankInfo)
 
-	bank_id = bankInfo[0][0]
-	app.logger.info(bank_id)
-
-	form.bank_currentAmount.bankInfo = bankInfo[0][2]
-	form.bank_payDayAmount.bankInfo = bankInfo[0][3]
-	form.recur_id.bankInfo = bankInfo[0][4]
-
-	app.logger.info(form.bank_currentAmount.bankInfo)
-	app.logger.info(form.bank_payDayAmount.bankInfo)
-	app.logger.info(form.recur_id.bankInfo)
-
-	return render_template('testing.html', bankInfo=bankInfo)
+	return render_template('testing.html', bank_dict=bank_dict)
 
 
 

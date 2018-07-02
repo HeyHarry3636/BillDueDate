@@ -6,7 +6,7 @@
   <hr>
 
   <div class="container">
-    {% for bank in bankInfo %}
+    {% for bank in bank_dict %}
       <div id="bankSection{{ bank.bank_id }}" class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">BankID: <span id="bankNumber{{ bank.bank_id }}">{{ bank.bank_id }}</span> </h3>
@@ -44,7 +44,7 @@
             <th>Next PayDay</th>
           </tr>
         </thead>
-        {% for bank in bankInfo %}
+        {% for bank in bank_dict %}
           <tr>
             <td></td>
             <td>${{bank.bank_currentAmount}}</td>
