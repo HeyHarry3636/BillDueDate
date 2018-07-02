@@ -333,7 +333,6 @@ def bankInfo(id):
 @app.route('/testing')
 def testing():
 	_user_id = session.get('user_id')
-	app.logger.info(_user_id)
 
 	# Create connection, create cursor, call procedure, fetch results
 	conn = mysql.connect()
@@ -356,19 +355,6 @@ def testing():
 
 	cursor.close()
 	conn.close()
-
-	# form = forms.BankForm(request.form)
-	#
-	# bank_id = bankInfo[0][0]
-	# app.logger.info(bank_id)
-	#
-	# form.bank_currentAmount.bankInfo = bankInfo[0][2]
-	# form.bank_payDayAmount.bankInfo = bankInfo[0][3]
-	# form.recur_id.bankInfo = bankInfo[0][4]
-	#
-	# app.logger.info(form.bank_currentAmount.bankInfo)
-	# app.logger.info(form.bank_payDayAmount.bankInfo)
-	# app.logger.info(form.recur_id.bankInfo)
 
 	return render_template('testing.html', bank_dict=bank_dict)
 
