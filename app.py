@@ -367,7 +367,7 @@ def testUpdate():
 	_user_id = session.get('user_id')
 	_bank_currentAmount = request.form['bank_currentAmount']
 	_bank_payDayAmount = request.form['bank_payDayAmount']
-	_recur_id = request.form['recur_id']
+	#_recur_id = request.form['recur_id']
 
 	conn = mysql.connect()
 	cursor = conn.cursor()
