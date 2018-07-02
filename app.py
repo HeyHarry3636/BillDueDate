@@ -369,9 +369,13 @@ def testUpdate():
 	_bill_payDayAmount = request.form['bill_payDayAmount']
 	_recur_id = request.form['recur_id']
 
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s, bank_payDayAmount = %s WHERE bank_id = %s', (_bank_currentAmount, _bank_payDayAmount, _bank_id))
+	bankInfo = cursor.fetchall()
 
-
-
+	conn.commit()
+	return json({'result' : 'success'})
 
 ###############################################################################################
 
