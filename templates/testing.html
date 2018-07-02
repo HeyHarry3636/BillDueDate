@@ -7,56 +7,56 @@
 
   <div class="container">
     {% for bank in bank_dict %}
-      <div id="bankSection{{ bank.bank_id }}" class="panel panel-default">
-        <div class="panel-heading">
-          <!-- <h3 class="panel-title">Bank Information<span id="bankNumber{{ bank.bank_id }}">{{ bank.bank_id }}</span> </h3> -->
-          <h3 class="panel-title">Bank Information<span id="bankNumber{{ bank.bank_id }}"></span> </h3>
-        </div>
+    <div id="bankSection{{ bank.bank_id }}" class="panel panel-default">
+      <div class="panel-heading">
+        <!-- <h3 class="panel-title">Bank Information<span id="bankNumber{{ bank.bank_id }}">{{ bank.bank_id }}</span> </h3> -->
+        <h3 class="panel-title">Bank Information<span id="bankNumber{{ bank.bank_id }}"></span> </h3>
+      </div>
 
-        <div class="panel-body">
-          <div class="form-inline">
+      <div class="panel-body">
+        <div class="form-inline">
 
-            <div class="form-group">
-              <label for="currentInput{{ bank.bank_id }}">Current Amount $</label>
-              <!-- <input type="text" class="form-control" id="currentInput{{ bank.bank_id }}" value="{{ bank.bank_currentAmount }}"> -->
-              <input type="number" class="form-control" min="0.00" step="0.01" id="currentInput{{ bank.bank_id }}" value="{{ bank.bank_currentAmount }}">
-            </div>
-
-            <div class="form-group">
-              <label for="payDayInput{{ bank.bank_id }}">PayDay Amount $</label>
-              <!-- <input type="text" class="form-control" id="payDayInput{{ bank.bank_id }}" value="{{ bank.bank_payDayAmount }}"> -->
-              <input type="number" class="form-control" min="0.00" step="0.01" id="payDayInput{{ bank.bank_id }}" value="{{ bank.bank_payDayAmount }}">
-            </div>
-
-            <button class="btn btn-primary updateButton" bank_id="{{ bank.bank_id }}">Update</button>
+          <div class="form-group">
+            <label for="currentInput{{ bank.bank_id }}">Current Amount $</label>
+            <!-- <input type="text" class="form-control" id="currentInput{{ bank.bank_id }}" value="{{ bank.bank_currentAmount }}"> -->
+            <input type="number" class="form-control" min="0.00" step="0.01" id="currentInput{{ bank.bank_id }}" value="{{ bank.bank_currentAmount }}">
           </div>
+
+          <div class="form-group">
+            <label for="payDayInput{{ bank.bank_id }}">PayDay Amount $</label>
+            <!-- <input type="text" class="form-control" id="payDayInput{{ bank.bank_id }}" value="{{ bank.bank_payDayAmount }}"> -->
+            <input type="number" class="form-control" min="0.00" step="0.01" id="payDayInput{{ bank.bank_id }}" value="{{ bank.bank_payDayAmount }}">
+          </div>
+
+          <button class="btn btn-primary updateButton" bank_id="{{ bank.bank_id }}">Update</button>
         </div>
       </div>
+    </div>
     {% endfor %}
-    </div>
+  </div>
 
-    <hr>
+  <hr>
 
-    <div class="table-responsive">
-      <table class="table table-hover table-striped table-sm">
-        <thead class="thead-dark">
-          <tr>
-            <th>Today</th>
-            <th>Current Bank Amount</th>
-            <th>PayDay Amount</th>
-            <th>Next PayDay</th>
-          </tr>
-        </thead>
-        {% for bank in bank_dict %}
-          <tr>
-            <td></td>
-            <td>${{bank.bank_currentAmount}}</td>
-            <td>${{bank.bank_payDayAmount}}</td>
-            <td></td>
-          </tr>
-        {% endfor %}
-      </table>
-    </div>
+  <div class="table-responsive">
+    <table class="table table-hover table-striped table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th>Today</th>
+          <th>Current Bank Amount</th>
+          <th>PayDay Amount</th>
+          <th>Next PayDay</th>
+        </tr>
+      </thead>
+      {% for bank in bank_dict %}
+        <tr>
+          <td></td>
+          <td>${{bank.bank_currentAmount}}</td>
+          <td>${{bank.bank_payDayAmount}}</td>
+          <td></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
 
 
 {% endblock %}
