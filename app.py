@@ -333,7 +333,8 @@ def bankInfo(id):
 @app.route('/testing')
 def testing():
 	_user_id = session.get('user_id')
-
+	app.logger.info(_user_id)
+	
 	# Create connection, create cursor, call procedure, fetch results
 	conn = mysql.connect()
 	cursor = conn.cursor()
@@ -359,7 +360,7 @@ def testUpdate():
 	_bill_payDayAmount = request.form['bill_payDayAmount']
 	_recur_id = request.form['recur_id']
 
-	
+
 
 
 ###############################################################################################
