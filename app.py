@@ -334,11 +334,11 @@ def bankInfo(id):
 def testing():
 	_user_id = session.get('user_id')
 	app.logger.info(_user_id)
-	
+
 	# Create connection, create cursor, call procedure, fetch results
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	cursor.execute('SELECT * FROM tbl_bank WHERE user_id = _user_id')
+	cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
 	bankInfo = cursor.fetchall()
 
 	cursor.close()
