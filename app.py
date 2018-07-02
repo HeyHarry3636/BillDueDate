@@ -376,8 +376,9 @@ def testUpdate():
 	cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s, bank_payDayAmount = %s WHERE bank_id = %s', (_bank_currentAmount, _bank_payDayAmount, _bank_id[0]))
 	bankInfo = cursor.fetchall()
 
+
 	conn.commit()
-	return json.dumps({'result' : 'success'})
+	return json.dumps({'result' : 'success', 'bank_currentAmount' : _bank_currentAmount, 'bank_payDayAmount' : _bank_payDayAmount})
 
 ###############################################################################################
 
