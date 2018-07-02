@@ -363,7 +363,7 @@ def testing():
 @app.route('/testUpdate', methods=['GET', 'POST'])
 def testUpdate():
 
-	#_bank_id = bank_id
+
 	_user_id = session.get('user_id')
 	_bank_currentAmount = request.form['bank_currentAmount']
 	_bank_payDayAmount = request.form['bank_payDayAmount']
@@ -371,7 +371,13 @@ def testUpdate():
 
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s, bank_payDayAmount = %s WHERE bank_id = %s', (_bank_currentAmount, _bank_payDayAmount, bank_id))
+	cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
+	_bank_id = cursor.fetchone()
+	app.logger.info(_bank_id)
+	app.logger.info(_bank_id[0])
+	app.logger.info(_bank_id[0][0])
+
+	cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s, bank_payDayAmount = %s WHERE bank_id = %s', (_bank_currentAmount, _bank_payDayAmount, _bank_id))
 	bankInfo = cursor.fetchall()
 
 	conn.commit()
