@@ -371,7 +371,7 @@ def testUpdate():
 
 	conn = mysql.connect()
 	cursor = conn.cursor()
-	cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s, bank_payDayAmount = %s WHERE bank_id = %s', (_bank_currentAmount, _bank_payDayAmount, _bank_id))
+	cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s, bank_payDayAmount = %s WHERE bank_id = %s', (_bank_currentAmount, _bank_payDayAmount, bank_id))
 	bankInfo = cursor.fetchall()
 
 	conn.commit()
