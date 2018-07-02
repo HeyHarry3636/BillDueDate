@@ -16,16 +16,16 @@
           <div class="form-inline">
 
             <div class="form-group">
-              <label for="currentInput{{ bank.bank_id }}"> Current Amount</label>
+              <label for="currentInput{{ bank.bank_id }}">Current Amount</label>
               <input type="text" class="form-control" id="currentInput{{ bank.bank_id }}" value="{{ bank.bank_currentAmount }}">
             </div>
 
             <div class="form-group">
-              <label for="payDayInput{{ bank.bank_id }}"> PayDay Amount</label>
+              <label for="payDayInput{{ bank.bank_id }}">PayDay Amount</label>
               <input type="text" class="form-control" id="payDayInput{{ bank.bank_id }}" value="{{ bank.bank_payDayAmount }}">
             </div>
 
-            <button class="btn btn-primary updateButton" bnk_id="{{ bank.bank_id }}"> Update</button>
+            <button class="btn btn-primary updateButton" bnk_id="{{ bank.bank_id }}">Update</button>
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
             <th>Next PayDay</th>
           </tr>
         </thead>
-        {% for bank in bank_dict %}
+        {% for bank in bankInfo %}
           <tr>
             <td></td>
             <td>${{bank.bank_currentAmount}}</td>
