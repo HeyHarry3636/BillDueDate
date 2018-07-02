@@ -282,8 +282,8 @@ def bankInfo(id):
 		if request.method == 'POST' and form.validate():
 			# Get form data (using WTForms syntax)
 			_user_id = session.get('user_id')
-			_bill_currentAmount = form.bill_currentAmount.data
-			_bill_payDayAmount = form.bill_payDayAmount.data
+			_bank_currentAmount = form.bank_currentAmount.data
+			_bank_payDayAmount = form.bank_payDayAmount.data
 			_recur_id = form.recur_id.data
 
 			# Create mysql connection, create cursor, call procedure, fetch results
@@ -329,14 +329,40 @@ def bankInfo(id):
 
 	return render_template('bankInfo.html', form=form)
 
+###############################################################################################
+@app.route('/testing')
+def testing():
+	_user_id = session.get('user_id')
+
+	# Create connection, create cursor, call procedure, fetch results
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	cursor.execute('SELECT * FROM tbl_bank WHERE user_id = _user_id')
+	bankInfo = cursor.fetchall()
+
+	cursor.close()
+	conn.close()
+
+	form = forms.BankForm(request.form)
+
+	form.bank_currentAmount.bankInfo = bankInfo[0][2]
+	form.bank_payDayAmount.bankInfo = bankInfo[0][3]
+	form.recur_id.bankInfo = bankInfo[0][4]
+
+	return render_template('testing.html', bankInfo=bankInfo)
+
+@app.route('/testUpdate', methods=['GET', 'POST'])
+def testUpdate():
+
+	_user_id = session.get('user_id')
+	_bank_currentAmount = request.form['bank_currentAmount']
+	_bill_payDayAmount = request.form['bill_payDayAmount']
+	_recur_id = request.form['recur_id']
+
+	
 
 
-
-
-
-
-
-
+###############################################################################################
 
 
 
