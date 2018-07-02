@@ -16,7 +16,7 @@ $(document).ready(function() {
     req.done(function(data) {
       $('#bankSection'+bank_id).fadeOut(1000).fadeIn(1000);
       $('#currentInput'+bank_id).val(data.bank_currentAmount);
-      $('#payDayAmount'+bank_id).val(data.bank_payDayAmount);
+      $('#payDayInput'+bank_id).val(data.bank_payDayAmount);
     });
 
   });
