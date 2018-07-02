@@ -347,6 +347,8 @@ def testing():
 	form = forms.BankForm(request.form)
 
 	bank_id = bankInfo[0][0]
+	app.logger.info(bank_id)
+
 	form.bank_currentAmount.bankInfo = bankInfo[0][2]
 	form.bank_payDayAmount.bankInfo = bankInfo[0][3]
 	form.recur_id.bankInfo = bankInfo[0][4]
