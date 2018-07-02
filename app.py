@@ -346,6 +346,7 @@ def testing():
 
 	form = forms.BankForm(request.form)
 
+	form.bank_id.bankInfo = bankInfo[0][0]
 	form.bank_currentAmount.bankInfo = bankInfo[0][2]
 	form.bank_payDayAmount.bankInfo = bankInfo[0][3]
 	form.recur_id.bankInfo = bankInfo[0][4]
@@ -355,10 +356,12 @@ def testing():
 @app.route('/testUpdate', methods=['GET', 'POST'])
 def testUpdate():
 
+	_bank_id = request.form['bank_id']
 	_user_id = session.get('user_id')
 	_bank_currentAmount = request.form['bank_currentAmount']
 	_bill_payDayAmount = request.form['bill_payDayAmount']
 	_recur_id = request.form['recur_id']
+
 
 
 

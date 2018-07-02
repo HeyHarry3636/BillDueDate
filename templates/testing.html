@@ -1,11 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <h1>Dashboard <small>Welcome {{session.user_email}}</small></h1>
+  <h1>Bank<small>Welcome {{session.user_email}}</small></h1>
 
   <div class="container">
-    <h1>Banks</h1>
-
     {% for bank in bankInfo %}
 
       <div id="bankSection{{ bank.bank_id }}" class="panel panel-default">
