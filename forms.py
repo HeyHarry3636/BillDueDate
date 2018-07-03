@@ -29,7 +29,7 @@ class BillForm(Form):
 	])
 	bill_date = DateField('Next Bill Due Date', [
 		validators.InputRequired()]
-		#format='%m-%d-%Y' This was not working with the format included
+		#format='%m-%d-%Y' This was not working with this format included
 	)
 	recur_id = SelectField('Recurrence Interval', [
 		validators.InputRequired()],
@@ -54,6 +54,10 @@ class BankForm(Form):
 		validators.InputRequired()],
 		default=0,
 		places=2
+	)
+	bank_nextPayDate = DateField('Next Pay Day Date', [
+		validators.InputRequired()]
+		#format='%m-%d-%Y' This was not working with this format included
 	)
 	recur_id = SelectField('PayDay Frequency', [
 		validators.InputRequired()],
