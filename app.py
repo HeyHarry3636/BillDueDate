@@ -359,8 +359,8 @@ def testing():
 	return render_template('testing.html', bank_dict=bank_dict)
 
 
-@app.route('/testUpdate', methods=['GET', 'POST'])
-def testUpdate():
+@app.route('/updateBankInfo', methods=['GET', 'POST'])
+def updateBankInfo():
 
 	#FUNCTIONAL!
 	_user_id = session.get('user_id')
