@@ -412,11 +412,10 @@ def addBank():
 	if request.method == 'GET':
 		return render_template('addBank.html', form=form)
 
-	try:
-		if request.method == 'POST' and form.validate():
-			#Update hasBankData to true to let dashboard know user has bank data
-			hasBankData = True
-			return render_template('dashboard.html', form=form)
+
+	# try:
+	# 	if request.method == 'POST' and form.validate():
+	#
 	# 	# Create connection, create cursor, call procedure, fetch results
 	# 	conn = mysql.connect()
 	# 	cursor = conn.cursor()
@@ -481,6 +480,8 @@ def addBank():
 	# 		cursor.close()
 	# 	if 'conn' in locals():
 	# 		conn.close()
+
+	return render_template('dashboard.html', form=form)
 
 @app.route('/updateBankInfo', methods=['GET', 'POST'])
 def updateBankInfo():
