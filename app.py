@@ -137,9 +137,6 @@ def logout():
 	flash('You have logged out', 'success')
 	return redirect(url_for('index'))
 
-# def sortBillDates(billList):
-# 	return billList[6]
-
 @app.route('/dashboard')
 @is_logged_in
 def dashboard():
@@ -263,107 +260,107 @@ def addBill():
 		if 'conn' in locals():
 			conn.close()
 #
-@app.route('/bankInfo/<string:id>', methods=['GET', 'POST'])
-@is_logged_in
-def bankInfo(id):
-	try:
-		_bank_id = id
-
-		# Create connection, create cursor, call procedure, fetch results
-		conn = mysql.connect()
-		cursor = conn.cursor()
-		cursor.callproc('sp_getBankByBankID', (_bank_id,))
-		data = cursor.fetchall()
-
-		cursor.close()
-		form = forms.BankForm(request.form)
-
-		form.bank_currentAmount.data = data[0][2]
-		form.bank_payDayAmount.data = data[0][3]
-		form.recur_id.data = data[0][4]
-
-	except Exception as e:
-		return render_template('error.html', error = str(e))
-
-	try:
-		if request.method == 'POST' and form.validate():
-			# Get form data (using WTForms syntax)
-			_user_id = session.get('user_id')
-			_bank_currentAmount = form.bank_currentAmount.data
-			_bank_payDayAmount = form.bank_payDayAmount.data
-			_recur_id = form.recur_id.data
-
-			# Create mysql connection, create cursor, call procedure, fetch results
-			conn = mysql.connect()
-			cursor = conn.cursor()
-
-			# Check to see if there is already a bank account in the database
-			bankInfoExists = cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
-
-			# Only allowed to have one bank account in the system
-			if bankInfoExists < 1:
-				app.logger.info('YOU ARE ALLOWED TO ADD A BANK')
-				cursor.callproc('sp_addBank', (
-					_user_id,
-					_bill_currentAmount,
-					_bill_payDayAmount,
-					_recur_id
-				))
-				data = cursor.fetchall()
-
-				# Return successful or error message to see if called_proc worked
-				if len(data) is 0:
-					conn.commit()
-					flash('You have added the bank information!', 'success')
-					return redirect(url_for('dashboard'))
-				else:
-					return render_template('error.html', error = str(data[0]))
-			else:
-				app.logger.info('You already have bank information in the database')
-				return redirect(url_for('dashboard'))
-		else:
-			flash("Something is wrong", 'danger')
-			return render_template('dashboard.html', form=form)
-
-	except Exception as e:
-		return render_template('error.html', error = str(e))
-
-	finally:
-		if 'cursor' in locals():
-			cursor.close()
-		if 'conn' in locals():
-			conn.close()
-
-	return render_template('bankInfo.html', form=form)
+# @app.route('/bankInfo/<string:id>', methods=['GET', 'POST'])
+# @is_logged_in
+# def bankInfo(id):
+# 	try:
+# 		_bank_id = id
+#
+# 		# Create connection, create cursor, call procedure, fetch results
+# 		conn = mysql.connect()
+# 		cursor = conn.cursor()
+# 		cursor.callproc('sp_getBankByBankID', (_bank_id,))
+# 		data = cursor.fetchall()
+#
+# 		cursor.close()
+# 		form = forms.BankForm(request.form)
+#
+# 		form.bank_currentAmount.data = data[0][2]
+# 		form.bank_payDayAmount.data = data[0][3]
+# 		form.recur_id.data = data[0][4]
+#
+# 	except Exception as e:
+# 		return render_template('error.html', error = str(e))
+#
+# 	try:
+# 		if request.method == 'POST' and form.validate():
+# 			# Get form data (using WTForms syntax)
+# 			_user_id = session.get('user_id')
+# 			_bank_currentAmount = form.bank_currentAmount.data
+# 			_bank_payDayAmount = form.bank_payDayAmount.data
+# 			_recur_id = form.recur_id.data
+#
+# 			# Create mysql connection, create cursor, call procedure, fetch results
+# 			conn = mysql.connect()
+# 			cursor = conn.cursor()
+#
+# 			# Check to see if there is already a bank account in the database
+# 			bankInfoExists = cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
+#
+# 			# Only allowed to have one bank account in the system
+# 			if bankInfoExists < 1:
+# 				app.logger.info('YOU ARE ALLOWED TO ADD A BANK')
+# 				cursor.callproc('sp_addBank', (
+# 					_user_id,
+# 					_bill_currentAmount,
+# 					_bill_payDayAmount,
+# 					_recur_id
+# 				))
+# 				data = cursor.fetchall()
+#
+# 				# Return successful or error message to see if called_proc worked
+# 				if len(data) is 0:
+# 					conn.commit()
+# 					flash('You have added the bank information!', 'success')
+# 					return redirect(url_for('dashboard'))
+# 				else:
+# 					return render_template('error.html', error = str(data[0]))
+# 			else:
+# 				app.logger.info('You already have bank information in the database')
+# 				return redirect(url_for('dashboard'))
+# 		else:
+# 			flash("Something is wrong", 'danger')
+# 			return render_template('dashboard.html', form=form)
+#
+# 	except Exception as e:
+# 		return render_template('error.html', error = str(e))
+#
+# 	finally:
+# 		if 'cursor' in locals():
+# 			cursor.close()
+# 		if 'conn' in locals():
+# 			conn.close()
+#
+# 	return render_template('bankInfo.html', form=form)
 
 ###############################################################################################
-@app.route('/testing')
-def testing():
-	_user_id = session.get('user_id')
-
-	# Create connection, create cursor, call procedure, fetch results
-	conn = mysql.connect()
-	cursor = conn.cursor()
-	cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
-	bankInfo = cursor.fetchall()
-
-	# Parse data and convert to dictionary to return easily as JSON
-	bank_dict = []
-	for bank in bankInfo:
-		bank_item = {
-			'bank_id': bank[0],
-			'user_id': bank[1],
-			'bank_currentAmount': str(bank[2]),
-			'bank_payDayAmount': str(bank[3]),
-			'recur_id': bank[4],
-			'bank_createdDate': bank[5]
-		}
-		bank_dict.append(bank_item)
-
-	cursor.close()
-	conn.close()
-
-	return render_template('testing.html', bank_dict=bank_dict)
+# @app.route('/testing')
+# def testing():
+# 	_user_id = session.get('user_id')
+#
+# 	# Create connection, create cursor, call procedure, fetch results
+# 	conn = mysql.connect()
+# 	cursor = conn.cursor()
+# 	cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
+# 	bankInfo = cursor.fetchall()
+#
+# 	# Parse data and convert to dictionary to return easily as JSON
+# 	bank_dict = []
+# 	for bank in bankInfo:
+# 		bank_item = {
+# 			'bank_id': bank[0],
+# 			'user_id': bank[1],
+# 			'bank_currentAmount': str(bank[2]),
+# 			'bank_payDayAmount': str(bank[3]),
+# 			'recur_id': bank[4],
+# 			'bank_createdDate': bank[5]
+# 		}
+# 		bank_dict.append(bank_item)
+#
+# 	cursor.close()
+# 	conn.close()
+#
+# 	return render_template('testing.html', bank_dict=bank_dict)
 
 
 @app.route('/updateBankInfo', methods=['GET', 'POST'])
