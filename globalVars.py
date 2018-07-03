@@ -1,7 +1,7 @@
 
 
 class cl_HasBankInformation():
-    # bankInfoDoesExist = None
+    bankInfoDoesExist = None
 
     def __init__(self, bankInfoDoesExist):
         self.bankInfoDoesExist = bankInfoDoesExist
