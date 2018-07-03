@@ -264,78 +264,78 @@ def addBill():
 		if 'conn' in locals():
 			conn.close()
 #
-# @app.route('/bankInfo/<string:id>', methods=['GET', 'POST'])
-# @is_logged_in
-# def bankInfo(id):
-# 	try:
-# 		_bank_id = id
-#
-# 		# Create connection, create cursor, call procedure, fetch results
-# 		conn = mysql.connect()
-# 		cursor = conn.cursor()
-# 		cursor.callproc('sp_getBankByBankID', (_bank_id,))
-# 		data = cursor.fetchall()
-#
-# 		cursor.close()
-# 		form = forms.BankForm(request.form)
-#
-# 		form.bank_currentAmount.data = data[0][2]
-# 		form.bank_payDayAmount.data = data[0][3]
-# 		form.recur_id.data = data[0][4]
-#
-# 	except Exception as e:
-# 		return render_template('error.html', error = str(e))
-#
-# 	try:
-# 		if request.method == 'POST' and form.validate():
-# 			# Get form data (using WTForms syntax)
-# 			_user_id = session.get('user_id')
-# 			_bank_currentAmount = form.bank_currentAmount.data
-# 			_bank_payDayAmount = form.bank_payDayAmount.data
-# 			_recur_id = form.recur_id.data
-#
-# 			# Create mysql connection, create cursor, call procedure, fetch results
-# 			conn = mysql.connect()
-# 			cursor = conn.cursor()
-#
-# 			# Check to see if there is already a bank account in the database
-# 			bankInfoExists = cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
-#
-# 			# Only allowed to have one bank account in the system
-# 			if bankInfoExists < 1:
-# 				app.logger.info('YOU ARE ALLOWED TO ADD A BANK')
-# 				cursor.callproc('sp_addBank', (
-# 					_user_id,
-# 					_bill_currentAmount,
-# 					_bill_payDayAmount,
-# 					_recur_id
-# 				))
-# 				data = cursor.fetchall()
-#
-# 				# Return successful or error message to see if called_proc worked
-# 				if len(data) is 0:
-# 					conn.commit()
-# 					flash('You have added the bank information!', 'success')
-# 					return redirect(url_for('dashboard'))
-# 				else:
-# 					return render_template('error.html', error = str(data[0]))
-# 			else:
-# 				app.logger.info('You already have bank information in the database')
-# 				return redirect(url_for('dashboard'))
-# 		else:
-# 			flash("Something is wrong", 'danger')
-# 			return render_template('dashboard.html', form=form)
-#
-# 	except Exception as e:
-# 		return render_template('error.html', error = str(e))
-#
-# 	finally:
-# 		if 'cursor' in locals():
-# 			cursor.close()
-# 		if 'conn' in locals():
-# 			conn.close()
-#
-# 	return render_template('bankInfo.html', form=form)
+@app.route('/bankInfo/<string:id>', methods=['GET', 'POST'])
+@is_logged_in
+def bankInfo(id):
+	try:
+		_bank_id = id
+
+		# Create connection, create cursor, call procedure, fetch results
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		cursor.callproc('sp_getBankByBankID', (_bank_id,))
+		data = cursor.fetchall()
+
+		cursor.close()
+		form = forms.BankForm(request.form)
+
+		form.bank_currentAmount.data = data[0][2]
+		form.bank_payDayAmount.data = data[0][3]
+		form.recur_id.data = data[0][5]
+
+	except Exception as e:
+		return render_template('error.html', error = str(e))
+
+	try:
+		if request.method == 'POST' and form.validate():
+			# Get form data (using WTForms syntax)
+			_user_id = session.get('user_id')
+			_bank_currentAmount = form.bank_currentAmount.data
+			_bank_payDayAmount = form.bank_payDayAmount.data
+			_recur_id = form.recur_id.data
+
+			# Create mysql connection, create cursor, call procedure, fetch results
+			conn = mysql.connect()
+			cursor = conn.cursor()
+
+			# Check to see if there is already a bank account in the database
+			bankInfoExists = cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
+
+			# Only allowed to have one bank account in the system
+			if bankInfoExists < 1:
+				app.logger.info('YOU ARE ALLOWED TO ADD A BANK')
+				cursor.callproc('sp_addBank', (
+					_user_id,
+					_bill_currentAmount,
+					_bill_payDayAmount,
+					_recur_id
+				))
+				data = cursor.fetchall()
+
+				# Return successful or error message to see if called_proc worked
+				if len(data) is 0:
+					conn.commit()
+					flash('You have added the bank information!', 'success')
+					return redirect(url_for('dashboard'))
+				else:
+					return render_template('error.html', error = str(data[0]))
+			else:
+				app.logger.info('You already have bank information in the database')
+				return redirect(url_for('dashboard'))
+		else:
+			flash("Something is wrong", 'danger')
+			return render_template('dashboard.html', form=form)
+
+	except Exception as e:
+		return render_template('error.html', error = str(e))
+
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
+
+	return render_template('bankInfo.html', form=form)
 
 ###############################################################################################
 # @app.route('/testing')
