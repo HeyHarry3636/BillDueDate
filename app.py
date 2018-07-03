@@ -190,10 +190,10 @@ def dashboard():
 		else:
 			app.logger.info("if not all(bankData): true")
 
-		if bankData None:
-			app.logger.info("if bankData None: false")
+		if bankData is not None:
+			app.logger.info("if bankData is not None: false")
 		else:
-			app.logger.info("if bankData None: true")
+			app.logger.info("if bankData is not None: true")
 
 
 		# Pythonic way to check if a list is empty
