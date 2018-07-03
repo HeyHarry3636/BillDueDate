@@ -185,11 +185,13 @@ def dashboard():
 		bankData = cursor.fetchall()
 
 		# Pythonic way to check if a list is empty
-		if not bankData:
+		if not all(bankData):
+			app.logger.info("if not all(bankData): false")
 			#List is empty
 			hasBankData = False
 			return render_template('dashboard.html', bill_dict=bill_dict, hasBankData=hasBankData)
 		else:
+			app.logger.info("if not all(bankData): true")
 			#List has data
 			hasBankData = True
 
