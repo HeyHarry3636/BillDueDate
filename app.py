@@ -182,6 +182,7 @@ def dashboard():
 		if not bankData:
 			#List is empty
 			hasBankData = False
+			bill_dict = bill_dict_notSorted
 		else:
 			#List has data
 			hasBankData = True
