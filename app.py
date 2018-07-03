@@ -177,8 +177,8 @@ def dashboard():
 
 		#sorted(bill_dict, key=sortBillDates)
 		#bill_dict.sort(key=sortBillDates)
-		for bill in bill_dict:
-			app.logger.info(bill[0])
+		# for bill in bill_dict:
+		# 	app.logger.info(bill[0])
 
 		# Parse data and convert to dictionary to return easily as JSON
 		bank_dict = []
