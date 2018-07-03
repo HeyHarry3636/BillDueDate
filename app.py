@@ -410,27 +410,18 @@ def addBank():
 	form = forms.BankForm(request.form)
 
 	if request.method == 'GET':
-		return render_template('addBank.html', form=form)
-
+		if hasBankData == False:
+			app.logger.info(hasBankData)
+			return render_template('addBank.html', form=form)
+		else:
+			flash('You already have bank information entered', 'danger')
+			app.logger.info(hasBankData)
+			return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
 
 	# try:
 	# 	if request.method == 'POST' and form.validate():
-	#
-	# 	# Create connection, create cursor, call procedure, fetch results
-	# 	conn = mysql.connect()
-	# 	cursor = conn.cursor()
-	# 	cursor.callproc('sp_getBankByBankID', (_bank_id,))
-	# 	data = cursor.fetchall()
-	#
-	# 	cursor.close()
-	# 	form = forms.BankForm(request.form)
-	#
-	# 	form.bank_currentAmount.data = data[0][2]
-	# 	form.bank_payDayAmount.data = data[0][3]
-	# 	form.recur_id.data = data[0][5]
-	#
-	# except Exception as e:
-	# 	return render_template('error.html', error = str(e))
+	# 		# Change hasBankData to true
+	# 		hasBankData = True
 
 	# try:
 	# 	if request.method == 'POST' and form.validate():
@@ -462,7 +453,7 @@ def addBank():
 	# 			if len(data) is 0:
 	# 				conn.commit()
 	# 				flash('You have added the bank information!', 'success')
-	# 				return redirect(url_for('dashboard'))
+	# 				return redirect(url_for('dashboard', hasBankData=hasBankData))
 	# 			else:
 	# 				return render_template('error.html', error = str(data[0]))
 	# 		else:
