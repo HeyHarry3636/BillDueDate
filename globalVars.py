@@ -19,5 +19,5 @@ class cl_HasBankInformation():
             bankInfoDoesExist = None
 
     def getBankInformation(self):
-        print("getter = " + self.bankInfoDoesExist)
+        print("getter = " + str(self.bankInfoDoesExist))
         return self.bankInfoDoesExist
