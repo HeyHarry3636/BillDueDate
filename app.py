@@ -24,6 +24,9 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 # Initialize mysql app
 mysql.init_app(app)
 
+# Create runningTotal value of the the currentBankAmount minus each bill amount plus payDays
+runningTotal = 0.00
+
 @app.route('/')
 def index():
 	return render_template('home.html')
@@ -184,8 +187,9 @@ def dashboard():
 				'user_id': bank[1],
 				'bank_currentAmount': str(bank[2]),
 				'bank_payDayAmount': str(bank[3]),
-				'recur_id': bank[4],
-				'bank_createdDate': bank[5]
+				'bank_nextPayDate': bank[4],
+				'recur_id': bank[5],
+				'bank_createdDate': bank[6]
 			}
 			bank_dict.append(bank_item)
 

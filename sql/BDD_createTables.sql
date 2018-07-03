@@ -37,6 +37,7 @@ CREATE TABLE tbl_bank (
 	user_id BIGINT NOT NULL,
 	bank_currentAmount DECIMAL(8,2) NULL,
 	bank_payDayAmount DECIMAL(7,2) NULL,
+	bank_nextPayDate DATETIME DEFAULT NULL,
 	recur_id BIGINT NOT NULL,
 	bank_createdDate DATETIME DEFAULT NULL,
 	PRIMARY KEY (bank_id),
