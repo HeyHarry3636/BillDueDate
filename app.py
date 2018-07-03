@@ -391,11 +391,11 @@ def deleteBill(id):
 
 ###############################################################################################
 
-@app.route('/bankInfo/<string:id>', methods=['GET', 'POST'])
+@app.route('/bankInfo', methods=['GET', 'POST'])
 @is_logged_in
-def bankInfo(id):
+def bankInfo():
 	try:
-		_bank_id = id
+		# _bank_id = id
 
 		# Create connection, create cursor, call procedure, fetch results
 		conn = mysql.connect()
