@@ -486,7 +486,7 @@ def addBank():
 	# 	if 'conn' in locals():
 	# 		conn.close()
 
-	return render_template('dashboard.html', form=form)
+	# return render_template('dashboard.html', form=form)
 
 @app.route('/updateBankInfo', methods=['GET', 'POST'])
 def updateBankInfo():
