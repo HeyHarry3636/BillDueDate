@@ -211,7 +211,7 @@ def dashboard():
 			app.logger.info("if not bankData: true")
 			#List has data
 			# hasBankData = True
-			hasBankData.setBankInformation(False)
+			hasBankData.setBankInformation(True)
 
 			# hasBank = globalVars.hasBankInformation(hasBankData)
 			# app.logger.info("hasBank in else: " +str(hasBank))
