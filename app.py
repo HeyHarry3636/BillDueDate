@@ -419,7 +419,7 @@ def deleteBill(id):
 
 @app.route('/addBank', methods=['GET', 'POST'])
 @is_logged_in
-def addBank():
+def addBank(hasBankData):
 
 	form = forms.BankForm(request.form)
 
