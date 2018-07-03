@@ -137,6 +137,9 @@ def logout():
 	flash('You have logged out', 'success')
 	return redirect(url_for('index'))
 
+def sortBillDates(billList):
+	return billList[6]
+
 @app.route('/dashboard')
 @is_logged_in
 def dashboard():
@@ -171,6 +174,10 @@ def dashboard():
 		# Get bank details for the user
 		cursor.callproc('sp_getBankByUser', (_user_id,))
 		bankData = cursor.fetchall()
+
+		bill_dict.sort(key=sortBillDates)
+		for bill in bill_dict:
+			app.logger.info(bill[0])
 
 		# Parse data and convert to dictionary to return easily as JSON
 		bank_dict = []
