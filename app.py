@@ -27,7 +27,7 @@ mysql.init_app(app)
 # Create runningTotal value of the the currentBankAmount minus each bill amount plus payDays
 runningTotal = 0.00
 # Create variable to let dashboard know if the user has bank information already
-global hasBankData = None
+global hasBankData
 
 @app.route('/')
 def index():
