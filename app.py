@@ -26,8 +26,8 @@ mysql.init_app(app)
 
 # Create runningTotal value of the the currentBankAmount minus each bill amount plus payDays
 runningTotal = 0.00
-# Create variable to let dashboard know if the user has bank information already
-global hasBankData
+# Create hasBankData class variable to let dashboard know if the user has bank information already
+hasBankData = globalVars.cl_HasBankInformation(False)
 
 @app.route('/')
 def index():
@@ -199,19 +199,21 @@ def dashboard():
 		if not bankData:
 			app.logger.info("if not bankData: false")
 			#List is empty
-			hasBankData = False
+			# hasBankData = False
+			hasBankData.setBankInformation(False)
 
-			hasBank = globalVars.hasBankInformation(hasBankData)
-			app.logger.info("hasBank in if: " +str(hasBank))
+			#hasBank = globalVars.hasBankInformation(hasBankData)
+			#app.logger.info("hasBank in if: " +str(hasBank))
 
-			return render_template('dashboard.html', bill_dict=bill_dict, hasBankData=hasBankData)
+			return render_template('dashboard.html', bill_dict=bill_dict, hasBankData=hasBankData.getBankInformation())
 		else:
 			app.logger.info("if not bankData: true")
 			#List has data
-			hasBankData = True
+			# hasBankData = True
+			hasBankData.setBankInformation(False)
 
-			hasBank = globalVars.hasBankInformation(hasBankData)
-			app.logger.info("hasBank in else: " +str(hasBank))
+			# hasBank = globalVars.hasBankInformation(hasBankData)
+			# app.logger.info("hasBank in else: " +str(hasBank))
 
 			# Parse data and convert to dictionary to return easily as JSON
 			bank_dict = []
@@ -227,7 +229,7 @@ def dashboard():
 				}
 				bank_dict.append(bank_item)
 
-			return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData)
+			return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation())
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
@@ -427,7 +429,8 @@ def deleteBill(id):
 @is_logged_in
 def addBank():
 
-	hasBank = globalVars.hasBankInformation(hasBankData)
+	# hasBank = globalVars.hasBankInformation(hasBankData)
+	hasBank = hasBankData.getBankInformation()
 
 	form = forms.BankForm(request.form)
 	app.logger.info("hasBankData" + str(hasBankData))
@@ -438,8 +441,12 @@ def addBank():
 		if hasBank == False:
 			app.logger.info("if"+str(hasBankData))
 			return render_template('addBank.html', form=form)
-		else:
+		elif hasBank == True:
 			flash('You already have bank information entered', 'danger')
+			app.logger.info("else"+str(hasBankData))
+			return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
+		else:
+			flash('error', 'danger')
 			app.logger.info("else"+str(hasBankData))
 			return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
 
