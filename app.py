@@ -175,10 +175,8 @@ def dashboard():
 		cursor.callproc('sp_getBankByUser', (_user_id,))
 		bankData = cursor.fetchall()
 
-		# app.logger.info(type(bill_dict))
-		# app.logger.info(str(bill_dict))
-		# app.logger.info(str(bill_dict[0]))
-		# app.logger.info(str(bill_dict[0][0]))
+		# bill_dict is a list of dictionaries
+		# This function will sort the list by bill_date
 		bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
 
 		# Parse data and convert to dictionary to return easily as JSON
