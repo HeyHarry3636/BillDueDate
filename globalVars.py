@@ -1,11 +1,11 @@
 
 
 class cl_HasBankInformation():
-    bankInfoDoesExist = None
+    # bankInfoDoesExist = None
 
-    # def __init__(self, exists):
-    #     self.bankInfoDoesExist = exists
-    #     print("hasbankinfo class created")
+    def __init__(self, bankInfoDoesExist):
+        self.bankInfoDoesExist = bankInfoDoesExist
+        print("hasbankinfo class created")
 
     def setBankInformation(hasBankInfo):
         if hasBankInfo is True:
