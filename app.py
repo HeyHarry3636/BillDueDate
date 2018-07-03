@@ -430,7 +430,8 @@ def addBank():
 	hasBank = globalVars.hasBankInformation(hasBankData)
 
 	form = forms.BankForm(request.form)
-	app.logger.info("addBank" + str(hasBankData))
+	app.logger.info("hasBankData" + str(hasBankData))
+	app.logger.info("hasBank" + str(hasBank))
 
 	if request.method == 'GET':
 		# if hasBankData == False:
