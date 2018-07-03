@@ -137,8 +137,8 @@ def logout():
 	flash('You have logged out', 'success')
 	return redirect(url_for('index'))
 
-def sortBillDates(billList):
-	return billList[1]
+# def sortBillDates(billList):
+# 	return billList[1]
 
 @app.route('/dashboard')
 @is_logged_in
