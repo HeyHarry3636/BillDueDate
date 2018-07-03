@@ -177,8 +177,8 @@ def dashboard():
 
 		app.logger.info(type(bill_dict))
 		app.logger.info(str(bill_dict))
-		app.logger.info(str(bill_dict[0]))
-		app.logger.info(str(bill_dict[0][0]))
+		# app.logger.info(str(bill_dict[0]))
+		# app.logger.info(str(bill_dict[0][0]))
 
 		# sorted(bill_dict, key=sortBillDates)
 		#bill_dict.sort(key=sortBillDates)
