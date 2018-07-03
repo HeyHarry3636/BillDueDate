@@ -184,14 +184,26 @@ def dashboard():
 		cursor.callproc('sp_getBankByUser', (_user_id,))
 		bankData = cursor.fetchall()
 
-		# Pythonic way to check if a list is empty
+
 		if not all(bankData):
 			app.logger.info("if not all(bankData): false")
+		else:
+			app.logger.info("if not all(bankData): true")
+
+		if bankData not None:
+			app.logger.info("if bankData not None: false")
+		else:
+			app.logger.info("if bankData not None: true")
+
+
+		# Pythonic way to check if a list is empty
+		if not bankData:
+			app.logger.info("if not bankData: false")
 			#List is empty
 			hasBankData = False
 			return render_template('dashboard.html', bill_dict=bill_dict, hasBankData=hasBankData)
 		else:
-			app.logger.info("if not all(bankData): true")
+			app.logger.info("if not bankData: true")
 			#List has data
 			hasBankData = True
 
