@@ -135,17 +135,6 @@ def is_logged_in(f):
 			return redirect(url_for('login'))
 	return wrap
 
-# Check if user is logged in
-def has_bank_data(f):
-	@wraps(f)
-	def wrap(*args, **kwargs):
-		if hasBankData is False:
-			return f(*args, **kwargs)
-		else:
-			flash('Unauthorized, You have bank data', 'danger')
-			return redirect(url_for('dashboard'))
-	return wrap
-
 @app.route('/logout')
 @is_logged_in
 def logout():
@@ -195,15 +184,15 @@ def dashboard():
 		cursor.callproc('sp_getBankByUser', (_user_id,))
 		bankData = cursor.fetchall()
 
-		if not all(bankData):
-			app.logger.info("if not all(bankData): false")
-		else:
-			app.logger.info("if not all(bankData): true")
-
-		if bankData is not None:
-			app.logger.info("if bankData is not None: false")
-		else:
-			app.logger.info("if bankData is not None: true")
+		# if not all(bankData):
+		# 	app.logger.info("if not all(bankData): false")
+		# else:
+		# 	app.logger.info("if not all(bankData): true")
+		#
+		# if bankData is not None:
+		# 	app.logger.info("if bankData is not None: false")
+		# else:
+		# 	app.logger.info("if bankData is not None: true")
 
 
 		# Pythonic way to check if a list is empty
@@ -213,7 +202,7 @@ def dashboard():
 			hasBankData = False
 
 			hasBank = globalVars.hasBankInformation(hasBankData)
-			app.logger.info(hasBank)
+			app.logger.info("hasBank in if: " +str(hasBank))
 
 			return render_template('dashboard.html', bill_dict=bill_dict, hasBankData=hasBankData)
 		else:
@@ -222,7 +211,7 @@ def dashboard():
 			hasBankData = True
 
 			hasBank = globalVars.hasBankInformation(hasBankData)
-			app.logger.info(hasBank)
+			app.logger.info("hasBank in else: " +str(hasBank))
 
 			# Parse data and convert to dictionary to return easily as JSON
 			bank_dict = []
@@ -436,7 +425,6 @@ def deleteBill(id):
 
 @app.route('/addBank', methods=['GET', 'POST'])
 @is_logged_in
-@has_bank_data
 def addBank():
 
 	hasBank = globalVars.hasBankInformation(hasBankData)
