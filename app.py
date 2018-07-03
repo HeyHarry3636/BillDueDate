@@ -173,9 +173,14 @@ def dashboard():
 			}
 			bill_dict_notSorted.append(bill_item)
 
-		# Get bank details for the user
+		# Get bank details for the user, if bankInfo does not exist, show 'addBank' button on dashboard
 		cursor.callproc('sp_getBankByUser', (_user_id,))
 		bankData = cursor.fetchall()
+		app.logger.info(bankData)
+		app.logger.info(bankData[0])
+		app.logger.info(bankData[0][0])
+
+		# if ( bankData = None ):
 
 		# bill_dict is a list of dictionaries
 		# This function will sort the list by bill_date
@@ -400,14 +405,14 @@ def addBank():
 	if request.method == 'GET':
 		return render_template('addBank.html', form=form)
 
-	# try:
-		# _bank_id = id
+	try:
+		if request.method == 'POST' and form.validate():
 
 		# Create connection, create cursor, call procedure, fetch results
-	# 	conn = mysql.connect()
-	# 	cursor = conn.cursor()
-	# 	cursor.callproc('sp_getBankByBankID', (_bank_id,))
-	# 	data = cursor.fetchall()
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		cursor.callproc('sp_getBankByBankID', (_bank_id,))
+		data = cursor.fetchall()
 	#
 	# 	cursor.close()
 	# 	form = forms.BankForm(request.form)
