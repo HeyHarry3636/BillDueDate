@@ -391,9 +391,15 @@ def deleteBill(id):
 
 ###############################################################################################
 
-@app.route('/bankInfo', methods=['GET', 'POST'])
+@app.route('/addBank', methods=['GET', 'POST'])
 @is_logged_in
-def bankInfo():
+def addBank():
+
+	form = forms.BankForm(request.form)
+
+	if request.method == 'GET':
+		return render_template('addBank.html', form=form)
+
 	# try:
 		# _bank_id = id
 
