@@ -135,6 +135,17 @@ def is_logged_in(f):
 			return redirect(url_for('login'))
 	return wrap
 
+# Check if user is logged in
+def has_bank_data(f):
+	@wraps(f)
+	def wrap(*args, **kwargs):
+		if hasBankData is False:
+			return f(*args, **kwargs)
+		else:
+			flash('Unauthorized, You have bank data', 'danger')
+			return redirect(url_for('dashboard'))
+	return wrap
+
 @app.route('/logout')
 @is_logged_in
 def logout():
@@ -425,6 +436,7 @@ def deleteBill(id):
 
 @app.route('/addBank', methods=['GET', 'POST'])
 @is_logged_in
+@has_bank_data
 def addBank():
 
 	hasBank = globalVars.hasBankInformation(hasBankData)
