@@ -10,13 +10,13 @@ class cl_HasBankInformation():
     def setBankInformation(self, hasBankInfo):
         if hasBankInfo is True:
             print("setterTrue")
-            bankInfoDoesExist = True
+            self.bankInfoDoesExist = True
         elif hasBankInfo is False:
             print("setterFalse")
-            bankInfoDoesExist = False
+            self.bankInfoDoesExist = False
         else:
             print("setterNone")
-            bankInfoDoesExist = None
+            self.bankInfoDoesExist = None
 
     def getBankInformation(self):
         print("getter = " + str(self.bankInfoDoesExist))
