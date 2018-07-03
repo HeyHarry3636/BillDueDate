@@ -433,7 +433,8 @@ def addBank():
 	app.logger.info("addBank" + str(hasBankData))
 
 	if request.method == 'GET':
-		if hasBankData == False:
+		# if hasBankData == False:
+		if hasBank == False:
 			app.logger.info("if"+str(hasBankData))
 			return render_template('addBank.html', form=form)
 		else:
