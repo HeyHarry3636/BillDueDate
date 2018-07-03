@@ -138,7 +138,7 @@ def logout():
 	return redirect(url_for('index'))
 
 def sortBillDates(billList):
-	return billList[6]
+	return billList[1]
 
 @app.route('/dashboard')
 @is_logged_in
