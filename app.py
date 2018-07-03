@@ -422,7 +422,8 @@ def deleteBill(id):
 def addBank():
 
 	form = forms.BankForm(request.form)
-
+	app.logger("addBank" + str(hasBankData))
+	
 	if request.method == 'GET':
 		if hasBankData == False:
 			app.logger.info("if"+str(hasBankData))
