@@ -398,20 +398,20 @@ def bankInfo():
 		# _bank_id = id
 
 		# Create connection, create cursor, call procedure, fetch results
-		conn = mysql.connect()
-		cursor = conn.cursor()
-		cursor.callproc('sp_getBankByBankID', (_bank_id,))
-		data = cursor.fetchall()
-
-		cursor.close()
-		form = forms.BankForm(request.form)
-
-		form.bank_currentAmount.data = data[0][2]
-		form.bank_payDayAmount.data = data[0][3]
-		form.recur_id.data = data[0][5]
-
-	except Exception as e:
-		return render_template('error.html', error = str(e))
+	# 	conn = mysql.connect()
+	# 	cursor = conn.cursor()
+	# 	cursor.callproc('sp_getBankByBankID', (_bank_id,))
+	# 	data = cursor.fetchall()
+	#
+	# 	cursor.close()
+	# 	form = forms.BankForm(request.form)
+	#
+	# 	form.bank_currentAmount.data = data[0][2]
+	# 	form.bank_payDayAmount.data = data[0][3]
+	# 	form.recur_id.data = data[0][5]
+	#
+	# except Exception as e:
+	# 	return render_template('error.html', error = str(e))
 
 	# try:
 	# 	if request.method == 'POST' and form.validate():
