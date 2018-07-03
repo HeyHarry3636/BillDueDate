@@ -425,11 +425,11 @@ def addBank():
 
 	if request.method == 'GET':
 		if hasBankData == False:
-			app.logger.info("if"+hasBankData)
+			app.logger.info("if"+str(hasBankData))
 			return render_template('addBank.html', form=form)
 		else:
 			flash('You already have bank information entered', 'danger')
-			app.logger.info("else"+hasBankData)
+			app.logger.info("else"+str(hasBankData))
 			return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
 
 	# try:
