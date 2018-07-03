@@ -185,36 +185,14 @@ def dashboard():
 		cursor.callproc('sp_getBankByUser', (_user_id,))
 		bankData = cursor.fetchall()
 
-		# if not all(bankData):
-		# 	app.logger.info("if not all(bankData): false")
-		# else:
-		# 	app.logger.info("if not all(bankData): true")
-		#
-		# if bankData is not None:
-		# 	app.logger.info("if bankData is not None: false")
-		# else:
-		# 	app.logger.info("if bankData is not None: true")
-
-
 		# Pythonic way to check if a list is empty
 		if not bankData:
-			app.logger.info("if not bankData: false")
 			#List is empty
-			# hasBankData = False
 			hasBankData.setBankInformation(False)
-
-			#hasBank = globalVars.hasBankInformation(hasBankData)
-			#app.logger.info("hasBank in if: " +str(hasBank))
-
 			return render_template('dashboard.html', bill_dict=bill_dict, hasBankData=hasBankData.getBankInformation())
 		else:
-			app.logger.info("if not bankData: true")
 			#List has data
-			# hasBankData = True
 			hasBankData.setBankInformation(True)
-
-			# hasBank = globalVars.hasBankInformation(hasBankData)
-			# app.logger.info("hasBank in else: " +str(hasBank))
 
 			# Parse data and convert to dictionary to return easily as JSON
 			bank_dict = []
@@ -430,31 +408,20 @@ def deleteBill(id):
 @is_logged_in
 def addBank():
 
-	# hasBank = globalVars.hasBankInformation(hasBankData)
 	hasBank = hasBankData.getBankInformation()
-
 	form = forms.BankForm(request.form)
-	app.logger.info("hasBankData" + str(hasBankData))
-	app.logger.info("hasBank" + str(hasBank))
 
 	if request.method == 'GET':
-		# if hasBankData == False:
 		if hasBank == False:
-			app.logger.info("if"+str(hasBankData))
 			return render_template('addBank.html', form=form)
 		elif hasBank == True:
 			flash('You already have bank information entered', 'danger')
 			app.logger.info("else"+str(hasBankData))
 			return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
 		else:
-			flash('error', 'danger')
+			flash('Error', 'danger')
 			app.logger.info("else"+str(hasBankData))
 			return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
-
-	# try:
-	# 	if request.method == 'POST' and form.validate():
-	# 		# Change hasBankData to true
-	# 		hasBankData = True
 
 	# try:
 	# 	if request.method == 'POST' and form.validate():
