@@ -173,6 +173,10 @@ def dashboard():
 			}
 			bill_dict_notSorted.append(bill_item)
 
+		# bill_dict is a list of dictionaries
+		# This function will sort the list by bill_date
+		bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
+
 		# Get bank details for the user,
 		# if bankInfo does not exist, show 'addBank' button on dashboard
 		cursor.callproc('sp_getBankByUser', (_user_id,))
@@ -182,13 +186,10 @@ def dashboard():
 		if not bankData:
 			#List is empty
 			hasBankData = False
-			bill_dict = bill_dict_notSorted
+			return render_template('dashboard.html', bill_dict=bill_dict, hasBankData=hasBankData)
 		else:
 			#List has data
 			hasBankData = True
-			# bill_dict is a list of dictionaries
-			# This function will sort the list by bill_date
-			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
 
 			# Parse data and convert to dictionary to return easily as JSON
 			bank_dict = []
@@ -204,7 +205,7 @@ def dashboard():
 				}
 				bank_dict.append(bank_item)
 
-		return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData)
+			return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData)
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
