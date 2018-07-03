@@ -394,7 +394,7 @@ def deleteBill(id):
 @app.route('/bankInfo', methods=['GET', 'POST'])
 @is_logged_in
 def bankInfo():
-	try:
+	# try:
 		# _bank_id = id
 
 		# Create connection, create cursor, call procedure, fetch results
