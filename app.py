@@ -175,7 +175,7 @@ def dashboard():
 		cursor.callproc('sp_getBankByUser', (_user_id,))
 		bankData = cursor.fetchall()
 
-		sorted(bill_dict, key=sortBillDates)
+		#sorted(bill_dict, key=sortBillDates)
 		#bill_dict.sort(key=sortBillDates)
 		for bill in bill_dict:
 			app.logger.info(bill[0])
