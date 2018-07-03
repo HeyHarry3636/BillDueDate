@@ -423,7 +423,7 @@ def deleteBill(id):
 
 ###############################################################################################
 
-@app.route('/addBank/<boolean:hasBankData>', methods=['GET', 'POST'])
+@app.route('/addBank/<hasBankData>', methods=['GET', 'POST'])
 @is_logged_in
 def addBank(hasBankData):
 
