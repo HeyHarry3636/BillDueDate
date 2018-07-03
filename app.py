@@ -173,34 +173,37 @@ def dashboard():
 			}
 			bill_dict_notSorted.append(bill_item)
 
-		# Get bank details for the user, if bankInfo does not exist, show 'addBank' button on dashboard
+		# Get bank details for the user,
+		# if bankInfo does not exist, show 'addBank' button on dashboard
 		cursor.callproc('sp_getBankByUser', (_user_id,))
 		bankData = cursor.fetchall()
-		app.logger.info(bankData)
-		app.logger.info(bankData[0])
-		app.logger.info(bankData[0][0])
 
-		# if ( bankData = None ):
+		# Pythonic way to check if a list is empty
+		if not bankData:
+			#List is empty
+			hasBankData = False
+		else:
+			#List has data
+			hasBankData = True
+			# bill_dict is a list of dictionaries
+			# This function will sort the list by bill_date
+			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
 
-		# bill_dict is a list of dictionaries
-		# This function will sort the list by bill_date
-		bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
+			# Parse data and convert to dictionary to return easily as JSON
+			bank_dict = []
+			for bank in bankData:
+				bank_item = {
+					'bank_id': bank[0],
+					'user_id': bank[1],
+					'bank_currentAmount': str(bank[2]),
+					'bank_payDayAmount': str(bank[3]),
+					'bank_nextPayDate': bank[4],
+					'recur_id': bank[5],
+					'bank_createdDate': bank[6]
+				}
+				bank_dict.append(bank_item)
 
-		# Parse data and convert to dictionary to return easily as JSON
-		bank_dict = []
-		for bank in bankData:
-			bank_item = {
-				'bank_id': bank[0],
-				'user_id': bank[1],
-				'bank_currentAmount': str(bank[2]),
-				'bank_payDayAmount': str(bank[3]),
-				'bank_nextPayDate': bank[4],
-				'recur_id': bank[5],
-				'bank_createdDate': bank[6]
-			}
-			bank_dict.append(bank_item)
-
-		return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict)
+		return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData)
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))

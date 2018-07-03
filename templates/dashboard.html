@@ -3,7 +3,9 @@
 {% block body %}
   <h1>Dashboard <small>Welcome {{session.user_email}}</small></h1>
   <a class="btn btn-success" href="/addBill">Add Bill</a>
+  {% if hasBankData == False %}
   <a class="btn btn-secondary" href="/addBank">Add Bank</a>
+  {% endif %}
   <hr>
 
   <div class="container">
