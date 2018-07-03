@@ -255,7 +255,7 @@ def addBill():
 			cursor.close()
 		if 'conn' in locals():
 			conn.close()
-
+#
 @app.route('/bankInfo/<string:id>', methods=['GET', 'POST'])
 @is_logged_in
 def bankInfo(id):
@@ -357,7 +357,6 @@ def testing():
 	conn.close()
 
 	return render_template('testing.html', bank_dict=bank_dict)
-
 
 
 @app.route('/testUpdate', methods=['GET', 'POST'])
