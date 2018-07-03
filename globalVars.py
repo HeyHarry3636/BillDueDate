@@ -7,7 +7,7 @@ class cl_HasBankInformation():
         self.bankInfoDoesExist = bankInfoDoesExist
         print("hasbankinfo class created")
 
-    def setBankInformation(hasBankInfo):
+    def setBankInformation(self, hasBankInfo):
         if hasBankInfo is True:
             bankInfoDoesExist = True
             return
@@ -18,5 +18,5 @@ class cl_HasBankInformation():
             bankInfoDoesExist = None
             return
 
-    def getBankInformation():
+    def getBankInformation(self):
         return bankInfoDoesExist
