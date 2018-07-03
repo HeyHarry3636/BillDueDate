@@ -184,13 +184,8 @@ def dashboard():
 		cursor.callproc('sp_getBankByUser', (_user_id,))
 		bankData = cursor.fetchall()
 
-		hasBank = globalVars.hasBankInformation(hasBankData)
-		app.logger.info(hasBank)
-
 		if not all(bankData):
 			app.logger.info("if not all(bankData): false")
-			hasBank = globalVars.hasBankInformation(hasBankData)
-			app.logger.info(hasBank)
 		else:
 			app.logger.info("if not all(bankData): true")
 
@@ -205,11 +200,18 @@ def dashboard():
 			app.logger.info("if not bankData: false")
 			#List is empty
 			hasBankData = False
+
+			hasBank = globalVars.hasBankInformation(hasBankData)
+			app.logger.info(hasBank)
+
 			return render_template('dashboard.html', bill_dict=bill_dict, hasBankData=hasBankData)
 		else:
 			app.logger.info("if not bankData: true")
 			#List has data
 			hasBankData = True
+
+			hasBank = globalVars.hasBankInformation(hasBankData)
+			app.logger.info(hasBank)
 
 			# Parse data and convert to dictionary to return easily as JSON
 			bank_dict = []
