@@ -7,7 +7,7 @@ $(document).ready(function() {
     var payDayAmount = $('#payDayInput'+bank_id).val();
 
     req = $.ajax({
-      url : '/testUpdate',
+      url : '/updateBank',
       type : 'POST',
       data : { bank_currentAmount : currentAmount, bank_payDayAmount : payDayAmount, bank_id : bank_id }
     });
