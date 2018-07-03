@@ -4,5 +4,7 @@
 def hasBankInformation(hasBankInfo):
     if hasBankInfo is True:
         return True
-    else:
+    else if hasBankInfo is False:
         return False
+    else:
+        return None
