@@ -8,7 +8,7 @@ from functools import wraps #Used for 'is_logged_in' var for dashboard
 import bcrypt
 
 import forms # Custom forms.py file
-import addEditBills # Custom addEditBills.py
+import globalVars  # Custom globalVars.py file
 
 # Setup app and mysql instances
 app = Flask(__name__)
@@ -27,7 +27,7 @@ mysql.init_app(app)
 # Create runningTotal value of the the currentBankAmount minus each bill amount plus payDays
 runningTotal = 0.00
 # Create variable to let dashboard know if the user has bank information already
-hasBankData = None
+# hasBankData = None
 
 @app.route('/')
 def index():
@@ -184,9 +184,13 @@ def dashboard():
 		cursor.callproc('sp_getBankByUser', (_user_id,))
 		bankData = cursor.fetchall()
 
+		hasBank = globalVars.hasBankInformation(hasBankData)
+		app.logger.info(hasBank)
 
 		if not all(bankData):
 			app.logger.info("if not all(bankData): false")
+			hasBank = globalVars.hasBankInformation(hasBankData)
+			app.logger.info(hasBank)
 		else:
 			app.logger.info("if not all(bankData): true")
 
@@ -420,6 +424,8 @@ def deleteBill(id):
 @app.route('/addBank', methods=['GET', 'POST'])
 @is_logged_in
 def addBank():
+
+	hasBank = globalVars.hasBankInformation(hasBankData)
 
 	form = forms.BankForm(request.form)
 	app.logger.info("addBank" + str(hasBankData))
