@@ -26,6 +26,8 @@ mysql.init_app(app)
 
 # Create runningTotal value of the the currentBankAmount minus each bill amount plus payDays
 runningTotal = 0.00
+# Create variable to let dashboard know if the user has bank information already
+hasBankData = True
 
 @app.route('/')
 def index():
@@ -410,8 +412,10 @@ def addBank():
 	if request.method == 'GET':
 		return render_template('addBank.html', form=form)
 
-	# try:
-	# 	if request.method == 'POST' and form.validate():
+	try:
+		if request.method == 'POST' and form.validate():
+			#Update hasBankData to true to let dashboard know user has bank data
+			hasBankData = True
 	#
 	# 	# Create connection, create cursor, call procedure, fetch results
 	# 	conn = mysql.connect()
