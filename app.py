@@ -176,11 +176,10 @@ def dashboard():
 		bankData = cursor.fetchall()
 
 		app.logger.info(type(bill_dict))
+		app.logger.info(str(bill_dict))
+		app.logger.info(str(bill_dict[0]))
 		app.logger.info(str(bill_dict[0][0]))
-		app.logger.info(bill_dict[0][1])
-		app.logger.info(bill_dict[0][6])
-		app.logger.info(bill_dict[1][1])
-		app.logger.info(bill_dict[1][6])
+
 		# sorted(bill_dict, key=sortBillDates)
 		#bill_dict.sort(key=sortBillDates)
 		# for bill in bill_dict:
