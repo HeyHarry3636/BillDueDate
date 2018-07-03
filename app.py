@@ -137,8 +137,8 @@ def logout():
 	flash('You have logged out', 'success')
 	return redirect(url_for('index'))
 
-def sortBillDates(billList):
-	return billList[6]
+# def sortBillDates(billList):
+# 	return billList[6]
 
 @app.route('/dashboard')
 @is_logged_in
@@ -154,7 +154,7 @@ def dashboard():
 		billData = cursor.fetchall()
 
 		# Parse data and convert to dictionary to return easily as JSON
-		bill_dict = []
+		bill_dict_notSorted = []
 		for bill in billData:
 			bill_item = {
 				'bill_id': bill[0],
@@ -169,21 +169,17 @@ def dashboard():
 				'bill_createdDate': bill[8],
 				'bill_paid': bill[9]
 			}
-			bill_dict.append(bill_item)
+			bill_dict_notSorted.append(bill_item)
 
 		# Get bank details for the user
 		cursor.callproc('sp_getBankByUser', (_user_id,))
 		bankData = cursor.fetchall()
 
-		app.logger.info(type(bill_dict))
-		app.logger.info(str(bill_dict))
+		# app.logger.info(type(bill_dict))
+		# app.logger.info(str(bill_dict))
 		# app.logger.info(str(bill_dict[0]))
 		# app.logger.info(str(bill_dict[0][0]))
-
-		# sorted(bill_dict, key=sortBillDates)
-		#bill_dict.sort(key=sortBillDates)
-		# for bill in bill_dict:
-		# 	app.logger.info(bill[0])
+		bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
 
 		# Parse data and convert to dictionary to return easily as JSON
 		bank_dict = []
