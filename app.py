@@ -405,14 +405,14 @@ def addBank():
 	if request.method == 'GET':
 		return render_template('addBank.html', form=form)
 
-	try:
-		if request.method == 'POST' and form.validate():
-
-		# Create connection, create cursor, call procedure, fetch results
-		conn = mysql.connect()
-		cursor = conn.cursor()
-		cursor.callproc('sp_getBankByBankID', (_bank_id,))
-		data = cursor.fetchall()
+	# try:
+	# 	if request.method == 'POST' and form.validate():
+	#
+	# 	# Create connection, create cursor, call procedure, fetch results
+	# 	conn = mysql.connect()
+	# 	cursor = conn.cursor()
+	# 	cursor.callproc('sp_getBankByBankID', (_bank_id,))
+	# 	data = cursor.fetchall()
 	#
 	# 	cursor.close()
 	# 	form = forms.BankForm(request.form)
