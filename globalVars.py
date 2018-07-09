@@ -36,8 +36,8 @@ class cl_calculateRunningTotal():
 
     def getRunningTotal(self):
         # print("getter = " + str(self.bankInfoDoesExist))
-        print(str(getRunningTotal))
-        print(type(getRunningTotal))
+        print(str(calcRunningTotal))
+        print(type(calcRunningTotal))
         print(str(self.calcRunningTotal))
         print(type(self.calcRunningTotal))
         return self.calcRunningTotal
