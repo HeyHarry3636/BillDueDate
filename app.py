@@ -219,8 +219,8 @@ def dashboard():
 
 				return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation())
 
-	except Exception as e:
-		return render_template('error.html', error = str(e))
+	# except Exception as e:
+	# 	return render_template('error.html', error = str(e))
 
 	finally:
 		if 'cursor' in locals():
