@@ -7,6 +7,20 @@
   {% endif %}
   <hr>
 
+
+  <hr>
+  {% for bank in bank_dict %}
+  <h2>{{bank.bank_id}}</h2>
+  <h2>{{bank.user_id}}</h2>
+  <h2>{{bank.bank_currentAmount}}</h2>
+  <h2>{{bank.bank_payDayAmount}}</h2>
+  <h2>{{bank.bank_nextPayDate}}</h2>
+  <h2>{{bank.recur_id}}</h2>
+  <h2>{{bank.createdDate}}</h2>
+  {% endfor %}
+  <hr>
+
+
   <div class="container">
     {% for bank in bank_dict %}
     <div id="bankSection{{ bank.bank_id }}" class="panel panel-default">
