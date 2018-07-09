@@ -145,7 +145,7 @@ def logout():
 
 ###############################################################################################
 
-@app.route('/dashboard', methods=['POST'])
+@app.route('/dashboard', methods=['GET', 'POST'])
 @is_logged_in
 def dashboard():
 
