@@ -198,6 +198,8 @@ def dashboard():
 			for li in bill_dict:
 				# print("li['bill_amount']" + li['bill_amount'])
 				# value = runningTotal.getRunningTotal() - li['bill_amount']
+				print(str(type(runningTotal.getRunningTotal())))
+				print(str(type(li['bill_amount'])))
 				runningTotal.setRunningTotal(runningTotal.getRunningTotal() - li['bill_amount'])
 				runningTotalList.append(runningTotal.getRunningTotal())
 
