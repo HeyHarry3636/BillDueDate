@@ -31,7 +31,7 @@ class cl_calculateRunningTotal():
         print("calcRunningTotal class created")
 
     def setRunningTotal(self, calcRunningTotal):
-
+        return self.calcRunningTotal
 
     def getRunningTotal(self):
         # print("getter = " + str(self.bankInfoDoesExist))
