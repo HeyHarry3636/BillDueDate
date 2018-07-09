@@ -145,78 +145,79 @@ def logout():
 
 ###############################################################################################
 
-@app.route('/dashboard', methods=['GET', 'POST'])
+@app.route('/dashboard')
 @is_logged_in
 def dashboard():
 
 	try:
-		_user_id = session.get('user_id')
+		if request.method == 'GET':
+			_user_id = session.get('user_id')
 
-		conn = mysql.connect()
-		cursor = conn.cursor()
+			conn = mysql.connect()
+			cursor = conn.cursor()
 
-		# Get each bill for the user
-		cursor.callproc('sp_getBillByUser', (_user_id,))
-		billData = cursor.fetchall()
-
-		# Parse data and convert to dictionary to return easily as JSON
-		bill_dict_notSorted = []
-		for bill in billData:
-			bill_item = {
-				'bill_id': bill[0],
-				'user_id': bill[1],
-				'bill_name': bill[2],
-				'bill_description': bill[3],
-				# 'bill_amount': decimal.Decimal('12.3'),
-				'bill_amount': str(bill[4]),
-				'bill_autoWithdrawal': bill[5],
-				'bill_date': bill[6],
-				'recur_id': bill[7],
-				'bill_createdDate': bill[8],
-				'bill_paid': bill[9]
-			}
-			bill_dict_notSorted.append(bill_item)
-
-		# bill_dict is a list of dictionaries
-		# This function will sort the list by bill_date
-		bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
-
-		# Get bank details for the user,
-		# if bankInfo does not exist, show 'addBank' button on dashboard
-		cursor.callproc('sp_getBankByUser', (_user_id,))
-		bankData = cursor.fetchall()
-
-		# Pythonic way to check if a list is empty
-		if not bankData:
-			#List is empty
-			hasBankData.setBankInformation(False)
-			return render_template('dashboard.html', bill_dict=bill_dict, hasBankData=hasBankData.getBankInformation())
-		else:
-			#List has data
-			hasBankData.setBankInformation(True)
+			# Get each bill for the user
+			cursor.callproc('sp_getBillByUser', (_user_id,))
+			billData = cursor.fetchall()
 
 			# Parse data and convert to dictionary to return easily as JSON
-			bank_dict = []
-			for bank in bankData:
-				bank_item = {
-					'bank_id': bank[0],
-					'user_id': bank[1],
-					'bank_currentAmount': str(bank[2]),
-					'bank_payDayAmount': str(bank[3]),
-					'bank_nextPayDate': bank[4],
-					'recur_id': bank[5],
-					'bank_createdDate': bank[6]
+			bill_dict_notSorted = []
+			for bill in billData:
+				bill_item = {
+					'bill_id': bill[0],
+					'user_id': bill[1],
+					'bill_name': bill[2],
+					'bill_description': bill[3],
+					# 'bill_amount': decimal.Decimal('12.3'),
+					'bill_amount': str(bill[4]),
+					'bill_autoWithdrawal': bill[5],
+					'bill_date': bill[6],
+					'recur_id': bill[7],
+					'bill_createdDate': bill[8],
+					'bill_paid': bill[9]
 				}
-				print(bank[0])
-				print(bank[1])
-				print(bank[2])
-				print(bank[3])
-				print(bank[4])
-				print(bank[5])
-				print(bank[6])
-				bank_dict.append(bank_item)
+				bill_dict_notSorted.append(bill_item)
 
-			return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation())
+			# bill_dict is a list of dictionaries
+			# This function will sort the list by bill_date
+			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
+
+			# Get bank details for the user,
+			# if bankInfo does not exist, show 'addBank' button on dashboard
+			cursor.callproc('sp_getBankByUser', (_user_id,))
+			bankData = cursor.fetchall()
+
+			# Pythonic way to check if a list is empty
+			if not bankData:
+				#List is empty
+				hasBankData.setBankInformation(False)
+				return render_template('dashboard.html', bill_dict=bill_dict, hasBankData=hasBankData.getBankInformation())
+			else:
+				#List has data
+				hasBankData.setBankInformation(True)
+
+				# Parse data and convert to dictionary to return easily as JSON
+				bank_dict = []
+				for bank in bankData:
+					bank_item = {
+						'bank_id': bank[0],
+						'user_id': bank[1],
+						'bank_currentAmount': str(bank[2]),
+						'bank_payDayAmount': str(bank[3]),
+						'bank_nextPayDate': bank[4],
+						'recur_id': bank[5],
+						'bank_createdDate': bank[6]
+					}
+					print(bank[0])
+					print(bank[1])
+					print(bank[2])
+					print(bank[3])
+					print(bank[4])
+					print(bank[5])
+					print(bank[6])
+					bank_dict.append(bank_item)
+
+				return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation())
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
