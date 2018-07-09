@@ -39,5 +39,5 @@ class cl_calculateRunningTotal():
         #print(str(calcRunningTotal))
         #print(type(calcRunningTotal))
         print("getRunningTotal = " + str(self.calcRunningTotal))
-        print("getRunningTotal type = " + type(self.calcRunningTotal))
+        print("getRunningTotal type = " + str(type(self.calcRunningTotal)))
         return self.calcRunningTotal
