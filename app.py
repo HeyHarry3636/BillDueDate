@@ -168,7 +168,9 @@ def dashboard():
 			# Parse data and convert to dictionary to return easily as JSON
 			bill_dict_notSorted = []
 			for bill in billData:
+				print("running total1 " + bill + " " str(runningTotal.getRunningTotal()))
 				runningTotal.setRunningTotal(bill[4])
+				print("running total2 = " + bill + " " str(runningTotal.getRunningTotal()))
 				bill_item = {
 					'bill_id': bill[0],
 					'user_id': bill[1],
