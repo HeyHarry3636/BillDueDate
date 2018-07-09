@@ -24,7 +24,7 @@ class cl_HasBankInformation():
 
 # Method to calculate the runningTotal value for updating the bank table
 class cl_calculateRunningTotal():
-    calcRunningTotal = None
+    calcRunningTotal = 0.00
 
     def __init__(self, calcRunningTotal):
         self.calcRunningTotal = calcRunningTotal
