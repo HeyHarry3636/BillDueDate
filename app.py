@@ -195,7 +195,7 @@ def dashboard():
 			counter = 0
 			for item in bill_dict:
 				print("####################################################################################")
-				print(item[counter][0])
+				#print(item[counter][0])
 				print("running total1 " + str(item[0]) + " " + str(runningTotal.getRunningTotal()))
 				runningTotal.setRunningTotal(item[4])
 				print("running total2 = " + str(item[0]) + " " + str(runningTotal.getRunningTotal()))
