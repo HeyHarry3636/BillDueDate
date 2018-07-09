@@ -167,12 +167,9 @@ def dashboard():
 
 			# Parse data and convert to dictionary to return easily as JSON
 			bill_dict_notSorted = []
-			runningTotalDict = []
-			print(billData)
+
+			# billData is a list of tuples billData = ( (), (), () )
 			for bill in billData:
-				#print("running total1 " + str(bill[0]) + " " + str(runningTotal.getRunningTotal()))
-				#runningTotal.setRunningTotal(bill[4])
-				#print("running total2 = " + str(bill[0]) + " " + str(runningTotal.getRunningTotal()))
 				bill_item = {
 					'bill_id': bill[0],
 					'user_id': bill[1],
@@ -189,19 +186,14 @@ def dashboard():
 				}
 				bill_dict_notSorted.append(bill_item)
 
-			# bill_dict is a list of dictionaries
+			# bill_dict is a list of dictionaries billData = ( { : }, { : }, { : } )
 			# This function will sort the list by bill_date
 			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
-			print(bill_dict)
+
 			# Calculate runningTotal after sorting by DATE
-			# counter = 0
-			# for item in bill_dict:
-			# 	print("####################################################################################")
-			# 	#print(item[counter][0])
-			# 	print(item)
-			# 	print("running total1 " + str(item) + " " + str(runningTotal.getRunningTotal()))
-			# 	runningTotal.setRunningTotal(item[4])
-			# 	print("running total2 = " + str(item) + " " + str(runningTotal.getRunningTotal()))
+			runningTotalList = [li['bill_id'] for li in bill_dict]
+			print(runningTotalList)
+
 
 			# Get bank details for the user,
 			# if bankInfo does not exist, show 'addBank' button on dashboard
