@@ -467,7 +467,6 @@ def addBank():
 					conn.commit()
 					flash('You have added the bank information!', 'success')
 					return redirect(url_for('dashboard'))
-					# return redirect(url_for('dashboard', hasBankData=hasBankData))
 				else:
 					return render_template('error.html', error = str(data[0]))
 			else:
@@ -476,9 +475,9 @@ def addBank():
 		else:
 			flash("Something is wrong", 'danger')
 			return render_template('dashboard.html', form=form)
-	#
-	# except Exception as e:
-	# 	return render_template('error.html', error = str(e))
+
+	except Exception as e:
+		return render_template('error.html', error = str(e))
 
 	finally:
 		if 'cursor' in locals():
