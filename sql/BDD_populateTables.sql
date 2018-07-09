@@ -16,7 +16,7 @@ INSERT INTO tbl_recur(recur_id, recur_interval, recur_value)
 INSERT INTO tbl_recur(recur_id, recur_interval, recur_value)
 	VALUES(3, "Monthly", 31);
 INSERT INTO tbl_recur(recur_id, recur_interval, recur_value)
-	VALUES(4, "Bi-Monthly", 15);
+	VALUES(4, "Bi-Weekly", 14);
 INSERT INTO tbl_recur(recur_id, recur_interval, recur_value)
 	VALUES(5, "Weekly", 7);
 INSERT INTO tbl_recur(recur_id, recur_interval, recur_value)
