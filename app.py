@@ -473,8 +473,8 @@ def addBank():
 			flash("Something is wrong", 'danger')
 			return render_template('dashboard.html', form=form)
 	#
-	except Exception as e:
-		return render_template('error.html', error = str(e))
+	# except Exception as e:
+	# 	return render_template('error.html', error = str(e))
 
 	finally:
 		if 'cursor' in locals():
