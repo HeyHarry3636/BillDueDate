@@ -31,7 +31,7 @@ class cl_calculateRunningTotal():
         print("calcRunningTotal class created")
 
     def setRunningTotal(self, runningTotalValue):
-        self.calcRunningTotal = self.calcRunningTotal - runningTotalValue
+        self.calcRunningTotal = decimal.Decimal(self.calcRunningTotal) - runningTotalValue
         return self.calcRunningTotal
 
     def getRunningTotal(self):
