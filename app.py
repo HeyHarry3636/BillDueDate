@@ -177,7 +177,7 @@ def dashboard():
 					'recur_id': bill[7],
 					'bill_createdDate': bill[8],
 					'bill_paid': bill[9],
-					'bill_runningTotal': runningTotal
+					'bill_runningTotal': runningTotal.getRunningTotal()
 				}
 				bill_dict_notSorted.append(bill_item)
 
