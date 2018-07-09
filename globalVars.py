@@ -31,13 +31,13 @@ class cl_calculateRunningTotal():
         print("calcRunningTotal class created")
 
     def setRunningTotal(self, runningTotalValue):
-        self.calcRunningTotal = decimal.Decimal(self.calcRunningTotal) - runningTotalValue
+        self.calcRunningTotal = self.calcRunningTotal - runningTotalValue
         return self.calcRunningTotal
 
     def getRunningTotal(self):
         # print("getter = " + str(self.bankInfoDoesExist))
         #print(str(calcRunningTotal))
         #print(type(calcRunningTotal))
-        print(str(self.calcRunningTotal))
-        print(type(self.calcRunningTotal))
+        print("getRunningTotal = " + str(self.calcRunningTotal))
+        print("getRunningTotal type = " + type(self.calcRunningTotal))
         return self.calcRunningTotal
