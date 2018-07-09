@@ -176,7 +176,8 @@ def dashboard():
 					'bill_date': bill[6],
 					'recur_id': bill[7],
 					'bill_createdDate': bill[8],
-					'bill_paid': bill[9]
+					'bill_paid': bill[9],
+					'bill_runningTotal': runningTotal
 				}
 				bill_dict_notSorted.append(bill_item)
 
@@ -210,13 +211,6 @@ def dashboard():
 						'recur_id': bank[5],
 						'bank_createdDate': bank[6]
 					}
-					print(bank[0])
-					print(bank[1])
-					print(bank[2])
-					print(bank[3])
-					print(bank[4])
-					print(bank[5])
-					print(bank[6])
 					bank_dict.append(bank_item)
 
 				return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation())
