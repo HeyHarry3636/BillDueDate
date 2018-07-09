@@ -168,7 +168,7 @@ def dashboard():
 			billData = cursor.fetchall()
 
 			# Set the runningTotal to the current value of the bank account
-			runningTotal.setRunningTotal(1000)
+			runningTotal.setInitialAmount(1000)
 
 			# Parse data and convert to dictionary to return easily as JSON
 			bill_dict_notSorted = []
@@ -196,6 +196,7 @@ def dashboard():
 			# This function will sort the list by bill_date
 			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
 
+			print("Prior to for loop = " str(runningTotal.getRunningTotal()))
 			# Calculate runningTotal after sorting by DATE
 			runningTotalList = []
 			# [li['bill_id'] for li in bill_dict]

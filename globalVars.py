@@ -29,6 +29,10 @@ class cl_calculateRunningTotal():
     def __init__(self, calcRunningTotal):
         self.calcRunningTotal = decimal.Decimal(calcRunningTotal)
 
+    def setInitialAmount(self, runningTotalValue):
+        self.calcRunningTotal = runningTotalValue
+        return self.calcRunningTotal
+
     def setRunningTotal(self, runningTotalValue):
         self.calcRunningTotal = self.calcRunningTotal - runningTotalValue
         return self.calcRunningTotal
