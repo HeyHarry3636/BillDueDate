@@ -193,7 +193,7 @@ def dashboard():
 			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
 
 			# Set the runningTotal to the current value of the bank account
-			runningTotal.setInitialAmount(1000)
+			runningTotal.setInitialAmount(50000)
 
 			# Calculate runningTotal after sorting by DATE
 			# Append these results to an item named 'bill_runningTotal' that will be rendered in the dashboard.html
