@@ -25,10 +25,12 @@ class cl_HasBankInformation():
 # Method to calculate the runningTotal value for updating the bank table
 class cl_calculateRunningTotal():
     calcRunningTotal = decimal.Decimal(0.00)
-    print(str(type(calcRunningTotal)))
+    print("When class is created this is the type = " + str(type(calcRunningTotal)))
 
     def __init__(self, calcRunningTotal):
         self.calcRunningTotal = calcRunningTotal
+        print("On init, calcRunningTotal = " + str(type(calcRunningTotal)))
+        print("On init, self.calcRunningTotal = " + str(type(self.calcRunningTotal)))
         print("calcRunningTotal class created")
 
     def setRunningTotal(self, runningTotalValue):
