@@ -8,6 +8,7 @@ CREATE PROCEDURE sp_addBank
 	IN p_user_id BIGINT,
 	IN p_bank_currentAmount DECIMAL(8,2),
 	IN p_bank_payDayAmount DECIMAL(7,2),
+	IN p_bank_nextPayDate DATE,
 	IN p_recur_id BIGINT
 )
 BEGIN
@@ -16,6 +17,7 @@ BEGIN
 		user_id,
 		bank_currentAmount,
 		bank_payDayAmount,
+		bank_nextPayDate,
 		recur_id,
 		bank_createdDate
 	)
@@ -24,6 +26,7 @@ BEGIN
 		p_user_id,
 		p_bank_currentAmount,
 		p_bank_payDayAmount,
+		p_bank_nextPayDate,
 		p_recur_id,
 		NOW()
 	);

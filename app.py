@@ -453,8 +453,9 @@ def addBank():
 				app.logger.info('YOU ARE ALLOWED TO ADD A BANK')
 				cursor.callproc('sp_addBank', (
 					_user_id,
-					_bill_currentAmount,
-					_bill_payDayAmount,
+					_bank_currentAmount,
+					_bank_payDayAmount,
+					_bank_nextPayDate,
 					_recur_id
 				))
 				data = cursor.fetchall()
