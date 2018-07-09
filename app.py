@@ -176,7 +176,8 @@ def dashboard():
 					'bill_name': bill[2],
 					'bill_description': bill[3],
 					# 'bill_amount': decimal.Decimal('12.3'),
-					'bill_amount': str(bill[4]),
+					# 'bill_amount': str(bill[4]),
+					'bill_amount': bill[4],
 					'bill_autoWithdrawal': bill[5],
 					'bill_date': bill[6],
 					'recur_id': bill[7],
@@ -194,7 +195,6 @@ def dashboard():
 			runningTotalList = []
 			# [li['bill_id'] for li in bill_dict]
 			for li in bill_dict:
-				print("li" + str(li))
 				print("li['bill_amount']" + li['bill_amount'])
 				runningTotalList.append(str(runningTotal.getRunningTotal()) - li['bill_amount'])
 
