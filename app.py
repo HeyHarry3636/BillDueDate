@@ -192,15 +192,9 @@ def dashboard():
 			# This function will sort the list by bill_date
 			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
 
-			# Set the runningTotal to the current value of the bank account
-			runningTotal.setInitialAmount(50000)
 
-			# Calculate runningTotal after sorting by DATE
-			# Append these results to an item named 'bill_runningTotal' that will be rendered in the dashboard.html
-			for li in bill_dict:
-				runningTotal.setRunningTotal(li['bill_amount'])
-				li['bill_runningTotal'] = runningTotal.getRunningTotal()
-				print("The bill running total is = " + str(runningTotal.getRunningTotal()))
+
+
 
 			# Get bank details for the user,
 			# if bankInfo does not exist, show 'addBank' button on dashboard
@@ -229,6 +223,17 @@ def dashboard():
 						'bank_createdDate': bank[6]
 					}
 					bank_dict.append(bank_item)
+
+					# Set the runningTotal to the current value of the bank account
+					#runningTotal.setInitialAmount(50000)
+					runningTotal.setInitialAmount(bank[2])
+
+				# Calculate runningTotal after sorting by DATE
+				# Append these results to an item named 'bill_runningTotal' that will be rendered in the dashboard.html
+				for li in bill_dict:
+					runningTotal.setRunningTotal(li['bill_amount'])
+					li['bill_runningTotal'] = runningTotal.getRunningTotal()
+					print("The bill running total is = " + str(runningTotal.getRunningTotal()))
 
 				return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation())
 
