@@ -163,7 +163,7 @@ def dashboard():
 			billData = cursor.fetchall()
 
 			# Set the runningTotal to the current value of the bank account
-			runningTotal.setRunningTotal(1500)
+			runningTotal.setRunningTotal(1000)
 
 			# Parse data and convert to dictionary to return easily as JSON
 			bill_dict_notSorted = []
