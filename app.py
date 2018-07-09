@@ -167,9 +167,6 @@ def dashboard():
 			cursor.callproc('sp_getBillByUser', (_user_id,))
 			billData = cursor.fetchall()
 
-			# Set the runningTotal to the current value of the bank account
-			runningTotal.setInitialAmount(1000)
-
 			# Parse data and convert to dictionary to return easily as JSON
 			bill_dict_notSorted = []
 
@@ -180,15 +177,14 @@ def dashboard():
 					'user_id': bill[1],
 					'bill_name': bill[2],
 					'bill_description': bill[3],
+					# Set the bill amount to decimal.Decimal which is what the
+					# running total class type is
 					'bill_amount': decimal.Decimal(bill[4]),
-					# 'bill_amount': str(bill[4]),
-					# 'bill_amount': bill[4],
 					'bill_autoWithdrawal': bill[5],
 					'bill_date': bill[6],
 					'recur_id': bill[7],
 					'bill_createdDate': bill[8],
 					'bill_paid': bill[9]#,
-					#'bill_runningTotal': runningTotal.getRunningTotal()
 				}
 				bill_dict_notSorted.append(bill_item)
 
@@ -196,19 +192,15 @@ def dashboard():
 			# This function will sort the list by bill_date
 			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
 
-			print("Prior to for loop = " + str(runningTotal.getRunningTotal()))
+			# Set the runningTotal to the current value of the bank account
+			runningTotal.setInitialAmount(1000)
+
 			# Calculate runningTotal after sorting by DATE
-			#runningTotalList = []
-			# [li['bill_id'] for li in bill_dict]
+			# Append these results to an item named 'bill_runningTotal' that will be rendered in the dashboard.html
 			for li in bill_dict:
 				runningTotal.setRunningTotal(li['bill_amount'])
 				li['bill_runningTotal'] = runningTotal.getRunningTotal()
 				print("The bill running total is = " + str(runningTotal.getRunningTotal()))
-				#runningTotalList.append(runningTotal.getRunningTotal())
-
-			#print(runningTotalList)
-
-
 
 			# Get bank details for the user,
 			# if bankInfo does not exist, show 'addBank' button on dashboard
