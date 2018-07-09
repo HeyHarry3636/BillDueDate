@@ -1,5 +1,5 @@
 
-
+# Class to check if the user has bank information in the database already
 class cl_HasBankInformation():
     bankInfoDoesExist = None
 
@@ -21,3 +21,18 @@ class cl_HasBankInformation():
     def getBankInformation(self):
         # print("getter = " + str(self.bankInfoDoesExist))
         return self.bankInfoDoesExist
+
+# Method to calculate the runningTotal value for updating the bank table
+class cl_calculateRunningTotal():
+    calcRunningTotal = None
+
+    def __init__(self, calcRunningTotal):
+        self.calcRunningTotal = calcRunningTotal
+        print("calcRunningTotal class created")
+
+    def setRunningTotal(self, calcRunningTotal):
+
+
+    def getRunningTotal(self):
+        # print("getter = " + str(self.bankInfoDoesExist))
+        return self.calcRunningTotal

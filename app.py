@@ -25,11 +25,13 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
 # Create runningTotal value of the the currentBankAmount minus each bill amount plus payDays
-runningTotal = 0.00
+#runningTotal = 0.00
+runningTotal = globalVars.cl_calculateRunningTotal(0.00)
 # Create hasBankData class variable to let dashboard know if the user has bank information already
 hasBankData = globalVars.cl_HasBankInformation(False)
 
-
+###############################################################################################
+# Login/Registration methods
 @app.route('/')
 def index():
 	return render_template('home.html')
@@ -144,7 +146,7 @@ def logout():
 	return redirect(url_for('index'))
 
 ###############################################################################################
-
+# Main dashboard method
 @app.route('/dashboard')
 @is_logged_in
 def dashboard():
@@ -229,7 +231,7 @@ def dashboard():
 			conn.close()
 
 ###############################################################################################
-
+# Bill Methods
 @app.route('/addBill', methods=['GET', 'POST'])
 @is_logged_in
 def addBill():
@@ -412,7 +414,7 @@ def deleteBill(id):
 			conn.close()
 
 ###############################################################################################
-
+# Bank Methods
 @app.route('/addBank', methods=['GET', 'POST'])
 @is_logged_in
 def addBank():
@@ -517,11 +519,6 @@ def updateBankInfo():
 			conn.close()
 
 ###############################################################################################
-
-
-
-
-
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
