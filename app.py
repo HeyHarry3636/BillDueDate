@@ -466,7 +466,8 @@ def addBank():
 				if len(data) is 0:
 					conn.commit()
 					flash('You have added the bank information!', 'success')
-					return redirect(url_for('dashboard', hasBankData=hasBankData))
+					return redirect(url_for('dashboard'))
+					# return redirect(url_for('dashboard', hasBankData=hasBankData))
 				else:
 					return render_template('error.html', error = str(data[0]))
 			else:
