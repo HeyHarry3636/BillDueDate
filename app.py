@@ -191,7 +191,13 @@ def dashboard():
 			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
 
 			# Calculate runningTotal after sorting by DATE
-			runningTotalList = [li['bill_id'] for li in bill_dict]
+			runningTotalList = []
+			# [li['bill_id'] for li in bill_dict]
+			for li in bill_dict:
+				print("li" + li)
+				print("li['bill_amount']" + li['bill_amount'])
+				runningTotalList.append(runningTotal.getRunningTotal() - li['bill_amount'])
+
 			print(runningTotalList)
 
 
