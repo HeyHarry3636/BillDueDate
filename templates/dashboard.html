@@ -39,7 +39,7 @@
           </div>
           <div class="form-group">
             <label for="nextPayDateInput{{ bank.bank_id }}">Next Pay Day</label>
-            <input type="datetime" class="form-control" id="nextPayDateInput{{ bank.bank_id }}" value="{{ bank.bank_nextPayDate.getDate() }}">
+            <input type="datetime" class="form-control" id="nextPayDateInput{{ bank.bank_id }}" value="{{ bank.bank_nextPayDate.date() }}">
           </div>
           <button class="btn btn-primary updateButton" bank_id="{{ bank.bank_id }}">Update</button>
         </div>
