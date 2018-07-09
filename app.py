@@ -430,13 +430,16 @@ def addBank():
 			app.logger.info("else"+str(hasBankData))
 			return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
 
-	# try:
-	# 	if request.method == 'POST' and form.validate():
-	# 		# Get form data (using WTForms syntax)
-	# 		_user_id = session.get('user_id')
-	# 		_bank_currentAmount = form.bank_currentAmount.data
-	# 		_bank_payDayAmount = form.bank_payDayAmount.data
-	# 		_recur_id = form.recur_id.data
+	# return render_template('dashboard.html', form=form)
+
+	try:
+		if request.method == 'POST' and form.validate():
+			# Get form data (using WTForms syntax)
+			_user_id = session.get('user_id')
+			_bank_currentAmount = form.bank_currentAmount.data
+			_bank_payDayAmount = form.bank_payDayAmount.data
+			_bank_nextPayDate = form.bank_nextPayDate.data
+			#_recur_id = form.recur_id.data
 	#
 	# 		# Create mysql connection, create cursor, call procedure, fetch results
 	# 		conn = mysql.connect()
@@ -470,16 +473,14 @@ def addBank():
 	# 		flash("Something is wrong", 'danger')
 	# 		return render_template('dashboard.html', form=form)
 	#
-	# except Exception as e:
-	# 	return render_template('error.html', error = str(e))
-	#
-	# finally:
-	# 	if 'cursor' in locals():
-	# 		cursor.close()
-	# 	if 'conn' in locals():
-	# 		conn.close()
+	except Exception as e:
+		return render_template('error.html', error = str(e))
 
-	# return render_template('dashboard.html', form=form)
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
 
 @app.route('/updateBankInfo', methods=['GET', 'POST'])
 def updateBankInfo():
