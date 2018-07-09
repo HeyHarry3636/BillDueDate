@@ -5,19 +5,19 @@ class cl_HasBankInformation():
 
     def __init__(self, bankInfoDoesExist):
         self.bankInfoDoesExist = bankInfoDoesExist
-        #print("hasBankInfo class created")
+        # print("hasBankInfo class created")
 
     def setBankInformation(self, hasBankInfo):
         if hasBankInfo is True:
-            print("setterTrue")
+            # print("setterTrue")
             self.bankInfoDoesExist = True
         elif hasBankInfo is False:
-            print("setterFalse")
+            # print("setterFalse")
             self.bankInfoDoesExist = False
         else:
-            print("setterNone")
+            # print("setterNone")
             self.bankInfoDoesExist = None
 
     def getBankInformation(self):
-        print("getter = " + str(self.bankInfoDoesExist))
+        # print("getter = " + str(self.bankInfoDoesExist))
         return self.bankInfoDoesExist

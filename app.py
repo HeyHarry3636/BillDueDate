@@ -436,15 +436,11 @@ def addBank():
 		if request.method == 'POST' and form.validate():
 			# Get form data (using WTForms syntax)
 			_user_id = session.get('user_id')
-			# _bank_currentAmount = form.bank_currentAmount.data
-			# _bank_payDayAmount = form.bank_payDayAmount.data
-			# _bank_nextPayDate = form.bank_nextPayDate.data
+			_bank_currentAmount = form.bank_currentAmount.data
+			_bank_payDayAmount = form.bank_payDayAmount.data
+			_bank_nextPayDate = form.bank_nextPayDate.data
 			#_recur_id = form.recur_id.data
 
-			_bank_currentAmount = request.form['bank_currentAmount']
-			_bank_payDayAmount = request.form['bank_payDayAmount']
-			_bank_nextPayDate = request.form['bank_nextPayDate']
-	#
 			# Create mysql connection, create cursor, call procedure, fetch results
 			conn = mysql.connect()
 			cursor = conn.cursor()
