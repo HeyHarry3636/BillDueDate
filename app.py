@@ -196,7 +196,7 @@ def dashboard():
 			# This function will sort the list by bill_date
 			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
 
-			print("Prior to for loop = " str(runningTotal.getRunningTotal()))
+			print("Prior to for loop = " + str(runningTotal.getRunningTotal()))
 			# Calculate runningTotal after sorting by DATE
 			runningTotalList = []
 			# [li['bill_id'] for li in bill_dict]
@@ -205,7 +205,6 @@ def dashboard():
 				runningTotalList.append(runningTotal.getRunningTotal())
 
 			print(runningTotalList)
-
 
 			# Get bank details for the user,
 			# if bankInfo does not exist, show 'addBank' button on dashboard
