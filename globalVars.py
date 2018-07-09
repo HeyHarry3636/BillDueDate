@@ -28,7 +28,7 @@ class cl_calculateRunningTotal():
     print("When class is created this is the type = " + str(type(calcRunningTotal)))
 
     def __init__(self, calcRunningTotal):
-        self.calcRunningTotal = calcRunningTotal
+        self.calcRunningTotal = decimal.Decimal(calcRunningTotal)
         print("On init, calcRunningTotal = " + str(type(calcRunningTotal)))
         print("On init, self.calcRunningTotal = " + str(type(self.calcRunningTotal)))
         print("calcRunningTotal class created")
