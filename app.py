@@ -162,9 +162,13 @@ def dashboard():
 			cursor.callproc('sp_getBillByUser', (_user_id,))
 			billData = cursor.fetchall()
 
+			# Set the runningTotal to the current value of the bank account
+			runningTotal.setRunningTotal(1500)
+
 			# Parse data and convert to dictionary to return easily as JSON
 			bill_dict_notSorted = []
 			for bill in billData:
+				runningTotal.setRunningTotal(bill[4])
 				bill_item = {
 					'bill_id': bill[0],
 					'user_id': bill[1],

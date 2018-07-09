@@ -30,7 +30,8 @@ class cl_calculateRunningTotal():
         self.calcRunningTotal = calcRunningTotal
         print("calcRunningTotal class created")
 
-    def setRunningTotal(self, calcRunningTotal):
+    def setRunningTotal(self, runningTotalValue):
+        self.calcRunningTotal = self.calcRunningTotal - runningTotalValue
         return self.calcRunningTotal
 
     def getRunningTotal(self):
