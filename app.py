@@ -439,7 +439,7 @@ def addBank():
 			_bank_currentAmount = form.bank_currentAmount.data
 			_bank_payDayAmount = form.bank_payDayAmount.data
 			_bank_nextPayDate = form.bank_nextPayDate.data
-			#_recur_id = form.recur_id.data
+			_recur_id = form.recur_id.data
 
 			# Create mysql connection, create cursor, call procedure, fetch results
 			conn = mysql.connect()
