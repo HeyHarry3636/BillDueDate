@@ -198,13 +198,17 @@ def dashboard():
 
 			print("Prior to for loop = " + str(runningTotal.getRunningTotal()))
 			# Calculate runningTotal after sorting by DATE
-			runningTotalList = []
+			#runningTotalList = []
 			# [li['bill_id'] for li in bill_dict]
 			for li in bill_dict:
 				runningTotal.setRunningTotal(li['bill_amount'])
-				runningTotalList.append(runningTotal.getRunningTotal())
+				li['bill_runningTotal'] = runningTotal.getRunningTotal()
+				print("The bill running total is = " + runningTotal.getRunningTotal())
+				#runningTotalList.append(runningTotal.getRunningTotal())
 
-			print(runningTotalList)
+			#print(runningTotalList)
+
+
 
 			# Get bank details for the user,
 			# if bankInfo does not exist, show 'addBank' button on dashboard
