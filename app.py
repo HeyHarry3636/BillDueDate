@@ -529,6 +529,64 @@ def updateBankInfo():
 		if 'conn' in locals():
 			conn.close()
 
+@app.route('/updateBillAmounts', methods=['GET', 'POST'])
+def updateBillAmounts():
+
+	try:
+		_user_id = session.get('user_id')
+
+		conn = mysql.connect()
+		cursor = conn.cursor()
+
+		# Get each bill for the user
+		cursor.callproc('sp_getBillByUser', (_user_id,))
+		billData = cursor.fetchall()
+
+		# Parse data and convert to dictionary to return easily as JSON
+		bill_dict_notSorted = []
+
+		# billData is a list of tuples billData = ( (), (), () )
+		for bill in billData:
+			bill_item = {
+				'bill_id': bill[0],
+				'user_id': bill[1],
+				'bill_name': bill[2],
+				'bill_description': bill[3],
+				# Set the bill amount to decimal.Decimal which is what the
+				# running total class type is
+				'bill_amount': decimal.Decimal(bill[4]),
+				'bill_autoWithdrawal': bill[5],
+				'bill_date': bill[6],
+				'recur_id': bill[7],
+				'bill_createdDate': bill[8],
+				'bill_paid': bill[9]#,
+			}
+			bill_dict_notSorted.append(bill_item)
+
+		# bill_dict is a list of dictionaries billData = ( { : }, { : }, { : } )
+		# This function will sort the list by bill_date
+		bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
+
+		for li in bill_dict:
+			runningTotal.setRunningTotal(li['bill_amount'])
+			li['bill_runningTotal'] = runningTotal.getRunningTotal()
+			print("The bill running total is = " + str(runningTotal.getRunningTotal()))
+
+		conn.commit()
+		return json.dumps({'result' : 'success', 'billAmountList' : _billAmountList})
+
+#***************************** LOOK INTO JQUERY to updated 
+
+	except Exception as e:
+		return render_template('error.html', error = str(e))
+
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
+
+
 ###############################################################################################
 
 if __name__ == '__main__':
