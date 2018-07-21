@@ -499,6 +499,7 @@ def addBank():
 			conn.close()
 
 @app.route('/updateBankInfo', methods=['GET', 'POST'])
+@is_logged_in
 def updateBankInfo():
 	try:
 		#FUNCTIONAL!
@@ -530,6 +531,7 @@ def updateBankInfo():
 			conn.close()
 
 @app.route('/updateBillAmounts', methods=['GET', 'POST'])
+@is_logged_in
 def updateBillAmounts():
 
 	try:
@@ -575,7 +577,7 @@ def updateBillAmounts():
 		conn.commit()
 		return json.dumps({'result' : 'success', 'billAmountList' : _billAmountList})
 
-	#***************************** LOOK INTO JQUERY to updated 
+	#***************************** LOOK INTO JQUERY to updated
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
@@ -586,8 +588,27 @@ def updateBillAmounts():
 		if 'conn' in locals():
 			conn.close()
 
+###############################################################################################
+# PayDay Methods
+@app.route('/createPayDayList')
+@is_logged_in
+def createPayDayList():
+	_user_id = session.get('user_id')
+
+	# Create mysql connection, create cursor, call procedure, fetch results
+	conn = mysql.connect()
+	cursor = conn.cursor()
+
+	# Check to see if there is already a bank account in the database
+	payDay = cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
+	app.logger.info("payDay = " + str(payDay))
+
+	return render_template('dashboard.html', form=form)
+
 
 ###############################################################################################
+
+
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000, debug=True)
