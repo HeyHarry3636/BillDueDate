@@ -603,6 +603,8 @@ def createPayDayList():
 	payDay = cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
 	app.logger.info("payDay = " + str(payDay))
 
+	payDayList = []
+
 	return render_template('dashboard.html', form=form)
 
 
