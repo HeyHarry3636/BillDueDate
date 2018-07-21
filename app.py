@@ -575,7 +575,7 @@ def updateBillAmounts():
 		conn.commit()
 		return json.dumps({'result' : 'success', 'billAmountList' : _billAmountList})
 
-#***************************** LOOK INTO JQUERY to updated 
+	#***************************** LOOK INTO JQUERY to updated 
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
