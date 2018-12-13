@@ -610,7 +610,7 @@ def createPayDayList():
 	app.logger.info("payDayTestStr= " + str(payDay))
 	#app.logger.info("payDayTest = " + payDay)
 	print("payDayDateStr = " + str(payDay))
-	print("payDayDate = " + payDay)
+	print("payDayDate = " + DATE(payDay))
 
 	payDayList = []
 
