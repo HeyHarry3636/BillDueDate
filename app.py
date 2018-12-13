@@ -230,10 +230,23 @@ def dashboard():
 
 				# Calculate runningTotal after sorting by DATE
 				# Append these results to an item named 'bill_runningTotal' that will be rendered in the dashboard.html
+				#for li in bill_dict:
+					#runningTotal.setRunningTotal(li['bill_amount'])
+					#li['bill_runningTotal'] = runningTotal.getRunningTotal()
+					#print("The bill running total is = " + str(runningTotal.getRunningTotal()))
+
+
+				# Functional loop above
+				# TODO: CALCULATE PAYDAYS WITHIN THIS LOOP
 				for li in bill_dict:
+					print("li = " + li)
 					runningTotal.setRunningTotal(li['bill_amount'])
 					li['bill_runningTotal'] = runningTotal.getRunningTotal()
 					print("The bill running total is = " + str(runningTotal.getRunningTotal()))
+
+
+
+
 
 				return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation())
 
@@ -633,7 +646,7 @@ def createPayDayList():
 
 	for i in range(0, len(payDayList)):
 		app.logger.info("payDayList[" + str(i) + "] = " + str(payDayList[i]))
-		#print("payDayList[" + i + "] = " + payDayList[i])
+
 
 
 
