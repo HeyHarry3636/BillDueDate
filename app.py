@@ -631,7 +631,7 @@ def createPayDayList():
 		payDayList.append(tempPayDay)
 
 	for i in range(len(payDayList)):
-		app.logger.info("payDayList[" + i + "] = " + payDayList[i])
+		app.logger.info("payDayList[" + i + "] = " + str(payDayList[i]))
 
 
 
