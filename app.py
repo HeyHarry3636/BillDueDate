@@ -613,10 +613,8 @@ def createPayDayList():
 	app.logger.info("payDay Type = " + str(type(payDay)))
 	# Returns: payDay Type = <class 'tuple'>
 
-	payDayList = [x[0] for x in payDay]
-
-	app.logger.info("payDayList = " + str(payDayList))
-	app.logger.info("payDayList Type = " + str(type(payDayList)))
+	payDayStuff = payday[0]
+	app.logger.info("payDayStuff = " + payDayStuff)
 
 	# payDay14 = payDay + datetime.timedelta(days=14)
 	# app.logger.info("payDay14 = " + str(payDay14))
