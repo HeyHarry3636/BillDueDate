@@ -614,7 +614,7 @@ def createPayDayList():
 
 
 
-	return render_template('dashboard.html', form=form)
+	return render_template('createPayDayList.html')
 
 
 ###############################################################################################
