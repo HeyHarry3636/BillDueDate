@@ -607,8 +607,12 @@ def createPayDayList():
 	cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
 	payDay = cursor.fetchone()
 
-	app.logger.info("payDayTestStr= " + str(payDay))
+	app.logger.info("payDay = " + str(payDay))
 	app.logger.info("padDay Type = " + str(type(payDay)))
+
+	payDay14 = payDay + 14
+	app.logger.info("payDay14 = " + str(payDay14))
+	app.logger.info("padDay14 Type = " + str(type(payDay14)))
 
 	payDayList = []
 
