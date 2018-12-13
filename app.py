@@ -594,7 +594,7 @@ def updateBillAmounts():
 
 ###############################################################################################
 # PayDay Methods
-@app.route('/createPayDayList', methods=['GET', 'POST'])
+@app.route('/createPayDayList')
 @is_logged_in
 def createPayDayList():
 	_user_id = session.get('user_id')
@@ -608,7 +608,7 @@ def createPayDayList():
 	app.logger.info("payDayTESTStr= " + str(payDay))
 	#app.logger.info("payDay = " + payDay)
 	print("payDayDateStr = " + str(payDay))
-	print("payDayDate = " + payDay)
+	#print("payDayDate = " + payDay)
 
 	payDayList = []
 
