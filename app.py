@@ -609,9 +609,14 @@ def createPayDayList():
 	payDay = cursor.fetchone()
 
 	app.logger.info("payDay = " + str(payDay))
-	app.logger.info("padDay Type = " + str(type(payDay)))
+	# Returns: payDay = (datetime.datetime(2018, 12, 21, 0, 0),)
+	app.logger.info("payDay Type = " + str(type(payDay)))
+	# Returns: payDay Type = <class 'tuple'>
 
-	app.logger.info("payDay.index(0) = " + str(payDay.index(0)))
+	payDayList = [x[0] for x in payDay]
+
+	app.logger.info("payDayList = " + str(payDayList))
+	app.logger.info("payDayList Type = " + str(type(payDayList)))
 
 	# payDay14 = payDay + datetime.timedelta(days=14)
 	# app.logger.info("payDay14 = " + str(payDay14))
