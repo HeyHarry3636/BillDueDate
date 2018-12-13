@@ -604,14 +604,13 @@ def createPayDayList():
 	cursor = conn.cursor()
 
 	# Check to see if there is already a bank account in the database
-	#payDay = cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
 	cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
 	payDay = cursor.fetchone()
 
 	app.logger.info("payDayTestStr= " + str(payDay))
-	#app.logger.info("payDay = " + payDay)
+	app.logger.info("payDayTest = " + payDay)
 	print("payDayDateStr = " + str(payDay))
-	#print("payDayDate = " + payDay)
+	print("payDayDate = " + payDay)
 
 	payDayList = []
 
