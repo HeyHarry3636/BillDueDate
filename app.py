@@ -611,7 +611,7 @@ def createPayDayList():
 	app.logger.info("payDay = " + str(payDay))
 	app.logger.info("padDay Type = " + str(type(payDay)))
 
-	payDay14 = payDay + datetime.timeDelta(days=14)
+	payDay14 = payDay + datetime.datetime.timeDelta(days=14)
 	app.logger.info("payDay14 = " + str(payDay14))
 	app.logger.info("padDay14 Type = " + str(type(payDay14)))
 
