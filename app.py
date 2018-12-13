@@ -7,6 +7,7 @@ from flaskext.mysql import MySQL
 from functools import wraps #Used for 'is_logged_in' var for dashboard
 import bcrypt
 import decimal
+import datetime
 
 import forms # Custom forms.py file
 import globalVars  # Custom globalVars.py file
@@ -610,9 +611,13 @@ def createPayDayList():
 	app.logger.info("payDay = " + str(payDay))
 	app.logger.info("padDay Type = " + str(type(payDay)))
 
-	payDay14 = payDay + 14
-	app.logger.info("payDay14 = " + str(payDay14))
-	app.logger.info("padDay14 Type = " + str(type(payDay14)))
+	payDayDay = datetime.datetime.strptime(payDay, "%m/%d/%y")
+	app.logger.info("payDayDay = " + str(payDayDay))
+	app.logger.info("payDayDay Type = " + str(type(payDayDay)))
+
+	#payDay14 = payDay[] + 14
+	#app.logger.info("payDay14 = " + str(payDay14))
+	#app.logger.info("padDay14 Type = " + str(type(payDay14)))
 
 	payDayList = []
 
