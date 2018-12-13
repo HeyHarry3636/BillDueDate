@@ -606,8 +606,12 @@ def createPayDayList():
 	# Check to see if there is already a bank account in the database
 	payDay = cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
 	app.logger.info("payDay = " + str(payDay))
+	app.logger.info(payDay)
 
 	payDayList = []
+
+	# TODO:
+
 
 	return render_template('dashboard.html', form=form)
 
@@ -617,5 +621,4 @@ def createPayDayList():
 
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=5000, debug=True) #Works on VPS
-	#app.run(host='192.168.99.10', port=5000, debug=True)
+	app.run(host='0.0.0.0', port=5000, debug=True)
