@@ -605,12 +605,11 @@ def createPayDayList():
 
 	# Check to see if there is already a bank account in the database
 	payDay = cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
-	app.logger.info("payDay = " + str(payDay))
-	app.logger.info(payDay)
+	app.logger.info("payDayStr = " + str(payDay))
+	app.logger.info("payDay = " + payDay)
 
 	payDayList = []
 
-	# TODO:
 
 
 	return render_template('dashboard.html', form=form)
