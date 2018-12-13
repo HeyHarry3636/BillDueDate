@@ -629,8 +629,9 @@ def createPayDayList():
 	for i in range(20):
 		tempPayDay = tempPayDay + datetime.timedelta(days=14)
 		payDayList.append(tempPayDay)
+		print(tempPayDay)
 
-	for i in range(len(payDayList)):
+	for i in range(0, len(payDayList)):
 		app.logger.info("payDayList[" + i + "] = " + str(payDayList[i]))
 
 
