@@ -621,7 +621,17 @@ def createPayDayList():
 	app.logger.info("payDay14 = " + str(payDay14))
 	app.logger.info("type(payDay14) = " + str(type(payDay14)))
 
-	#payDayList = []
+	# Create a list for future pay days
+	payDayList = []
+	tempPayDay = payDayStuff
+	payDayList.append(tempPayDay)
+
+	for i in range(20):
+		tempPayDay = tempPayDay + datetime.timedelta(days=14)
+		payDayList.append(tempPayDay)
+
+	for i in len(paydayList)
+		app.logger.info("payDayList[" + i + "] = " + payDayList[i])
 
 
 
