@@ -608,9 +608,7 @@ def createPayDayList():
 	payDay = cursor.fetchone()
 
 	app.logger.info("payDayTestStr= " + str(payDay))
-	#app.logger.info("payDayTest = " + payDay)
-	print("payDayDateStr = " + str(payDay))
-	print("payDayDate = " + DATE(payDay))
+	app.logger.info("padDay Type = " + type(payDay))
 
 	payDayList = []
 
