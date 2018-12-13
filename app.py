@@ -605,8 +605,10 @@ def createPayDayList():
 
 	# Check to see if there is already a bank account in the database
 	payDay = cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
-	app.logger.info("payDayStr = " + str(payDay))
-	app.logger.info("payDay = " + payDay)
+	app.logger.info("payDayTESTStr= " + str(payDay))
+	#app.logger.info("payDay = " + payDay)
+	print("payDayDateStr = " + str(payDay))
+	print("payDayDate = " + payDay)
 
 	payDayList = []
 
