@@ -172,6 +172,9 @@ def dashboard():
 			payDay = cursor.fetchone()
 			app.logger.info("payDay = " + str(payDay[0]))
 
+			# Set initial payday date
+			runningDate.setInitialDate(payDay[0])
+
 			# Get each bill for the user
 			cursor.callproc('sp_getBillByUser', (_user_id,))
 			billData = cursor.fetchall()
