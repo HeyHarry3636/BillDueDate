@@ -170,7 +170,7 @@ def dashboard():
 			# Check to see if there is already a bank account in the database
 			cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
 			payDay = cursor.fetchone()
-			app.logger.info("payDay = " + str(payDay[0]))
+			app.logger.info("payDay = " + str(payDay[0].date()))
 
 			# Set initial payday date
 			runningDate.setInitialDate(payDay[0])
