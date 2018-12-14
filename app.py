@@ -189,8 +189,6 @@ def dashboard():
 				# in this case the next payday is 14 days/2 weeks after the initial payday
 				tempPayDay = tempPayDay + datetime.timedelta(days=14)
 				print(type(tempPayDay))
-				tempPayDay.date()
-				print(type(tempPayDay))
 				payDayList.append(tempPayDay)
 
 			for i in range(0, len(payDayList)):
@@ -275,6 +273,9 @@ def dashboard():
 					# then subtract bill amount from running runningTotal
 					print("type(li['bill_date']) = " + str(type(li['bill_date'])))
 					print("type(payDayList[payDayListIndex]) = " + str(type(payDayList[payDayListIndex])))
+					testVar = payDayList[payDayListIndex].date()
+					print("type(testVar) = " + str(type(testVar)))
+
 					if li['bill_date'] <= payDayList[payDayListIndex]:
 						print("if loop")
 						print("li['bill_date'] = " + li['bill_date'])
