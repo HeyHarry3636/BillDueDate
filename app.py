@@ -36,8 +36,8 @@ runningTotal = globalVars.cl_calculateRunningTotal(0.00)
 # Create hasBankData class variable to let dashboard know if the user has bank information already
 hasBankData = globalVars.cl_HasBankInformation(False)
 # Create runningTotaldate so we can calculate when bills ARE
-runningDate0 = globalVars.cl_calculateRunningDate(datetime.date(1970, 1, 1))
-print("type(runningDate0) = " + str(type(runningDate0)))
+runningDate = globalVars.cl_calculateRunningDate(datetime.date(1970, 1, 1))
+print("type(runningDate) = " + str(type(runningDate)))
 # runningDate = globalVars.cl_calculateRunningDate(datetime.datetime.date(1970, 1, 1))
 # print("type(runningDate) = " + str(type(runningDate)))
 
