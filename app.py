@@ -179,8 +179,9 @@ def dashboard():
 			payDayList = []
 			payDayList.append(runningDate.getRunningDate())
 
+			tempPayDay = runningDate.getRunningDate()
 			for i in range(20):
-				tempPayDay = runningDate.getRunningDate() + datetime.timedelta(days=14)
+				tempPayDay = tempPayDay + datetime.timedelta(days=14)
 				payDayList.append(tempPayDay)
 				print(tempPayDay)
 
