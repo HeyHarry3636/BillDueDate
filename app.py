@@ -259,8 +259,19 @@ def dashboard():
 
 
 				# Functional loop above
-				# TODO: CALCULATE PAYDAYS WITHIN THIS LOOP
+
+				# Create an index to track payDays steps
+				payDayListIndex = 0
+
 				for li in bill_dict:
+					# if bill date is previous OR equal to the first payday (in payday list),
+					# then subtract bill amount from running runningTotal
+					if li['bill_date'] <= payDayList[payDayListIndex]:
+						print("if loop")
+						print("li['bill_date'] = " + li['bill_date'])
+						print("payDayList[payDayListIndex] = " + payDayList[payDayListIndex])
+						runningTotal.setRunningTotal(li['bill_amount'])
+
 					#print("li = " + str(li))
 					runningTotal.setRunningTotal(li['bill_amount'])
 					li['bill_runningTotal'] = runningTotal.getRunningTotal()
