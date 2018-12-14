@@ -54,14 +54,14 @@ class cl_calculateRunningDate():
     #print("class type of calcRunningDate2 = " + str(type(calcRunningDate)))
 
     def __init__(self, calcRunningDate):
-        self.calcRunningDate = datetime.date(calcRunningDate)
+        self.calcRunningDate = calcRunningDate
 
     # def convertDatetimeToDate(self, runningDateValue):
     #     self.calcRunningDate = runningDateValue.date()
     #     return self.calcRunningDate
 
     def setInitialDate(self, runningDateValue):
-        self.calcRunningDate = runningDateValue
+        self.calcRunningDate = datetime.date(runningDateValue)
         return self.calcRunningDate
 
     def getRunningDate(self):
