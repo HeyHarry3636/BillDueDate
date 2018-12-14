@@ -276,7 +276,7 @@ def dashboard():
 					testVar = payDayList[payDayListIndex].date()
 					print("type(testVar) = " + str(type(testVar)))
 
-					if li['bill_date'] <= payDayList[payDayListIndex]:
+					if li['bill_date'] <= payDayList[payDayListIndex].date():
 						print("if loop")
 						print("li['bill_date'] = " + li['bill_date'])
 						print("payDayList[payDayListIndex] = " + payDayList[payDayListIndex])
