@@ -273,13 +273,11 @@ def dashboard():
 					# then subtract bill amount from running runningTotal
 					print("type(li['bill_date']) = " + str(type(li['bill_date'])))
 					print("type(payDayList[payDayListIndex]) = " + str(type(payDayList[payDayListIndex])))
-					testVar = payDayList[payDayListIndex].date()
-					print("type(testVar) = " + str(type(testVar)))
 
 					if li['bill_date'] <= payDayList[payDayListIndex].date():
 						print("if loop")
-						print("li['bill_date'] = " + li['bill_date'])
-						print("payDayList[payDayListIndex] = " + payDayList[payDayListIndex])
+						print("li['bill_date'] = " + str(li['bill_date']))
+						print("payDayList[payDayListIndex] = " + str(payDayList[payDayListIndex]).date())
 						runningTotal.setRunningTotal(li['bill_amount'])
 
 					#print("li = " + str(li))
