@@ -48,11 +48,11 @@ class cl_calculateRunningTotal():
 
 # Method to calculate the running 'date' for tracking remaining $ after bills
 class cl_calculateRunningDate():
-    calcRunningDate = datetime.datetime(1970, 1, 1)
-    #calcRunningDate = datetime.date(1970, 1, 1)
+    #calcRunningDate = datetime.datetime(1970, 1, 1)
+    calcRunningDate = datetime.datetime.date()
 
     def __init__(self, calcRunningDate):
-        self.calcRunningDate = calcRunningDate.date()
+        self.calcRunningDate = calcRunningDate
 
     def setInitialDate(self, runningDateValue):
         self.calcRunningDate = runningDateValue
