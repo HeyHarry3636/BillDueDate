@@ -169,7 +169,7 @@ def dashboard():
 
 			# Check to see if there is already a bank account in the database
 			payDay = cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
-			app.logger.info("payDay = " + str(payDay))
+			app.logger.info("payDay = " + str(payDay[0]))
 
 			# Get each bill for the user
 			cursor.callproc('sp_getBillByUser', (_user_id,))
