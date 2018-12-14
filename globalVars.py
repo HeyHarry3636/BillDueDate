@@ -53,5 +53,9 @@ class cl_calculateRunningDate():
     def __init__(self, calcRunningDate):
         self.calcRunningDate = calcRunningDate
 
+    def setInitialDate(self, runningDateValue):
+        self.calcRunningDate = runningDateValue
+        return self.calcRunningDate
+
     def getRunningDate(self):
         return self.calcRunningDate
