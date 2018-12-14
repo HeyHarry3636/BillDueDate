@@ -175,6 +175,19 @@ def dashboard():
 			# Set initial payday date
 			runningDate.setInitialDate(payDay[0])
 
+			# Create a list for future pay days
+			payDayList = []
+			payDayList.append(runningDate.getRunningDate())
+
+			for i in range(20):
+				tempPayDay = runningDate.getRunningDate() + datetime.timedelta(days=14)
+				payDayList.append(tempPayDay)
+				print(tempPayDay)
+
+			for i in range(0, len(payDayList)):
+				app.logger.info("payDayList[" + str(i) + "] = " + str(payDayList[i]))
+
+
 			# Get each bill for the user
 			cursor.callproc('sp_getBillByUser', (_user_id,))
 			billData = cursor.fetchall()
@@ -250,7 +263,7 @@ def dashboard():
 					runningTotal.setRunningTotal(li['bill_amount'])
 					li['bill_runningTotal'] = runningTotal.getRunningTotal()
 					print("The bill running total is = " + str(runningTotal.getRunningTotal()))
-					print("The date running total is = " + str(runningDate.getRunningDate()))
+					print("The running date is = " + str(runningDate.getRunningDate()))
 
 
 
