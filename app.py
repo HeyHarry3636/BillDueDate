@@ -174,7 +174,7 @@ def dashboard():
 
 			# Set initial payday date
 			runningDate.setInitialDate(payDay[0])
-			print("initial type " + str(type(runningDate.setInitialDate(payDay[0])))
+			print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
 
 			# Create a list for future pay days
 			payDayList = []
