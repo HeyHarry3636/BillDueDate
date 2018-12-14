@@ -37,9 +37,9 @@ runningTotal = globalVars.cl_calculateRunningTotal(0.00)
 hasBankData = globalVars.cl_HasBankInformation(False)
 # Create runningTotaldate so we can calculate when bills ARE
 runningDate = globalVars.cl_calculateRunningDate(datetime.date(1970, 1, 1)).date()
-print("type(runningDate) = " + str(type(runningDate)))
-# runningDate = globalVars.cl_calculateRunningDate(datetime.datetime.date(1970, 1, 1))
-# print("type(runningDate) = " + str(type(runningDate)))
+print("type(runningDate1) = " + str(type(runningDate)))
+runningDate = runningDate.date()
+print("type(runningDate2) = " + str(type(runningDate)))
 
 ###############################################################################################
 # Login/Registration methods
