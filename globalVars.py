@@ -61,7 +61,7 @@ class cl_calculateRunningDate():
     #     return self.calcRunningDate
 
     def setInitialDate(self, runningDateValue):
-        self.calcRunningDate = datetime.date(runningDateValue)
+        self.calcRunningDate = runningDateValue
         return self.calcRunningDate
 
     def getRunningDate(self):
