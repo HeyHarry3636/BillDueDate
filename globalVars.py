@@ -52,7 +52,7 @@ class cl_calculateRunningDate():
     #calcRunningDate = datetime.date(1970, 1, 1)
 
     def __init__(self, calcRunningDate):
-        self.calcRunningDate = calcRunningDate
+        self.calcRunningDate = calcRunningDate.date()
 
     def setInitialDate(self, runningDateValue):
         self.calcRunningDate = runningDateValue
