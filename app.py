@@ -242,10 +242,11 @@ def dashboard():
 				# Functional loop above
 				# TODO: CALCULATE PAYDAYS WITHIN THIS LOOP
 				for li in bill_dict:
-					print("li = " + str(li))
+					#print("li = " + str(li))
 					runningTotal.setRunningTotal(li['bill_amount'])
 					li['bill_runningTotal'] = runningTotal.getRunningTotal()
 					print("The bill running total is = " + str(runningTotal.getRunningTotal()))
+					print("The date running total is = " + str(runningDate.getRunningDate()))
 
 
 
