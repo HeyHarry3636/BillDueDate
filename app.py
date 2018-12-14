@@ -184,6 +184,7 @@ def dashboard():
 			for i in range(20):
 				# in this case the next payday is 14 days/2 weeks after the initial payday
 				tempPayDay = tempPayDay + datetime.timedelta(days=14)
+				tempPayDay.date()
 				payDayList.append(tempPayDay)
 
 			for i in range(0, len(payDayList)):
