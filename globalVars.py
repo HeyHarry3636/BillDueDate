@@ -1,4 +1,4 @@
-import decimal
+import decimal, datetime
 # Class to check if the user has bank information in the database already
 class cl_HasBankInformation():
     bankInfoDoesExist = None
@@ -44,3 +44,14 @@ class cl_calculateRunningTotal():
 
     def getRunningTotal(self):
         return self.calcRunningTotal
+
+
+# Method to calculate the running 'date' for tracking remaining $ after bills
+class cl_calculateRunningDate():
+    calcRunningDate = datetime.datetime(1970, 1, 1)
+
+    def __init__(self, calcRunningDate)
+        self.calcRunningDate = datetime.datetime(calcRunningDate)
+
+    def getRunningDate(self):
+        return self.calcRunningDate

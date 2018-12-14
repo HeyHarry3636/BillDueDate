@@ -35,6 +35,9 @@ mysql.init_app(app)
 runningTotal = globalVars.cl_calculateRunningTotal(0.00)
 # Create hasBankData class variable to let dashboard know if the user has bank information already
 hasBankData = globalVars.cl_HasBankInformation(False)
+# Create runningTotaldate so we can calculate when bills ARE
+runningDate = globalVars.cl_calculateRunningDate(1970, 1, 1)
+
 
 ###############################################################################################
 # Login/Registration methods
