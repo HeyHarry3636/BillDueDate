@@ -297,7 +297,8 @@ def dashboard():
 							print("2nd if loop")
 							print("2nd li['bill_date'] = " + str(li['bill_date']))
 							print("2nd payDayList[payDayListIndex] = " + str((payDayList[payDayListIndex]).date()))
-							runningTotal.setRunningTotal(li['bill_amount'])
+							# Remove +1800, placeholder for pay day amount
+							runningTotal.setRunningTotal(li['bill_amount']+1800)
 							payDayListIndex = payDayListIndex + 1
 
 
