@@ -320,7 +320,7 @@ def dashboard():
 
 								else:
 									payAmount = 1774.16 * counter
-									print("payAmount = " + payAmount)
+									print("payAmount = " + str(payAmount))
 									print("else")
 									print("x = " + str(x))
 
