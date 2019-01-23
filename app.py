@@ -296,6 +296,7 @@ def dashboard():
 						# EX: last bill was 2/23, current bill is 3/17, two paydays inbetween,
 						# this does not calculate either of these paydays because the loop below only adds one
 						# to the payday list index
+						counter = 0
 						if li['bill_date'] <= payDayList[payDayListIndex+1].date():
 #							print("2nd if loop")
 #							print("2nd li['bill_date'] = " + str(li['bill_date']))
@@ -306,7 +307,7 @@ def dashboard():
 
 						# TESTING for loop to factor in all indices, not just payDayListIndex+1
 						else:
-							for x in range(2, len(payDayList)):
+							for x in range(0, len(payDayList)):
 							#for x in payDayList:
 								print("x = " + str(x))
 								print("bill_date = " + str(li['bill_date']))
@@ -315,7 +316,11 @@ def dashboard():
 								if li['bill_date'] <= payDayList[x].date():
 									print("if")
 									print("x = " + str(x))
+									counter = counter + 1
+
 								else:
+									payAmount = 1774.16 * counter
+									print("payAmount = " + payAmount)
 									print("else")
 									print("x = " + str(x))
 
