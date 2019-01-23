@@ -288,6 +288,10 @@ def dashboard():
 					else:
 						print("else loop")
 						#payDayListIndex = payDayListIndex + 1
+						print("payDayList[payDayListIndex] = " + str((payDayList[payDayListIndex])))
+						print("payDayList[payDayListIndex+1] = " + str((payDayList[payDayListIndex+1])))
+						print("payDayList[payDayListIndex].date() = " + str((payDayList[payDayListIndex]).date()))
+						print("payDayList[payDayListIndex+1].date = " + str((payDayList[payDayListIndex+1]).date()))
 
 						if li['bill_date'] <= payDayList[payDayListIndex+1].date():
 							print("2nd if loop")
@@ -302,7 +306,7 @@ def dashboard():
 					runningTotal.setRunningTotal(li['bill_amount'])
 					li['bill_runningTotal'] = runningTotal.getRunningTotal()
 					print("The bill running total is = " + str(runningTotal.getRunningTotal()))
-					print("The running date is = " + str(runningDate.getRunningDate()))
+					#print("The running date is = " + str(runningDate.getRunningDate()))
 					print("\n")
 
 
