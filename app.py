@@ -287,13 +287,14 @@ def dashboard():
 					# These bills occur after the current payday, so increment to the next payDay in the list
 					else:
 						print("else loop")
+						payDayListIndex = payDayListIndex + 1
 
-						if li['bill_date'] > payDayList[payDayListIndex-1].date():
+						if li['bill_date'] <= payDayList[payDayListIndex].date():
 							print("2nd if loop")
 							print("li['bill_date'] = " + str(li['bill_date']))
 							print("payDayList[payDayListIndex] = " + str((payDayList[payDayListIndex]).date()))
 							runningTotal.setRunningTotal(li['bill_amount'])
-							payDayListIndex = payDayListIndex + 1
+
 
 
 					#print("li = " + str(li))
