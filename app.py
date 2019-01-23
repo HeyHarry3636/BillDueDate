@@ -309,7 +309,7 @@ def dashboard():
 							for x in range(2, len(payDayList)):
 							#for x in payDayList:
 								print("x = " + str(x))
-								print("bill_date" = str(li['bill_date']))
+								print("bill_date = " + str(li['bill_date']))
 								print("payDayList[x].date() = " + str((payDayList[payDayListIndex]).date()))
 
 								if li['bill_date'] <= payDayList[x].date():
