@@ -290,6 +290,7 @@ def dashboard():
 					li['bill_runningTotal'] = runningTotal.getRunningTotal()
 					print("The bill running total is = " + str(runningTotal.getRunningTotal()))
 					print("The running date is = " + str(runningDate.getRunningDate()))
+					print("\n")
 
 
 
