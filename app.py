@@ -288,8 +288,6 @@ def dashboard():
 					else:
 						print("else loop")
 						#payDayListIndex = payDayListIndex + 1
-						print("payDayList[payDayListIndex] = " + str((payDayList[payDayListIndex])))
-						print("payDayList[payDayListIndex+1] = " + str((payDayList[payDayListIndex+1])))
 						print("payDayList[payDayListIndex].date() = " + str((payDayList[payDayListIndex]).date()))
 						print("payDayList[payDayListIndex+1].date = " + str((payDayList[payDayListIndex+1]).date()))
 
@@ -297,8 +295,7 @@ def dashboard():
 							print("2nd if loop")
 							print("2nd li['bill_date'] = " + str(li['bill_date']))
 							print("2nd payDayList[payDayListIndex] = " + str((payDayList[payDayListIndex]).date()))
-							# Remove +1800, placeholder for pay day amount
-							runningTotal.setRunningTotal(li['bill_amount']+1800)
+							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'])
 							payDayListIndex = payDayListIndex + 1
 
 

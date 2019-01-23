@@ -39,7 +39,7 @@ class cl_calculateRunningTotal():
         return self.calcRunningTotal
 
     def setRunningTotalAfterPayDay(self, runningTotalValue):
-        self.calcRunningTotal = self.calcRunningTotal + 1706
+        self.calcRunningTotal = self.calcRunningTotal + 1778
         return self.calcRunningTotal
 
     def getRunningTotal(self):
