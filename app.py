@@ -268,37 +268,34 @@ def dashboard():
 				payDayListIndex = 0
 
 				for li in bill_dict:
-					print("payDayListIndex = " + str(payDayListIndex))
+#					print("payDayListIndex = " + str(payDayListIndex))
 					# if bill date is previous OR equal to the first payday (in payday list),
 					# then subtract bill amount from running runningTotal
-					print("li[bill_name] = " + str(li['bill_name']))
-					print("li[bill_amount] = " + str(li['bill_amount']))
+#					print("li[bill_name] = " + str(li['bill_name']))
+#					print("li[bill_amount] = " + str(li['bill_amount']))
 
-					#print("type(li['bill_date']) = " + str(type(li['bill_date'])))
-					#print("type(payDayList[payDayListIndex]) = " + str(type(payDayList[payDayListIndex])))
-
-					print("OUT payDayList[payDayListIndex] = " + str((payDayList[payDayListIndex]).date()))
-					print("OUT li['bill_date'] = " + str(li['bill_date']))
+#					print("OUT payDayList[payDayListIndex] = " + str((payDayList[payDayListIndex]).date()))
+#					print("OUT li['bill_date'] = " + str(li['bill_date']))
 
 					if li['bill_date'] <= payDayList[payDayListIndex].date():
-						print("if loop")
-						print("li['bill_date'] = " + str(li['bill_date']))
-						print("payDayList[payDayListIndex] = " + str((payDayList[payDayListIndex]).date()))
-						print("BEFORE SET The bill running total is = " + str(runningTotal.getRunningTotal()))
+#						print("if loop")
+#						print("li['bill_date'] = " + str(li['bill_date']))
+#						print("payDayList[payDayListIndex] = " + str((payDayList[payDayListIndex]).date()))
+#						print("BEFORE SET The bill running total is = " + str(runningTotal.getRunningTotal()))
 						runningTotal.setRunningTotal(li['bill_amount'])
-						print("AFTER SET The bill running total is = " + str(runningTotal.getRunningTotal()))
+#						print("AFTER SET The bill running total is = " + str(runningTotal.getRunningTotal()))
 
 					# These bills occur after the current payday, so increment to the next payDay in the list
 					else:
-						print("else loop")
+#						print("else loop")
 						#payDayListIndex = payDayListIndex + 1
-						print("payDayList[payDayListIndex].date() = " + str((payDayList[payDayListIndex]).date()))
-						print("payDayList[payDayListIndex+1].date = " + str((payDayList[payDayListIndex+1]).date()))
+#						print("payDayList[payDayListIndex].date() = " + str((payDayList[payDayListIndex]).date()))
+#						print("payDayList[payDayListIndex+1].date = " + str((payDayList[payDayListIndex+1]).date()))
 
 						if li['bill_date'] <= payDayList[payDayListIndex+1].date():
-							print("2nd if loop")
-							print("2nd li['bill_date'] = " + str(li['bill_date']))
-							print("2nd payDayList[payDayListIndex] = " + str((payDayList[payDayListIndex]).date()))
+#							print("2nd if loop")
+#							print("2nd li['bill_date'] = " + str(li['bill_date']))
+#							print("2nd payDayList[payDayListIndex] = " + str((payDayList[payDayListIndex]).date()))
 							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'])
 							runningTotal.setRunningTotal(li['bill_amount'])
 							payDayListIndex = payDayListIndex + 1
