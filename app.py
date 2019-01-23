@@ -307,7 +307,7 @@ def dashboard():
 
 						# TESTING for loop to factor in all indices, not just payDayListIndex+1
 						else:
-							for x in range(0, len(payDayList)):
+							for x in range(2, len(payDayList)):
 							#for x in payDayList:
 								print("x = " + str(x))
 								print("bill_date = " + str(li['bill_date']))
@@ -322,7 +322,6 @@ def dashboard():
 								else:
 									counter = counter + 1
 									print("else")
-									print("x = " + str(x))
 
 								print("\n")
 
