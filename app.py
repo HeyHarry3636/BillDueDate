@@ -305,7 +305,7 @@ def dashboard():
 
 
 					#print("li = " + str(li))
-					runningTotal.setRunningTotal(li['bill_amount'])
+					#runningTotal.setRunningTotal(li['bill_amount'])
 					li['bill_runningTotal'] = runningTotal.getRunningTotal()
 					print("FINALLY The bill running total is = " + str(runningTotal.getRunningTotal()))
 					#print("The running date is = " + str(runningDate.getRunningDate()))
