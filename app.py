@@ -300,6 +300,7 @@ def dashboard():
 							print("2nd li['bill_date'] = " + str(li['bill_date']))
 							print("2nd payDayList[payDayListIndex] = " + str((payDayList[payDayListIndex]).date()))
 							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'])
+							runningTotal.setRunningTotal(li['bill_amount'])
 							payDayListIndex = payDayListIndex + 1
 
 
