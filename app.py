@@ -268,6 +268,7 @@ def dashboard():
 				payDayListIndex = 0
 
 				for li in bill_dict:
+					print("payDayListIndex = " + payDayListIndex)
 					# if bill date is previous OR equal to the first payday (in payday list),
 					# then subtract bill amount from running runningTotal
 					print("li[bill_name] = " + str(li['bill_name']))
