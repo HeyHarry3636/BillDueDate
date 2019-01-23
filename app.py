@@ -272,8 +272,8 @@ def dashboard():
 					# if bill date is previous OR equal to the first payday (in payday list),
 					# then subtract bill amount from running runningTotal
 					print("li[bill_name] = " + str(li['bill_name']))
-					print("li[bill_amount] = ") + str(li['bill_amount'])
-					
+					print("li[bill_amount] = " + str(li['bill_amount']))
+
 					#print("type(li['bill_date']) = " + str(type(li['bill_date'])))
 					#print("type(payDayList[payDayListIndex]) = " + str(type(payDayList[payDayListIndex])))
 
