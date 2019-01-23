@@ -316,11 +316,11 @@ def dashboard():
 								if li['bill_date'] <= payDayList[x].date():
 									print("if")
 									print("x = " + str(x))
-									counter = counter + 1
-
-								else:
 									payAmount = 1774.16 * counter
 									print("payAmount = " + str(payAmount))
+
+								else:
+									counter = counter + 1
 									print("else")
 									print("x = " + str(x))
 
