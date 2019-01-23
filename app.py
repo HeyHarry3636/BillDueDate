@@ -284,7 +284,9 @@ def dashboard():
 						print("if loop")
 						print("li['bill_date'] = " + str(li['bill_date']))
 						print("payDayList[payDayListIndex] = " + str((payDayList[payDayListIndex]).date()))
+						print("BEFORE SET The bill running total is = " + str(runningTotal.getRunningTotal()))
 						runningTotal.setRunningTotal(li['bill_amount'])
+						print("AFTER SET The bill running total is = " + str(runningTotal.getRunningTotal()))
 
 					# These bills occur after the current payday, so increment to the next payDay in the list
 					else:
@@ -305,7 +307,7 @@ def dashboard():
 					#print("li = " + str(li))
 					runningTotal.setRunningTotal(li['bill_amount'])
 					li['bill_runningTotal'] = runningTotal.getRunningTotal()
-					print("The bill running total is = " + str(runningTotal.getRunningTotal()))
+					print("FINALLY The bill running total is = " + str(runningTotal.getRunningTotal()))
 					#print("The running date is = " + str(runningDate.getRunningDate()))
 					print("\n")
 
