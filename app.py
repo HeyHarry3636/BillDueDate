@@ -512,6 +512,9 @@ def billsPaidCheckboxes():
 		print(request.form.getlist('hasBeenPaid'))
 		print(haveBillsBeenPaid)
 
+		for stuff in haveBillsBeenPaid:
+			print("stuff = " + stuff)
+
 		#
 		#
 		# conn = mysql.connect()
