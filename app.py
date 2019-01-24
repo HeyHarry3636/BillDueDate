@@ -167,7 +167,7 @@ def logout():
 @is_logged_in
 def dashboard():
 
-	try:		
+	try:
 		if request.method == 'GET':
 			_user_id = session.get('user_id')
 
@@ -203,15 +203,6 @@ def dashboard():
 
 			# Parse data and convert to dictionary to return easily as JSON
 			bill_dict_notSorted = []
-
-###
-
-			# Getting the checkboxes for bills_paid
-			haveBillsBeenPaid = request.form.getlist('hasBeenPaid')
-			print(request.form.getlist('hasBeenPaid'))
-			print(haveBillsBeenPaid)
-
-###
 
 			# billData is a list of tuples billData = ( (), (), () )
 			for bill in billData:
@@ -495,6 +486,45 @@ def deleteBill(id):
 			return redirect(url_for('dashboard'))
 		else:
 			return render_template('error.html', error = str(data[0]))
+
+	except Exception as e:
+		return render_template('error.html', error = str(e))
+
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
+
+@app.route('/billsPaidCheckboxes', methods=['GET', 'POST'])
+@is_logged_in
+def billsPaidCheckboxes():
+	try:
+		_user_id = session.get('user_id')
+		# _bank_currentAmount = request.form['bank_currentAmount']
+		# _bank_payDayAmount = request.form['bank_payDayAmount']
+		# _bank_nextPayDate = request.form['bank_nextPayDate']
+		# #_recur_id = request.form['recur_id']
+		#
+
+		# Getting the checkboxes for bills_paid
+		haveBillsBeenPaid = request.form.getlist('hasBeenPaid')
+		print(request.form.getlist('hasBeenPaid'))
+		print(haveBillsBeenPaid)
+
+		#
+		# 
+		# conn = mysql.connect()
+		# cursor = conn.cursor()
+		# cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
+		# _bank_id = cursor.fetchone()
+		# cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s, bank_payDayAmount = %s, bank_nextPayDate = %s WHERE bank_id = %s', (
+		# 	_bank_currentAmount, _bank_payDayAmount, _bank_nextPayDate, _bank_id[0]))
+		# bankInfo = cursor.fetchall()
+		#
+		#
+		# conn.commit()
+		# return json.dumps({'result' : 'success', 'bank_currentAmount' : _bank_currentAmount, 'bank_payDayAmount' : _bank_payDayAmount, 'bank_nextPayDate' : _bank_nextPayDate})
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
