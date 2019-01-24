@@ -58,12 +58,12 @@
           <td>{{bill.bill_date}}</td>
           <!-- <td>{{bill.bill_autoWithdrawal}}</td> -->
 
-          <!-- <form action="/billsPaidCheckboxes" method="POST"> -->
-            <!-- <td><input type="checkbox" name="hasBeenPaid"/></td> -->
+          <form action="/billsPaidCheckboxes" method="POST">
+            <td><input class="testCheckbox" name="hasBeenPaid[]" id="has_been_paid"/></td>
               <!-- <td>{{bill.bill_paid}}</td> -->
-          <!-- </form> -->
+          </form>
 
-          <td><input type="checkbox" class="testCheckbox" name="hasBeenPaid" id="has_been_paid"/></td>
+          <!-- <td><input type="checkbox" class="testCheckbox" name="hasBeenPaid" id="has_been_paid"/></td> -->
 
           <!-- <td>{{bill.bill_description}}</td> -->
           <td>${{bill.bill_runningTotal}}</td>

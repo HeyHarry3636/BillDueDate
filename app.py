@@ -508,8 +508,8 @@ def billsPaidCheckboxes():
 		#
 
 		# Getting the checkboxes for bills_paid
-		haveBillsBeenPaid = request.form.getlist('hasBeenPaid')
-		print(request.form.getlist('hasBeenPaid'))
+		haveBillsBeenPaid = request.form.getlist('hasBeenPaid[]')
+		print(request.form.getlist('hasBeenPaid[]'))
 		print(haveBillsBeenPaid)
 
 		#
