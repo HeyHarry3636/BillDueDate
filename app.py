@@ -524,7 +524,7 @@ def billsPaidCheckboxes():
 		#
 		#
 		# conn.commit()
-		return json.dumps({'result' : 'success'})
+		return json.dumps({'result' : 'success', haveBillsBeenPaid : 'test' })
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
