@@ -1,17 +1,8 @@
-var sList = "";
-$('.saveCheckboxButton').click(function() {
-  $('input:checked').each(function () {
-    var sThisVal = ($(this).checked ? "1" : "0");
-    sList += (sList=="" ? sThisVal : "," + sThisVal);
-  });
+$('.saveCheckboxButton').click(function () {
+    var answer = $("#has_been_paid").val();
+    $("input:checked").each(function () {
+        var id = $(this).attr("id");
+        alert("Do something for: " + id + ", " + answer);
+        console.log("Do something for: " + id + ", " + answer);
+    });
 });
-console.log(sList);
-alert(sList);
-
-// $('.saveCheckboxButton').click(function () {
-//     var answer = $("#has_been_paid").val();
-//     $("input:checked").each(function () {
-//         var id = $(this).attr("id");
-//         alert("Do something for: " + id + ", " + answer);
-//     });
-// });
