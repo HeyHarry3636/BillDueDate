@@ -210,8 +210,10 @@ def dashboard():
 			haveBillsBeenPaid = request.form.getlist('checkedBox')
 			print(request.form.getlist('checkedBox'))
 			print(haveBillsBeenPaid)
-			print(request.form.getlist('checkedBox'))
-			print(haveBillsBeenPaid)
+
+			haveBillsBeenPaid_2 = request.form.getlist('hasBeenPaid')
+			print(request.form.getlist('hasBeenPaid'))
+			print(haveBillsBeenPaid_2)
 
 ###
 
