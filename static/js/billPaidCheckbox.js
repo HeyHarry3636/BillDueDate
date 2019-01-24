@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $('.checkedBox').change(function() {
+  $('.checkedBox').on('click', function() {
     var value = $(this).val();
 
     // var bank_id = $(this).attr('bank_id');
