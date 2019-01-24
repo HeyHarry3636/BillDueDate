@@ -167,7 +167,7 @@ def logout():
 @is_logged_in
 def dashboard():
 
-	try:
+	try:		
 		if request.method == 'GET':
 			_user_id = session.get('user_id')
 
