@@ -6,7 +6,7 @@ $('.saveCheckboxButton').on('click', function() {
   });
 });
 console.log(sList);
-
+alert(sList);
 
 // $('.saveCheckboxButton').click(function () {
 //     var answer = $("#has_been_paid").val();
