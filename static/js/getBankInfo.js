@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
-  $('.updateButton, .bill-rows').on('click', function() {
+  // $('.updateButton, .bill-rows').on('click', function() {
+  $('.updateButton').on('click', function() {
     var bank_id = $(this).attr('bank_id');
 
     var currentAmount = $('#currentInput'+bank_id).val();
@@ -22,7 +23,7 @@ $(document).ready(function() {
     });
 
     // Do stuff for the bill rows loop through all columns
-    
+
 
   });
 

@@ -577,12 +577,6 @@ def updateBankInfo():
 		_bank_nextPayDate = request.form['bank_nextPayDate']
 		#_recur_id = request.form['recur_id']
 
-###		# Get status of checkboxes
-		billPaidStatus = request.form.getlist("hasBeenPaid")
-		for z in billPaidStatus:
-			print("z = " + str(z))
-
-
 		conn = mysql.connect()
 		cursor = conn.cursor()
 		cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
