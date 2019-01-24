@@ -1,14 +1,20 @@
 $(document).ready(function() {
+  var sList = "";
+  $('input[type=checkbox]').each(function() {
+  // $('.saveCheckboxButton').is(':checked', function() {
+    // var checkboxStatus = $(this).val();
 
-  // $('.updateButton, .bill-rows').on('click', function() {
-  $('.saveCheckboxButton').is(':checked', function() {
-    var checkboxStatus = $(this).val();
+    var sThisVal = (this.checked ? "1" : "0");
 
-    req = $.ajax({
-      url : '/billsPaidCheckboxes',
-      type : 'POST',
-      data : { bill_billpaid : checkboxStatus }
-    });
+    sList += (sList=="" ? sThisVal : "," + sThisVal);
+
+
+
+    // req = $.ajax({
+    //   url : '/billsPaidCheckboxes',
+    //   type : 'POST',
+    //   data : { bill_billpaid : checkboxStatus }
+    // });
 
     // // data = the passed back data from the app.py updateTest function
     // req.done(function(data) {
@@ -22,5 +28,5 @@ $(document).ready(function() {
 
 
   });
-
+  console.log(sList);
 });
