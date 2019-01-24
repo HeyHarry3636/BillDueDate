@@ -12,7 +12,7 @@ $(document).ready(function() {
   //
   // });
 
-  $('#has_been_paid').focusout(function () {
+  $('#has_been_paid').mouseup(function () {
       var answer = $("#has_been_paid").val();
 
       // alert("Do something for: " + answer);
