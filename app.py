@@ -173,11 +173,11 @@ def dashboard():
 			# Check to see if there is already a bank account in the database
 			cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
 			payDay = cursor.fetchone()
-			app.logger.info("payDay = " + str(payDay[0].date()))
+#			app.logger.info("payDay = " + str(payDay[0].date()))
 
 			# Set initial payday date
 			runningDate.setInitialDate(payDay[0])
-			print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
+#			print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
 
 			# Create a list for future pay days
 			payDayList = []
@@ -190,8 +190,8 @@ def dashboard():
 				tempPayDay = tempPayDay + datetime.timedelta(days=14)
 				payDayList.append(tempPayDay)
 
-			for i in range(0, len(payDayList)):
-				app.logger.info("payDayList[" + str(i) + "] = " + str(payDayList[i]))
+#			for i in range(0, len(payDayList)):
+#				app.logger.info("payDayList[" + str(i) + "] = " + str(payDayList[i]))
 
 
 			# Get each bill for the user
@@ -290,8 +290,6 @@ def dashboard():
 						else:
 							for x in range(0, len(payDayList)):
 								if li['bill_date'] <= payDayList[x].date():
-									print("if")
-									print("x = " + str(x))
 									runningTotal.setRunningTotalAfterPayDayMultiple(li['bill_amount'], x-2)
 									runningTotal.setRunningTotal(li['bill_amount'])
 									break
