@@ -305,7 +305,10 @@ def dashboard():
 							runningTotal.setRunningTotal(li['bill_amount'])
 							payDayListIndex = payDayListIndex + 1
 
-						# TESTING for loop to factor in all indices, not just payDayListIndex+1
+						# TODO:
+						# Use this loop below for this entire thing, not just following two
+						# for loop to factor in all indices, not just payDayListIndex+1
+						# Refactor this so it applies to all indices
 						else:
 							for x in range(0, len(payDayList)):
 							#for x in payDayList:
@@ -325,12 +328,7 @@ def dashboard():
 								else:
 									#counter = counter + 1
 									print("else")
-
 								print("\n")
-
-
-
-
 					#print("li = " + str(li))
 					#runningTotal.setRunningTotal(li['bill_amount'])
 					li['bill_runningTotal'] = runningTotal.getRunningTotal()
