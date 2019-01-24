@@ -513,7 +513,7 @@ def billsPaidCheckboxes():
 		print(haveBillsBeenPaid)
 
 		#
-		# 
+		#
 		# conn = mysql.connect()
 		# cursor = conn.cursor()
 		# cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
