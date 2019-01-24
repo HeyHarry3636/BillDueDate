@@ -524,7 +524,7 @@ def billsPaidCheckboxes():
 		#
 		#
 		# conn.commit()
-		# return json.dumps({'result' : 'success', 'bank_currentAmount' : _bank_currentAmount, 'bank_payDayAmount' : _bank_payDayAmount, 'bank_nextPayDate' : _bank_nextPayDate})
+		return json.dumps({'result' : 'success'})
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
