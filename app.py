@@ -317,6 +317,7 @@ def dashboard():
 									print("if")
 									print("x = " + str(x))
 									payAmount = 1774.16 * counter
+									runningTotal.setRunningTotalAfterPayDayMultiple(li['bill_amount'], 2)
 									print("payAmount = " + str(payAmount))
 
 								else:
