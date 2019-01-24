@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $('.checkedBox').on('click', function() {
+  $('.checkedBox, .bill-rows').on('click', function() {
 
     // req = $.ajax({
     //   url : '/updateBillPaidInfo',
