@@ -193,7 +193,6 @@ def dashboard():
 #			for i in range(0, len(payDayList)):
 #				app.logger.info("payDayList[" + str(i) + "] = " + str(payDayList[i]))
 
-
 			# Get each bill for the user
 			cursor.callproc('sp_getBillByUser', (_user_id,))
 			billData = cursor.fetchall()
@@ -300,15 +299,6 @@ def dashboard():
 
 
 				return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation())
-
-
-		elif request.method == 'POST':
-###			# Get status of checkboxes
-			billPaidStatus = request.form.getlist("hasBeenPaid")
-			for z in billPaidStatus:
-				print("z = " + str(z))
-
-
 
 	# except Exception as e:
 	# 	return render_template('error.html', error = str(e))
@@ -586,6 +576,12 @@ def updateBankInfo():
 		_bank_payDayAmount = request.form['bank_payDayAmount']
 		_bank_nextPayDate = request.form['bank_nextPayDate']
 		#_recur_id = request.form['recur_id']
+
+###		# Get status of checkboxes
+		billPaidStatus = request.form.getlist("hasBeenPaid")
+		for z in billPaidStatus:
+			print("z = " + str(z))
+
 
 		conn = mysql.connect()
 		cursor = conn.cursor()
