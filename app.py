@@ -194,6 +194,12 @@ def dashboard():
 #				app.logger.info("payDayList[" + str(i) + "] = " + str(payDayList[i]))
 
 
+###			# Check the dashboard to see if the checkbox for 'bill paid?' has been selected for each bill
+			billsThatHaveBeenPaid = request.form.getlist("hasBeenPaid")
+			print(billsThatHaveBeenPaid)
+
+
+
 			# Get each bill for the user
 			cursor.callproc('sp_getBillByUser', (_user_id,))
 			billData = cursor.fetchall()
