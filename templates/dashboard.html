@@ -58,7 +58,7 @@
           <td>{{bill.bill_date}}</td>
           <!-- <td>{{bill.bill_autoWithdrawal}}</td> -->
 
-          <form action="{{url_for('dashboard')}} method="POST" name="bill_paid_list">
+          <form action="{{url_for('dashboard')}}" method="POST" name="bill_paid_list">
             <td><input type="checkbox" name="hasBeenPaid" value="{{ bill.bill_paid }}"/></td>
               <!-- <td>{{bill.bill_paid}}</td> -->
           </form>
