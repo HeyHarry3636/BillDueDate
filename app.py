@@ -210,8 +210,7 @@ def dashboard():
 			haveBillsBeenPaid = request.form.getlist('checkedBox')
 			print(request.form.getlist('checkedBox'))
 			print(haveBillsBeenPaid)
-			print(request.form.getlist('checkedBox')[0])
-			print(haveBillsBeenPaid[0])
+			
 ###
 
 			# billData is a list of tuples billData = ( (), (), () )
