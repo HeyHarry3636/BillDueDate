@@ -21,6 +21,10 @@ app = Flask(__name__)
 mysql = MySQL()
 app.secret_key = 'Bills are due'
 
+# Test user credentials
+# U = test@test.com
+# P = Test1234!
+
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'test'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'Test1234!'
@@ -199,6 +203,15 @@ def dashboard():
 
 			# Parse data and convert to dictionary to return easily as JSON
 			bill_dict_notSorted = []
+
+###
+
+			# Getting the checkboxes for bills_paid
+			haveBillsBeenPaid = request.form.getlist('checkedBox')
+			print(request.form.getlist('checkedBox'))
+			print(haveBillsBeenPaid)
+
+###
 
 			# billData is a list of tuples billData = ( (), (), () )
 			for bill in billData:
