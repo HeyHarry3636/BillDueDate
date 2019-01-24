@@ -163,7 +163,7 @@ def logout():
 
 ###############################################################################################
 # Main dashboard method
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET', 'POST'])
 @is_logged_in
 def dashboard():
 
@@ -210,7 +210,7 @@ def dashboard():
 			haveBillsBeenPaid = request.form.getlist('checkedBox')
 			print(request.form.getlist('checkedBox'))
 			print(haveBillsBeenPaid)
-			
+
 ###
 
 			# billData is a list of tuples billData = ( (), (), () )
