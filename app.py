@@ -194,15 +194,6 @@ def dashboard():
 #				app.logger.info("payDayList[" + str(i) + "] = " + str(payDayList[i]))
 
 
-
-
-###			# Get status of checkboxes
-			billPaidStatus = request.form.getlist("hasBeenPaid")
-			for z in billPaidStatus:
-				print("z = " + str(z))
-
-
-
 			# Get each bill for the user
 			cursor.callproc('sp_getBillByUser', (_user_id,))
 			billData = cursor.fetchall()
@@ -309,6 +300,15 @@ def dashboard():
 
 
 				return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation())
+
+
+		elif request.method == 'POST':
+###			# Get status of checkboxes
+			billPaidStatus = request.form.getlist("hasBeenPaid")
+			for z in billPaidStatus:
+				print("z = " + str(z))
+
+
 
 	# except Exception as e:
 	# 	return render_template('error.html', error = str(e))
