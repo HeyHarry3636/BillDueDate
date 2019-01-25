@@ -7,12 +7,14 @@ $(document).ready(function() {
     var hasTheBillBeenPaid = !$('#has_been_paid'+bill_id).is(':checked');
     console.log("hasTheBillBeenPaid = " + hasTheBillBeenPaid)
 
-    // req = $.ajax({
-    //   url : '/updateBankInfo',
-    //   type : 'POST',
-    //   data : { bank_currentAmount : currentAmount, bank_payDayAmount : payDayAmount }
-    // });
-    //
+    req = $.ajax({
+      url : '/billsPaidCheckboxes',
+      type : 'POST',
+      data : { bill_billId : bill_id, bill_billPaid : hasTheBillBeenPaid }
+    });
+
+    console.log(data)
+
     // // data = the passed back data from the app.py updateTest function
     // req.done(function(data) {
     //   $('#bankSection'+bank_id).fadeOut(1000).fadeIn(1000);

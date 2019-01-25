@@ -501,11 +501,12 @@ def deleteBill(id):
 def billsPaidCheckboxes():
 	try:
 		_user_id = session.get('user_id')
-		# _bank_currentAmount = request.form['bank_currentAmount']
-		# _bank_payDayAmount = request.form['bank_payDayAmount']
-		# _bank_nextPayDate = request.form['bank_nextPayDate']
-		# #_recur_id = request.form['recur_id']
-		#
+
+		_bill_id = request.form['bill_billId']
+		_hasTheBillBeenPaid = request.form['bill_billPaid']
+
+		print("_bill_id = " + _bill_id)
+		print("_hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
 
 		# Getting the checkboxes for bills_paid
 		haveBillsBeenPaid = request.form.getlist('hasBeenPaid')
@@ -515,7 +516,7 @@ def billsPaidCheckboxes():
 		for stuff in haveBillsBeenPaid:
 			print("stuff = " + stuff)
 
-		#
+
 		#
 		# conn = mysql.connect()
 		# cursor = conn.cursor()
