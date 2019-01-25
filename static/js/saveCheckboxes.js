@@ -18,7 +18,7 @@ $(document).ready(function() {
     req.done(function(data) {
       $('#has_been_paid'+bill_id).fadeOut(200).fadeIn(200);
 
-      $(.bill-rows).each(function() {
+      $('.bill-rows').each(function() {
         console.log("testEach")
       });
       // $('currentInput'+bank_id).val(data.bank_currentAmount);
