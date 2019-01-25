@@ -513,14 +513,13 @@ def billsPaidCheckboxes():
 		print("_hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
 		print("\n")
 
-		if _hasTheBillBeenPaid is true:
-			# print("True")
-		else:
-			# print("False")
-
-
 		conn = mysql.connect()
 		cursor = conn.cursor()
+
+		if _hasTheBillBeenPaid is true:
+			print("True")
+		else:
+			print("False")
 
 		cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
 		_currentBill = cursor.fetchone()
