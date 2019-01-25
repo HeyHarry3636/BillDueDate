@@ -517,6 +517,7 @@ def billsPaidCheckboxes():
 
 		cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
 		_currentBill = cursor.fetchone()
+
 		print(_currentBill)
 		#
 		# conn = mysql.connect()
@@ -524,6 +525,10 @@ def billsPaidCheckboxes():
 		# cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
 		# _bank_id = cursor.fetchone()
 		#
+
+
+		for i in range(0, len(_currentBill)):
+			print(i)
 		# cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s,
 		# 										bank_payDayAmount = %s,
 		#										bank_nextPayDate = %s
