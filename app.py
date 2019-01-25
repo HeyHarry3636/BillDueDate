@@ -513,10 +513,10 @@ def billsPaidCheckboxes():
 		print("_hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
 		print("\n")
 
-		if _hasTheBillBeenPaid is true:
-			print("True")
-		else:
-			print("False")
+		# if _hasTheBillBeenPaid is true:
+		# 	print("True")
+		# else:
+		# 	print("False")
 
 
 		conn = mysql.connect()
