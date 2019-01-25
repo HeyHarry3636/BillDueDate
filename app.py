@@ -533,6 +533,7 @@ def billsPaidCheckboxes():
 			_PY_hasTheBillBeenPaid = None
 			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
 
+		app.logger.info("test text")
 		print("Type Python _PY_hasTheBillBeenPaid = " + type(_PY_hasTheBillBeenPaid))
 		print("Python _PY_hasTheBillBeenPaid = " + str(_PY_hasTheBillBeenPaid))
 
