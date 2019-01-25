@@ -516,14 +516,14 @@ def billsPaidCheckboxes():
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		# Convert from lowercase Javascript true/false to Python True/False
-		if _hasTheBillBeenPaid == "true":
-			_hasTheBillBeenPaid = True
-		elif _hasTheBillBeenPaid == "false":
-			_hasTheBillBeenPaid = False
-		else:
-			_hasTheBillBeenPaid = None
-			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
+		# # Convert from lowercase Javascript true/false to Python True/False
+		# if _hasTheBillBeenPaid == "true":
+		# 	_hasTheBillBeenPaid = True
+		# elif _hasTheBillBeenPaid == "false":
+		# 	_hasTheBillBeenPaid = False
+		# else:
+		# 	_hasTheBillBeenPaid = None
+		# 	print("ERROR SETTING _hasTheBillBeenPaid to True/False")
 
 		print("Python _hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
 
