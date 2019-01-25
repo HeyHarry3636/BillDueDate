@@ -510,16 +510,22 @@ def billsPaidCheckboxes():
 		_hasTheBillBeenPaid = request.form['bill_billPaid']
 
 		print("_bill_id = " + _bill_id)
-		print("_hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
+		print("JS _hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
 		print("\n")
 
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		if _hasTheBillBeenPaid == True:
-			print("True")
+		# Convert from lowercase Javascript true/false to Python True/False
+		if _hasTheBillBeenPaid == "true":
+			_hasTheBillBeenPaid = True
+		else if _hasTheBillBeenPaid == "false":
+			_hasTheBillBeenPaid = False
 		else:
-			print("False")
+			_hasTheBillBeenPaid = None
+			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
+
+		print("Python _hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
 
 		cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
 		_currentBill = cursor.fetchone()
