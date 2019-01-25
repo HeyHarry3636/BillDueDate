@@ -511,21 +511,21 @@ def billsPaidCheckboxes():
 
 		print("_bill_id = " + _bill_id)
 		print("JS _hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
-		print("type JS _hasTheBillBeenPaid = " + type(_hasTheBillBeenPaid))
+		print("type JS _hasTheBillBeenPaid = " + str(type(_hasTheBillBeenPaid)))
 
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		# # Convert from lowercase Javascript true/false to Python True/False
-		# if _hasTheBillBeenPaid == "true":
-		# 	_hasTheBillBeenPaid = True
-		# elif _hasTheBillBeenPaid == "false":
-		# 	_hasTheBillBeenPaid = False
-		# else:
-		# 	_hasTheBillBeenPaid = None
-		# 	print("ERROR SETTING _hasTheBillBeenPaid to True/False")
+		# Convert from lowercase Javascript true/false to Python True/False
+		if _hasTheBillBeenPaid == "true":
+			_PY_hasTheBillBeenPaid = True
+		elif _hasTheBillBeenPaid == "false":
+			_PY_hasTheBillBeenPaid = False
+		else:
+			_PY_hasTheBillBeenPaid = None
+			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
 
-		print("Python _hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
+		print("Python _PY_hasTheBillBeenPaid = " + _PY_hasTheBillBeenPaid)
 
 		cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
 		_currentBill = cursor.fetchone()
