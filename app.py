@@ -512,7 +512,7 @@ def billsPaidCheckboxes():
 		print("\n")
 		print("_bill_id = " + _bill_id)
 		print("JS _hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
-		print("type JS _hasTheBillBeenPaid = " + str(type(_hasTheBillBeenPaid)))
+		# print("type JS _hasTheBillBeenPaid = " + str(type(_hasTheBillBeenPaid)))
 
 		conn = mysql.connect()
 		cursor = conn.cursor()
@@ -525,20 +525,24 @@ def billsPaidCheckboxes():
 		# cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
 		# _bank_id = cursor.fetchone()
 
+		# Get current due date of active bill
+		# bill_date at index[6] of _currentBill tuple
+		print("_currentBill[2] = " + str(_currentBill[2]))
+		print("_currentBill[6] = " + str(_currentBill[6]))
+
 		# Convert from lowercase Javascript true/false to Python True/False
 		if _hasTheBillBeenPaid == "true":
-			_PY_hasTheBillBeenPaid = True
+			#_PY_hasTheBillBeenPaid = True
 			# _PY_hasTheBillBeenPaid = "Y"
+			cursor.execute('UPDATE tbl_bill SET bill_date = %s WHERE bill_id = %s')
+			newBillData = cursor.fetchone()
+
 		elif _hasTheBillBeenPaid == "false":
 			_PY_hasTheBillBeenPaid = False
 			# _PY_hasTheBillBeenPaid = "N"
 		else:
-			_PY_hasTheBillBeenPaid = None
+			#_PY_hasTheBillBeenPaid = None
 			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
-
-		# Get current due date of active bill
-		# bill_date at index[6] of _currentBill tuple
-		print("_currentBill[6] = " + str(_currentBill[6]))
 
 		# cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s,
 		# 										bank_payDayAmount = %s,
@@ -557,7 +561,7 @@ def billsPaidCheckboxes():
 		# 					'bank_payDayAmount' : _bank_payDayAmount,
 		# 					'bank_nextPayDate' : _bank_nextPayDate})
 
-		return json.dumps({'result' : 'success', "hasTheBillBeenPaid" : _PY_hasTheBillBeenPaid })
+		return json.dumps({'result' : 'success', "hasTheBillBeenPaid" : _hasTheBillBeenPaid })
 
 	# except Exception as e:
 	# 	return render_template('error.html', error = str(e))
