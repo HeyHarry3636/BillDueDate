@@ -511,6 +511,7 @@ def billsPaidCheckboxes():
 
 		print("_bill_id = " + _bill_id)
 		print("_hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
+		print("\n")
 
 		conn = mysql.connect()
 		cursor = conn.cursor()
