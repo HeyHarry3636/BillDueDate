@@ -19,7 +19,7 @@ $(document).ready(function() {
       $('#has_been_paid'+bill_id).fadeOut(200).fadeIn(200);
 
       // $('.bill-rows').load();
-      $('.bill-rows').html(response);
+      $('.bill-rows').html(data);
       // location.reload();
 
       // $('.bill-rows').DataTable().ajax.reload();
