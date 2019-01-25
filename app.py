@@ -543,7 +543,9 @@ def billsPaidCheckboxes():
 		# _bank_id = cursor.fetchone()
 		#
 
-		print("_currentBill['bill_date'] = " + _currentBill['bill_date'])
+		# Get current due date of active bill
+		# bill_date at index[6] of _currentBill tuple
+		print("_currentBill[6] = " + _currentBill[6])
 
 		for i in range(0, len(_currentBill)):
 			print(_currentBill[i])
