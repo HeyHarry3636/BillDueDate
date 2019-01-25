@@ -20,7 +20,7 @@ $(document).ready(function() {
 
       // Need the DataTable extension, included on the layout.html page
       // $('.bill-rows').DataTable().ajax.reload();
-      $('.testClass').DataTable().ajax.reload();
+      // $('.testClass').DataTable().ajax.reload();
 
 
       // $('.bill-rows').load('/dashboard');
@@ -33,6 +33,7 @@ $(document).ready(function() {
       //   console.log("testEach")
 
     });
+    $('.testClass').DataTable().ajax.reload();
 
   });
 
