@@ -22,10 +22,6 @@ $(document).ready(function() {
       // $('.bill-rows').each(function() {
       //   console.log("testEach")
 
-
-
-      });
-
     });
 
   });
