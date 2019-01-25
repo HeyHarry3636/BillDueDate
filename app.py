@@ -509,6 +509,7 @@ def billsPaidCheckboxes():
 		_bill_id = request.form['bill_billId']
 		_hasTheBillBeenPaid = request.form['bill_billPaid']
 
+		print("\n")
 		print("_bill_id = " + _bill_id)
 		print("JS _hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
 		print("type JS _hasTheBillBeenPaid = " + str(type(_hasTheBillBeenPaid)))
