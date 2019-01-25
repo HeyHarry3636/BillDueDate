@@ -8,8 +8,6 @@ $(document).ready(function() {
     var hasTheBillBeenPaid = !$('#has_been_paid'+bill_id).is(':checked');
     console.log("[saveCheckboxes.js] | hasTheBillBeenPaid = " + hasTheBillBeenPaid)
 
-    var billTable = $('.bill-rows').DataTable()
-
     req = $.ajax({
       url : '/billsPaidCheckboxes',
       type : 'POST',
@@ -20,7 +18,8 @@ $(document).ready(function() {
     req.done(function(data) {
       $('#has_been_paid'+bill_id).fadeOut(200).fadeIn(200);
 
-      billTable.ajax.reload()
+      // $('.bill-rows').load();
+      $('.bill-rows').html(response);
       // location.reload();
 
       // $('.bill-rows').DataTable().ajax.reload();
