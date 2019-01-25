@@ -19,7 +19,7 @@ $(document).ready(function() {
       $('#has_been_paid'+bill_id).fadeOut(200).fadeIn(200);
       // $('.bill-rows').fadeOut(200).fadeIn(200);
 
-      var billTable = document.getElementByClassName("bill-rows");
+      var billTable = document.getElementsByClassName("bill-rows");
       billTable.refresh();
 
       // Need the DataTable extension, included on the layout.html page
