@@ -20,9 +20,9 @@ $(document).ready(function() {
 
       // Need the DataTable extension, included on the layout.html page
       // $('.bill-rows').DataTable().ajax.reload();
-      $('.table').DataTable().ajax.reload();
+      $('.testClass').DataTable().ajax.reload();
 
-      
+
       // $('.bill-rows').load('/dashboard');
       // $('.bill-rows').html(data);
       // location.reload();
