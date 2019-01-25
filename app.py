@@ -508,15 +508,6 @@ def billsPaidCheckboxes():
 		print("_bill_id = " + _bill_id)
 		print("_hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
 
-		# Getting the checkboxes for bills_paid
-		haveBillsBeenPaid = request.form.getlist('hasBeenPaid')
-		print("request.form.getlist('hasBeenPaid') = " + request.form.getlist('hasBeenPaid'))
-		print("haveBillsBeenPaid = " + haveBillsBeenPaid)
-
-		for stuff in haveBillsBeenPaid:
-			print("stuff = " + stuff)
-
-
 		#
 		# conn = mysql.connect()
 		# cursor = conn.cursor()
@@ -528,7 +519,12 @@ def billsPaidCheckboxes():
 		#
 		#
 		# conn.commit()
-		return json.dumps({'result' : 'success', haveBillsBeenPaid : 'test' })
+		# return json.dumps({'result' : 'success',
+		# 					'bank_currentAmount' : _bank_currentAmount,
+		# 					'bank_payDayAmount' : _bank_payDayAmount,
+		# 					'bank_nextPayDate' : _bank_nextPayDate})
+
+		return json.dumps({'result' : 'success', "hasTheBillBeenPaid" : _hasTheBillBeenPaid })
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))

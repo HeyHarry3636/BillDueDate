@@ -4,6 +4,7 @@ $(document).ready(function() {
   $('.testCheckbox').mouseup(function() {
     var bill_id = $(this).attr('bill_id');
     console.log("bill_id = " + bill_id)
+
     var hasTheBillBeenPaid = !$('#has_been_paid'+bill_id).is(':checked');
     console.log("hasTheBillBeenPaid = " + hasTheBillBeenPaid)
 
