@@ -22,7 +22,7 @@ $(document).ready(function() {
         console.log("testEach")
 
         reqDash = $.ajax({
-          url : '/dashboard'
+          url : '/dashboard',
           type : 'GET'
         });
 
