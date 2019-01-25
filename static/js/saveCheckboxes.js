@@ -14,12 +14,14 @@ $(document).ready(function() {
       data : { bill_billId : bill_id, bill_billPaid : hasTheBillBeenPaid }
     });
 
+    $('.bill-rows').DataTable().ajax.reload();
+
     // data = the passed back data from the app.py updateTest function
     req.done(function(data) {
       $('#has_been_paid'+bill_id).fadeOut(200).fadeIn(200);
       // location.reload();
 
-      $('.bill-rows').DataTable().ajax.reload();
+      // $('.bill-rows').DataTable().ajax.reload();
 
       // $('.bill-rows').each(function() {
       //   console.log("testEach")
