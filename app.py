@@ -533,8 +533,7 @@ def billsPaidCheckboxes():
 			_PY_hasTheBillBeenPaid = None
 			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
 
-		# print("Type Python _PY_hasTheBillBeenPaid = " + str(type(_PY_hasTheBillBeenPaid)))
-		print("Type Python _PY_hasTheBillBeenPaid = " + type(_PY_hasTheBillBeenPaid))
+		print("Type Python _PY_hasTheBillBeenPaid = " + str(type(_PY_hasTheBillBeenPaid)))
 		print("Python _PY_hasTheBillBeenPaid = " + str(_PY_hasTheBillBeenPaid))
 
 		cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
