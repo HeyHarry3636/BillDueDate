@@ -517,6 +517,14 @@ def billsPaidCheckboxes():
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
+		cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
+		_currentBill = cursor.fetchone()
+
+		# conn = mysql.connect()
+		# cursor = conn.cursor()
+		# cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
+		# _bank_id = cursor.fetchone()
+
 		# Convert from lowercase Javascript true/false to Python True/False
 		if _hasTheBillBeenPaid == "true":
 			_PY_hasTheBillBeenPaid = True
@@ -528,27 +536,10 @@ def billsPaidCheckboxes():
 			_PY_hasTheBillBeenPaid = None
 			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
 
-		print("Type Python _PY_hasTheBillBeenPaid = " + str(type(_PY_hasTheBillBeenPaid)))
-		print("Python _PY_hasTheBillBeenPaid = " + str(_PY_hasTheBillBeenPaid))
-
-		cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
-		_currentBill = cursor.fetchone()
-
-		print(_currentBill)
-		print(str(type(_currentBill)))
-		#
-		# conn = mysql.connect()
-		# cursor = conn.cursor()
-		# cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
-		# _bank_id = cursor.fetchone()
-		#
-
 		# Get current due date of active bill
 		# bill_date at index[6] of _currentBill tuple
 		print("_currentBill[6] = " + str(_currentBill[6]))
 
-		for i in range(0, len(_currentBill)):
-			print(_currentBill[i])
 		# cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s,
 		# 										bank_payDayAmount = %s,
 		#										bank_nextPayDate = %s
