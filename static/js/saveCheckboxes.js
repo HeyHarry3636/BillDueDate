@@ -18,8 +18,8 @@ $(document).ready(function() {
     req.done(function(data) {
       $('#has_been_paid'+bill_id).fadeOut(200).fadeIn(200);
 
-      // $('.bill-rows').load();
-      $('.bill-rows').html(data);
+      $('.bill-rows').load(/dashboard');
+      // $('.bill-rows').html(data);
       // location.reload();
 
       // $('.bill-rows').DataTable().ajax.reload();
