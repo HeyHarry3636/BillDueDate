@@ -8,6 +8,8 @@ $(document).ready(function() {
     var hasTheBillBeenPaid = !$('#has_been_paid'+bill_id).is(':checked');
     console.log("[saveCheckboxes.js] | hasTheBillBeenPaid = " + hasTheBillBeenPaid)
 
+    $('.bill-rows').DataTable();
+
     req = $.ajax({
       url : '/billsPaidCheckboxes',
       type : 'POST',
@@ -17,27 +19,10 @@ $(document).ready(function() {
     // data = the passed back data from the app.py updateTest function
     req.done(function(data) {
       $('#has_been_paid'+bill_id).fadeOut(200).fadeIn(200);
-      // $('.bill-rows').fadeOut(200).fadeIn(200);
-
-      $('.bill-rows').load('.bill-rows');
-
-      // var billTable = document.getElementsByClassName("bill-rows");
-      // billTable.refresh();
-      // billTable.reload();
-
-      // Need the DataTable extension, included on the layout.html page
-      // $('.bill-rows').DataTable().ajax.reload();
-      // $('.testClass').DataTable().ajax.reload();
-
-
-      // $('.bill-rows').load('/dashboard');
-      // $('.bill-rows').html(data);
       // location.reload();
 
-      // $('.bill-rows').DataTable().ajax.reload();
+      // $('.bill-rows').load('/dashboard .bill-rows');
 
-      // $('.bill-rows').each(function() {
-      //   console.log("testEach")
 
     });
 
