@@ -17,7 +17,10 @@ $(document).ready(function() {
     // data = the passed back data from the app.py updateTest function
     req.done(function(data) {
       $('#has_been_paid'+bill_id).fadeOut(200).fadeIn(200);
-      $('.bill-rows').fadeOut(200).fadeIn(200);
+      // $('.bill-rows').fadeOut(200).fadeIn(200);
+
+      var table = document.getElementById("has_been_paid");
+      table.refresh();
 
       // Need the DataTable extension, included on the layout.html page
       // $('.bill-rows').DataTable().ajax.reload();
