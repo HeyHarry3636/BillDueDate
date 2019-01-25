@@ -511,7 +511,7 @@ def billsPaidCheckboxes():
 
 		print("_bill_id = " + _bill_id)
 		print("JS _hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
-		print("\n")
+		print("type JS _hasTheBillBeenPaid = " + type(_hasTheBillBeenPaid))
 
 		conn = mysql.connect()
 		cursor = conn.cursor()
