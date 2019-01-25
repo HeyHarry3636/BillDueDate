@@ -21,9 +21,10 @@
 $(document).ready(function() {
 
   $('.testCheckbox').each(function () {
-      var answer = $('has_been_paid').prop("checked", true)
-
-      alert("Do something for: " + answer);
+      // var answer = $('has_been_paid').prop("checked", true)
+      var answer = $("#has_been_paid").val();
+      
+      // alert("Do something for: " + answer);
       console.log("Do something for: " + answer);
    });
 
