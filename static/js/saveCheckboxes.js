@@ -13,7 +13,6 @@ $(document).ready(function() {
       data : { bill_billId : bill_id, bill_billPaid : hasTheBillBeenPaid }
     });
 
-    console.log(data)
 
     // // data = the passed back data from the app.py updateTest function
     // req.done(function(data) {
