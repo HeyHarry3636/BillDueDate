@@ -59,7 +59,7 @@
           <!-- <td>{{bill.bill_autoWithdrawal}}</td> -->
 
           <form action="/billsPaidCheckboxes" method="POST">
-            <td><input type="checkbox" bill_id="{{ bill.bill_id }}" class="testCheckbox" name="hasBeenPaid" id="has_been_paid"/></td>
+            <td><input type="checkbox" bill_id="{{ bill.bill_id }}" class="testCheckbox" name="hasBeenPaid" id="has_been_paid{{ bill.bill_id }}"/></td>
               <!-- <td>{{bill.bill_paid}}</td> -->
           </form>
 
