@@ -513,13 +513,15 @@ def billsPaidCheckboxes():
 		print("JS _hasTheBillBeenPaid = " + _hasTheBillBeenPaid)
 		print("type JS _hasTheBillBeenPaid = " + str(type(_hasTheBillBeenPaid)))
 
-		conn = mysql.connect()
-		cursor = conn.cursor()
+		# conn = mysql.connect()
+		# cursor = conn.cursor()
 
 		# Convert from lowercase Javascript true/false to Python True/False
 		if _hasTheBillBeenPaid == "true":
+			print("test1")
 			_PY_hasTheBillBeenPaid = True
 		elif _hasTheBillBeenPaid == "false":
+			print("test2")
 			_PY_hasTheBillBeenPaid = False
 		else:
 			_PY_hasTheBillBeenPaid = None
@@ -527,10 +529,10 @@ def billsPaidCheckboxes():
 
 		print("Python _PY_hasTheBillBeenPaid = " + _PY_hasTheBillBeenPaid)
 
-		cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
-		_currentBill = cursor.fetchone()
+#		cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
+#		_currentBill = cursor.fetchone()
 
-		print(_currentBill)
+#		print(_currentBill)
 		#
 		# conn = mysql.connect()
 		# cursor = conn.cursor()
@@ -539,8 +541,8 @@ def billsPaidCheckboxes():
 		#
 
 
-		for i in range(0, len(_currentBill)):
-			print(_currentBill[i])
+#		for i in range(0, len(_currentBill)):
+#			print(_currentBill[i])
 		# cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s,
 		# 										bank_payDayAmount = %s,
 		#										bank_nextPayDate = %s
