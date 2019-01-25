@@ -534,7 +534,7 @@ def billsPaidCheckboxes():
 			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
 
 		app.logger.info("test text")
-		print("Type Python _PY_hasTheBillBeenPaid = " + type(_PY_hasTheBillBeenPaid))
+		print("Type Python _PY_hasTheBillBeenPaid = " + str(type(_PY_hasTheBillBeenPaid)))
 		print("Python _PY_hasTheBillBeenPaid = " + str(_PY_hasTheBillBeenPaid))
 
 		cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
@@ -570,8 +570,8 @@ def billsPaidCheckboxes():
 
 		return json.dumps({'result' : 'success', "hasTheBillBeenPaid" : _PY_hasTheBillBeenPaid })
 
-	except Exception as e:
-		return render_template('error.html', error = str(e))
+	# except Exception as e:
+	# 	return render_template('error.html', error = str(e))
 
 	finally:
 		if 'cursor' in locals():
