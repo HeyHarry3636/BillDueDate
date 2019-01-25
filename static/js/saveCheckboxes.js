@@ -19,8 +19,10 @@ $(document).ready(function() {
       $('#has_been_paid'+bill_id).fadeOut(200).fadeIn(200);
 
       // Need the DataTable extension, included on the layout.html page
-      $('.bill-rows').DataTable().ajax.reload();
+      // $('.bill-rows').DataTable().ajax.reload();
+      $('.table').DataTable().ajax.reload();
 
+      
       // $('.bill-rows').load('/dashboard');
       // $('.bill-rows').html(data);
       // location.reload();
