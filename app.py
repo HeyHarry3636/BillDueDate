@@ -519,17 +519,12 @@ def billsPaidCheckboxes():
 
 		# Convert from lowercase Javascript true/false to Python True/False
 		if _hasTheBillBeenPaid == "true":
-			print("test1")
 			_PY_hasTheBillBeenPaid = True
-			print("test1 afterVarSet")
 			# _PY_hasTheBillBeenPaid = "Y"
 		elif _hasTheBillBeenPaid == "false":
-			print("test2")
 			_PY_hasTheBillBeenPaid = False
-			print("test2 afterVarSet")
 			# _PY_hasTheBillBeenPaid = "N"
 		else:
-			print("test3")
 			_PY_hasTheBillBeenPaid = None
 			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
 
@@ -540,6 +535,7 @@ def billsPaidCheckboxes():
 		_currentBill = cursor.fetchone()
 
 		print(_currentBill)
+		print(str(type(_currentBill)))
 		#
 		# conn = mysql.connect()
 		# cursor = conn.cursor()
