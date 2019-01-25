@@ -544,6 +544,11 @@ def billsPaidCheckboxes():
 			#_PY_hasTheBillBeenPaid = None
 			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
 
+		cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
+		_currentBillUpdated = cursor.fetchone()
+
+		print("_currentBillUpdated[6] = " + str(_currentBillUpdated[6]))
+
 		# cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s,
 		# 										bank_payDayAmount = %s,
 		#										bank_nextPayDate = %s
