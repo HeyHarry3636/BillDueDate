@@ -519,12 +519,12 @@ def billsPaidCheckboxes():
 		# Convert from lowercase Javascript true/false to Python True/False
 		if _hasTheBillBeenPaid == "true":
 			print("test1")
-			# _PY_hasTheBillBeenPaid = True
-			_PY_hasTheBillBeenPaid = "Y"
+			_PY_hasTheBillBeenPaid = True
+			# _PY_hasTheBillBeenPaid = "Y"
 		elif _hasTheBillBeenPaid == "false":
 			print("test2")
-			# _PY_hasTheBillBeenPaid = False
-			_PY_hasTheBillBeenPaid = "N"
+			_PY_hasTheBillBeenPaid = False
+			# _PY_hasTheBillBeenPaid = "N"
 		else:
 			_PY_hasTheBillBeenPaid = None
 			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
