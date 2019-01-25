@@ -562,7 +562,7 @@ def billsPaidCheckboxes():
 		# 					'bank_payDayAmount' : _bank_payDayAmount,
 		# 					'bank_nextPayDate' : _bank_nextPayDate})
 
-		return json.dumps({'result' : 'success', "hasTheBillBeenPaid" : _hasTheBillBeenPaid })
+		return json.dumps({'result' : 'success', "hasTheBillBeenPaid" : _PY_hasTheBillBeenPaid })
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
