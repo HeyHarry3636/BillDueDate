@@ -16,7 +16,7 @@ $(document).ready(function() {
 
     // data = the passed back data from the app.py updateTest function
     req.done(function(data) {
-      $('#has_been_paid'+bill_id).fadeOut(1000).fadeIn(1000);
+      $('#has_been_paid'+bill_id).fadeOut(200).fadeIn(200);
       // $('currentInput'+bank_id).val(data.bank_currentAmount);
     });
 

@@ -534,7 +534,7 @@ def billsPaidCheckboxes():
 		if _hasTheBillBeenPaid == "true":
 			#_PY_hasTheBillBeenPaid = True
 			# _PY_hasTheBillBeenPaid = "Y"
-			cursor.execute('UPDATE tbl_bill SET bill_date = %s WHERE bill_id = %s', ("2019-01-19", _bill_id))
+			cursor.execute('UPDATE tbl_bill SET bill_date = %s WHERE bill_id = %s', ("2019-02-02", _bill_id))
 			newBillData = cursor.fetchone()
 
 		elif _hasTheBillBeenPaid == "false":
