@@ -530,18 +530,13 @@ def billsPaidCheckboxes():
 		print("_currentBill[2] = " + str(_currentBill[2]))
 		print("_currentBill[6] = " + str(_currentBill[6]))
 
-		# Convert from lowercase Javascript true/false to Python True/False
+		# if the checkbox has been selected for the 'bill_paid'
+		# update the bill date to the next interval in the recurrence schedule
 		if _hasTheBillBeenPaid == "true":
-			#_PY_hasTheBillBeenPaid = True
-			# _PY_hasTheBillBeenPaid = "Y"
 			cursor.execute('UPDATE tbl_bill SET bill_date = %s WHERE bill_id = %s', ("2019-02-02", _bill_id))
 			newBillData = cursor.fetchone()
 
-		elif _hasTheBillBeenPaid == "false":
-			_PY_hasTheBillBeenPaid = False
-			# _PY_hasTheBillBeenPaid = "N"
 		else:
-			#_PY_hasTheBillBeenPaid = None
 			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
 
 		cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
