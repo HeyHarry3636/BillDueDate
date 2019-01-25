@@ -528,7 +528,7 @@ def billsPaidCheckboxes():
 
 
 		for i in range(0, len(_currentBill)):
-			print(i)
+			print(_currentBill[i])
 		# cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s,
 		# 										bank_payDayAmount = %s,
 		#										bank_nextPayDate = %s
