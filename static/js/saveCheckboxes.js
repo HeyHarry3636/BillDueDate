@@ -20,8 +20,14 @@ $(document).ready(function() {
 
       $('.bill-rows').each(function() {
         console.log("testEach")
+
+        reqDash = $.ajax({
+          url : '/dashboard'
+          type : 'GET'
+        });
+
       });
-      // $('currentInput'+bank_id).val(data.bank_currentAmount);
+
     });
 
   });
