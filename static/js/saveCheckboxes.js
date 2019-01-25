@@ -20,7 +20,8 @@ $(document).ready(function() {
       // $('.bill-rows').fadeOut(200).fadeIn(200);
 
       var billTable = document.getElementsByClassName("bill-rows");
-      billTable.refresh();
+      // billTable.refresh();
+      billTable.reload();
 
       // Need the DataTable extension, included on the layout.html page
       // $('.bill-rows').DataTable().ajax.reload();
