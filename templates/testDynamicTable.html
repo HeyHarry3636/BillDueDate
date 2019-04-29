@@ -1,16 +1,18 @@
-{% extends 'layout.html' %}
+<h1>Click on a row:</h1>
 
-Click on a row:
+<body>
+  <table>
+    <tr>
+      <td>
+        <p>TEST ROW</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <p>TEST TEXT HERE; TEST TEXT HERE; TEST TEXT HERE; TEST TEXT HERE</p>
+      </td>
+    </tr>
+  </table>
 
-<table>
-  <tr>
-    <td>
-      <p>TEST ROW</p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3">
-      <p>TEST TEXT HERE; TEST TEXT HERE; TEST TEXT HERE; TEST TEXT HERE</p>
-    </td>
-  </tr>
-</table>
+  <script src="static/js/dynamicTable.js"></script>
+</body>
