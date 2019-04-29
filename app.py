@@ -737,6 +737,19 @@ def updateBillAmounts():
 			conn.close()
 
 ###############################################################################################
+# DYNAMIC TABLE TESTING
+@app.route('/testDynamicTable')
+def index():
+	return render_template('testDynamicTable.html')
+
+
+###############################################################################################
+
+
+
+
+
+
 # Main
 if __name__ == '__main__':
 	# For running on server
