@@ -87,19 +87,5 @@
     <a class="btn btn-success" href="/addBill">Add Bill</a>
     <!-- <button class="btn btn-secondary saveCheckboxButton">Save</button> -->
   </div>
-  <script type="text/javascript">
-    $(function() {
-        $("td[colspan=3]").find("p").hide();
-        $("table").click(function(event) {
-            event.stopPropagation();
-            var $target = $(event.target);
-            if ( $target.closest("td").attr("colspan") > 1 ) {
-                $target.slideUp();
-            } else {
-                $target.closest("tr").next().find("p").slideToggle();
-            }
-        });
-    });
-  </script>
 
 {% endblock %}
