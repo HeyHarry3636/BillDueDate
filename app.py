@@ -739,7 +739,7 @@ def updateBillAmounts():
 ###############################################################################################
 # DYNAMIC TABLE TESTING
 @app.route('/testDynamicTable')
-def index():
+def testDynamicTable():
 	return render_template('testDynamicTable.html')
 
 
