@@ -52,6 +52,16 @@
         </tr>
       </thead>
       {% for bill in bill_dict %}
+
+
+        <tr>
+          <td colspan="5">
+            <label for="i">{{bill.bill_id}}</label>
+            <input type="checkbox" name="i" id="i" data-toggle="toggle">
+          </td>
+        </tr>
+
+
         <tr class="bill-rows">
           <td>{{bill.bill_name}}</td>
           <td>${{bill.bill_amount}}</td>
@@ -68,10 +78,17 @@
           <!-- <td>{{bill.bill_description}}</td> -->
           <td>${{bill.bill_runningTotal}}</td>
           <td></td>
+
+
+          <td>
+            <button>trigger</button>
+          </td>
+
+
           <td><a href="editBill/{{bill.bill_id}}" class="btn btn-secondary float-right btn-sm">Edit</a></td>
           <td>
             <form method="POST" action="{{url_for('deleteBill', id=bill.bill_id)}}">
-              <input type="hidden" name="_method" value="DELETE">
+              <input type="hidden" name="_method" va`lue="DELETE">
               <input type="submit" value="Delete" class="btn btn-danger btn-sm">
             </form>
           </td>
