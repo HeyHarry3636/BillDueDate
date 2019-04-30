@@ -56,13 +56,18 @@
 
         <tr>
           <td colspan="5">
-            <label for={{bill}}>{{bill}}</label>
-            <input type="checkbox" name="{{bill}}" id="{{bill}}" data-toggle="toggle">
+            <label for={{bill.bill_id}}>{{bill.bill_id}}</label>
+            <input type="checkbox" name="{{bill.bill_id}}" id="{{bill.bill_id}}" data-toggle="toggle">
           </td>
         </tr>
 
 
-        <tr class="bill-rows" class="hide">          
+        <tr class="bill-rows" class="hide">
+
+          <td>
+              <button>trigger</button>
+          </td>
+
           <td>{{bill.bill_name}}</td>
           <td>${{bill.bill_amount}}</td>
           <td>{{bill.bill_date}}</td>
