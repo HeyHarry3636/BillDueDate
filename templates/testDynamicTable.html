@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <link type="text/css" rel="stylesheet" href="static/css/dynamicTable.css">
+  <!--<link type="text/css" rel="stylesheet" href="static/css/dynamicTable.css">-->
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
   <script src="static/js/dynamicTable.js"></script>
 </head>
 
-Click on a row for more info:
-<table>
-    <tr><td><p>Name</p></td><td><p>Age</p></td><td><p>Info</p></td></tr>
-    <tr><td colspan="3"><p>Blah blah blah blah blah blah blah blah blah blah blah
-        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-        blah blah blah blah blah blah blah blah blah blah blah blah blah blah.</p>
-    </td></tr>
-
-    <tr><td><p>Name</p></td><td><p>Age</p></td><td><p>Info</p></td></tr>
-    <tr><td colspan="3"><p>Blah blah blah blah blah blah blah blah blah blah blah
-        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-        blah blah blah blah blah blah blah blah blah blah blah blah blah blah.</p>
-    </td></tr>
-
-    <tr><td><p>Name</p></td><td><p>Age</p></td><td><p>Info</p></td></tr>
-    <tr><td colspan="3"><p>Blah blah blah blah blah blah blah blah blah blah blah
-        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-        blah blah blah blah blah blah blah blah blah blah blah blah blah blah.</p>
-    </td></tr>
+<table border="1">
+    <tr>
+        <td>Cell 1</td>
+        <td>Cell 2</td>
+        <td>Cell 3</td>
+        <td>Cell 4</td>
+        <td><a href="#" id="show_1">Show Extra</a></td>
+    </tr>
+    <tr>
+        <td colspan="5">
+            <div id="extra_1" style="display: none;">
+                <br>hidden row
+                <br>hidden row
+                <br>hidden row
+            </div>
+        </td>
+    </tr>
 </table>
