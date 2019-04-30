@@ -1,6 +1,12 @@
-<button type="button" onclick="document.write(5)">Try it</button>
-
-$("a[id^=show_]").click(function(event) {
-    $("#extra_" + $(this).attr('id').substr(5)).slideToggle("slow");
-    event.preventDefault();
-})
+$(function() {
+    $("td[colspan=3]").find("p").hide();
+    $("table").click(function(event) {
+        event.stopPropagation();
+        var $target = $(event.target);
+        if ( $target.closest("td").attr("colspan") > 1 ) {
+            $target.slideUp();
+        } else {
+            $target.closest("tr").next().find("p").slideToggle();
+        }
+    });
+});
