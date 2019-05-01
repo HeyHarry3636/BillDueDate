@@ -4,14 +4,8 @@
 //     });
 // });
 
-// $(document).ready(function() {
-//     $('[data-toggle="toggle"]').delegate('tr', 'click', function(){
-//         $(this).parents().next('.hide').toggle();
-//     });
-// });
-
 $(document).ready(function() {
-    $(".bill-rows").delegate('tr', 'click', function(){
+    $('[data-toggle="toggle"]').delegate('tr', 'click', function(){
         $(this).parents().next('.hide').toggle();
     });
 });
