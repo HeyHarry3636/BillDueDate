@@ -5,7 +5,7 @@
 // });
 
 $(document).ready(function() {
-    $('[data-toggle="toggle"]').delegate('tr', 'click', function(){
+    $('[data-toggle="toggle"]').delegate('label', 'click', function(){
         $(this).parents().next('.hide').toggle();
     });
 });
