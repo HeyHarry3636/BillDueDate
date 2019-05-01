@@ -6,7 +6,7 @@
 
 
 $(document).ready(function() {
-  $('[data-toggle="toggle"]').click(function(){
-    $("#billDesc").hide();
+  $("#billDesc").click(function(){
+    $(this).hide();
   });
 });
