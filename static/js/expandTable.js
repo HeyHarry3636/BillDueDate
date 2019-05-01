@@ -7,6 +7,6 @@
 
 $(document).ready(function() {
   $('[data-toggle="toggle"]').click(function(){
-    $("#biilDesc").hide();
+    $("#billDesc").hide();
   });
 });
