@@ -29,7 +29,7 @@ $(document).ready(function() {
     var bill_id = $(this).attr('bill_id');
     console.log("[expandTable.js] | bill_id = " + bill_id)
 
-    $(.hiddenDesc).show("fast");
+    $('.hiddenDesc').show("fast");
 
   });
 
