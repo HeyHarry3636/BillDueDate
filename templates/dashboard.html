@@ -81,11 +81,14 @@
           </td>
         </tr>
 
-        <tr>
-          <td colspan="7">
-            <p bill_id="{{ bill.bill_id }}" id="billDesc{{ bill.bill_id }}">{{bill.bill_description}}</p>
-          </td>
-        </tr>
+        <div class="hiddenDesc" style="height: 1.2em; overflow: hidden;">
+          <tr>
+            <td colspan="8">
+              <p bill_id="{{ bill.bill_id }}" id="billDesc{{ bill.bill_id }}">{{bill.bill_description}}</p>
+            </td>
+          </tr>
+        </div>
+
 
       {% endfor %}
 
