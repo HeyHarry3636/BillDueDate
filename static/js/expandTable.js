@@ -16,10 +16,11 @@ $(document).ready(function() {
   //   $('#rowID'+bill_id).hide()
 // FUNCTIONAL ^^ --------------------------------------------------
 
-$('.bill-rows').mouseup(function() {
-  var bill_id = $(this).attr('bill_id');
-  console.log("[expandTable.js] | rowID = " + bill_id)
+  $('.bill-rows').mouseup(function() {
+    var bill_id = $(this).attr('bill_id');
+    console.log("[expandTable.js] | rowID = " + bill_id)
 
-  $('#rowID'+bill_id).hide()
-
+    $('#rowID'+bill_id).hide()
+    
+  });
 });
