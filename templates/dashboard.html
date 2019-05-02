@@ -82,7 +82,8 @@
         </tr>
 
         <tr>
-          <p bill_id="{{ bill.bill_id }}" id="billDesc{{ bill.bill_id }}" style="visibility:hidden;">{{bill.bill_description}}</p>
+          <!-- <p bill_id="{{ bill.bill_id }}" id="billDesc{{ bill.bill_id }}" style="visibility:hidden;">{{bill.bill_description}}</p> -->
+          <p bill_id="{{ bill.bill_id }}" id="billDesc{{ bill.bill_id }}">{{bill.bill_description}}</p>
         </tr>
 
       {% endfor %}
