@@ -20,7 +20,7 @@ $(document).ready(function() {
     var bill_id = $(this).attr('bill_id');
     console.log("[expandTable.js] | rowID = " + bill_id)
 
-    $('#rowID'+bill_id).hide()
-    
+    $('#billDesc'+bill_id).hide()
+
   });
 });
