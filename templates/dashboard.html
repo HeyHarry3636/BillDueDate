@@ -56,7 +56,7 @@
 
         <tr>
           <td colspan="5">
-            <input type="button" name="{{bill.bill_id}}" id="{{bill.bill_id}}" data-toggle="toggle">
+            <input type="button" name="{{ bill.bill_id }}" id="{{ bill.bill_id }}" data-toggle="toggle">
           </td>
         </tr>
 
@@ -77,12 +77,12 @@
             <!-- <td><input type="checkbox" class="testCheckbox" name="hasBeenPaid" id="has_been_paid"/></td> -->
 
 
-            <td id="billDesc">{{bill.bill_description}}</td>
+            <td bill_id="{{ bill.bill_id }}" id="billDesc{{ bill.bill_id }}">{{bill.bill_description}}</td>
 
 
             <td>${{bill.bill_runningTotal}}</td>
             <td></td>
-            <td><a href="editBill/{{bill.bill_id}}" class="btn btn-secondary float-right btn-sm">Edit</a></td>
+            <td><a href="editBill/{{ bill.bill_id }}" class="btn btn-secondary float-right btn-sm">Edit</a></td>
             <td>
               <form method="POST" action="{{url_for('deleteBill', id=bill.bill_id)}}">
                 <input type="hidden" name="_method" va`lue="DELETE">
