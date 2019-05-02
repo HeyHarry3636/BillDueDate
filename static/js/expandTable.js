@@ -1,10 +1,3 @@
-// $(document).ready(function() {
-//     $('[data-toggle="toggle"]').change(function(){
-//         $(this).parents().next('.hide').toggle();
-//     });
-// });
-
-
 $(document).ready(function() {
 
 // FUNCTIONAL vv --------------------------------------------------
@@ -32,7 +25,4 @@ $(document).ready(function() {
     $('#billDesc'+bill_id).toggle();
 
   });
-
-
-
 });
