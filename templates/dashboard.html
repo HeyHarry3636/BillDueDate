@@ -79,10 +79,12 @@
               <input type="submit" value="Delete" class="btn btn-danger btn-sm">
             </form>
           </td>
-
-          <p bill_id="{{ bill.bill_id }}" id="billDesc{{ bill.bill_id }}" style="visibility:hidden;">{{bill.bill_description}}</p>
-
         </tr>
+
+        <tr>
+          <p bill_id="{{ bill.bill_id }}" id="billDesc{{ bill.bill_id }}" style="visibility:hidden;">{{bill.bill_description}}</p>
+        </tr>
+
       {% endfor %}
 
     </table>
