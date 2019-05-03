@@ -173,7 +173,7 @@ def dashboard():
 		if request.method == 'GET':
 
 			print("hasBankData = " + str(hasBankData))
-			print("hasBankData.getBankInformation() = " + hasBankData.getBankInformation())
+			print("hasBankData.getBankInformation() = " + str(hasBankData.getBankInformation()))
 
 			_user_id = session.get('user_id')
 
