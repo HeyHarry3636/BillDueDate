@@ -173,7 +173,7 @@ def dashboard():
 
 			print("hasBankData = " + str(hasBankData))
 			print("hasBankData.getBankInformation() = " + str(hasBankData.getBankInformation()))
-			print("hasBankData.getBankInformation() should equal FALSE")
+			print("hasBankData.getBankInformation() should equal False")
 
 			print("runningTotal = " + str(runningTotal))
 			print("runningTotal.getRunningTotal() = " + str(runningTotal.getRunningTotal()))
@@ -195,8 +195,11 @@ def dashboard():
 			# print("payDay = " + str(payDay[0].date()))
 
 			# Set initial payday date
-			runningDate.setInitialDate(payDay[0])
-			print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
+			if not payDay:
+				return render_template('addBank.html')
+			else:
+				runningDate.setInitialDate(payDay[0])
+				print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
 
 			# Create a list for future pay days
 			payDayList = []
@@ -751,8 +754,9 @@ def updateBillAmounts():
 		if 'conn' in locals():
 			conn.close()
 
+
 ###############################################################################################
-# DYNAMIC TABLE TESTING
+# TESTING
 @app.route('/testDynamicTable')
 def testDynamicTable():
 	return render_template('testDynamicTable.html')

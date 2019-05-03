@@ -1,10 +1,3 @@
-$(function() {
-  var bankInfo = $(this).attr('hasBankData');
-  console.log("bankInfo = " + bankInfo)
-});
-
-
-
 $(document).ready(function() {
 
 // FUNCTIONAL vv --------------------------------------------------
