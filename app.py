@@ -200,10 +200,13 @@ def dashboard():
 				#List is empty
 				hasBankData.setBankInformation(False)
 				return render_template('dashboard.html', hasBankData=hasBankData.getBankInformation())
-				
-			else:
-				runningDate.setInitialDate(payDay[0])
-				print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
+
+			cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
+			payDay = cursor.fetchone()
+			print("payDay = " + str(payDay))
+
+			runningDate.setInitialDate(payDay[0])
+			print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
 
 			# Create a list for future pay days
 			payDayList = []
