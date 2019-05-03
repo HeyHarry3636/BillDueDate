@@ -168,179 +168,155 @@ def logout():
 @app.route('/dashboard', methods=['GET', 'POST'])
 @is_logged_in
 def dashboard():
-	print("hasBankData = " + str(hasBankData))
 
-	_user_id = session.get('user_id')
+	try:
+		if request.method == 'GET':
 
-	conn = mysql.connect()
-	cursor = conn.cursor()
+			print("hasBankData = " + str(hasBankData))
 
-	# Check to see if there is already a bank account in the database
-	cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
-	payDay = cursor.fetchone()
-	print("payDay = " + str(payDay[0].date()))
+			_user_id = session.get('user_id')
 
-	# Set initial payday date
-	runningDate.setInitialDate(payDay[0])
-	print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
+			conn = mysql.connect()
+			cursor = conn.cursor()
+
+			# Check to see if there is already a bank account in the database
+			cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
+			payDay = cursor.fetchone()
+			print("payDay = " + str(payDay[0].date()))
+
+			# Set initial payday date
+			runningDate.setInitialDate(payDay[0])
+			print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
+
+			# Create a list for future pay days
+			payDayList = []
+			payDayList.append(runningDate.getRunningDate())
+
+			# Project out the next __ 20 __ paydays for now
+			tempPayDay = runningDate.getRunningDate()
+			for i in range(20):
+				# in this case the next payday is 14 days/2 weeks after the initial payday
+				tempPayDay = tempPayDay + datetime.timedelta(days=14)
+				payDayList.append(tempPayDay)
+
+#			for i in range(0, len(payDayList)):
+#				app.logger.info("payDayList[" + str(i) + "] = " + str(payDayList[i]))
+
+			# Get each bill for the user
+			cursor.callproc('sp_getBillByUser', (_user_id,))
+			billData = cursor.fetchall()
+
+			# Parse data and convert to dictionary to return easily as JSON
+			bill_dict_notSorted = []
+
+			# billData is a list of tuples billData = ( (), (), () )
+			for bill in billData:
+				bill_item = {
+					'bill_id': bill[0],
+					'user_id': bill[1],
+					'bill_name': bill[2],
+					'bill_description': bill[3],
+					# Set the bill amount to decimal.Decimal which is what the
+					# running total class type is
+					'bill_amount': decimal.Decimal(bill[4]),
+					'bill_autoWithdrawal': bill[5],
+					'bill_date': bill[6],
+					'recur_id': bill[7],
+					'bill_createdDate': bill[8],
+					'bill_paid': bill[9]#,
+				}
+				bill_dict_notSorted.append(bill_item)
+
+			# bill_dict is a list of dictionaries billData = ( { : }, { : }, { : } )
+			# This function will sort the list by bill_date
+			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
+			# Get bank details for the user,
+			# if bankInfo does not exist, show 'addBank' button on dashboard
+			cursor.callproc('sp_getBankByUser', (_user_id,))
+			bankData = cursor.fetchall()
+
+			# Pythonic way to check if a list is empty
+			if not bankData:
+				#List is empty
+				hasBankData.setBankInformation(False)
+				return render_template('dashboard.html', bill_dict=bill_dict, hasBankData=hasBankData.getBankInformation())
+			else:
+				#List has data
+				hasBankData.setBankInformation(True)
+
+				# Parse data and convert to dictionary to return easily as JSON
+				bank_dict = []
+				for bank in bankData:
+					bank_item = {
+						'bank_id': bank[0],
+						'user_id': bank[1],
+						'bank_currentAmount': str(bank[2]),
+						'bank_payDayAmount': str(bank[3]),
+						'bank_nextPayDate': bank[4],
+						'recur_id': bank[5],
+						'bank_createdDate': bank[6]
+					}
+					bank_dict.append(bank_item)
+
+					# Set the runningTotal to the current value of the bank account
+					#runningTotal.setInitialAmount(50000)
+					runningTotal.setInitialAmount(bank[2])
+
+				# Create an index to track payDays steps
+				payDayListIndex = 0
+
+				# Calculate runningTotal after sorting by DATE
+				# Append these results to an item named 'bill_runningTotal' that will be rendered in the dashboard.html
+				# For each bill in the bill dictionary, calculate the running total bill amound along with
+				# adding appropriate paydays based on the payday list created above
+				for li in bill_dict:
+					# if bill date is previous OR equal to the first payday (in payday list),
+					# then subtract bill amount from running runningTotal
+					if li['bill_date'] <= payDayList[payDayListIndex].date():
+						# set the new running total, which is based off the current running total minus the bill amount
+						runningTotal.setRunningTotal(li['bill_amount'])
+					# These bills occur after the current payday (which is the first index in the paydaylist),
+					# so increment to the next payDay in the list
+					else:
+						# The first bill that does not meet the criteria (has a bill after the current payday,
+						# which is determined by the payday list created above) will increment the payday
+						# index to the next date in the paydaylist list
+
+						# TODO: this doesn't work if there are two or more pay days between dates
+						# EX: last bill was 2/23, current bill is 3/17, two paydays inbetween,
+						# this does not calculate either of these paydays because the loop below only adds one
+						# to the payday list index
+						if li['bill_date'] <= payDayList[payDayListIndex+1].date():
+							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'])
+							runningTotal.setRunningTotal(li['bill_amount'])
+							payDayListIndex = payDayListIndex + 1
+
+						# TODO:
+						# Use this loop below for this entire thing, not just following two
+						# for loop to factor in all indices, not just payDayListIndex+1
+						# Refactor this so it applies to all indices
+						else:
+							for x in range(0, len(payDayList)):
+								if li['bill_date'] <= payDayList[x].date():
+									runningTotal.setRunningTotalAfterPayDayMultiple(li['bill_amount'], x-2)
+									runningTotal.setRunningTotal(li['bill_amount'])
+									break
+
+					li['bill_runningTotal'] = runningTotal.getRunningTotal()
 
 
 
 
+				return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation())
 
+	# except Exception as e:
+	# 	return render_template('error.html', error = str(e))
 
-
-
-
-#
-#
-#
-#
-# 	try:
-# 		if request.method == 'GET':
-# 			_user_id = session.get('user_id')
-#
-# 			conn = mysql.connect()
-# 			cursor = conn.cursor()
-#
-# 			# Check to see if there is already a bank account in the database
-# 			cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
-# 			payDay = cursor.fetchone()
-# #			app.logger.info("payDay = " + str(payDay[0].date()))
-#
-# 			# Set initial payday date
-# 			runningDate.setInitialDate(payDay[0])
-# #			print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
-#
-# 			# Create a list for future pay days
-# 			payDayList = []
-# 			payDayList.append(runningDate.getRunningDate())
-#
-# 			# Project out the next __ 20 __ paydays for now
-# 			tempPayDay = runningDate.getRunningDate()
-# 			for i in range(20):
-# 				# in this case the next payday is 14 days/2 weeks after the initial payday
-# 				tempPayDay = tempPayDay + datetime.timedelta(days=14)
-# 				payDayList.append(tempPayDay)
-#
-# #			for i in range(0, len(payDayList)):
-# #				app.logger.info("payDayList[" + str(i) + "] = " + str(payDayList[i]))
-#
-# 			# Get each bill for the user
-# 			cursor.callproc('sp_getBillByUser', (_user_id,))
-# 			billData = cursor.fetchall()
-#
-# 			# Parse data and convert to dictionary to return easily as JSON
-# 			bill_dict_notSorted = []
-#
-# 			# billData is a list of tuples billData = ( (), (), () )
-# 			for bill in billData:
-# 				bill_item = {
-# 					'bill_id': bill[0],
-# 					'user_id': bill[1],
-# 					'bill_name': bill[2],
-# 					'bill_description': bill[3],
-# 					# Set the bill amount to decimal.Decimal which is what the
-# 					# running total class type is
-# 					'bill_amount': decimal.Decimal(bill[4]),
-# 					'bill_autoWithdrawal': bill[5],
-# 					'bill_date': bill[6],
-# 					'recur_id': bill[7],
-# 					'bill_createdDate': bill[8],
-# 					'bill_paid': bill[9]#,
-# 				}
-# 				bill_dict_notSorted.append(bill_item)
-#
-# 			# bill_dict is a list of dictionaries billData = ( { : }, { : }, { : } )
-# 			# This function will sort the list by bill_date
-# 			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
-# 			# Get bank details for the user,
-# 			# if bankInfo does not exist, show 'addBank' button on dashboard
-# 			cursor.callproc('sp_getBankByUser', (_user_id,))
-# 			bankData = cursor.fetchall()
-#
-# 			# Pythonic way to check if a list is empty
-# 			if not bankData:
-# 				#List is empty
-# 				hasBankData.setBankInformation(False)
-# 				return render_template('dashboard.html', bill_dict=bill_dict, hasBankData=hasBankData.getBankInformation())
-# 			else:
-# 				#List has data
-# 				hasBankData.setBankInformation(True)
-#
-# 				# Parse data and convert to dictionary to return easily as JSON
-# 				bank_dict = []
-# 				for bank in bankData:
-# 					bank_item = {
-# 						'bank_id': bank[0],
-# 						'user_id': bank[1],
-# 						'bank_currentAmount': str(bank[2]),
-# 						'bank_payDayAmount': str(bank[3]),
-# 						'bank_nextPayDate': bank[4],
-# 						'recur_id': bank[5],
-# 						'bank_createdDate': bank[6]
-# 					}
-# 					bank_dict.append(bank_item)
-#
-# 					# Set the runningTotal to the current value of the bank account
-# 					#runningTotal.setInitialAmount(50000)
-# 					runningTotal.setInitialAmount(bank[2])
-#
-# 				# Create an index to track payDays steps
-# 				payDayListIndex = 0
-#
-# 				# Calculate runningTotal after sorting by DATE
-# 				# Append these results to an item named 'bill_runningTotal' that will be rendered in the dashboard.html
-# 				# For each bill in the bill dictionary, calculate the running total bill amound along with
-# 				# adding appropriate paydays based on the payday list created above
-# 				for li in bill_dict:
-# 					# if bill date is previous OR equal to the first payday (in payday list),
-# 					# then subtract bill amount from running runningTotal
-# 					if li['bill_date'] <= payDayList[payDayListIndex].date():
-# 						# set the new running total, which is based off the current running total minus the bill amount
-# 						runningTotal.setRunningTotal(li['bill_amount'])
-# 					# These bills occur after the current payday (which is the first index in the paydaylist),
-# 					# so increment to the next payDay in the list
-# 					else:
-# 						# The first bill that does not meet the criteria (has a bill after the current payday,
-# 						# which is determined by the payday list created above) will increment the payday
-# 						# index to the next date in the paydaylist list
-#
-# 						# TODO: this doesn't work if there are two or more pay days between dates
-# 						# EX: last bill was 2/23, current bill is 3/17, two paydays inbetween,
-# 						# this does not calculate either of these paydays because the loop below only adds one
-# 						# to the payday list index
-# 						if li['bill_date'] <= payDayList[payDayListIndex+1].date():
-# 							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'])
-# 							runningTotal.setRunningTotal(li['bill_amount'])
-# 							payDayListIndex = payDayListIndex + 1
-#
-# 						# TODO:
-# 						# Use this loop below for this entire thing, not just following two
-# 						# for loop to factor in all indices, not just payDayListIndex+1
-# 						# Refactor this so it applies to all indices
-# 						else:
-# 							for x in range(0, len(payDayList)):
-# 								if li['bill_date'] <= payDayList[x].date():
-# 									runningTotal.setRunningTotalAfterPayDayMultiple(li['bill_amount'], x-2)
-# 									runningTotal.setRunningTotal(li['bill_amount'])
-# 									break
-#
-# 					li['bill_runningTotal'] = runningTotal.getRunningTotal()
-#
-#
-#
-#
-# 				return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation())
-#
-# 	# except Exception as e:
-# 	# 	return render_template('error.html', error = str(e))
-#
-# 	finally:
-# 		if 'cursor' in locals():
-# 			cursor.close()
-# 		if 'conn' in locals():
-# 			conn.close()
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
 
 ###############################################################################################
 # Bill Methods
