@@ -171,18 +171,6 @@ def dashboard():
 	try:
 		if request.method == 'GET':
 
-			print("hasBankData = " + str(hasBankData))
-			print("hasBankData.getBankInformation() = " + str(hasBankData.getBankInformation()))
-			print("hasBankData.getBankInformation() should equal False")
-
-			print("runningTotal = " + str(runningTotal))
-			print("runningTotal.getRunningTotal() = " + str(runningTotal.getRunningTotal()))
-			print("runningTotal.getRunningTotal() should equal 0.00")
-
-			print("runningDate = " + str(runningDate))
-			print("runningDate.getRunningDate() = " + str(runningDate.getRunningDate()))
-			print("runningDate.getRunningDate() should equal 1/1/1970")
-
 			_user_id = session.get('user_id')
 
 			conn = mysql.connect()
