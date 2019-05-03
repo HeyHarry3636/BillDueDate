@@ -1,4 +1,5 @@
 import decimal, datetime
+
 # Class to check if the user has bank information in the database already
 class cl_HasBankInformation():
     bankInfoDoesExist = None
