@@ -91,7 +91,15 @@
       {% endfor %}
 
     </table>
-    <a class="btn btn-success" href="/addBill">Add Bill</a>
+
+    {% block addBillButton %}
+      {% if hasBankData == False %}
+      <a class="btn btn-success" style="display: none;" href="/addBill">Add Bill</a>
+      {% else %}
+      <a class="btn btn-success" href="/addBill">Add Bill</a>
+      {% endif %}
+    {% endblock addBillButton %}
+    
     <!-- <button class="btn btn-secondary saveCheckboxButton">Save</button> -->
   </div>
 

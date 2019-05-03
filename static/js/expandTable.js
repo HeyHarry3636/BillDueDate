@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-  var bankInfor = $(this).attr('hasBankData');
-  console.log(bankInfor)
-
 // FUNCTIONAL vv --------------------------------------------------
   // $('.bill-rows').mouseup(function() {
   //   var bill_id = $(this).attr('bill_id');
