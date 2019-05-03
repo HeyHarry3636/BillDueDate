@@ -39,6 +39,8 @@ mysql.init_app(app)
 runningTotal = globalVars.cl_calculateRunningTotal(0.00)
 # Create hasBankData class variable to let dashboard know if the user has bank information already
 hasBankData = globalVars.cl_HasBankInformation(False)
+app.logger.info("hasBankData = " + hasBankData)
+
 # Create runningTotaldate so we can calculate when bills ARE
 runningDate = globalVars.cl_calculateRunningDate(datetime.datetime(1970, 1, 1))
 # print("type(runningDate1) = " + str(type(runningDate)))
@@ -130,9 +132,9 @@ def login():
 					session['user_email'] = data[0][1]
 					return redirect(url_for('dashboard'))
 				else:
-					return render_template('login.html', error = 'Wrong email address or password.1')
+					return render_template('login.html', error = 'Wrong email address or password.')
 			else:
-				return render_template('login.html', error = 'Wrong email address or password.2')
+				return render_template('login.html', error = 'Wrong email address or password.')
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
