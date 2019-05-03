@@ -196,7 +196,8 @@ def dashboard():
 
 			# Set initial payday date
 			if not payDay:
-				return render_template('addBank.html')
+				print("if not PayDay")
+				return render_template('addBank.html', form=form)
 			else:
 				runningDate.setInitialDate(payDay[0])
 				print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
