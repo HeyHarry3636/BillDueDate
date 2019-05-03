@@ -168,6 +168,7 @@ def logout():
 @app.route('/dashboard', methods=['GET', 'POST'])
 @is_logged_in
 def dashboard():
+	app.logger.info("hasBankData = " + str(hasBankData))
 
 	try:
 		if request.method == 'GET':
