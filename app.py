@@ -45,7 +45,7 @@ runningDate = globalVars.cl_calculateRunningDate(datetime.datetime(1970, 1, 1))
 # print("type(runningDate1) = " + str(type(runningDate)))
 # runningDate.convertDatetimeToDate(runningDate)
 # print("type(runningDate2) = " + str(type(runningDate)))
-
+#
 
 ###############################################################################################
 # Login/Registration methods
