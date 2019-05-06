@@ -17,7 +17,8 @@ print("#$%#$%#$%#$%#$%#$%#$%#$%#$%#$%             D    E    V              $%#$%
 print("#################################################################################################\n")
 
 # Setup app and mysql instances
-app = Flask(__name__, template_folder=public_html)
+htmlFiles = "public_html"
+app = Flask(__name__, template_folder=htmlFiles)
 mysql = MySQL()
 app.secret_key = 'Bills are due'
 
