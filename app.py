@@ -51,7 +51,7 @@ runningDate = globalVars.cl_calculateRunningDate(datetime.datetime(1970, 1, 1))
 # Login/Registration methods
 @app.route('/')
 def index():
-	return render_template('home.html')
+	return render_template('public_html/home.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
