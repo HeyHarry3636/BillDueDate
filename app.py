@@ -17,7 +17,7 @@ print("#$%#$%#$%#$%#$%#$%#$%#$%#$%#$%             D    E    V              $%#$%
 print("#################################################################################################\n")
 
 # Setup app and mysql instances
-app = Flask(__name__)
+app = Flask(__name__, template_folder=public_html)
 mysql = MySQL()
 app.secret_key = 'Bills are due'
 
@@ -45,13 +45,13 @@ runningDate = globalVars.cl_calculateRunningDate(datetime.datetime(1970, 1, 1))
 # print("type(runningDate1) = " + str(type(runningDate)))
 # runningDate.convertDatetimeToDate(runningDate)
 # print("type(runningDate2) = " + str(type(runningDate)))
-#
+
 
 ###############################################################################################
 # Login/Registration methods
 @app.route('/')
 def index():
-	return render_template('public_html/home.html')
+	return render_template('home.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
