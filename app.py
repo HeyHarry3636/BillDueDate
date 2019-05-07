@@ -768,4 +768,4 @@ def testDynamicTable():
 # Main
 if __name__ == '__main__':
 	# For running on server
-	app.run(host='0.0.0.0', port=5000, debug=True)
+	app.run(host='0.0.0.0', port=5000, debug=True, ssl_context='adhoc')
