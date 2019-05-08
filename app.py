@@ -768,5 +768,6 @@ def testDynamicTable():
 # Main
 if __name__ == '__main__':
 	# For running on server
-	context = ('/etc/letsencrypt/live/billduedate.com/cert.pem', '/etc/letsencrypt/live/billduedate.com/privkey.pem')
-	app.run(host='0.0.0.0', port=5000, debug=True, ssl_context=context)
+	#context = ('/etc/letsencrypt/live/billduedate.com/cert.pem', '/etc/letsencrypt/live/billduedate.com/privkey.pem')
+	#app.run(host='0.0.0.0', port=5000, debug=True, ssl_context=context)
+	app.run(host='0.0.0.0', port=5000, debug=True)
