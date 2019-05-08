@@ -192,10 +192,10 @@ def dashboard():
 
 			cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
 			payDay = cursor.fetchone()
-			print("payDay = " + str(payDay))
+			print("payDay2 = " + str(payDay))
 
 			runningDate.setInitialDate(payDay[0])
-			print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
+			#print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
 
 			# Create a list for future pay days
 			payDayList = []
@@ -283,6 +283,8 @@ def dashboard():
 					# then subtract bill amount from running runningTotal
 					if li['bill_date'] <= payDayList[payDayListIndex].date():
 						# set the new running total, which is based off the current running total minus the bill amount
+						print("li[bill_date]")
+						print("runningTotal1 = " + str(runningTotal.getRunningTotal()))
 						runningTotal.setRunningTotal(li['bill_amount'])
 					# These bills occur after the current payday (which is the first index in the paydaylist),
 					# so increment to the next payDay in the list
@@ -298,6 +300,7 @@ def dashboard():
 						if li['bill_date'] <= payDayList[payDayListIndex+1].date():
 							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'])
 							runningTotal.setRunningTotal(li['bill_amount'])
+							print("runningTotal2 = " + str(runningTotal.getRunningTotal()))
 							payDayListIndex = payDayListIndex + 1
 
 						# TODO:
