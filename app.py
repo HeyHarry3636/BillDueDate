@@ -299,6 +299,7 @@ def dashboard():
 						# to the payday list index
 						if li['bill_date'] <= payDayList[payDayListIndex+1].date():
 							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'])
+							print("billAmount1 = " + str(li['bill_amount']))
 							runningTotal.setRunningTotal(li['bill_amount'])
 							print("runningTotal2 = " + str(runningTotal.getRunningTotal()))
 							payDayListIndex = payDayListIndex + 1
