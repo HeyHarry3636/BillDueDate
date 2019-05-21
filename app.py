@@ -283,10 +283,9 @@ def dashboard():
 					# then subtract bill amount from running runningTotal
 					if li['bill_date'] <= payDayList[payDayListIndex].date():
 						# set the new running total, which is based off the current running total minus the bill amount
-						print("li[bill_date]")
-						print("runningTotal1 = " + str(runningTotal.getRunningTotal()))
+						#print("runningTotal1 = " + str(runningTotal.getRunningTotal()))
 						runningTotal.setRunningTotal(li['bill_amount'])
-						print("runningTotal2 = " + str(runningTotal.getRunningTotal()))
+						#print("runningTotal2 = " + str(runningTotal.getRunningTotal()))
 					# These bills occur after the current payday (which is the first index in the paydaylist),
 					# so increment to the next payDay in the list
 					else:
@@ -302,12 +301,11 @@ def dashboard():
 						# TODO: this loop also uses a hard-coded value for the payday in globalVars.py.
 						# Update to accept pay day amount from the user
 						if li['bill_date'] <= payDayList[payDayListIndex+1].date():
-							print("runningTotal3 = " + str(runningTotal.getRunningTotal()))
 							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'])
-							print("runningTotal4 = " + str(runningTotal.getRunningTotal()))
-							print("billAmount1 = " + str(li['bill_amount']))
+							#print("runningTotal3 = " + str(runningTotal.getRunningTotal()))
+							#print("billAmount1 = " + str(li['bill_amount']))
 							runningTotal.setRunningTotal(li['bill_amount'])
-							print("runningTotal5 = " + str(runningTotal.getRunningTotal()))
+							#print("runningTotal4 = " + str(runningTotal.getRunningTotal()))
 							payDayListIndex = payDayListIndex + 1
 
 						# TODO:
