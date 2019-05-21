@@ -192,7 +192,7 @@ def dashboard():
 
 			cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
 			payDay = cursor.fetchone()
-			print("payDay2 = " + str(payDay))
+			#print("payDay2 = " + str(payDay))
 
 			runningDate.setInitialDate(payDay[0])
 			#print("initial type " + str(type(runningDate.setInitialDate(payDay[0]))))
