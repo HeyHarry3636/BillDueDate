@@ -298,6 +298,9 @@ def dashboard():
 						# EX: last bill was 2/23, current bill is 3/17, two paydays inbetween,
 						# this does not calculate either of these paydays because the loop below only adds one
 						# to the payday list index
+
+						# TODO: this loop also uses a hard-coded value for the payday in globalVars.py.
+						# Update to accept pay day amount from the user
 						if li['bill_date'] <= payDayList[payDayListIndex+1].date():
 							print("runningTotal3 = " + str(runningTotal.getRunningTotal()))
 							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'])

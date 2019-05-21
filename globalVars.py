@@ -40,11 +40,11 @@ class cl_calculateRunningTotal():
         return self.calcRunningTotal
 
     def setRunningTotalAfterPayDay(self, runningTotalValue):
-        self.calcRunningTotal = self.calcRunningTotal + round(decimal.Decimal(1774.16), 2)
+        self.calcRunningTotal = self.calcRunningTotal + round(decimal.Decimal(1428.71), 2)
         return self.calcRunningTotal
 
     def setRunningTotalAfterPayDayMultiple(self, runningTotalValue, payMultiplier):
-        self.calcRunningTotal = self.calcRunningTotal + (round(decimal.Decimal(1774.16), 2) * payMultiplier)
+        self.calcRunningTotal = self.calcRunningTotal + (round(decimal.Decimal(1428.71), 2) * payMultiplier)
         return self.calcRunningTotal
 
     def getRunningTotal(self):
