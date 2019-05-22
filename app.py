@@ -549,15 +549,16 @@ def billsPaidCheckboxes():
 
 		# Get current due date of active bill
 		# bill_date at index[6] of _currentBill tuple
-		print("_currentBill[1] = " + str(_currentBill[1]))
-		print("_currentBill[2] = " + str(_currentBill[2]))
-		print("_currentBill[3] = " + str(_currentBill[3]))
-		print("_currentBill[4] = " + str(_currentBill[4]))
-		print("_currentBill[5] = " + str(_currentBill[5]))
-		print("_currentBill[6] = " + str(_currentBill[6]))
-		print("_currentBill[7] = " + str(_currentBill[7]))
-		print("_currentBill[8] = " + str(_currentBill[8]))
-		print("_currentBill[9] = " + str(_currentBill[9]))
+		print("bill_id _currentBill[0] = " + str(_currentBill[0]))
+		print("user_id _currentBill[1] = " + str(_currentBill[1]))
+		print("bill_name _currentBill[2] = " + str(_currentBill[2]))
+		print("bill_description _currentBill[3] = " + str(_currentBill[3]))
+		print("bill_amount _currentBill[4] = " + str(_currentBill[4]))
+		print("bill_autoWithdrawal _currentBill[5] = " + str(_currentBill[5]))
+		print("bill_date _currentBill[6] = " + str(_currentBill[6]))
+		print("recur_id _currentBill[7] = " + str(_currentBill[7]))
+		print("bill_createdDate _currentBill[8] = " + str(_currentBill[8]))
+		print("bill_paid _currentBill[9] = " + str(_currentBill[9]))
 
 		# if the checkbox has been selected for the 'bill_paid'
 		# update the bill date to the next interval in the recurrence schedule
