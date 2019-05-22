@@ -564,7 +564,7 @@ def billsPaidCheckboxes():
 		# update the bill date to the next interval in the recurrence schedule
 		if _hasTheBillBeenPaid == "true":
 			cursor.execute('UPDATE tbl_bill SET bill_date = %s WHERE bill_id = %s', ("2019-02-02", _bill_id))
-			newBillData = cursor.fetchone()
+			#newBillData = cursor.fetchone()
 
 		else:
 			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
