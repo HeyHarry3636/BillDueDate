@@ -558,7 +558,7 @@ def billsPaidCheckboxes():
 		print("_currentBill[7] = " + str(_currentBill[7]))
 		print("_currentBill[8] = " + str(_currentBill[8]))
 		print("_currentBill[9] = " + str(_currentBill[9]))
-		print("_currentBill[10] = " + str(_currentBill[10]))`
+		print("_currentBill[10] = " + str(_currentBill[10]))
 
 		# if the checkbox has been selected for the 'bill_paid'
 		# update the bill date to the next interval in the recurrence schedule
