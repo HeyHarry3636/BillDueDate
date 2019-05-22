@@ -49,7 +49,6 @@
           <th></th>
           <th></th>
           <th></th>
-          <th></th>
         </tr>
       </thead>
       {% for bill in bill_dict %}
@@ -82,11 +81,11 @@
           </td>
         </tr>
 
-        <tr style="display: none;" id="billDesc{{ bill.bill_id }}">
+        <!-- <tr style="display: none;" id="billDesc{{ bill.bill_id }}">
           <td colspan="8">
             <p>{{bill.bill_description}}</p>
           </td>
-        </tr>
+        </tr> -->
 
 
       {% endfor %}
