@@ -8,7 +8,7 @@ $(document).ready(function() {
     var hasTheBillBeenPaid = !$('#has_been_paid'+bill_id).is(':checked');
     console.log("[saveCheckboxes.js] | hasTheBillBeenPaid = " + hasTheBillBeenPaid)
 
-    $('.bill-rows').DataTable();
+    $('.bill-rowsTable').DataTable();
 
     req = $.ajax({
       url : '/billsPaidCheckboxes',
