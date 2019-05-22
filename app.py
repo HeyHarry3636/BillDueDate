@@ -563,8 +563,18 @@ def billsPaidCheckboxes():
 		# if the checkbox has been selected for the 'bill_paid'
 		# update the bill date to the next interval in the recurrence schedule
 		if _hasTheBillBeenPaid == "true":
+			print("hasTheBillBeenPaid bill_date _currentBill[6] = " + str(_currentBill[6]))
 			cursor.execute('UPDATE tbl_bill SET bill_date = %s WHERE bill_id = %s', ("2019-02-02", _bill_id))
+			print("NEW hasTheBillBeenPaid bill_date _currentBill[6] = " + str(_currentBill[6]))
 			#newBillData = cursor.fetchone()
+
+			# if month has a 'monthly' recurrence interval, then increment the bill_date by one month
+			# _currentBill[7] = recur_id
+			# recur_id (3) is the values for the monthly recurrence
+			if _currentBill[7] = 3:
+				newBillDate = _currentBill[6].month + 1
+				print(str(newBillDate))
+
 
 		else:
 			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
