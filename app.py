@@ -581,13 +581,6 @@ def billsPaidCheckboxes():
 				print("newDateForBill = " + str(newDateForBill))
 				cursor.execute('UPDATE tbl_bill SET bill_date = %s WHERE bill_id = %s', (newDateForBill, _bill_id))
 
-				# selectNewBillDate[6] = print("TYPE selectNewBillDate[6] " + str(selectNewBillDate[6]))
-				#updatedBillDate = _currentBill[6].month + 1
-				#updatedBillDate = datetime.date()
-				#print("TYPE updatedBillDate = " + str(type(updatedBillDate)))
-				#print("NEWBILLINGDATE " + str(updatedBillDate))
-
-
 		else:
 			print("ERROR SETTING _hasTheBillBeenPaid to True/False")
 
