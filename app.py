@@ -577,8 +577,8 @@ def billsPaidCheckboxes():
 			# recur_id (3) is the values for the monthly recurrence
 			if _currentBill[7] == 3:
 				# selectNewBillDate[6] = print("TYPE selectNewBillDate[6] " + str(selectNewBillDate[6]))
-				selectNewBillDate[6] = _currentBill[6].month + 1
-				print("NEWBILLINGDATE " + str(selectNewBillDate[6]))
+				updatedBillDate = _currentBill[6].month + 1
+				print("NEWBILLINGDATE " + str(updatedBillDate))
 
 
 		else:
