@@ -565,13 +565,12 @@ def billsPaidCheckboxes():
 		# update the bill date to the next interval in the recurrence schedule
 		if _hasTheBillBeenPaid == "true":
 			print("hasTheBillBeenPaid bill_date _currentBill[6] = " + str(_currentBill[6]))
-			cursor.execute('UPDATE tbl_bill SET bill_date = %s WHERE bill_id = %s', ("2019-02-02", _bill_id))
-			newBillData = cursor.fetchone()
+			#cursor.execute('UPDATE tbl_bill SET bill_date = %s WHERE bill_id = %s', ("2019-02-02", _bill_id))
+			#newBillData = cursor.fetchone()
 
-			cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
-			selectNewBillDate = cursor.fetchone()
-
-			print("NEW hasTheBillBeenPaid bill_date _currentBill[6] = " + str(selectNewBillDate[6]))
+			#cursor.execute('SELECT * FROM tbl_bill WHERE user_id = %s AND bill_id = %s', (_user_id, _bill_id))
+			#selectNewBillDate = cursor.fetchone()
+			#print("NEW hasTheBillBeenPaid bill_date _currentBill[6] = " + str(selectNewBillDate[6]))
 
 			# if month has a 'monthly' recurrence interval, then increment the bill_date by one month
 			# _currentBill[7] = recur_id
