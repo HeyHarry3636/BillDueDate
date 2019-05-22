@@ -578,7 +578,7 @@ def billsPaidCheckboxes():
 			if _currentBill[7] == 3:
 				# selectNewBillDate[6] = print("TYPE selectNewBillDate[6] " + str(selectNewBillDate[6]))
 				updatedBillDate = _currentBill[6].month + 1
-				print("TYPE updatedBillDate = " + type(updatedBillDate)) 
+				print("TYPE updatedBillDate = " + str(type(updatedBillDate)))
 				print("NEWBILLINGDATE " + str(updatedBillDate))
 
 
