@@ -571,7 +571,7 @@ def billsPaidCheckboxes():
 			# if month has a 'monthly' recurrence interval, then increment the bill_date by one month
 			# _currentBill[7] = recur_id
 			# recur_id (3) is the values for the monthly recurrence
-			if _currentBill[7] = 3:
+			if _currentBill[7] == 3:
 				newBillDate = _currentBill[6].month + 1
 				print(str(newBillDate))
 
