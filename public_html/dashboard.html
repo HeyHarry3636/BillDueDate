@@ -46,7 +46,7 @@
           <th>Paid?</th>
           <!-- <th>Description</th> -->
           <th>Remaining $</th>
-          <th></th>
+          <!-- <th></th> -->
           <th></th>
           <th></th>
         </tr>
@@ -71,7 +71,7 @@
 
 
           <td>${{bill.bill_runningTotal}}</td>
-          <td></td>
+          <!-- <td></td> -->
           <td><a href="editBill/{{ bill.bill_id }}" class="btn btn-secondary float-right btn-sm">Edit</a></td>
           <td>
             <form method="POST" action="{{url_for('deleteBill', id=bill.bill_id)}}">
