@@ -20,7 +20,7 @@ $(document).ready(function() {
     req.done(function(data) {
       // $('#has_been_paid'+bill_id).fadeOut(200).fadeIn(200);
       $('.bills-rowsTable').load('/dashboard .bills-rowsTable');
-      // location.reload();
+      location.reload();
 
       // $('.bill-rows').load('/dashboard .bill-rows');
 
