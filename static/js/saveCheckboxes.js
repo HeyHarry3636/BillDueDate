@@ -27,10 +27,10 @@ $(document).ready(function() {
 
     // data = the passed back data from the app.py updateTest function
     req.done(function(data) {
-      // $('.bills-rowsTable').load('.bills-rowsTable');
+      $('.bills-rowsTable').load('.bills-rowsTable');
       // $('.bill-rowsTable').DataTable().ajax.reload();
 
-      location.reload();
+      // location.reload();
 
     });
 
