@@ -53,7 +53,8 @@
       </thead>
       {% for bill in bill_dict %}
 
-        <tr class="bill-rows" id="rowID{{ bill.bill_id }}" bill_id="{{ bill.bill_id }}">
+        <!-- <tr class="bill-rows" id="rowID{{ bill.bill_id }}" bill_id="{{ bill.bill_id }}"> -->
+        <tr class="bill-rows">
           <td>{{bill.bill_name}}</td>
           <td>${{bill.bill_amount}}</td>
           <td>{{bill.bill_date}}</td>
