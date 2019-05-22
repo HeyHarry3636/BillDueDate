@@ -24,7 +24,7 @@ $(document).ready(function() {
       }
     });
 
-    $('.bill-rowsTable').DataTable().ajax.reload();
+    // $('.bill-rowsTable').DataTable().ajax.reload();
 
     // data = the passed back data from the app.py updateTest function
     // req.done(function(data) {
