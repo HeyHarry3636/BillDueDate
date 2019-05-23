@@ -30,7 +30,7 @@ $(document).ready(function() {
       // $('.bills-rowsTable').load('.bills-rowsTable');
       // $('.bill-rowsTable').DataTable().ajax.reload();
 
-      location.reload();
+      // location.reload();
 
     });
 
