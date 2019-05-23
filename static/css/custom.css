@@ -1,5 +1,5 @@
-.table-striped>tbody>tr:nth-child(5n+1)>td,
-.table-striped>tbody>tr:nth-child(5n+1)>th {
+.table-striped>tbody>tr:nth-child(4n+1)>td,
+.table-striped>tbody>tr:nth-child(4n+1)>th {
    background-color: grey; // Choose your own color here
  }
 
