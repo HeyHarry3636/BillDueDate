@@ -1,4 +1,4 @@
-.table-striped>tbody>tr:nth-child(3n+1)>td,
-.table-striped>tbody>tr:nth-child(3n+1)>th {
+.table-striped>tbody>tr:nth-child(1n+2)>td,
+.table-striped>tbody>tr:nth-child(1n+2)>th {
    background-color: red; // Choose your own color here
  }
