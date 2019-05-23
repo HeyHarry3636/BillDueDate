@@ -28,7 +28,7 @@ $(document).ready(function() {
     // data = the passed back data from the app.py updateTest function
     req.done(function(data) {
       $('#has_been_paid' + bill_id).fadeOut(200).fadeIn(200);
-      $('.bills-rowsTable').load('.bills-rowsTable');
+      // $('.bills-rowsTable').load('.bills-rowsTable');
       // $('.bill-rowsTable').DataTable().ajax.reload();
 
       // location.reload();
