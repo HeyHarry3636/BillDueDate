@@ -3,6 +3,6 @@
    background-color: grey; // Choose your own color here
  } */
 
- tr:nth-child(5n+1) {
+ tr:nth-child(4n+1) {
     background-color: grey; // Choose your own color here
   }
