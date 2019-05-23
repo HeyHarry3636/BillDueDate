@@ -1,4 +1,8 @@
-.table-striped>tbody>tr:nth-child(1n+2)>td,
+/* .table-striped>tbody>tr:nth-child(1n+2)>td,
 .table-striped>tbody>tr:nth-child(1n+2)>th {
-   background-color: red; // Choose your own color here
- }
+   background-color: grey; // Choose your own color here
+ } */
+
+ tr:nth-child(5n+1) {
+    background-color: grey; // Choose your own color here
+  }
