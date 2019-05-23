@@ -81,11 +81,18 @@
           </td>
         </tr>
 
-        <!-- <tr style="display: none;" id="billDesc{{ bill.bill_id }}">
-          <td colspan="8">
-            <p>{{bill.bill_description}}</p>
-          </td>
-        </tr> -->
+        <!-- This will allow the row to expand to show the description -->
+        <!-- colspan in td elements is not supported with DataTables though (saveCheckboxes.js) -->
+        <tr style="display: none;" id="billDesc{{ bill.bill_id }}">
+          <td colspan="8"><p>{{bill.bill_description}}</p></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
 
 
       {% endfor %}
