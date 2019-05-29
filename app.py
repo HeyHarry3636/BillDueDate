@@ -793,7 +793,6 @@ def contact():
 def testDynamicTable():
 	return render_template('testDynamicTable.html')
 
-
 ###############################################################################################
 
 
