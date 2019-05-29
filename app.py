@@ -126,21 +126,24 @@ def login():
 			print("data = " + str(data))
 			print("type(data) = " + str(type(data)))
 
+			# if list is empty, user does not exist
+			if not data:
+				return render_template('login.html', error = 'Account does not exist.')
 			# data[0][0] = 2  --> user_id
 			# data[0][1] = "Test2@Test2.com" --> user_email
 			# data[0][2] = "asdf1dsafsd" --> user_password hashed
-
-			if len(data) > 0:
-				if bcrypt.checkpw(_password.encode("utf-8"), data[0][2]):
-					app.logger.info('PASSWORD MATCHED') #Logs to app.py console
-					session['logged_in'] = True
-					session['user_id'] = data[0][0]
-					session['user_email'] = data[0][1]
-					return redirect(url_for('dashboard'))
+			else:
+				if len(data) > 0:
+					if bcrypt.checkpw(_password.encode("utf-8"), data[0][2]):
+						app.logger.info('PASSWORD MATCHED') #Logs to app.py console
+						session['logged_in'] = True
+						session['user_id'] = data[0][0]
+						session['user_email'] = data[0][1]
+						return redirect(url_for('dashboard'))
+					else:
+						return render_template('login.html', error = 'Wrong email address or password.')
 				else:
 					return render_template('login.html', error = 'Wrong email address or password.')
-			else:
-				return render_template('login.html', error = 'Wrong email address or password.')
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
