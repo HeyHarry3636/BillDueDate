@@ -1,5 +1,5 @@
 from wtforms import Form, validators, PasswordField, StringField, BooleanField, SelectField, DateField
-from wtforms.fields.html5 import EmailField, DecimalField, DateField, SelectField
+from wtforms.fields.html5 import EmailField, DecimalField, DateField
 
 class RegisterForm(Form):
 	email = EmailField('Email', [
@@ -68,7 +68,7 @@ class BankForm(Form):
 			('4', 4),
 			('5', 5),
 			('6', 6)],
-		coerce=int			
+		coerce=int
 	)
 	recur_id = SelectField('PayDay Frequency', [
 		validators.InputRequired()],
