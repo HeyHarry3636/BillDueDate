@@ -781,6 +781,11 @@ def updateBillAmounts():
 		if 'conn' in locals():
 			conn.close()
 
+###############################################################################################
+# CONTACT
+@app.route('/contact')
+def contact():
+	return render_template('contact.html')
 
 ###############################################################################################
 # TESTING
