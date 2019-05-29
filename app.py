@@ -36,21 +36,20 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 # Initialize mysql app
 mysql.init_app(app)
 
-# Create runningTotal value of the the currentBankAmount minus each bill amount plus payDays
-#runningTotal = 0.00
-runningTotal = globalVars.cl_calculateRunningTotal(0.00)
-
-# Obtain the inputted pay day amount
-payDayAmountInput = globalVars.cl_calculatePayDayAmount(0.00)
-
 # Create hasBankData class variable to let dashboard know if the user has bank information already
 hasBankData = globalVars.cl_HasBankInformation(False)
 
+# Create payDayAmountInput class variable to obtain the inputted pay day amount
+payDayAmountInput = globalVars.cl_calculatePayDayAmount(0.00)
+
+# Create runningTotal value of the the currentBankAmount minus each bill amount plus payDays
+runningTotal = globalVars.cl_calculateRunningTotal(0.00)
+
 # Create runningTotaldate so we can calculate when bills ARE
 runningDate = globalVars.cl_calculateRunningDate(datetime.datetime(1970, 1, 1))
-# print("type(runningDate1) = " + str(type(runningDate)))
-# runningDate.convertDatetimeToDate(runningDate)
-# print("type(runningDate2) = " + str(type(runningDate)))
+
+# Create projectedMonths class variable to calculate number of months to display
+projectMonths = globalVars.cl_projectedMonths(0)
 
 
 ###############################################################################################

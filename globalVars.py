@@ -78,3 +78,18 @@ class cl_calculateRunningDate():
 
     def getRunningDate(self):
         return self.calcRunningDate
+
+
+# Method to calculate the number of months to project on screen
+class cl_projectedMonths():
+    projectedMonths = int(0)
+
+    def __init__(self, projectedMonths):
+        self.projectedMonths = projectedMonths
+
+    def setProjectedMonths(self, projMon):
+        self.projectedMonths = projMon
+        return self.projectedMonths
+
+    def getProjectedMonths(self):
+        return self.projectedMonths
