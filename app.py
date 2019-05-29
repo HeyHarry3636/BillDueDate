@@ -136,7 +136,7 @@ def login():
 					session['user_email'] = data[0][1]
 					return redirect(url_for('dashboard'))
 				else:
-					return render_template('login.html', error = 'Wrong email address or password.')
+					return render_template('login.html', error = 'Account does not exist')
 			else:
 				return render_template('login.html', error = 'Wrong email address or password.')
 
