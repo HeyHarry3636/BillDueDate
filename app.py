@@ -124,6 +124,8 @@ def login():
 			cursor.callproc('sp_validateLogin', (_email,))
 			data = cursor.fetchall()
 			print("data = " + str(data))
+			print("type(data) = " + str(type(data)))
+
 			# data[0][0] = 2  --> user_id
 			# data[0][1] = "Test2@Test2.com" --> user_email
 			# data[0][2] = "asdf1dsafsd" --> user_password hashed
@@ -136,7 +138,7 @@ def login():
 					session['user_email'] = data[0][1]
 					return redirect(url_for('dashboard'))
 				else:
-					return render_template('login.html', error = 'Account does not exist')
+					return render_template('login.html', error = 'Wrong email address or password.')
 			else:
 				return render_template('login.html', error = 'Wrong email address or password.')
 
