@@ -271,8 +271,9 @@ def dashboard():
 						'bank_currentAmount': str(bank[2]),
 						'bank_payDayAmount': str(bank[3]),
 						'bank_nextPayDate': bank[4],
-						'recur_id': bank[5],
-						'bank_createdDate': bank[6]
+						'bank_projectedMonths' : bank[5],
+						'recur_id': bank[6],
+						'bank_createdDate': bank[7]
 					}
 					bank_dict.append(bank_item)
 
