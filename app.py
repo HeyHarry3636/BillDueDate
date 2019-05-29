@@ -123,7 +123,7 @@ def login():
 			cursor = conn.cursor()
 			cursor.callproc('sp_validateLogin', (_email,))
 			data = cursor.fetchall()
-
+			print("data = " + str(data))
 			# data[0][0] = 2  --> user_id
 			# data[0][1] = "Test2@Test2.com" --> user_email
 			# data[0][2] = "asdf1dsafsd" --> user_password hashed
