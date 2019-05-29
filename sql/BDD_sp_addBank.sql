@@ -18,6 +18,7 @@ BEGIN
 		bank_currentAmount,
 		bank_payDayAmount,
 		bank_nextPayDate,
+		bank_projectedMonths,
 		recur_id,
 		bank_createdDate
 	)
@@ -27,6 +28,7 @@ BEGIN
 		p_bank_currentAmount,
 		p_bank_payDayAmount,
 		p_bank_nextPayDate,
+		1,
 		p_recur_id,
 		NOW()
 	);
