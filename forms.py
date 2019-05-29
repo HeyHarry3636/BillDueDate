@@ -59,6 +59,9 @@ class BankForm(Form):
 		validators.InputRequired()]
 		#format='%m-%d-%Y' This was not working with this format included
 	)
+	bank_projectedMonths = IntegerField('Projected Months', [
+		validators.InputRequired()]
+	)
 	recur_id = SelectField('PayDay Frequency', [
 		validators.InputRequired()],
 		choices=[
