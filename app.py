@@ -275,6 +275,7 @@ def dashboard():
 					# Set the runningTotal to the current value of the bank account
 					#runningTotal.setInitialAmount(50000)
 					runningTotal.setInitialAmount(bank[2])
+					payDayAmountInput.setPayDayAmount(bank[3])
 
 				# Create an index to track payDays steps
 				payDayListIndex = 0
@@ -306,7 +307,9 @@ def dashboard():
 						# TODO: this loop also uses a hard-coded value for the payday in globalVars.py.
 						# Update to accept pay day amount from the user
 						if li['bill_date'] <= payDayList[payDayListIndex+1].date():
-							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'])
+							# runningTotal.setRunningTotalAfterPayDay(li['bill_amount'])
+							print("payDayAmountInput.getPayDayAmount() = " + str(payDayAmountInput.getPayDayAmount()))
+							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'], payDayAmountInput.getPayDayAmount())
 							#print("runningTotal3 = " + str(runningTotal.getRunningTotal()))
 							#print("billAmount1 = " + str(li['bill_amount']))
 							runningTotal.setRunningTotal(li['bill_amount'])
