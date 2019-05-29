@@ -723,6 +723,7 @@ def updateBankInfo():
 
 
 		conn.commit()
+		print(json.dumps({'result' : 'success', 'bank_currentAmount' : _bank_currentAmount, 'bank_payDayAmount' : _bank_payDayAmount, 'bank_nextPayDate' : _bank_nextPayDate, 'bank_projectedMonths' : _bank_projectedMonths}))
 		return json.dumps({'result' : 'success', 'bank_currentAmount' : _bank_currentAmount, 'bank_payDayAmount' : _bank_payDayAmount, 'bank_nextPayDate' : _bank_nextPayDate, 'bank_projectedMonths' : _bank_projectedMonths})
 
 	except Exception as e:
