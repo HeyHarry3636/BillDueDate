@@ -717,8 +717,8 @@ def updateBankInfo():
 		cursor = conn.cursor()
 		cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
 		_bank_id = cursor.fetchone()
-		cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s, bank_payDayAmount = %s, bank_nextPayDate = %s WHERE bank_id = %s', (
-			_bank_currentAmount, _bank_payDayAmount, _bank_nextPayDate, _bank_id[0]))
+		cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s, bank_payDayAmount = %s, bank_nextPayDate = %s, bank_projectedMonths = %s WHERE bank_id = %s', (
+			_bank_currentAmount, _bank_payDayAmount, _bank_nextPayDate, _bank_projectedMonths, _bank_id[0]))
 		bankInfo = cursor.fetchall()
 
 
@@ -805,11 +805,6 @@ def testDynamicTable():
 	return render_template('testDynamicTable.html')
 
 ###############################################################################################
-
-
-
-
-
 
 # Main
 if __name__ == '__main__':
