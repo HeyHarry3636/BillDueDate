@@ -1,6 +1,4 @@
-#REMOVED TESTBRANCH
-#ADDED TESTBRANCH2
-# App.py (testing bucket list tutorial)
+# BillDueDate
 
 from flask import Flask, render_template, json, session, redirect, url_for, flash, logging, request
 from flaskext.mysql import MySQL
