@@ -7,11 +7,18 @@ $(document).ready(function() {
     var currentAmount = $('#currentInput'+bank_id).val();
     var payDayAmount = $('#payDayInput'+bank_id).val();
     var nextPayDayDate = $('#nextPayDateInput'+bank_id).val();
+    var projectedMonths = $('#projectedMonths'+bank_id).val();
 
     req = $.ajax({
       url : '/updateBankInfo',
       type : 'POST',
-      data : { bank_currentAmount : currentAmount, bank_payDayAmount : payDayAmount, bank_nextPayDate : nextPayDayDate, bank_id : bank_id }
+      data : {
+        bank_currentAmount : currentAmount,
+        bank_payDayAmount : payDayAmount,
+        bank_nextPayDate : nextPayDayDate,
+        bank_id : bank_id,
+        bank_projectedMonths : projectedMonths
+      }
     });
 
     // data = the passed back data from the app.py updateTest function

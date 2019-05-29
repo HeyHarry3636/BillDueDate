@@ -705,6 +705,7 @@ def updateBankInfo():
 		_bank_currentAmount = request.form['bank_currentAmount']
 		_bank_payDayAmount = request.form['bank_payDayAmount']
 		_bank_nextPayDate = request.form['bank_nextPayDate']
+		_bank_projectedMonths = request.form['bank_projectedMonths']
 		#_recur_id = request.form['recur_id']
 
 		conn = mysql.connect()
