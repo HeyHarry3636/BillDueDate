@@ -1,5 +1,5 @@
 from wtforms import Form, validators, PasswordField, StringField, BooleanField, SelectField, DateField
-from wtforms.fields.html5 import EmailField, DecimalField, DateField
+from wtforms.fields.html5 import EmailField, DecimalField, DateField, IntegerField
 
 class RegisterForm(Form):
 	email = EmailField('Email', [
