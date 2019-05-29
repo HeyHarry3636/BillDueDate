@@ -62,12 +62,12 @@ class BankForm(Form):
 	bank_projectedMonths = SelectField('Projected Months', [
 	 	validators.InputRequired()],
 		choices=[
-			('1', 1),
-			('2', 2),
-			('3', 3),
-			('4', 4),
-			('5', 5),
-			('6', 6)],
+			(1, '1'),
+			(2, '2'),
+			(3, '3'),
+			(4, '4'),
+			(5, '5'),
+			(6, '6')],
 		coerce=int
 	)
 	recur_id = SelectField('PayDay Frequency', [
