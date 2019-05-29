@@ -68,12 +68,12 @@ class cl_calculateRunningTotal():
         return self.calcRunningTotal
 
     def setRunningTotalAfterPayDay(self, runningTotalValue, inputtedPayDayAmount):
-        self.calcRunningTotal = self.calcRunningTotal + round(inputtedPayDayAmount, 2)
+        self.calcRunningTotal = self.calcRunningTotal + round(self.inputtedPayDayAmount, 2)
 
         return self.calcRunningTotal
 
     def setRunningTotalAfterPayDayMultiple(self, runningTotalValue, inputtedPayDayAmount, payMultiplier):
-        self.calcRunningTotal = self.calcRunningTotal + (round(inputtedPayDayAmount, 2) * payMultiplier)
+        self.calcRunningTotal = self.calcRunningTotal + (round(self.inputtedPayDayAmount, 2) * payMultiplier)
         return self.calcRunningTotal
 
     def getRunningTotal(self):
