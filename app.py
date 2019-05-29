@@ -308,7 +308,6 @@ def dashboard():
 						# Update to accept pay day amount from the user
 						if li['bill_date'] <= payDayList[payDayListIndex+1].date():
 							# runningTotal.setRunningTotalAfterPayDay(li['bill_amount'])
-							print("payDayAmountInput.getPayDayAmount() = " + str(payDayAmountInput.getPayDayAmount()))
 							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'], payDayAmountInput.getPayDayAmount())
 							#print("runningTotal3 = " + str(runningTotal.getRunningTotal()))
 							#print("billAmount1 = " + str(li['bill_amount']))
