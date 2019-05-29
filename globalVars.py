@@ -24,40 +24,12 @@ class cl_HasBankInformation():
         return self.bankInfoDoesExist
 
 
-# # Method to calculate the runningTotal value for updating the bank table
-# class cl_calculateRunningTotal():
-#     calcRunningTotal = decimal.Decimal(0.00)
-#
-#     def __init__(self, calcRunningTotal):
-#         self.calcRunningTotal = decimal.Decimal(calcRunningTotal)
-#
-#     def setInitialAmount(self, runningTotalValue):
-#         self.calcRunningTotal = runningTotalValue
-#         return self.calcRunningTotal
-#
-#     def setRunningTotal(self, runningTotalValue):
-#         self.calcRunningTotal = self.calcRunningTotal - runningTotalValue
-#         return self.calcRunningTotal
-#
-#     def setRunningTotalAfterPayDay(self, runningTotalValue):
-#         self.calcRunningTotal = self.calcRunningTotal + round(decimal.Decimal(1774.15), 2)
-#         return self.calcRunningTotal
-#
-#     def setRunningTotalAfterPayDayMultiple(self, runningTotalValue, payMultiplier):
-#         self.calcRunningTotal = self.calcRunningTotal + (round(decimal.Decimal(1774.15), 2) * payMultiplier)
-#         return self.calcRunningTotal
-#
-#     def getRunningTotal(self):
-#         return self.calcRunningTotal
-
 # Method to calculate the runningTotal value for updating the bank table
 class cl_calculateRunningTotal():
     calcRunningTotal = decimal.Decimal(0.00)
-    inputtedPayDayAmount = decimal.Decimal(0.00)
 
     def __init__(self, calcRunningTotal):
         self.calcRunningTotal = decimal.Decimal(calcRunningTotal)
-        self.inputtedPayDayAmount = decimal.Decimal(inputtedPayDayAmount)
 
     def setInitialAmount(self, runningTotalValue):
         self.calcRunningTotal = runningTotalValue
@@ -67,13 +39,12 @@ class cl_calculateRunningTotal():
         self.calcRunningTotal = self.calcRunningTotal - runningTotalValue
         return self.calcRunningTotal
 
-    def setRunningTotalAfterPayDay(self, runningTotalValue, inputtedPayDayAmount):
-        self.calcRunningTotal = self.calcRunningTotal + round(self.inputtedPayDayAmount, 2)
-
+    def setRunningTotalAfterPayDay(self, runningTotalValue):
+        self.calcRunningTotal = self.calcRunningTotal + round(decimal.Decimal(1774.15), 2)
         return self.calcRunningTotal
 
-    def setRunningTotalAfterPayDayMultiple(self, runningTotalValue, inputtedPayDayAmount, payMultiplier):
-        self.calcRunningTotal = self.calcRunningTotal + (round(self.inputtedPayDayAmount, 2) * payMultiplier)
+    def setRunningTotalAfterPayDayMultiple(self, runningTotalValue, payMultiplier):
+        self.calcRunningTotal = self.calcRunningTotal + (round(decimal.Decimal(1774.15), 2) * payMultiplier)
         return self.calcRunningTotal
 
     def getRunningTotal(self):
