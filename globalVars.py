@@ -23,6 +23,20 @@ class cl_HasBankInformation():
         # print("getter = " + str(self.bankInfoDoesExist))
         return self.bankInfoDoesExist
 
+# Method to calculate the runningTotal value for updating the bank table
+class cl_calculatePayDayAmount():
+    calcPayDayAmount = decimal.Decimal(0.00)
+
+    def __init__(self, calcPayDayAmount):
+        self.calcPayDayAmount = decimal.Decimal(calcPayDayAmount)
+
+    def setPayDayAmount(self, inputtedPayDayAmount):
+        self.calcPayDayAmount = inputtedPayDayAmount
+        return self.calcPayDayAmount
+
+    def getRunningTotal(self):
+        return self.calcPayDayAmount
+
 
 # Method to calculate the runningTotal value for updating the bank table
 class cl_calculateRunningTotal():

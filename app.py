@@ -40,6 +40,9 @@ mysql.init_app(app)
 #runningTotal = 0.00
 runningTotal = globalVars.cl_calculateRunningTotal(0.00)
 
+# Obtain the inputted pay day amount
+payDayAmountInput = cl_calculatePayDayAmount(0.00)
+
 # Create hasBankData class variable to let dashboard know if the user has bank information already
 hasBankData = globalVars.cl_HasBankInformation(False)
 
