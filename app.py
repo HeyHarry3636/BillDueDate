@@ -819,9 +819,10 @@ def testSelectField():
 		print(testReturn)
 
 		# testReturn.city.choices = [(city.id, city.name) for city in City.query.filter_by(state='CA').all()]
+		print("len(testReturn) = " + len(testReturn))
 
-		for x in range(0, len(testReturn)):
-			for y in range(0, len(testReturn)):
+		for x in range(0, len(testReturn)+1):
+			for y in range(0, len(testReturn+1)):
 				print(testReturn[x][y])
 
 
