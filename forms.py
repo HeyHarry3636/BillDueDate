@@ -84,4 +84,6 @@ class BankForm(Form):
 		coerce=int
 	)
 
-# class Form(FlaskForm):
+class testForm(FlaskForm):
+	state = SelectField('state', choices=[('CA', 'California'), ('NV', 'Nevada')])
+	city = SelectField('city', choices[])

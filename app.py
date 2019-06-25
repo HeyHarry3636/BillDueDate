@@ -806,9 +806,34 @@ def contact():
 def testDynamicTable():
 	return render_template('testDynamicTable.html')
 
-@app.route('/testSelectField')
+@app.route('/testSelectField', methods=['GET', 'POST'])
 def testSelectField():
-	return render_template('testSelectField.html')
+	try:
+		formTest = Form.testForm()
+
+		conn = mysql.connect()
+		cursor = conn.cursor()
+
+		cursor.execute('SELECT * FROM tbl_bank WHERE user_id = 1')
+		testReturn = cursor.fetchone()
+		print(testReturn)
+
+		conn.commit()
+
+		# formTest.city.choices = [City.query
+
+		return render_template('testSelectField.html', form=testForm)
+
+	except Exception as e:
+		return render_template('error.html', error = str(e))
+
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
+
+
 
 ###############################################################################################
 
