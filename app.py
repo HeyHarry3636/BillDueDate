@@ -822,7 +822,7 @@ def testSelectField():
 
 		# formTest.city.choices = [City.query
 
-		return render_template('testSelectField.html', form=testForm)
+		return render_template('testSelectField.html', form=formTest)
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
