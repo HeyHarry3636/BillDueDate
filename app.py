@@ -806,8 +806,6 @@ def contact():
 def testDynamicTable():
 	return render_template('testDynamicTable.html')
 
-class Form(FlaskForm);
-
 @app.route('/testSelectField')
 def testSelectField():
 	return render_template('testSelectField.html')

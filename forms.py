@@ -83,3 +83,5 @@ class BankForm(Form):
 			(6, 'Custom')],
 		coerce=int
 	)
+
+# class Form(FlaskForm):
