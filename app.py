@@ -821,7 +821,7 @@ def testSelectField():
 		# testReturn.city.choices = [(city.id, city.name) for city in City.query.filter_by(state='CA').all()]
 		print("len(testReturn) = " + str(len(testReturn)))
 
-		for x in range(0, len(testReturn)+1):
+		for x in range(0, len(testReturn)):
 			print("testReturn[" + str(x) + "][0] = " + str(testReturn[x][0]))
 			print("testReturn[" + str(x) + "][1] = " + str(testReturn[x][1]))
 			print("testReturn[" + str(x) + "][2] = " + str(testReturn[x][2]))
