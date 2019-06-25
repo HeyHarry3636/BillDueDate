@@ -86,4 +86,4 @@ class BankForm(Form):
 
 class testForm(FlaskForm):
 	state = SelectField('state', choices=[('CA', 'California'), ('NV', 'Nevada')])
-	city = SelectField('city', choices[])
+	city = SelectField('city', choices=[])
