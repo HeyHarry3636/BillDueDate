@@ -809,7 +809,7 @@ def testDynamicTable():
 @app.route('/testSelectField', methods=['GET', 'POST'])
 def testSelectField():
 	try:
-		formTest = Form.testForm()
+		formTest = Forms.testForm()
 
 		conn = mysql.connect()
 		cursor = conn.cursor()
