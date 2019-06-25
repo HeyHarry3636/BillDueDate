@@ -840,7 +840,7 @@ def testSelectField():
 
 
 		if request.method == 'POST':
-			cursor.execute('SELECT id FROM city')
+			cursor.execute('SELECT {} FROM city').format(formTest.city.id)
 			returnVal = cursor.fetchone()
 			print("returnVal = " + str(returnVal))
 			conn.commit()
