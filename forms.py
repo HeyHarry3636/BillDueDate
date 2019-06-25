@@ -1,5 +1,6 @@
 from wtforms import Form, validators, PasswordField, StringField, BooleanField, SelectField, DateField
 from wtforms.fields.html5 import EmailField, DecimalField, DateField
+from flask_wtf import FlaskForm
 
 class RegisterForm(Form):
 	email = EmailField('Email', [
