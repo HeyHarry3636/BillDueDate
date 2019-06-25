@@ -814,8 +814,8 @@ def testSelectField():
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		cursor.execute('SELECT * FROM tbl_bank WHERE user_id = 1')
-		testReturn = cursor.fetchone()
+		cursor.execute('SELECT * FROM city')
+		testReturn = cursor.fetchall()
 		print(testReturn)
 
 		conn.commit()
