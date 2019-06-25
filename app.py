@@ -828,7 +828,7 @@ def testSelectField():
 			print("testReturn[" + str(x) + "][1] = " + str(testReturn[x][1]))
 			print("testReturn[" + str(x) + "][2] = " + str(testReturn[x][2]))
 
-		formTest.city.choices = [(testReturn[0][0], testReturn[0][1]), (testReturn[1][0], testReturn[1][1])]
+		formTest.city.choices = [(testReturn[0][0], testReturn[0][2]), (testReturn[1][0], testReturn[1][2])]
 
 
 
