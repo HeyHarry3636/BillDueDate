@@ -814,7 +814,7 @@ def testSelectField():
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		cursor.execute('SELECT * FROM city WHERE state = "CA"')
+		cursor.execute('SELECT * FROM city WHERE state = "NV"')
 		testReturn = cursor.fetchall()
 		conn.commit()
 
