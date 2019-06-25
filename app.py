@@ -845,7 +845,7 @@ def testSelectField():
 			print("returnVal = " + str(returnVal))
 			conn.commit()
 			# city = returnVal
-			return '<h1>State: {}, City: {}</h1>'.format(formTest.state.data, returnVal.name)
+			# return '<h1>State: {}, City: {}</h1>'.format(formTest.state.data, returnVal.name)
 
 
 		return render_template('testSelectField.html', form=formTest)
