@@ -814,11 +814,11 @@ def testSelectField():
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		cursor.execute('SELECT * FROM city')
+		cursor.execute('SELECT * FROM city WHERE state = "CA"')
 		testReturn = cursor.fetchall()
 		print(testReturn)
 
-		testReturn.city.choices = [(city.id, city.name) for city in City.query.filter_by(state='CA').all()]
+		# testReturn.city.choices = [(city.id, city.name) for city in City.query.filter_by(state='CA').all()]
 
 		conn.commit()
 
