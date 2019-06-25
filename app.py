@@ -820,6 +820,12 @@ def testSelectField():
 
 		# testReturn.city.choices = [(city.id, city.name) for city in City.query.filter_by(state='CA').all()]
 
+		for x in range(0, len(testReturn)):
+			for y in range(0, len(testReturn)):
+				print(testReturn[x][y])
+
+
+
 		conn.commit()
 
 		# formTest.city.choices = [City.query
