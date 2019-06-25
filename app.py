@@ -816,6 +816,8 @@ def testSelectField():
 
 		cursor.execute('SELECT * FROM city WHERE state = "CA"')
 		testReturn = cursor.fetchall()
+		conn.commit()
+
 		print(testReturn)
 
 		# testReturn.city.choices = [(city.id, city.name) for city in City.query.filter_by(state='CA').all()]
@@ -826,11 +828,10 @@ def testSelectField():
 			print("testReturn[" + str(x) + "][1] = " + str(testReturn[x][1]))
 			print("testReturn[" + str(x) + "][2] = " + str(testReturn[x][2]))
 
+		formTest.city.choices = [(testReturn[0][0], testReturn[0][1]), (testReturn[1][0], testReturn[1][1])]
 
 
-		conn.commit()
 
-		# formTest.city.choices = [City.query
 
 		return render_template('testSelectField.html', form=formTest)
 
