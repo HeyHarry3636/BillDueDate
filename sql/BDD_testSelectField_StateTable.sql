@@ -5,10 +5,10 @@ USE BillDueDate
 -- P: Test1234!
 
 -- DROP all tables from previous uses
-DROP TABLE IF EXISTS city;
+DROP TABLE IF EXISTS City;
 
 -- Create the Cities table
-CREATE TABLE city (
+CREATE TABLE City (
 	id BIGINT NOT NULL AUTO_INCREMENT UNIQUE,
 	state VARCHAR(2) NOT NULL,
 	name VARCHAR(50) NOT NULL,
