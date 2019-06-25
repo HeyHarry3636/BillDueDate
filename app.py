@@ -814,7 +814,7 @@ def testSelectField():
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		cursor.execute('SELECT * FROM city WHERE state = "NV"')
+		cursor.execute('SELECT * FROM city WHERE state = "CA"')
 		testReturn = cursor.fetchall()
 		conn.commit()
 
@@ -838,6 +838,13 @@ def testSelectField():
 		# formTest.city.choices = [(testReturn[0][0], testReturn[0][2]), (testReturn[1][0], testReturn[1][2])]
 		formTest.city.choices = cityList
 
+
+		if request.method == 'POST':
+			cursor.execute('SELECT * FROM city')
+			returnVal = cursor.fetchone()
+			conn.commit()
+			# city = returnVal
+			return '<h1>State: {}, City: {}</h1>'.format(formTest.state.data, returnVal.name)
 
 
 		return render_template('testSelectField.html', form=formTest)
