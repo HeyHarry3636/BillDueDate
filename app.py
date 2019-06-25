@@ -832,12 +832,11 @@ def testSelectField():
 
 			cityList.append((testReturn[x][0], testReturn[x][2]))
 
-		for x in range(0, len(cityList)):
-			print("cityList = " + str(cityList))
+		print("cityList = " + str(cityList))
 
 
-		formTest.city.choices = [(testReturn[0][0], testReturn[0][2]), (testReturn[1][0], testReturn[1][2])]
-
+		# formTest.city.choices = [(testReturn[0][0], testReturn[0][2]), (testReturn[1][0], testReturn[1][2])]
+		formTest.city.choices = cityList
 
 
 
