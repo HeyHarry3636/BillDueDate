@@ -822,7 +822,7 @@ def testSelectField():
 		print("len(testReturn) = " + str(len(testReturn)))
 
 		for x in range(0, len(testReturn)+1):
-			for y in range(0, len(testReturn)+1):
+			for y in range(0, len(testReturn)):
 				print(testReturn[x][y])
 
 
