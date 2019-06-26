@@ -330,14 +330,14 @@ def dashboard():
 					for x in range(0, len(payDayList)):
 						print("\n")
 						print("x = " + str(x))
-						print("payDayList[" + str(x) + "].date() = " + str(payDayList[x].date()))
+						print("payDayList[" + str(x) + "].date() = " + str(payDayList[payDayListIndex].date()))
 						print("li['bill_name'] = " + str(li['bill_name']))
 						print("li['bill_date'] = " + str(li['bill_date']))
 						print("li['bill_amount'] = " + str(li['bill_amount']))
 						print("runningTotalA = " + str(runningTotal.getRunningTotal()))
 						# print("counterBefore = " + str(counter))
 
-						if li['bill_date'] <= payDayList[x].date():
+						if li['bill_date'] <= payDayList[payDayListIndex].date():
 							print("runningTotalIFBEFORE = " + str(runningTotal.getRunningTotal()))
 							runningTotal.setRunningTotal(li['bill_amount'])
 							print("runningTotalIFAFTER = " + str(runningTotal.getRunningTotal()))
@@ -348,6 +348,8 @@ def dashboard():
 							# runningTotal.setRunningTotalAfterPayDay(0, payDayAmountInput.getPayDayAmount())
 							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'], payDayAmountInput.getPayDayAmount())
 							print("runningTotalELSEAFTER = " + str(runningTotal.getRunningTotal()))
+							payDayListIndex += 1
+							print("payDayListIndex = " + str(payDayListIndex))
 							break
 
 								# if li['bill_date'] <= payDayList[x].date():
