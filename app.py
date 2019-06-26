@@ -312,6 +312,8 @@ def dashboard():
 				# adding appropriate paydays based on the payday list created above
 				for li in bill_dict:
 					for x in range(0, len(payDayList)):
+						print("li['bill_name'] = " + str(li['bill_name']))
+						print("li['bill_date'] = " + str(li['bill_date']))
 
 						# print("type(li['bill_date']) = " + str(type(li['bill_date'])))
 						# print("type(payDayList[payDayListIndex].date()) = " + str(type(payDayList[payDayListIndex].date())))
