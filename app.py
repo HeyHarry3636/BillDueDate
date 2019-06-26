@@ -858,6 +858,31 @@ def testSelectField():
 		if 'conn' in locals():
 			conn.close()
 
+#Query database for all cities available for the state that is passed in
+# then pass the cities back to whatever is calling this function
+@app.route('/city/<state>')
+def city(state):
+
+	conn = mysql.connect()
+	cursor = conn.cursor()
+
+	cursor.execute('SELECT * FROM city WHERE state = %s', (state))
+	cities = cursor.fetchall()
+	conn.commit()
+
+	print("citiesReturn = " + str(cities))
+
+	cityArray = []
+
+	for city in cities:
+		#create new city object for each city (dictionary)
+		cityObj = {}
+		cityObj['id'] = city.id
+		cityObj['name'] = city.name
+		cityArray.append(cityObj)
+
+	print(json.dumps({'cities' : cityArray}))
+	return json.dumps({'cities' : cityArray})
 
 
 ###############################################################################################
