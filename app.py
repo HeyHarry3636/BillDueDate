@@ -327,7 +327,12 @@ def dashboard():
 				# Append these results to an item named 'bill_runningTotal' that will be rendered in the dashboard.html
 				# For each bill in the bill dictionary, calculate the running total bill amound along with
 				# adding appropriate paydays based on the payday list created above
-				for li in bill_dict:
+
+				# use bill_dict to show all bills
+				# for li in bill_dict:
+
+				# use bill_dict_truncated to show only bills in the timeframe the user requests
+				for li in bill_dict_truncated:
 
 					for x in range(0, len(payDayList)):
 						print("li['bill_name'] = " + str(li['bill_name']))
@@ -366,7 +371,7 @@ def dashboard():
 
 
 
-				return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation())
+				return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation(), bill_dict_truncated=bill_dict_truncated)
 
 	# except Exception as e:
 	# 	return render_template('error.html', error = str(e))
