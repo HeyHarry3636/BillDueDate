@@ -30,14 +30,12 @@
             <label for="projectedMonths{{ bank.bank_id }}">Projected Months</label>
             <!-- <input type="number" class="form-control" id="projectedMonths{{ bank.bank_id }}" value="{{ bank.bank_projectedMonths }}"> -->
 
-            {% block body %}
-             {% from 'includes/_formHelpers.html' import render_field %}
-             <form method="POST" action="">
-               <div class="form-group">
-                 {{render_field(form.bank_projectedMonths, class_="form-control")}}
-               </div>
-             </form>
-            {% endblock %}
+           {% from 'includes/_formHelpers.html' import render_field %}
+           <form method="POST" action="">
+             <div class="form-group">
+               {{render_field(form.bank_projectedMonths, class_="form-control")}}
+             </div>
+           </form>
 
             <!-- <select type="number" class="form-control" id="projectedMonths{{ bank.bank_id }}" value="{{ bank.bank_projectedMonths }}">
               <option value="1">1</option>
