@@ -18,7 +18,12 @@
 
       state_select.onchange = function() {
         state = state_select.value;
-        alert(state);
+
+        fetch('/city/' + state).then(function(response) {
+          response.json().then(function(data) {
+            alert(data);
+          });
+        });
       }
 
     </script>
