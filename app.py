@@ -881,7 +881,7 @@ def city(state):
 		cityObj['name'] = city.name
 		cityArray.append(cityObj)
 
-	print(json.dumps({'cities' : cityArray}))
+	# print(json.dumps({'cities' : cityArray}))
 	return json.dumps({'cities' : cityArray})
 
 
