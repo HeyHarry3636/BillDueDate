@@ -301,7 +301,7 @@ def dashboard():
 					print("type(initialBillDate) = " + str(type(initialBillDate)))
 
 					if li['bill_date'] <= shownMonths:
-						bill_dict_truncated.append(li):
+						bill_dict_truncated.append(li)
 						print(bill_dict_truncated)
 
 				# Set the limit for the number of bills that are viewable
