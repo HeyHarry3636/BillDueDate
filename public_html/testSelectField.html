@@ -21,7 +21,7 @@
 
         fetch('/city/' + state).then(function(response) {
           response.json().then(function(data) {
-            alert(data);
+            console.table(data);
           });
         });
       }
