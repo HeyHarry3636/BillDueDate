@@ -292,7 +292,7 @@ def dashboard():
 				initialBillDate = min('bill_date', key='bill_date'.get)
 				print("initialBillDate = " + str(initialBillDate))
 
-				for li in bill_dict:
+				# for li in bill_dict:
 
 
 
