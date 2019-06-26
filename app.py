@@ -283,6 +283,14 @@ def dashboard():
 					runningTotal.setInitialAmount(bank[2])
 					payDayAmountInput.setPayDayAmount(bank[3])
 
+				# Duplicate bills that occur on recur_id basis
+				# Ex: if you want to show the next three months of bills, duplicate the bill three times for the future months
+				print("bank_dict['bank_projectedMonths'] = " + bank_dict['bank_projectedMonths'])
+				shownMonths = bank_dict['bank_projectedMonths']
+				print("shownMonths = " + str(shownMonths))
+				print("type(shownMonths) = " + str(type(shownMonths)))
+
+
 				# Create an index to track payDays steps
 				payDayListIndex = 0
 
