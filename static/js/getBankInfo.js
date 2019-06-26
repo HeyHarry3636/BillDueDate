@@ -28,7 +28,7 @@ $(document).ready(function() {
       $('payDayInput'+bank_id).val(data.bank_payDayAmount);
       $('nextPayDateInput'+bank_id).val(data.bank_nextPayDate);
       // $('projectedMonths'+bank_id).val(data.bank_projectedMonths);
-      location.reload();
+      // location.reload();
     });
 
     $('projectedMonths'+bank_id).val(data.bank_projectedMonths);
