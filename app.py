@@ -289,12 +289,20 @@ def dashboard():
 				# Ex: if you want to show the next three months of bills, duplicate the bill three times for the future months
 				print("shownMonths = " + str(shownMonths))
 
+				# Create new list that will only store the bills that the user wants to see (Ex: only want to see next 3 months)
+				bill_dict_truncated = []
+
 				#Set initial date based on the first bill in the sorted bill List
 				for li in bill_dict:
-					initialBillDate = li['bill_date']
+					#Set initial date based on the first bill in the sorted bill List
+					if li == 0:
+						initialBillDate = li['bill_date']
 					print("initialBillDate = " + str(initialBillDate))
 					print("type(initialBillDate) = " + str(type(initialBillDate)))
-					break
+
+					if li['bill_date'] <= shownMonths:
+						bill_dict_truncated.append(li):
+						print(bill_dict_truncated)
 
 				# Set the limit for the number of bills that are viewable
 				dateLimit = functions.addMonths(initialBillDate, shownMonths)
