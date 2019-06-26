@@ -345,7 +345,8 @@ def dashboard():
 
 						else:
 							print("runningTotalELSEBEFORE = " + str(runningTotal.getRunningTotal()))
-							runningTotal.setRunningTotalAfterPayDay(0, payDayAmountInput.getPayDayAmount())
+							# runningTotal.setRunningTotalAfterPayDay(0, payDayAmountInput.getPayDayAmount())
+							runningTotal.setRunningTotalAfterPayDay(li['bill_amount'], payDayAmountInput.getPayDayAmount())
 							print("runningTotalELSEAFTER = " + str(runningTotal.getRunningTotal()))
 							break
 
