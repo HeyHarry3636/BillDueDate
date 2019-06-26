@@ -28,7 +28,7 @@
 
             // cities comes from json.dumps("cities") in flask app route city
             for (let city of data.cities) {
-              optionHTML += '<option value="' + city[0]+ '">' + city[2] + '</option>';
+              optionHTML += '<option value="' + city.id + '">' + city.name + '</option>';
             }
 
             // update html to use these options instead of the old
