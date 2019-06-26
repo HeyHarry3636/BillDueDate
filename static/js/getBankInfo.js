@@ -20,7 +20,10 @@ $(document).ready(function() {
         bank_projectedMonths : projectedMonths
       },
       success: function(response) {
-        $('#billTable').html(response);
+        refreshedPage = $(response);
+        newData = refreshedPage.find('#billTable').html();
+        $('#billTable').html(newData);
+        // $('#billTable').html(response);
       }
     });
 
