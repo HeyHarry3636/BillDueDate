@@ -326,9 +326,15 @@ def dashboard():
 						# Refactor this so it applies to all indices
 						else:
 							for x in range(0, len(payDayList)):
+								print("x = " + str(x))
 								if li['bill_date'] <= payDayList[x].date():
+									print("li['bill_date'] = " + str(li['bill_date']))
+									print("li['bill_amount'] = " + str(li['bill_amount']))
+									print("runningTotalA = " + str(runningTotal.getRunningTotal()))
 									runningTotal.setRunningTotalAfterPayDayMultiple(li['bill_amount'], x-2, 1)
+									print("runningTotalB = " + str(runningTotal.getRunningTotal()))
 									runningTotal.setRunningTotal(li['bill_amount'])
+									print("runningTotalC = " + str(runningTotal.getRunningTotal()))
 									break
 
 					li['bill_runningTotal'] = runningTotal.getRunningTotal()
