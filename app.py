@@ -290,11 +290,10 @@ def dashboard():
 				print("shownMonths = " + str(shownMonths))
 
 				#Set initial date based on the first bill in the sorted bill List
-				# initialBillDate = bill_dict[0]['bill_date']
-				initialBillDate = bill_dict[0][0]
-				print("initialBillDate = " + str(initialBillDate))
-
-				# for li in bill_dict:
+				for li in bill_dict:
+					initialBillDate = li['bill_date']
+					print("initialBillDate = " + str(initialBillDate))
+					break
 
 
 
