@@ -27,10 +27,11 @@ $(document).ready(function() {
       $('currentInput'+bank_id).val(data.bank_currentAmount);
       $('payDayInput'+bank_id).val(data.bank_payDayAmount);
       $('nextPayDateInput'+bank_id).val(data.bank_nextPayDate);
-      $('projectedMonths'+bank_id).val(data.bank_projectedMonths).change();
+      // $('projectedMonths'+bank_id).val(data.bank_projectedMonths);
       location.reload();
     });
 
+    $('projectedMonths'+bank_id).val(data.bank_projectedMonths);
     // Do stuff for the bill rows loop through all columns
 
 
