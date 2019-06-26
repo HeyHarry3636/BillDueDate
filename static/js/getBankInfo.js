@@ -18,7 +18,7 @@ $(document).ready(function() {
         bank_nextPayDate : nextPayDayDate,
         bank_id : bank_id,
         bank_projectedMonths : projectedMonths
-      }
+      },
       success: function(response) {
         $('#billTable').html(response);
       }
