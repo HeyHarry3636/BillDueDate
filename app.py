@@ -277,7 +277,8 @@ def dashboard():
 						'recur_id': bank[6],
 						'bank_createdDate': bank[7]
 					}
-					shownMonths = bank[5]
+					# shownMonths = bank[5]
+					shownMonths = 10
 					bank_dict.append(bank_item)
 
 					# Set the runningTotal to the current value of the bank account
