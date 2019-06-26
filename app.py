@@ -277,6 +277,7 @@ def dashboard():
 						'bank_createdDate': bank[7]
 					}
 					bank_dict.append(bank_item)
+					print(bank)
 
 					# Set the runningTotal to the current value of the bank account
 					#runningTotal.setInitialAmount(50000)
