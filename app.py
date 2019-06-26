@@ -286,8 +286,8 @@ def dashboard():
 				# Duplicate bills that occur on recur_id basis
 				# Ex: if you want to show the next three months of bills, duplicate the bill three times for the future months
 				print("shownMonths = " + str(shownMonths))
-				print("str(datetime.datetime.today) = " + str(datetime.datetime.today))
-				print("type(datetime.datetime.today) = " + str(type(datetime.datetime.today)))
+				print("str(datetime.date.today()) = " + str(datetime.date.today()))
+				print("type(datetime.date.today()) = " + str(type(datetime.date.today())))
 
 				# Create an index to track payDays steps
 				payDayListIndex = 0
@@ -301,7 +301,7 @@ def dashboard():
 
 						# print("type(li['bill_date']) = " + str(type(li['bill_date'])))
 						# print("type(payDayList[payDayListIndex].date()) = " + str(type(payDayList[payDayListIndex].date())))
-						if li['bill_date'] <= datetime.datetime.now():
+						if li['bill_date'] <= datetime.date.today():
 							print("BILL DATE COMES BEFORE TODAY/NOW")
 						else:
 							print("BILL DATE COMES __AFTER__ TODAY/NOW")
