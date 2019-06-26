@@ -29,16 +29,14 @@
           <div class="form-group">
             <label for="projectedMonths{{ bank.bank_id }}">Projected Months</label>
             <!-- <input type="number" class="form-control" id="projectedMonths{{ bank.bank_id }}" value="{{ bank.bank_projectedMonths }}"> -->
-            <div id="projMon">
-              <select type="number" class="form-control" id="projectedMonths{{ bank.bank_id }}" value="{{ bank.bank_projectedMonths }}">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-              </select>
-            </div>
+            <select type="number" class="form-control" id="projectedMonths{{ bank.bank_id }}" value="{{ bank.bank_projectedMonths }}">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
           </div>
           <button class="btn btn-primary updateButton" bank_id="{{ bank.bank_id }}">Update</button>
         </div>
@@ -48,13 +46,6 @@
   </div>
 
   <hr>
-
-  <script type="text/javascript">
-    let projectMon = document.getElementById('projMon');
-    projectMon.onchange = function() {
-
-    }
-  </script>
 
   <div class="table-responsive">
     <table class="bill-rowsTable testClass table table-hover table-striped table-sm">
