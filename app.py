@@ -333,7 +333,7 @@ def dashboard():
 									print("li['bill_amount'] = " + str(li['bill_amount']))
 									print("runningTotalA = " + str(runningTotal.getRunningTotal()))
 
-									runningTotal.setRunningTotalAfterPayDayMultiple(li['bill_amount'], x-2, 1)
+									runningTotal.setRunningTotalAfterPayDayMultiple(li['bill_amount'], payDayAmountInput.getPayDayAmount(), x-2)
 
 									print("runningTotalB = " + str(runningTotal.getRunningTotal()))
 
