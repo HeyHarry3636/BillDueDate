@@ -1,10 +1,10 @@
 import datetime
 import calendar
 
-def addOneMonth(origDate):
+def addMonths(origDate, numMonths):
     # Advance year and month by one month
     newYear = origDate.year
-    newMonth = origDate.month + 1
+    newMonth = origDate.month + numMonths
     # Note: in datetime.date, months go from 1 to 12
     if newMonth > 12:
         newYear += 1

@@ -296,7 +296,10 @@ def dashboard():
 					print("type(initialBillDate) = " + str(type(initialBillDate)))
 					break
 
-
+				# Set the limit for the number of bills that are viewable
+				dateLimit = functions.addMonths(initialBillDate, shownMonths)
+				print("dateLimit = " + str(dateLimit))
+				print("type(dateLimit) = " + str(type(dateLimit)))
 
 
 
@@ -594,7 +597,7 @@ def billsPaidCheckboxes():
 			# _currentBill[7] = recur_id
 			# recur_id (3) is the values for the monthly recurrence
 			if _currentBill[7] == 3:
-				newDateForBill = functions.addOneMonth(_currentBill[6])
+				newDateForBill = functions.addMonths(_currentBill[6], 1)
 
 				print("newDateForBill = " + str(newDateForBill))
 				cursor.execute('UPDATE tbl_bill SET bill_date = %s WHERE bill_id = %s', (newDateForBill, _bill_id))
