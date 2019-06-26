@@ -19,6 +19,9 @@ $(document).ready(function() {
         bank_id : bank_id,
         bank_projectedMonths : projectedMonths
       }
+      success: function(response) {
+        $('#billTable').html(response);
+      }
     });
 
     // data = the passed back data from the app.py updateTest function
@@ -27,11 +30,10 @@ $(document).ready(function() {
       $('currentInput'+bank_id).val(data.bank_currentAmount);
       $('payDayInput'+bank_id).val(data.bank_payDayAmount);
       $('nextPayDateInput'+bank_id).val(data.bank_nextPayDate);
-      // $('projectedMonths'+bank_id).val(data.bank_projectedMonths);
+      $('projectedMonths'+bank_id).val(data.bank_projectedMonths);
       // location.reload();
     });
 
-    $('projectedMonths'+bank_id).val(data.bank_projectedMonths).change();
     // Do stuff for the bill rows loop through all columns
 
 
