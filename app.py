@@ -286,7 +286,6 @@ def dashboard():
 				# Duplicate bills that occur on recur_id basis
 				# Ex: if you want to show the next three months of bills, duplicate the bill three times for the future months
 				print("shownMonths = " + str(shownMonths))
-				print("datetime.datetime.today = " + datetime.datetime.today)
 				print("str(datetime.datetime.today) = " + str(datetime.datetime.today))
 				print("type(datetime.datetime.today) = " + str(type(datetime.datetime.today)))
 
