@@ -291,7 +291,7 @@ def dashboard():
 
 				#Set initial date based on the first bill in the sorted bill List
 				# initialBillDate = bill_dict[0]['bill_date']
-				initialBillDate = min('bill_date', key='bill_date'.get)
+				initialBillDate = bill_dict[0][0]
 				print("initialBillDate = " + str(initialBillDate))
 
 				# for li in bill_dict:
