@@ -217,8 +217,8 @@ def dashboard():
 				tempPayDay = tempPayDay + datetime.timedelta(days=14)
 				payDayList.append(tempPayDay)
 
-			for i in range(0, len(payDayList)):
-				# print("payDayList[" + str(i) + "] = " + str(payDayList[i]))
+			# for i in range(0, len(payDayList)):
+			# 	print("payDayList[" + str(i) + "] = " + str(payDayList[i]))
 
 			# Get each bill for the user
 			cursor.callproc('sp_getBillByUser', (_user_id,))
