@@ -276,8 +276,8 @@ def dashboard():
 						'recur_id': bank[6],
 						'bank_createdDate': bank[7]
 					}
+					shownMonths = bank[5]
 					bank_dict.append(bank_item)
-					print(bank)
 
 					# Set the runningTotal to the current value of the bank account
 					#runningTotal.setInitialAmount(50000)
@@ -286,10 +286,7 @@ def dashboard():
 
 				# Duplicate bills that occur on recur_id basis
 				# Ex: if you want to show the next three months of bills, duplicate the bill three times for the future months
-				print("bank_dict['bank_projectedMonths'] = " + bank_dict[5])
-				shownMonths = bank_dict['bank_projectedMonths']
 				print("shownMonths = " + str(shownMonths))
-				print("type(shownMonths) = " + str(type(shownMonths)))
 
 
 				# Create an index to track payDays steps
