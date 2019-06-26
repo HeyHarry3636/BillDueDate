@@ -371,7 +371,7 @@ def dashboard():
 
 
 
-				return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation())
+				return render_template('dashboard.html', bill_dict=bill_dict, bank_dict=bank_dict, hasBankData=hasBankData.getBankInformation(), bill_dict_truncated=bill_dict_truncated)
 
 	# except Exception as e:
 	# 	return render_template('error.html', error = str(e))
