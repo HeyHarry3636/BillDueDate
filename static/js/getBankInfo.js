@@ -27,7 +27,7 @@ $(document).ready(function() {
       $('currentInput'+bank_id).val(data.bank_currentAmount);
       $('payDayInput'+bank_id).val(data.bank_payDayAmount);
       $('nextPayDateInput'+bank_id).val(data.bank_nextPayDate);
-      $('projectedMonths'+bank_id).val(data.bank_projectedMonths.toString());
+      $('projectedMonths'+bank_id).val(data.bank_projectedMonths);
 
       // this will reload the bill table (fetches new data from database after change to bank info)
       $('#billTable').load(location.href + ' #billTable');
