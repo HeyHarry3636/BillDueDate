@@ -879,8 +879,8 @@ def city(state):
 		print("cityInForLoop = " + str(city))
 		print("cityType = " + str(type(city)))
 		cityObj = {}
-		cityObj['id'] = city.id
-		cityObj['name'] = city.name
+		cityObj['id'] = city[0]
+		cityObj['name'] = city[2]
 		cityArray.append(cityObj)
 
 	# print(json.dumps({'cities' : cityArray}))
