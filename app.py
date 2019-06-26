@@ -301,12 +301,20 @@ def dashboard():
 						# Set the limit for the number of bills that are viewable
 						dateLimit = functions.addMonths(initialBillDate, shownMonths)
 						print("dateLimit = " + str(dateLimit))
-						print("type(dateLimit) = " + str(type(dateLimit)))
+						print("\n")
+						# print("type(dateLimit) = " + str(type(dateLimit)))
 
 					if li['bill_date'] <= dateLimit:
+						print("li['bill_name'] = " + str(li['bill_name']))
+						print("li['bill_date'] = " + str(li['bill_date']))
+						print("dateLimit = " + str(dateLimit))
+						print("\n")
+
 						bill_dict_truncated.append(li)
-						print(bill_dict_truncated)
+						# print(bill_dict_truncated)
+						print("counterBefore = " + str(counter))
 						counter += 1
+						print("counterAfter = " + str(counter))
 
 
 
