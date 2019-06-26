@@ -18,13 +18,14 @@ $(document).ready(function() {
         bank_nextPayDate : nextPayDayDate,
         bank_id : bank_id,
         bank_projectedMonths : projectedMonths
-      },
-      success: function(response) {
-        refreshedPage = $(response);
-        newData = refreshedPage.find('#billTable').html();
-        $('#billTable').html(newData);
-        // $('#billTable').html(response);
       }
+      // },
+      // success: function(response) {
+      //   refreshedPage = $(response);
+      //   newData = refreshedPage.find('#billTable').html();
+      //   $('#billTable').html(newData);
+      //   // $('#billTable').html(response);
+      // }
     });
 
     // data = the passed back data from the app.py updateTest function
@@ -34,6 +35,7 @@ $(document).ready(function() {
       $('payDayInput'+bank_id).val(data.bank_payDayAmount);
       $('nextPayDateInput'+bank_id).val(data.bank_nextPayDate);
       $('projectedMonths'+bank_id).val(data.bank_projectedMonths);
+      $('#billTable').load(location.href + ' #billTable');
       // location.reload();
     });
 
