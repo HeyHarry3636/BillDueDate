@@ -21,7 +21,19 @@
 
         fetch('/city/' + state).then(function(response) {
           response.json().then(function(data) {
-            console.table(data);
+            // console.table(data);
+
+            // this will set the option tags within the HTML for our dropdown
+            let optionHTML = '';
+
+            // cities comes from json.dumps("cities") in flask app route city
+            for (let city of data.cities) {
+              optionHTML += '<option value="' + city[0]+ '">' + city[2] + '</option>';
+            }
+
+            // update html to use these options instead of the old
+            city_select.innerHTML = optionHTML;
+
           });
         });
       }
