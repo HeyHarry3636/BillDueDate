@@ -327,7 +327,7 @@ def dashboard():
 						else:
 							for x in range(0, len(payDayList)):
 								if li['bill_date'] <= payDayList[x].date():
-									runningTotal.setRunningTotalAfterPayDayMultiple(li['bill_amount'], x-2)
+									runningTotal.setRunningTotalAfterPayDayMultiple(li['bill_amount'], x-2, 1)
 									runningTotal.setRunningTotal(li['bill_amount'])
 									break
 
