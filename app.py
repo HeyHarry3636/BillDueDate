@@ -210,9 +210,9 @@ def dashboard():
 			payDayList = []
 			payDayList.append(runningDate.getRunningDate())
 
-			# Project out the next __ 20 __ paydays for now
+			# Project out the next __ 50 __ paydays for now
 			tempPayDay = runningDate.getRunningDate()
-			for i in range(20):
+			for i in range(50):
 				# in this case the next payday is 14 days/2 weeks after the initial payday
 				tempPayDay = tempPayDay + datetime.timedelta(days=14)
 				payDayList.append(tempPayDay)
