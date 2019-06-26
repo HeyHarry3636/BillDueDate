@@ -248,6 +248,8 @@ def dashboard():
 			# bill_dict is a list of dictionaries billData = ( { : }, { : }, { : } )
 			# This function will sort the list by bill_date
 			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
+			print("type(bill_dict)" + type(bill_dict))
+			
 			# Get bank details for the user,
 			# if bankInfo does not exist, show 'addBank' button on dashboard
 			cursor.callproc('sp_getBankByUser', (_user_id,))
