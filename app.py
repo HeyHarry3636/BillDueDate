@@ -293,6 +293,7 @@ def dashboard():
 				for li in bill_dict:
 					initialBillDate = li['bill_date']
 					print("initialBillDate = " + str(initialBillDate))
+					print("type(initialBillDate) = " + str(type(initialBillDate)))
 					break
 
 
