@@ -876,6 +876,8 @@ def city(state):
 
 	for city in cities:
 		#create new city object for each city (dictionary)
+		print("cityInForLoop = " + str(city))
+		print("cityType = " + str(type(city)))
 		cityObj = {}
 		cityObj['id'] = city.id
 		cityObj['name'] = city.name
