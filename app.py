@@ -806,6 +806,7 @@ def contact():
 def testDynamicTable():
 	return render_template('testDynamicTable.html')
 
+# Set selectfield options of city based on the state
 @app.route('/testSelectField', methods=['GET', 'POST'])
 def testSelectField():
 	try:
@@ -885,7 +886,6 @@ def city(state):
 
 	# print(json.dumps({'cities' : cityArray}))
 	return json.dumps({'cities' : cityArray})
-
 
 ###############################################################################################
 
