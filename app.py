@@ -298,8 +298,14 @@ def dashboard():
 				# adding appropriate paydays based on the payday list created above
 				for li in bill_dict:
 					for x in range(0, len(payDayList)):
-						print("type(li['bill_date']) = " + str(type(li['bill_date'])))
-						print("type(payDayList[payDayListIndex].date()) = " + str(type(payDayList[payDayListIndex].date())))
+
+						# print("type(li['bill_date']) = " + str(type(li['bill_date'])))
+						# print("type(payDayList[payDayListIndex].date()) = " + str(type(payDayList[payDayListIndex].date())))
+						if li['bill_date'] <= datetime.datetime.now():
+							print("BILL DATE COMES BEFORE TODAY/NOW")
+						else:
+							print("BILL DATE COMES __AFTER__ TODAY/NOW")
+
 						# if bill date is previous OR equal to the first payday (in payday list),
 						# then subtract bill amount from running runningTotal
 						if li['bill_date'] <= payDayList[payDayListIndex].date():
