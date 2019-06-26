@@ -285,7 +285,7 @@ def dashboard():
 
 				# Duplicate bills that occur on recur_id basis
 				# Ex: if you want to show the next three months of bills, duplicate the bill three times for the future months
-				print("bank_dict['bank_projectedMonths'] = " + bank_dict['bank_projectedMonths'])
+				print("bank_dict['bank_projectedMonths'] = " + bank_dict[5])
 				shownMonths = bank_dict['bank_projectedMonths']
 				print("shownMonths = " + str(shownMonths))
 				print("type(shownMonths) = " + str(type(shownMonths)))
