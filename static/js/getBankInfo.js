@@ -31,7 +31,7 @@ $(document).ready(function() {
       // location.reload();
     });
 
-    $('projectedMonths'+bank_id).val(data.bank_projectedMonths);
+    $('projectedMonths'+bank_id).val(data.bank_projectedMonths).change();
     // Do stuff for the bill rows loop through all columns
 
 
