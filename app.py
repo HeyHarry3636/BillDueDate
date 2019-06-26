@@ -341,11 +341,13 @@ def dashboard():
 							print("runningTotalIFBEFORE = " + str(runningTotal.getRunningTotal()))
 							runningTotal.setRunningTotal(li['bill_amount'])
 							print("runningTotalIFAFTER = " + str(runningTotal.getRunningTotal()))
+							break
 
 						else:
 							print("runningTotalELSEBEFORE = " + str(runningTotal.getRunningTotal()))
 							runningTotal.setRunningTotalAfterPayDay(0, payDayAmountInput.getPayDayAmount())
 							print("runningTotalELSEAFTER = " + str(runningTotal.getRunningTotal()))
+							break
 
 								# if li['bill_date'] <= payDayList[x].date():
 								#
