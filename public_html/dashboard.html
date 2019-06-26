@@ -63,11 +63,8 @@
           <th></th>
         </tr>
       </thead>
-      <!-- use bill_dict to show all bills -->
       {% for bill in bill_dict %}
 
-      <!-- use bill_dict_truncated to show only bills in the timeframe the user requests. -->
-      <!-- {% for bill in bill_dict_truncated %} -->
         <tr class="bill-rows" id="rowID{{ bill.bill_id }}" bill_id="{{ bill.bill_id }}">
           <td>{{bill.bill_name}}</td>
           <td>${{bill.bill_amount}}</td>
