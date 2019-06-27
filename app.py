@@ -372,9 +372,9 @@ def dashboard():
 
 						# print("type(li['bill_date']) = " + str(type(li['bill_date'])))
 						# print("type(payDayList[payDayListIndex].date()) = " + str(type(payDayList[payDayListIndex].date())))
-						if li['bill_date'] <= datetime.date.today():
+						# if li['bill_date'] <= datetime.date.today():
 							# print("BILL DATE COMES BEFORE TODAY/NOW")
-						else:
+						# else:
 							# print("BILL DATE COMES __AFTER__ TODAY/NOW")
 
 						# if bill date is previous OR equal to the first payday (in payday list),
