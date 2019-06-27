@@ -290,7 +290,7 @@ def dashboard():
 				print("shownMonths = " + str(shownMonths))
 
 				# Create new list that will only store the bills that the user wants to see (Ex: only want to see next 3 months)
-				bill_dict_truncated = []
+				bill_dict_trunc = []
 				counter = 0
 				#Set initial date based on the first bill in the sorted bill List
 				for li in bill_dict:
@@ -308,7 +308,7 @@ def dashboard():
 						# print("li['bill_date'] = " + str(li['bill_date']))
 						# print("dateLimit = " + str(dateLimit))
 						# print("\n")
-						bill_dict_truncated.append(li)
+						bill_dict_trunc.append(li)
 
 						#If the recurrence interval is months, add 1 month to bill
 						# recur_id 3 == monthly recurrence
@@ -354,7 +354,7 @@ def dashboard():
 									# print("\n")
 
 									#Append the next month to the List
-									bill_dict_truncated.append(newBillItem)
+									bill_dict_trunc.append(newBillItem)
 
 						# print("counterBefore = " + str(counterBefore))
 						counter += 1
@@ -363,6 +363,9 @@ def dashboard():
 					# print("\n")
 					# print("\n")
 					# print("\n")
+					
+				# sort truncated list
+				bill_dict_truncated = sorted(bill_dict_trunc, key=lambda k: k['bill_date'])
 
 				for li in bill_dict_truncated:
 					print("li['bill_name'] = " + str(li['bill_name']))
