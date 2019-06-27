@@ -316,26 +316,26 @@ def dashboard():
 							#Create new dictionary item for next months bills
 							#Add X months to date
 							for val in range(1, shownMonths):
-								print("val = " + str(val))
-								print("li['bill_name'] = " + str(li['bill_name']))
+								# print("val = " + str(val))
+								# print("li['bill_name'] = " + str(li['bill_name']))
 
 								nextMonthDate = functions.addMonths(li['bill_date'], val)
-								print("currentMonthDate = " + str(li['bill_date']))
-								print("nextMonthDate = " + str(nextMonthDate))
-								print("\n")
+								# print("currentMonthDate = " + str(li['bill_date']))
+								# print("nextMonthDate = " + str(nextMonthDate))
+								# print("\n")
 
 								if nextMonthDate <= dateLimit:
 									# if the next month bill date still below the dateLimit, make a copy of it and append to list
 									newBillItem = li
-									print("newBillItem = " + str(newBillItem))
-									print("\n")
+									# print("newBillItem = " + str(newBillItem))
+									# print("\n")
 
 									newBillItem['bill_date'] = nextMonthDate
-									print("newBillItem['bill_date'] = " + str(newBillItem['bill_date']))
-									print("\n")
+									# print("newBillItem['bill_date'] = " + str(newBillItem['bill_date']))
+									# print("\n")
 
-									print("NEW newBillItem = " + str(newBillItem))
-									print("\n")
+									# print("NEW newBillItem = " + str(newBillItem))
+									# print("\n")
 
 									#Append the next month to the List
 									bill_dict_truncated.append(newBillItem)
@@ -348,8 +348,10 @@ def dashboard():
 					# print("\n")
 					# print("\n")
 
-
-
+				for li in bill_dict_truncated:
+					print("li['bill_name'] = " + str(li['bill_name']))
+					print("li['bill_date'] = " + str(li['bill_date']))
+					print("\n")
 
 
 
