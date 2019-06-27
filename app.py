@@ -317,7 +317,8 @@ def dashboard():
 							#Add X months to date
 							for val in range(1, shownMonths):
 								print("val = " + str(val))
-
+								print("li['bill_name'] = " + str(li['bill_name']))
+								
 								nextMonthDate = functions.addMonths(li['bill_date'], val)
 								print("nextMonthDate = " + str(nextMonthDate))
 								print("\n")
