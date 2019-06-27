@@ -325,12 +325,28 @@ def dashboard():
 								# print("\n")
 
 								if nextMonthDate <= dateLimit:
+
 									# if the next month bill date still below the dateLimit, make a copy of it and append to list
 									newBillItem = li
 									# print("newBillItem = " + str(newBillItem))
 									# print("\n")
 
-									newBillItem['bill_date'] = nextMonthDate
+									newBillItem = {
+										'bill_id': li['bill_id'],
+										'user_id': li['user_id'],
+										'bill_name': li['bill_name'],
+										'bill_description': li['bill_description'],
+										# Set the bill amount to decimal.Decimal which is what the
+										# running total class type is
+										'bill_amount': li['bill_amount'],
+										'bill_autoWithdrawal': li['bill_autoWithdrawal'],
+										'bill_date': nextMonthDate,
+										'recur_id': li['recur_id'],
+										'bill_createdDate': li['bill_createdDate'],
+										'bill_paid': li['bill_paid']
+									}
+
+									# newBillItem['bill_date'] = nextMonthDate
 									# print("newBillItem['bill_date'] = " + str(newBillItem['bill_date']))
 									# print("\n")
 
