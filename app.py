@@ -318,7 +318,7 @@ def dashboard():
 							for val in range(1, shownMonths):
 								print("val = " + str(val))
 								print("li['bill_name'] = " + str(li['bill_name']))
-								
+
 								nextMonthDate = functions.addMonths(li['bill_date'], val)
 								print("nextMonthDate = " + str(nextMonthDate))
 								print("\n")
@@ -332,6 +332,10 @@ def dashboard():
 									newBillItem['bill_date'] = nextMonthDate
 									print("newBillItem['bill_date'] = " + str(newBillItem['bill_date']))
 									print("\n")
+
+									print("newBillItem = " + str(newBillItem))
+									print("\n")
+
 									#Append the next month to the List
 									bill_dict_truncated.append(newBillItem)
 
