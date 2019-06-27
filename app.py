@@ -333,14 +333,15 @@ def dashboard():
 									print("newBillItem['bill_date'] = " + str(newBillItem['bill_date']))
 									print("\n")
 
-									print("newBillItem = " + str(newBillItem))
+									print("NEW newBillItem = " + str(newBillItem))
 									print("\n")
 
 									#Append the next month to the List
 									bill_dict_truncated.append(newBillItem)
 
-
+						# print("counterBefore = " + str(counterBefore))
 						counter += 1
+						# print("counterAfter = " + str(counterAfter))
 
 					# print("\n")
 					# print("\n")
