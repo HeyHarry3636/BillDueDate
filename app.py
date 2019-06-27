@@ -342,9 +342,9 @@ def dashboard():
 
 						counter += 1
 
-					print("\n")
-					print("\n")
-					print("\n")
+					# print("\n")
+					# print("\n")
+					# print("\n")
 
 
 
@@ -367,15 +367,15 @@ def dashboard():
 				for li in bill_dict_truncated:
 
 					for x in range(0, len(payDayList)):
-						print("li['bill_name'] = " + str(li['bill_name']))
-						print("li['bill_date'] = " + str(li['bill_date']))
+						# print("li['bill_name'] = " + str(li['bill_name']))
+						# print("li['bill_date'] = " + str(li['bill_date']))
 
 						# print("type(li['bill_date']) = " + str(type(li['bill_date'])))
 						# print("type(payDayList[payDayListIndex].date()) = " + str(type(payDayList[payDayListIndex].date())))
 						if li['bill_date'] <= datetime.date.today():
-							print("BILL DATE COMES BEFORE TODAY/NOW")
+							# print("BILL DATE COMES BEFORE TODAY/NOW")
 						else:
-							print("BILL DATE COMES __AFTER__ TODAY/NOW")
+							# print("BILL DATE COMES __AFTER__ TODAY/NOW")
 
 						# if bill date is previous OR equal to the first payday (in payday list),
 						# then subtract bill amount from running runningTotal
