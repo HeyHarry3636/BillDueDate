@@ -320,6 +320,7 @@ def dashboard():
 								print("li['bill_name'] = " + str(li['bill_name']))
 
 								nextMonthDate = functions.addMonths(li['bill_date'], val)
+								print("currentMonthDate = " + str(li['bill_date']))
 								print("nextMonthDate = " + str(nextMonthDate))
 								print("\n")
 
