@@ -324,7 +324,7 @@ def dashboard():
 								print("nextMonthDate = " + str(nextMonthDate))
 								print("\n")
 
-								if li['bill_date'] <= dateLimit:
+								if nextMonthDate <= dateLimit:
 									# if the next month bill date still below the dateLimit, make a copy of it and append to list
 									newBillItem = li
 									print("newBillItem = " + str(newBillItem))
