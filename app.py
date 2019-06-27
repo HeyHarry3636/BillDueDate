@@ -295,26 +295,46 @@ def dashboard():
 				#Set initial date based on the first bill in the sorted bill List
 				for li in bill_dict:
 					#Set initial date based on the first bill in the sorted bill List
-					# print("li = " + str(li))
 					if counter == 0:
 						initialBillDate = li['bill_date']
 						# Set the limit for the number of bills that are viewable
 						dateLimit = functions.addMonths(initialBillDate, shownMonths)
 						print("dateLimit = " + str(dateLimit))
-						print("\n")
+						# print("\n")
 						# print("type(dateLimit) = " + str(type(dateLimit)))
 
 					if li['bill_date'] <= dateLimit:
-						print("li['bill_name'] = " + str(li['bill_name']))
-						print("li['bill_date'] = " + str(li['bill_date']))
-						print("dateLimit = " + str(dateLimit))
-						print("\n")
-
+						# print("li['bill_name'] = " + str(li['bill_name']))
+						# print("li['bill_date'] = " + str(li['bill_date']))
+						# print("dateLimit = " + str(dateLimit))
+						# print("\n")
 						bill_dict_truncated.append(li)
-						# print(bill_dict_truncated)
-						print("counterBefore = " + str(counter))
+
+						#If the recurrence interval is months, add 1 month to bill
+						# recur_id 3 == monthly recurrence
+						if li['recur_id'] == 3:
+							#Create new dictionary item for next months bills
+							#Add one month to date
+							nextMonthDate = functions.addMonths(li['bill_date'], 1)
+							print("nextMonthDate = " + str(nextMonthDate))
+							print("\n")
+
+							newBillItem = li
+							print("newBillItem = " + str(newBillItem))
+							print("\n")
+
+							newBillItem['bill_date'] = nextMonthDate
+							print("newBillItem['bill_date'] = " + str(newBillItem['bill_date']))
+							print("\n")
+							#Append the next month to the List
+
 						counter += 1
-						print("counterAfter = " + str(counter))
+
+					print("\n")
+					print("\n")
+					print("\n")
+
+
 
 
 
