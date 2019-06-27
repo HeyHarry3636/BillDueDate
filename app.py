@@ -314,19 +314,26 @@ def dashboard():
 						# recur_id 3 == monthly recurrence
 						if li['recur_id'] == 3:
 							#Create new dictionary item for next months bills
-							#Add one month to date
-							nextMonthDate = functions.addMonths(li['bill_date'], 1)
-							print("nextMonthDate = " + str(nextMonthDate))
-							print("\n")
+							#Add X months to date
+							for val in range(1, shownMonths):
+								print("val = " + str(val))
 
-							newBillItem = li
-							print("newBillItem = " + str(newBillItem))
-							print("\n")
+								nextMonthDate = functions.addMonths(li['bill_date'], val)
+								print("nextMonthDate = " + str(nextMonthDate))
+								print("\n")
 
-							newBillItem['bill_date'] = nextMonthDate
-							print("newBillItem['bill_date'] = " + str(newBillItem['bill_date']))
-							print("\n")
-							#Append the next month to the List
+								if li['bill_date'] <= dateLimit:
+									# if the next month bill date still below the dateLimit, make a copy of it and append to list
+									newBillItem = li
+									print("newBillItem = " + str(newBillItem))
+									print("\n")
+
+									newBillItem['bill_date'] = nextMonthDate
+									print("newBillItem['bill_date'] = " + str(newBillItem['bill_date']))
+									print("\n")
+									#Append the next month to the List
+									bill_dict_truncated.append(newBillItem)
+
 
 						counter += 1
 
