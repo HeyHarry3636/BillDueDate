@@ -730,7 +730,8 @@ def addBank():
 
 	print("hasBank = " + str(hasBank))
 	print("request.method = " + str(request.method))
-	
+	print("form.validate() = " + str(form.validate()))
+
 	if request.method == 'GET':
 		if hasBank == False:
 			return render_template('addBank.html', form=form)
