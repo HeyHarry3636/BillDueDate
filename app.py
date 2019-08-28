@@ -732,7 +732,8 @@ def addBank():
 
 	if request.method == 'GET':
 		if hasBank == False:
-			return render_template('addBank.html', form=form)
+			# return render_template('addBank.html', form=form)
+			print("hasBank|GETrequest = " + str(hasBank))
 		elif hasBank == True:
 			flash('You already have bank information entered', 'danger')
 			app.logger.info("else"+str(hasBankData))
