@@ -727,17 +727,17 @@ def addBank():
 	hasBank = hasBankData.getBankInformation()
 	form = forms.BankForm(request.form)
 
-	if request.method == 'GET':
-		if hasBank == False:
-			return render_template('addBank.html', form=form)
-		elif hasBank == True:
-			flash('You already have bank information entered', 'danger')
-			app.logger.info("else"+str(hasBankData))
-			return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
-		else:
-			flash('Error', 'danger')
-			app.logger.info("else"+str(hasBankData))
-			return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
+	# if request.method == 'GET':
+	# 	if hasBank == False:
+	# 		return render_template('addBank.html', form=form)
+	# 	elif hasBank == True:
+	# 		flash('You already have bank information entered', 'danger')
+	# 		app.logger.info("else"+str(hasBankData))
+	# 		return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
+	# 	else:
+	# 		flash('Error', 'danger')
+	# 		app.logger.info("else"+str(hasBankData))
+	# 		return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
 
 	# return render_template('dashboard.html', form=form)
 
