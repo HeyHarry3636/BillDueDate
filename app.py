@@ -790,9 +790,9 @@ def addBank():
 			else:
 				app.logger.info('You already have bank information in the database')
 				return redirect(url_for('dashboard'))
-		else:
-			flash("Something is wrong", 'danger')
-			return render_template('dashboard.html', form=form)
+		# else:
+		# 	flash("Something is wrong", 'danger')
+		# 	return render_template('dashboard.html', form=form)
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
