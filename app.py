@@ -193,14 +193,15 @@ def dashboard():
 			# print("payDay = " + str(payDay[0].date()))
 
 			# Set initial payday date
-			# if not payDay:
-			# 	print("if not PayDay")
-			# 	#List is empty
-			# 	hasBankData.setBankInformation(False)
-			# 	return render_template('dashboard.html', hasBankData=hasBankData.getBankInformation())
+			if not payDay:
+				print("if not PayDay")
+				#List is empty
+				hasBankData.setBankInformation(False)
+				return render_template('dashboard.html', hasBankData=hasBankData.getBankInformation())
 
 			cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
 			payDay = cursor.fetchone()
+			print("payDay2 = " + str(payDay))
 			#print("payDay2 = " + str(payDay))
 
 			runningDate.setInitialDate(payDay[0])
@@ -729,19 +730,19 @@ def addBank():
 
 	print("hasBank = " + str(hasBank))
 
-	# if request.method == 'GET':
-	# 	if hasBank == False:
-	# 		return render_template('addBank.html', form=form)
-	# 	elif hasBank == True:
-	# 		flash('You already have bank information entered', 'danger')
-	# 		app.logger.info("else"+str(hasBankData))
-	# 		return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
-	# 	else:
-	# 		flash('Error', 'danger')
-	# 		app.logger.info("else"+str(hasBankData))
-	# 		return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
+	if request.method == 'GET':
+		if hasBank == False:
+			return render_template('addBank.html', form=form)
+		elif hasBank == True:
+			flash('You already have bank information entered', 'danger')
+			app.logger.info("else"+str(hasBankData))
+			return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
+		else:
+			flash('Error', 'danger')
+			app.logger.info("else"+str(hasBankData))
+			return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
 
-	# return render_template('dashboard.html', form=form)
+	return render_template('dashboard.html', form=form)
 
 	try:
 		if request.method == 'POST' and form.validate():
