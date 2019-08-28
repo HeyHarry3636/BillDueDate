@@ -363,7 +363,7 @@ def dashboard():
 					# print("\n")
 					# print("\n")
 					# print("\n")
-					
+
 				# sort truncated list
 				bill_dict_truncated = sorted(bill_dict_trunc, key=lambda k: k['bill_date'])
 
@@ -750,12 +750,21 @@ def addBank():
 			_bank_nextPayDate = form.bank_nextPayDate.data
 			_recur_id = form.recur_id.data
 
+			print("_user_id = " + _user_id)
+			print("_bank_currentAmount = " + _bank_currentAmount)
+			print("_bank_payDayAmount = " + _bank_payDayAmount)
+			print("_bank_nextPayDate = " + _bank_nextPayDate)
+			print("_recur_id = " + _recur_id)
+
 			# Create mysql connection, create cursor, call procedure, fetch results
 			conn = mysql.connect()
 			cursor = conn.cursor()
 
 			# Check to see if there is already a bank account in the database
 			bankInfoExists = cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
+			bankInfoExistsFetchOne = cursor.fetchone()
+			print("bankInfoExists = " + bankInfoExists)
+			print("bankInfoExistsFetchOne = " + bankInfoExistsFetchOne)
 
 			# Only allowed to have one bank account in the system
 			if bankInfoExists < 1:
