@@ -742,7 +742,7 @@ def addBank():
 		# 	app.logger.info("else"+str(hasBankData))
 		# 	return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
 
-	return render_template('dashboard.html', form=form)
+	# return render_template('dashboard.html', form=form)
 
 	try:
 		if request.method == 'POST' and form.validate():
