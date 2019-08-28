@@ -744,7 +744,7 @@ def addBank():
 	# return render_template('dashboard.html', form=form)
 
 	try:
-		if request.method == 'POST' and form.validate():
+		# if request.method == 'POST' and form.validate():
 			# Get form data (using WTForms syntax)
 			_user_id = session.get('user_id')
 			_bank_currentAmount = form.bank_currentAmount.data
