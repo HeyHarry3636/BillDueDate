@@ -193,11 +193,11 @@ def dashboard():
 			# print("payDay = " + str(payDay[0].date()))
 
 			# Set initial payday date
-			if not payDay:
-				print("if not PayDay")
-				#List is empty
-				hasBankData.setBankInformation(False)
-				return render_template('dashboard.html', hasBankData=hasBankData.getBankInformation())
+			# if not payDay:
+			# 	print("if not PayDay")
+			# 	#List is empty
+			# 	hasBankData.setBankInformation(False)
+			# 	return render_template('dashboard.html', hasBankData=hasBankData.getBankInformation())
 
 			cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
 			payDay = cursor.fetchone()
@@ -744,7 +744,7 @@ def addBank():
 	# return render_template('dashboard.html', form=form)
 
 	try:
-		# if request.method == 'POST' and form.validate():
+		if request.method == 'POST' and form.validate():
 			# Get form data (using WTForms syntax)
 			_user_id = session.get('user_id')
 			_bank_currentAmount = form.bank_currentAmount.data
@@ -790,9 +790,9 @@ def addBank():
 			else:
 				app.logger.info('You already have bank information in the database')
 				return redirect(url_for('dashboard'))
-		# else:
-		# 	flash("Something is wrong", 'danger')
-		# 	return render_template('dashboard.html', form=form)
+		else:
+			flash("Something is wrong", 'danger')
+			return render_template('dashboard.html', form=form)
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
