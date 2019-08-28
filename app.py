@@ -727,7 +727,7 @@ def addBank():
 	hasBank = hasBankData.getBankInformation()
 	form = forms.BankForm(request.form)
 
-	print("hasBank = " + hasBank)
+	print("hasBank = " + str(hasBank))
 
 	# if request.method == 'GET':
 	# 	if hasBank == False:
