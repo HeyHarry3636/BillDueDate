@@ -727,6 +727,8 @@ def addBank():
 	hasBank = hasBankData.getBankInformation()
 	form = forms.BankForm(request.form)
 
+	print("hasBank = " + hasBank)
+
 	# if request.method == 'GET':
 	# 	if hasBank == False:
 	# 		return render_template('addBank.html', form=form)
