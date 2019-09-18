@@ -1,4 +1,4 @@
-USE BillDueDate
+USE BillDueDate;
 
 -- Credentials for Test USER
 -- U: test

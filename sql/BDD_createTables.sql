@@ -2,7 +2,7 @@
 -- MySQL script to create BillDueDate tables
 -- ====================================================================
 
-USE BillDueDate
+USE BillDueDate;
 
 -- Credentials for Test USER
 -- U: test

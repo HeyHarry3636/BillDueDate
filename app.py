@@ -1,6 +1,7 @@
 # BillDueDate
 
 from flask import Flask, render_template, json, session, redirect, url_for, flash, logging, request
+from flask.logging import create_logger
 from flaskext.mysql import MySQL
 #from wtforms import Form, validators, PasswordField, StringField, BooleanField, SelectField, DateField
 #from wtforms.fields.html5 import EmailField, DecimalField, DateField
@@ -22,6 +23,7 @@ htmlFiles = "public_html"
 app = Flask(__name__, template_folder=htmlFiles)
 mysql = MySQL()
 app.secret_key = 'Bills are due'
+AppLog = create_logger(app)
 
 # Test user credentials
 # U = test@test.com
@@ -135,7 +137,7 @@ def login():
 			else:
 				if len(data) > 0:
 					if bcrypt.checkpw(_password.encode("utf-8"), data[0][2]):
-						app.logger.info('PASSWORD MATCHED') #Logs to app.py console
+						AppLog.info('PASSWORD MATCHED') #Logs to app.py console
 						session['logged_in'] = True
 						session['user_id'] = data[0][0]
 						session['user_email'] = data[0][1]
@@ -515,16 +517,16 @@ def editBill(id):
 		cursor.close()
 		form = forms.BillForm(request.form)
 
-		# app.logger.info("data[0][0] = " + str(data[0][0])) # bill_id
-		# app.logger.info("data[0][1] = " + str(data[0][1])) # user_id
-		# app.logger.info("data[0][2] = " + str(data[0][2])) # bill_name
-		# app.logger.info("data[0][3] = " + str(data[0][3])) # bill_description
-		# app.logger.info("data[0][4] = " + str(data[0][4])) # bill_amount
-		# app.logger.info("data[0][5] = " + str(data[0][5])) # bill_autoWithdrawal
-		# app.logger.info("data[0][6] = " + str(data[0][6])) # bill_date
-		# app.logger.info("data[0][7] = " + str(data[0][7])) # recur_id
-		# app.logger.info("data[0][8] = " + str(data[0][8])) # bill_createdDate
-		# app.logger.info("data[0][9] = " + str(data[0][9])) # bill_paid
+		# AppLog.info("data[0][0] = " + str(data[0][0])) # bill_id
+		# AppLog.info("data[0][1] = " + str(data[0][1])) # user_id
+		# AppLog.info("data[0][2] = " + str(data[0][2])) # bill_name
+		# AppLog.info("data[0][3] = " + str(data[0][3])) # bill_description
+		# AppLog.info("data[0][4] = " + str(data[0][4])) # bill_amount
+		# AppLog.info("data[0][5] = " + str(data[0][5])) # bill_autoWithdrawal
+		# AppLog.info("data[0][6] = " + str(data[0][6])) # bill_date
+		# AppLog.info("data[0][7] = " + str(data[0][7])) # recur_id
+		# AppLog.info("data[0][8] = " + str(data[0][8])) # bill_createdDate
+		# AppLog.info("data[0][9] = " + str(data[0][9])) # bill_paid
 
 		# Populate bill form fields
 		form.bill_name.data = data[0][2]
@@ -737,11 +739,11 @@ def addBank():
 			return render_template('addBank.html', form=form)
 		# elif hasBank == True:
 		# 	flash('You already have bank information entered', 'danger')
-		# 	app.logger.info("else"+str(hasBankData))
+		# 	AppLog.info("else"+str(hasBankData))
 		# 	return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
 		# else:
 		# 	flash('Error', 'danger')
-		# 	app.logger.info("else"+str(hasBankData))
+		# 	AppLog.info("else"+str(hasBankData))
 		# 	return redirect(url_for('dashboard', form=form, hasBankData=hasBankData))
 
 	# return render_template('dashboard.html', form=form)
@@ -774,7 +776,7 @@ def addBank():
 
 			# Only allowed to have one bank account in the system
 			if bankInfoExists < 1:
-				app.logger.info('YOU ARE ALLOWED TO ADD A BANK')
+				AppLog.info('YOU ARE ALLOWED TO ADD A BANK')
 				cursor.callproc('sp_addBank', (
 					_user_id,
 					_bank_currentAmount,
@@ -794,7 +796,7 @@ def addBank():
 				else:
 					return render_template('error.html', error = str(data[0]))
 			else:
-				app.logger.info('You already have bank information in the database')
+				AppLog.info('You already have bank information in the database')
 				return redirect(url_for('dashboard'))
 		else:
 			flash("Something is wrong", 'danger')
@@ -953,7 +955,6 @@ def testSelectField():
 			print("city = " + str(city))
 			conn.commit()
 			return '<h1>State: {}, City: {}</h1>'.format(formTest.state.data, formTest.city.data)
-
 
 		return render_template('testSelectField.html', form=formTest)
 
