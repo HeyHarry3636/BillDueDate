@@ -370,10 +370,10 @@ def dashboard():
 				# sort truncated list
 				bill_dict_truncated = sorted(bill_dict_trunc, key=lambda k: k['bill_date'])
 
-				for li in bill_dict_truncated:
-					print("li['bill_name'] = " + str(li['bill_name']))
-					print("li['bill_date'] = " + str(li['bill_date']))
-					print("\n")
+				# for li in bill_dict_truncated:
+				# 	print("li['bill_name'] = " + str(li['bill_name']))
+				# 	print("li['bill_date'] = " + str(li['bill_date']))
+				# 	print("\n")
 
 
 
@@ -827,14 +827,20 @@ def updateBankInfo():
 		cursor = conn.cursor()
 		cursor.execute('SELECT * FROM tbl_bank WHERE user_id = %s', (_user_id))
 		_bank_id = cursor.fetchone()
-		cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s, bank_payDayAmount = %s, bank_nextPayDate = %s, bank_projectedMonths = %s WHERE bank_id = %s', (
-			_bank_currentAmount, _bank_payDayAmount, _bank_nextPayDate, _bank_projectedMonths, _bank_id[0]))
-		bankInfo = cursor.fetchall()
 
+		if request.method == 'POST':
+			cursor.execute('UPDATE tbl_bank SET bank_currentAmount = %s, bank_payDayAmount = %s, bank_nextPayDate = %s, bank_projectedMonths = %s WHERE bank_id = %s', (
+				_bank_currentAmount, _bank_payDayAmount, _bank_nextPayDate, _bank_projectedMonths, _bank_id[0]))
+			bankInfo = cursor.fetchall()
+			
+			conn.commit()
+			print(json.dumps({'result' : 'success', 'bank_currentAmount' : _bank_currentAmount, 'bank_payDayAmount' : _bank_payDayAmount, 'bank_nextPayDate' : _bank_nextPayDate, 'bank_projectedMonths' : _bank_projectedMonths}))
+			return json.dumps({'result' : 'success', 'bank_currentAmount' : _bank_currentAmount, 'bank_payDayAmount' : _bank_payDayAmount, 'bank_nextPayDate' : _bank_nextPayDate, 'bank_projectedMonths' : _bank_projectedMonths})
 
-		conn.commit()
-		print(json.dumps({'result' : 'success', 'bank_currentAmount' : _bank_currentAmount, 'bank_payDayAmount' : _bank_payDayAmount, 'bank_nextPayDate' : _bank_nextPayDate, 'bank_projectedMonths' : _bank_projectedMonths}))
-		return json.dumps({'result' : 'success', 'bank_currentAmount' : _bank_currentAmount, 'bank_payDayAmount' : _bank_payDayAmount, 'bank_nextPayDate' : _bank_nextPayDate, 'bank_projectedMonths' : _bank_projectedMonths})
+		if request.method == 'GET':
+			
+			print(json.dumps({'result' : 'success', 'bank_projectedMonths' : _bank_projectedMonths}))
+			return json.dumps({'result' : 'success', 'bank_projectedMonths' : _bank_projectedMonths})
 
 	except Exception as e:
 		return render_template('error.html', error = str(e))
@@ -890,7 +896,8 @@ def updateBillAmounts():
 			print("The bill running total is = " + str(runningTotal.getRunningTotal()))
 
 		conn.commit()
-		return json.dumps({'result' : 'success', 'billAmountList' : _billAmountList})
+		# return json.dumps({'result' : 'success', 'billAmountList' : _billAmountList})
+		return json.dumps({'result' : 'success'})
 
 	#***************************** LOOK INTO JQUERY to updated
 

@@ -29,16 +29,24 @@
           <div class="form-group">
             <label for="projectedMonths{{ bank.bank_id }}">Projected Months</label>
             <!-- <input type="number" class="form-control" id="projectedMonths{{ bank.bank_id }}" value="{{ bank.bank_projectedMonths }}"> -->
-            <select type="number" class="form-control" id="projectedMonths{{ bank.bank_id }}" value="{{ bank.bank_projectedMonths }}">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
+            <div id="selectOption">
+              <select type="number" class="form-control" id="projectedMonths{{ bank.bank_id }}" value="{{ bank.bank_projectedMonths }}">          
+                <!-- <option value="{{ bank.bank_projectedMonths }}">{{ bank.bank_projectedMonths }}</option> -->
+                <!-- FIXME Update this so that the number falls in the proper order of the list (if 2 should be selected,  -->
+                <!-- the order should be 1,2,3,4,5,6 not 2,1,3,4,5,6) -->
+                {% set prjVal = bank.bank_projectedMonths %}
+                <option value="{{prjVal}}">{{prjVal}}</option>
+                {% for i in range (1, 7) %}
+                  {% if i == prjVal %}
+                    {# <option value="SKIP">SKIP</option> #}
+                  {% else %}
+                    <option value="{{i}}">{{i}}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>  
           </div>
-          <button class="btn btn-primary updateButton" bank_id="{{ bank.bank_id }}">Update</button>
+          <button class="btn btn-primary updateButton" bank_id="{{ bank.bank_id }}" proj_id="{{ bank.bank_id }}">Update</button>
         </div>
       </div>
     </div>

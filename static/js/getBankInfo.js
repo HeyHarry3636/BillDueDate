@@ -9,6 +9,11 @@ $(document).ready(function() {
     var nextPayDayDate = $('#nextPayDateInput'+bank_id).val();
     var projectedMonths = $('#projectedMonths'+bank_id).val();
 
+    // console.log("**************************************************")    
+    // console.log("Type of projectedMonths = " + typeof(projectedMonths))
+    // console.log("projectedMonths = " + projectedMonths)
+    
+
     req = $.ajax({
       url : '/updateBankInfo',
       type : 'POST',
@@ -24,6 +29,9 @@ $(document).ready(function() {
     // data = the passed back data from the app.py updateTest function
     req.done(function(data) {
       //$('#bankSection'+bank_id).fadeOut(1000).fadeIn(1000);
+
+      // console.log("data = " + data)
+
       $('currentInput'+bank_id).val(data.bank_currentAmount);
       $('payDayInput'+bank_id).val(data.bank_payDayAmount);
       $('nextPayDateInput'+bank_id).val(data.bank_nextPayDate);
@@ -31,6 +39,7 @@ $(document).ready(function() {
 
       // this will reload the bill table (fetches new data from database after change to bank info)
       $('#billTable').load(location.href + ' #billTable');
+      $('#selectOption').load(location.href + ' #selectOption');
       // location.reload();
     });
 
