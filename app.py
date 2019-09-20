@@ -440,6 +440,217 @@ def dashboard():
 		if 'conn' in locals():
 			conn.close()
 
+# My Bills Dashboard
+@app.route('/myBills', methods=['GET', 'POST'])
+@is_logged_in
+def myBills():
+
+	try:
+		if request.method == 'GET':
+
+			_user_id = session.get('user_id')
+
+			conn = mysql.connect()
+			cursor = conn.cursor()
+
+			# Check to see if there is already a bank account in the database
+			cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
+			payDay = cursor.fetchone()
+			print("payDay = " + str(payDay))
+			# print("payDay = " + str(payDay[0].date()))
+
+			# Set initial payday date
+			if not payDay:
+				print("if not PayDay")
+				#List is empty
+				hasBankData.setBankInformation(False)
+				return render_template('dashboard.html', hasBankData=hasBankData.getBankInformation())
+
+			cursor.execute('SELECT bank_nextPayDate FROM tbl_bank WHERE user_id = %s', (_user_id))
+			payDay = cursor.fetchone()
+			print("payDay2 = " + str(payDay))
+
+			runningDate.setInitialDate(payDay[0])
+
+			# Create a list for future pay days
+			payDayList = []
+			payDayList.append(runningDate.getRunningDate())
+
+			# Project out the next __ 50 __ paydays for now
+			tempPayDay = runningDate.getRunningDate()
+			for i in range(50):
+				# in this case the next payday is 14 days/2 weeks after the initial payday
+				tempPayDay = tempPayDay + datetime.timedelta(days=14)
+				payDayList.append(tempPayDay)
+
+			# Get each bill for the user
+			cursor.callproc('sp_getBillByUser', (_user_id,))
+			billData = cursor.fetchall()
+
+			# Parse data and convert to dictionary to return easily as JSON
+			bill_dict_notSorted = []
+
+			# billData is a list of tuples billData = ( (), (), () )
+			for bill in billData:
+				bill_item = {
+					'bill_id': bill[0],
+					'user_id': bill[1],
+					'bill_name': bill[2],
+					'bill_description': bill[3],
+					# Set the bill amount to decimal.Decimal which is what the
+					# running total class type is
+					'bill_amount': decimal.Decimal(bill[4]),
+					'bill_autoWithdrawal': bill[5],
+					'bill_date': bill[6],
+					'recur_id': bill[7],
+					'bill_createdDate': bill[8],
+					'bill_paid': bill[9]#,
+				}
+				bill_dict_notSorted.append(bill_item)
+
+			# bill_dict is a list of dictionaries billData = ( { : }, { : }, { : } )
+			# This function will sort the list by bill_date
+			bill_dict = sorted(bill_dict_notSorted, key=lambda k: k['bill_date'])
+			print("type(bill_dict)" + str(type(bill_dict)))
+
+			# Get bank details for the user,
+			# if bankInfo does not exist, show 'addBank' button on dashboard
+			cursor.callproc('sp_getBankByUser', (_user_id,))
+			bankData = cursor.fetchall()
+
+			# Pythonic way to check if a list is empty
+			if not bankData:
+				#List is empty
+				hasBankData.setBankInformation(False)
+				return render_template('myBills.html', bill_dict=bill_dict, hasBankData=hasBankData.getBankInformation())
+			else:
+				#List has data
+				hasBankData.setBankInformation(True)
+
+				# Parse data and convert to dictionary to return easily as JSON
+				bank_dict = []
+				for bank in bankData:
+					bank_item = {
+						'bank_id': bank[0],
+						'user_id': bank[1],
+						'bank_currentAmount': str(bank[2]),
+						'bank_payDayAmount': str(bank[3]),
+						'bank_nextPayDate': bank[4],
+						'bank_projectedMonths' : bank[5],
+						'recur_id': bank[6],
+						'bank_createdDate': bank[7]
+					}
+					shownMonths = bank[5]
+					bank_dict.append(bank_item)
+
+					# Set the runningTotal to the current value of the bank account
+					#runningTotal.setInitialAmount(50000)
+					runningTotal.setInitialAmount(bank[2])
+					payDayAmountInput.setPayDayAmount(bank[3])
+
+				# Duplicate bills that occur on recur_id basis
+				# Ex: if you want to show the next three months of bills, duplicate the bill three times for the future months
+				print("shownMonths = " + str(shownMonths))
+
+				# Create new list that will only store the bills that the user wants to see (Ex: only want to see next 3 months)
+				bill_dict_trunc = []
+				counter = 0
+				#Set initial date based on the first bill in the sorted bill List
+				for li in bill_dict:
+					#Set initial date based on the first bill in the sorted bill List
+					if counter == 0:
+						initialBillDate = li['bill_date']
+						# Set the limit for the number of bills that are viewable
+						dateLimit = functions.addMonths(initialBillDate, shownMonths)
+						print("dateLimit = " + str(dateLimit))
+
+
+					if li['bill_date'] <= dateLimit:
+						bill_dict_trunc.append(li)
+
+						#If the recurrence interval is months, add 1 month to bill
+						# recur_id 3 == monthly recurrence
+						if li['recur_id'] == 3:
+							#Create new dictionary item for next months bills
+							#Add X months to date
+							for val in range(1, shownMonths):
+								nextMonthDate = functions.addMonths(li['bill_date'], val)
+
+								if nextMonthDate <= dateLimit:
+									# if the next month bill date still below the dateLimit, make a copy of it and append to list
+									newBillItem = li
+
+									newBillItem = {
+										'bill_id': li['bill_id'],
+										'user_id': li['user_id'],
+										'bill_name': li['bill_name'],
+										'bill_description': li['bill_description'],
+										# Set the bill amount to decimal.Decimal which is what the
+										# running total class type is
+										'bill_amount': li['bill_amount'],
+										'bill_autoWithdrawal': li['bill_autoWithdrawal'],
+										'bill_date': nextMonthDate,
+										'recur_id': li['recur_id'],
+										'bill_createdDate': li['bill_createdDate'],
+										'bill_paid': li['bill_paid']
+									}
+
+									#Append the next month to the List
+									bill_dict_trunc.append(newBillItem)
+						counter += 1
+				
+				# sort truncated list
+				bill_dict_truncated = sorted(bill_dict_trunc, key=lambda k: k['bill_date'])
+
+				# Create an index to track payDays steps
+				payDayListIndex = 0
+
+				# Calculate runningTotal after sorting by DATE
+				# Append these results to an item named 'bill_runningTotal' that will be rendered in the dashboard.html
+				# For each bill in the bill dictionary, calculate the running total bill amound along with
+				# adding appropriate paydays based on the payday list created above
+
+				# use bill_dict to show all bills
+				# for li in bill_dict:
+
+				# use bill_dict_truncated to show only bills in the timeframe the user requests
+				for li in bill_dict_truncated:
+
+					for x in range(0, len(payDayList)):
+						# if bill date is previous OR equal to the first payday (in payday list),
+						# then subtract bill amount from running runningTotal
+						if li['bill_date'] <= payDayList[payDayListIndex].date():
+							# set the new running total, which is based off the current running total minus the bill amount
+							runningTotal.setRunningTotal(li['bill_amount'])
+							break
+
+						# These bills occur after the current payday (which is the first index in the paydaylist),
+						# so increment to the next payDay in the list
+						else:
+							# The first bill that does not meet the criteria (has a bill after the current payday,
+							# which is determined by the payday list created above) will increment the payday
+							# index to the next date in the paydaylist list
+							if li['bill_date'] <= payDayList[payDayListIndex+1].date():
+								runningTotal.setRunningTotalAfterPayDayMultiple(li['bill_amount'], payDayAmountInput.getPayDayAmount(), x+1)
+								runningTotal.setRunningTotal(li['bill_amount'])
+								payDayListIndex += 1
+								break
+							else:
+								payDayListIndex += 1
+
+					li['bill_runningTotal'] = runningTotal.getRunningTotal()
+
+				return render_template('myBills.html', bill_dict=bill_dict, bill_dict_truncated=bill_dict_truncated)
+
+	# except Exception as e:
+	# 	return render_template('error.html', error = str(e))
+
+	finally:
+		if 'cursor' in locals():
+			cursor.close()
+		if 'conn' in locals():
+			conn.close()
+
 ###############################################################################################
 # Bill Methods
 @app.route('/addBill', methods=['GET', 'POST'])
